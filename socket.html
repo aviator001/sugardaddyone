@@ -1,0 +1,190 @@
+<script src="https://terrawire.com/assets/js/jquery.js"></script>
+<script src="http://199.91.65.85:7004/socket.io/socket.io.js"></script>
+<script>
+var socket
+  (function($){
+    var myNick = 'me';
+    var newlyJoined = true;
+    socket = io.connect('http://199.91.65.85:7004');
+	console.log(socket)
+    socket.on('connect', function () {
+   });
+
+    socket.on('announce', function (msg) {
+      $('#lines').append($('<p>').append($('<em>').text(msg)));
+    });
+
+    socket.on('register', function (nicknames) {
+    $('#nicknames').empty().append($('<span>Online:</span>'));
+    for (var i in nicknames) {
+        var attrs = {
+            'class': 'chatNickname',
+            'id': nicknames[i],
+            'text': nicknames[i]
+        };
+        $('#nicknames').append($('<div>',attrs));
+    }
+});
+
+    socket.on('message', message);
+    socket.on('pm', privateMessage);
+
+    socket.on('reconnect', function () {
+      $('#lines').remove();
+      message('System', 'Reconnected to the server');
+    });
+
+    socket.on('reconnecting', function () {
+      message('System', 'Attempting to re-connect to the server');
+    });
+
+    socket.on('error', function (e) {
+      message('System', e ? e : 'A unknown error occurred');
+    });
+
+    socket.on('chat log', function(chatlog) {
+      if (newlyJoined) {
+    var i = 0;
+    for (stamp in chatlog) {
+      if (chatlog[stamp].type == 'user message') {
+        var ts   = tstamp(stamp);
+        var nick = chatlog[stamp].nick
+        var msg  = chatlog[stamp].msg
+        message(ts, nick, msg);
+        i++;
+      }
+    }
+    if (i > 0) {
+      $('#lines').append($('<hr>')).append($('<small style="text-align:center; display:block; color: #888;">').text('Chat messages posted within the past half hour appear above this line.')).append($('<hr>'));
+      $('#lines').get(0).scrollTop = 10000000;       
+    }
+    newlyJoined = false;
+      }
+    });
+	    	    
+    function message (msg_time, from, msg) {
+      $('#lines').append($('<p>').append($('<small>').text(msg_time)).append($('<b>').text(from), linkify(msg)));
+    }
+
+    function privateMessage (data) {
+      $('#pm').append($('<p>').append($('<small>')).append($('<b>').text(data.from), ' says: ' + data.message));
+    }
+    
+    function linkify(inputText) {
+      //URLs starting with http://, https://, or ftp://
+      var replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
+      var replacedText = inputText.replace(replacePattern1, '<a href="$1" target="_blank">$1</a>');
+
+      //URLs starting with www. (without // before it, or it'd re-link the ones done above)
+      var replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+      var replacedText = replacedText.replace(replacePattern2, '$1<a href="http://$2" target="_blank">$2</a>');
+
+      //Change email addresses to mailto:: links
+      var replacePattern3 = /(\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,6})/gim;
+      var replacedText = replacedText.replace(replacePattern3, '<a href="mailto:$1">$1</a>');
+
+      return replacedText
+    }
+
+    function tstamp(stamp) {
+      var currentTime = new Date(); 
+      if (typeof stamp != 'undefined') {
+    currentTime.setTime(stamp);
+      }
+      var days = new Array('Sun', 'Mon', 'Tue', 'Wed', 'Thr', 'Fri', 'Sat');
+      var day = currentTime.getDay();
+      var hours = currentTime.getHours();
+      var minutes = currentTime.getMinutes();
+      if (minutes < 10) {
+    minutes = "0" + minutes;
+      }
+      if (hours > 11) {
+    var ap = 'p';
+      }
+      else {
+    var ap = 'a';
+      }
+      if (hours > 12) {
+    hours = hours - 12;
+      }
+      return "["+ days[day] + " " + hours + ":" + minutes + ap + "m] ";
+    }
+
+    function startPrivateChat(targetUser, sendingUser){
+	    if(targetUser !=sendingUser){
+		var privateMessage1="starting private chat with " + targetUser + ". My name is " + sendingUser;
+		var chatBoxId= targetUser + 'ChatBox';
+		$("#content").append('<div class="chatBox" id="' + chatBoxId + '">' + sendingUser + ', ' + targetUser + '</div>');
+		$('#' + chatBoxId).append('new private chat');
+		$('#' + chatBoxId).dialog();
+		privateMessage(tstamp(), myNick, privateMessage1);
+		//socket.emit('private message', targetUser, privateMessage1);
+		clear();    
+	    }
+	}
+
+    $(document).ready(function() {
+	$('#nicknames').on('click', '.chatNickname', function(){ 
+	  startPrivateChat(this.id,myNick);
+	});
+	
+      $('input#message').focus(function() {
+    if ($(this).val() == 'Type your chat messages here...') {
+      $(this).val('');
+    }
+      });
+
+      $('input#show-timestamps').click(function() {
+    if ($(this).is(':checked')) {
+      $('#messages p small').show();
+    }
+    else {
+      $('#messages p small').hide();
+    }
+      })
+
+      socket.emit('nickname', 'gauts', function (nick) {
+    if (nick != 'me') {
+      myNick = nick;
+      socket.emit('get log');          
+      return $('#chat').addClass('nickname-set');
+    }
+      });
+
+      $('#send-message').submit(function () {
+    message(tstamp(), myNick, $('#message').val());
+    socket.emit('user message', $('#message').val());
+    clear();
+    $('#lines').get(0).scrollTop = 10000000;
+    return false;
+      });
+
+      function clear () {
+    $('#message').val('').focus();
+      };
+
+    });
+  })(jQuery);
+ 	function register() {
+		var username = $('#login').val();
+		socket.emit('register',username);      
+ 	}
+
+	function pm() {
+		var username = $('#user').val();
+		var message = $('#message').val();
+		socket.emit('pm',{
+			to : username,
+			message : message
+		});
+	 }  
+</script>
+<body>
+<div id="lines"></div>
+<div id="chat"></div>
+<input type=text id="message">
+<div id="nicknames"></div>
+<div><input type=text id="login"><button onclick="register()">Register</button></div>
+<div><input type=text id="user"><input type=text id="message"><button onclick="pm()">PM</button></div>
+<div id="pm"></div>
+</body>
