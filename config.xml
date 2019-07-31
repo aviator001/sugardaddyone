@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="local.sugardaddy.app" version="6.0" versionCode="1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>SugarDaddyLocal</name>
+<widget id="one.sugardaddy.app" version="1.0" versionCode="1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>SugarDaddyOne</name>
     <description>
 A new experience from the pioneeers of sugar daddy dating - the first site based on disruptive technologies
 </description>
-    <author email="cs@sugardaddylocal.com" href="http://sugardaddylocal.com">
+    <author email="g@terrawire.com" href="http://sugardaddyone.com">
 		Free Sugar Daddy App Team
 	</author>
     <content src="index.html" />
@@ -32,7 +32,7 @@ A new experience from the pioneeers of sugar daddy dating - the first site based
     <preference name="ChildBrowser" value="false" />
     <preference name="ErrorUrl" value="err.html" />
     <preference name="FullScreen" value="true" />
-	<preference name="android-targetSdkVersion" value="28" />
+    <preference name="android-targetSdkVersion" value="28" />
     <preference name="phonegap-version" value="cli-7.1.0" />
     <preference name="xwalkMultipleApk" value="false" />
     <plugin name="cordova-plugin-camera" />
@@ -49,7 +49,7 @@ A new experience from the pioneeers of sugar daddy dating - the first site based
     <plugin name="android-camera-permission" spec="~1.0.0" />
     <plugin name="cordova-android-support-gradle-release" />
 	<gap:plugin name="cordova-plugin-customurlscheme" source="npm">
-	  <param name="URL_SCHEME" value="sd" />
+	  <param name="URL_SCHEME" value="one" />
 	</gap:plugin>
     <platform name="android">
         <feature name="Camera">
@@ -113,7 +113,7 @@ A new experience from the pioneeers of sugar daddy dating - the first site based
         </feature>
 	    <config-file target="res/values/strings.xml" parent="/*">
         <string name="title">SDLocal</string>
-        <string name="filter_view_https_sugardaddy">sd</string>
+        <string name="filter_view_https_sugardaddy">one</string>
 		</config-file> 	
 		<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 			<supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:resizeable="true" android:smallScreens="true" android:xlargeScreens="true" />
@@ -134,14 +134,14 @@ A new experience from the pioneeers of sugar daddy dating - the first site based
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
             <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 			<activity
-				android:name="local.sugardaddy.app"
+				android:name="one.sugardaddy.app"
 				android:label="@string/title" >
 				<intent-filter android:label="@string/filter_view_https_sugardaddy">
 					<action android:name="android.intent.action.VIEW" />
 					<category android:name="android.intent.category.DEFAULT" />
 					<category android:name="android.intent.category.BROWSABLE" />
-					<data android:scheme="sd"
-						  android:host="local.sugardaddy.app" />
+					<data android:scheme="one"
+						  android:host="one.sugardaddy.app" />
 				</intent-filter>
 			</activity>			
         </manifest>
