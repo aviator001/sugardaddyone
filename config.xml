@@ -36,14 +36,10 @@ A new experience from the pioneeers of sugar daddy dating - the first site based
     <preference name="phonegap-version" value="cli-7.1.0" />
     <preference name="xwalkMultipleApk" value="false" />
     <plugin name="cordova-plugin-camera" />
-    <plugin name="cordova-plugin-media-capture" />
     <plugin name="cordova-plugin-file" version="4.3.2" />
     <plugin name="cordova-plugin-file-transfer" />
     <plugin name="cordova-plugin-geolocation" />
-    <plugin name="cordova-plugin-globalization" />
-    <plugin name="cordova-plugin-media" />
-    <plugin name="cordova-plugin-splashscreen" />
-    <plugin name="cordova-plugin-whitelist" version="1.0.0" />
+     <plugin name="cordova-plugin-whitelist" version="1.0.0" />
     <plugin name="cordova-plugin-inappbrowser" version="1.7.1" />
     <plugin name="cordova-plugin-android-permissions" spec="~0.10.0" />
     <plugin name="android-camera-permission" spec="~1.0.0" />
@@ -66,52 +62,16 @@ A new experience from the pioneeers of sugar daddy dating - the first site based
         <feature name="Permissions">
             <param name="android-package" value="com.android.plugins.Permissions" />
         </feature>
-        <feature name="Device">
-            <param name="android-package" value="org.apache.cordova.device.Device" />
-        </feature>
-        <feature name="Media">
-            <param name="android-package" value="org.apache.cordova.media.AudioHandler" />
-        </feature>
-        <feature name="Camera">
-            <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
-        </feature>
-        <feature name="File">
-            <param name="android-package" value="org.apache.cordova.file.FileUtils" />
-            <param name="onload" value="true" />
-        </feature>
-        <allow-navigation href="cdvfile:*" />
-        <feature name="Capture">
-            <param name="android-package" value="org.apache.cordova.mediacapture.Capture" />
-        </feature>
-        <feature name="Permissions">
-            <param name="android-package" value="com.android.plugins.Permissions" />
-        </feature>
-        <feature name="Device">
-            <param name="android-package" value="org.apache.cordova.device.Device" />
-        </feature>
-        <feature name="Media">
-            <param name="android-package" value="org.apache.cordova.media.AudioHandler" />
-        </feature>
         <feature name="FileTransfer">
             <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
         </feature>
         <feature name="Geolocation">
             <param name="android-package" value="org.apache.cordova.geolocation.Geolocation" />
         </feature>
-        <feature name="Globalization">
-            <param name="android-package" value="org.apache.cordova.globalization.Globalization" />
-        </feature>
         <feature name="InAppBrowser">
             <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
         </feature>
-        <feature name="NetworkStatus">
-            <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
-        </feature>
-        <feature name="SplashScreen">
-            <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
-            <param name="onload" value="true" />
-        </feature>
-	    <config-file target="res/values/strings.xml" parent="/*">
+        <config-file target="res/values/strings.xml" parent="/*">
         <string name="title">SDLocal</string>
         <string name="filter_view_https_sugardaddy">one</string>
 		</config-file> 	
@@ -128,11 +88,6 @@ A new experience from the pioneeers of sugar daddy dating - the first site based
             </application>
             <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="28" />
             <uses-permission android:name="android.permission.CAMERA" />
-            <uses-permission android:name="android.permission.MICROPHONE" />
-            <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-            <uses-permission android:name="android.permission.RECORD_AUDIO" />
-            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 			<activity
 				android:name="one.sugardaddy.app"
 				android:label="@string/title" >
