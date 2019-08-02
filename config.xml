@@ -71,7 +71,10 @@ A new experience from the pioneeers of sugar daddy dating - the first site based
         <feature name="InAppBrowser">
             <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
         </feature>
-        <config-file target="res/values/strings.xml" parent="/*">
+        <config-file platform="android" parent="/manifest">
+          <uses-sdk tools:overrideLibrary="org.apache.cordova,com.library.plugin" />
+       </config-file>
+      <config-file target="res/values/strings.xml" parent="/*">
         <string name="title">SDLocal</string>
         <string name="filter_view_https_sugardaddy">one</string>
 		</config-file> 	
