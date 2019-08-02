@@ -36,8 +36,6 @@ A new experience from the pioneeers of sugar daddy dating - the first site based
     <preference name="phonegap-version" value="cli-7.1.0" />
     <preference name="xwalkMultipleApk" value="false" />
     <plugin name="cordova-plugin-camera" />
-    <plugin name="cordova-plugin-file" version="4.3.2" />
-    <plugin name="cordova-plugin-file-transfer" />
     <plugin name="cordova-plugin-geolocation" />
      <plugin name="cordova-plugin-whitelist" version="1.0.0" />
     <plugin name="cordova-plugin-inappbrowser" version="1.7.1" />
@@ -56,14 +54,8 @@ A new experience from the pioneeers of sugar daddy dating - the first site based
             <param name="onload" value="true" />
         </feature>
         <allow-navigation href="cdvfile:*" />
-        <feature name="Capture">
-            <param name="android-package" value="org.apache.cordova.mediacapture.Capture" />
-        </feature>
         <feature name="Permissions">
             <param name="android-package" value="com.android.plugins.Permissions" />
-        </feature>
-        <feature name="FileTransfer">
-            <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
         </feature>
         <feature name="Geolocation">
             <param name="android-package" value="org.apache.cordova.geolocation.Geolocation" />
