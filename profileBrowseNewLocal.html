@@ -233,15 +233,15 @@
 		var type=qs('type')
 		var str=''
 		if (type=='search') {
-			var url='https://lushmatch.com/x_get_browse_profiles.php?member_id='+nextMID+'&type=search&count='+no+'&search='+qs('search')+'&x_start='+x_start+'&miles='+miles+'&gender='+getCookie('gender')
+			var url='https://lushmatch.com/x_get_browse_new_local.php?member_id='+nextMID+'&type=search&count='+no+'&search='+qs('search')+'&x_start='+x_start+'&miles='+miles+'&gender='+getCookie('gender')
 		} else {
-			var url='https://lushmatch.com/x_get_browse_profiles.php?member_id='+currMID+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')
+			var url='https://lushmatch.com/x_get_browse_new_local.php?member_id='+currMID+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')
 			console.log ('******************LOCAL *************************')
 			console.log(url)
 			console.log(currMID)
 			console.log ('******************LOCAL *************************')
 			if (qs('browse')=='popular') {
-				url='https://lushmatch.com/x_get_browse_profiles.php?user_rights='+currUR+'&type='+qs('browse')+'&count='+no+'&member_id='+currMID+'&gender='+getCookie('gender')
+				url='https://lushmatch.com/x_get_browse_new_local.php?user_rights='+currUR+'&type='+qs('browse')+'&count='+no+'&member_id='+currMID+'&gender='+getCookie('gender')
 			}
 		}
 		console.log(url)
@@ -305,7 +305,7 @@
 							str+=	'				</div>'
 							str+=	'				<div class="genderP">'
 							str+=	'					<span>'+data[i].distance+' Miles Away</span>'
-							str+=	'				</div>'							
+							str+=	'				</div>'
 							str+=	'				<div id="location'+i+'" class="locationP">'+data[i].location.toUpperCase().substr(0,15)+'</div>'
 							str+=	'				<div class="team-social" style="">'
 							str+=	'					<a href="javascript:send_mail('+data[i].id+')"><img src="https://lushmatch.com/bubble01.png" style="position:absolute;width:80px;opacity:0.8;margin-left:-70px;margin-top:-15px"></a>'

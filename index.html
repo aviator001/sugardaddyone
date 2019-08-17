@@ -24,7 +24,7 @@
 <script src="js/jquery.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-61204113-1"></script>
 <script>
-	var version=6.0
+	var version=11.0
 	setCookie('version',version)
 	setTimeout('setVersion()',1000)
 	window.dataLayer = window.dataLayer || [];
@@ -33,6 +33,7 @@
 	gtag('config', 'UA-61204113-1');
 
 	function handleOpenURL(url) {
+		setCookie('url',url)
 		var q=url.split('=')[1]
 		location.href='search.html?q='+q
 	}
@@ -325,6 +326,7 @@
 	}
 	
 	function onDeviceReady() {
+		setCookie('href',location.href)
 		$$('email').value=getCookie('saveUser')
 		$$('password').value=getCookie('savePass')
 		var	options = {

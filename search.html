@@ -317,7 +317,7 @@ ul.ui-autocomplete li.ui-menu-item {
 	var ct=0, smids=[]
 	var x_start
 	var per_page=30
-	
+	setCookie('x_start_location','')
 	function searchCityStateZip() {
 		smids=[]
 		if (!getCookie('gender')) setCookie('gender','Sugar Daddy')
@@ -343,6 +343,7 @@ ul.ui-autocomplete li.ui-menu-item {
 					$.alert('No more results')
 					return
 				}
+				console.log(msg)
 				$$('sc').style.display='none'
 				$$('searchGallery').innerHTML=''
 				$$('searchGallery').style.opacity='1'			
@@ -351,8 +352,15 @@ ul.ui-autocomplete li.ui-menu-item {
 				for (var i=0;i<data.length;i++) {
 					if (data[i]) {
 						var src
-						if (data[i].filename_1) src='https://lushmatch.com/sb/'+ data[i].filename_1
-							else src='https://lushmatch.com/assets/images/no_photo.png'
+						if (data[i].filename_1) {
+							src='https://lushmatch.com/sb/'+ data[i].filename_1
+						} else {
+							if (data[i].gender=='Sugar Baby') {
+								src='https://lushmatch.com/assets/images/no_photo.png'
+							} else {
+								src='https://lushmatch.com/assets/images/no_photo_m.png'
+							}
+						}
 						id=data[i].member_id
 						smids.push(id)
 						setCookie('smids',JSON.stringify(smids))
@@ -362,7 +370,9 @@ ul.ui-autocomplete li.ui-menu-item {
 						div.className="searchElement www_box2 "
 						if (data[i].location) var loc=data[i].location.toUpperCase()
 							else var loc='[No Location Data]'
-						div.innerHTML="<table style='width:100%;margin:0;padding:0'><tr><td style='width:100px'>"+imgG.outerHTML+"</td><td style='margin:0;text-align:left;padding:10px'><div class='sTitleName'>"+data[i].login.toUpperCase()+"</div><div class='sTitleGender'>"+data[i].gender.toUpperCase()+"</div><div class='sTitleLocation'>"+loc+"</div></td></tr></table>"
+						if (data[i].miles) var miles=data[i].miles
+						miles=Math.floor(miles)
+						div.innerHTML="<table style='width:100%;margin:0;padding:0'><tr><td style='width:100px'>"+imgG.outerHTML+"</td><td style='margin:0;text-align:left;padding:10px'><div class='sTitleName'>"+data[i].login.toUpperCase()+"</div><div class='sTitleGender'>"+data[i].gender.toUpperCase()+"</div><div class='sTitleLocation'>"  + loc + "</div><div class='sTitleMiles' style='font-size:12px'>"  + miles + " Miles</div></td></tr></table>"
 						if (ct>bgx.length) {
 							ct=0
 						} else {

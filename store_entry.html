@@ -1,0 +1,528 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0">
+		<meta name="description" content="A sugar daddy dating site that connects handsome wealthy and caring men to hot young women. Worlds first sugar daddy site to use disruptive SMS messaging. Find a Sugar Daddy today!" />		
+		<meta name="Author" content="Gautam Sharma" />		
+		<meta name="format-detection" content="telephone=no"/>
+		<title>Sugar Daddy & Sugar Baby Dating | lushmatch.com</title>	<meta name="keywords" content="sugar daddy,sugar baby,sugardaddy,wealthy  men, dating,Sugar Daddy dating site, daddy dating, find daddy, find golddigger, lushmatch" />
+	<meta name="description" content="A place that connects handsome wealthy and caring  men to hot young  males" />
+	<meta name="Author" content="Gautam Sharma" />
+	<!-- mobile settings -->
+	<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
+	<!-- Fav Icons -->
+	<link rel="icon" href="https://lushmatch.com/assets/img/favicon.ico">
+	<link rel="apple-touch-icon" href="https://lushmatch.com/assets/img/favicon.ico">
+	<!-- WEB FONTS -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800" rel="stylesheet" type="text/css" />
+	<link href="https://lushmatch.com/assets/css/layout-responsive.css" rel="stylesheet" type="text/css" />
+	<link href="https://lushmatch.com/assets/css/layout.css" rel="stylesheet" type="text/css" />
+	<link href="https://lushmatch.com/assets/css/bootstrap.css" rel="stylesheet" type="text/css" />
+	<link href="https://lushmatch.com/assets/css/magic.css" rel="stylesheet" type="text/css" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.css">
+		<style>
+			.tooltipsy {
+				color: #0093D9;
+				background-size:cover;
+				border: none;
+				border-radiuse:4px;
+				text-shadow:0px 0px 1px #333;
+				opacity: 
+			}
+			.eee, .content{
+				width:400px;
+			}
+			.biggy {
+				margin-left:-100px;margin-top:-200px;width:200px;height:200px;border:5px solid white;
+				opacity:1;
+				box-shadow:0 0 25px #333
+			}
+			input {
+				disbled:true
+			}
+			text {
+				disbled:true
+			}
+/**
+ * The CSS shown here will not be introduced in the Quickstart guide, but shows
+ * how you can use CSS to style your Element's container.
+ */
+.StripeElement {
+  box-sizing: border-box;
+
+  height: 40px;
+
+  padding: 10px 12px;
+
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: white;
+
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}			
+		</style>
+		<script>
+			var wl = window.location.href;
+			var mob = (window.location.href.indexOf('file://')>=0);
+			setTimeout('dinit()',1)
+			function qs(name, url) {
+				if (!url) {
+				  url = window.location.href;
+				}
+				name = name.replace(/[\[\]]/g, "\\$&");
+				var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+					results = regex.exec(url);
+				if (!results) return null;
+				if (!results[2]) return '';
+				return decodeURIComponent(results[2].replace(/\+/g, " "));
+			}
+
+			function setCookie(cname,cvalue)	{
+				if (window.location.href.indexOf('file://')>=0) {
+					window.localStorage.setItem(cname, cvalue);
+				} else {
+					var d = new Date(); 
+					d.setTime(d.getTime()+(1*24*60*60*1000)); 
+					var expires = "expires="+d.toGMTString(); 
+					document.cookie = cname + "=" + cvalue + "; " + expires; 
+				}
+			} 
+
+			function getCookie(cname)	{ 
+				if (window.location.href.indexOf('file://')>=0) {
+					var cvalue = window.localStorage.getItem(cname);
+					return cvalue
+				} else {
+					var name = cname + "="; 
+					var ca = document.cookie.split(';'); 
+					for(var i=0; i<ca.length; i++) { 
+					  var c = ca[i].trim(); 
+					  if (c.indexOf(name)==0) return c.substring(name.length,c.length); 
+					} 
+					return ""; 
+				}
+			} 
+
+			function delCookie(cname) {
+				if (mob===true) {
+					window.localStorage.removeItem(cname);
+				} else {
+					var d = new Date();
+					d.setTime(d.getTime());
+					var expires = "expires="+d.toGMTString();
+					document.cookie = cname + "=" + "" + "; " + expires;
+				}
+			}
+			
+			function clear_all() {
+				if (mob===true) {
+					 window.localStorage.clear();
+				} else {
+					document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+				}	
+			}
+		function zinit() {
+
+			}
+	function dinit() {
+		var url = 'https://lushmatch.com/x_get_user_info.php?member_id=' + getCookie('mid')
+		console.log(url)
+		var request = $.ajax({
+				url: url,
+				type: "GET",
+				dataType: "html",
+				cache: false,
+				success: function(msg) {
+					console.log(msg)
+					msg=JSON.parse(msg)
+					document.getElementById('mobile').value=msg.mobile
+					document.getElementById('name').value=msg.name
+					document.getElementById('email').value=msg.email
+					document.getElementById('login').value=msg.login
+					document.getElementById('gender').value=msg.gender
+					document.getElementById('looking_for').value=msg.looking_for
+					document.getElementById('age').value=msg.age
+					document.getElementById('general_info').value=msg.general_info
+					document.getElementById('location').value=msg.location
+					var pswd=msg.pswd
+					document.getElementById('pswd').value=pswd
+					setCookie('gender',msg.gender)
+					setCookie('looking_for',msg.looking_for)
+				}
+			})			
+	}
+	function setGender(gen) {
+		var looking_for=document.createElement('div')
+		looking_for.id='looking_for'
+		if (gen=='Sugar Baby') {
+			looking_for.value='Sugar Daddy'
+			setCookie('gender','Sugar Baby')
+			setCookie('looking_for','Sugar Daddy')
+		} else {
+			looking_for.value='Sugar Baby'
+			setCookie('gender','Sugar Daddy')
+			setCookie('looking_for','Sugar Baby')
+		}
+		update(looking_for)
+	}
+	
+	function update(o) {
+		var v=o.value
+		var f=o.id
+		var t = 'dt_members'
+		var url = 'https://lushmatch.com/x_update_table.php?table=' + t + '&field=' + f + '&value=' + v + '&id=' + getCookie('mid')
+		console.log(url)
+		var request = $.ajax({
+				url: url,
+				type: "GET",
+				dataType: "html",
+				cache: false,
+				success: function(msg) {
+					if (!msg) {
+						if (o.id !== 'gender') {
+							$.alert('Done. Update completed.')
+						}
+					} else {
+					}
+				}
+			})			
+	}
+//	setTimeout('dinit()',2000)
+
+/*
+
+	1.	Triggers
+	2.	Canned Emails
+	3.	Canned words composition
+	4.	Alerts
+	5.	Video Calls
+	6.	Public Shows
+	7.	Auctions
+	8.	Spending Power
+	9.	I Need
+	10.	I expect to getCookie
+	11. I'm willing to give
+	12. Golden Buzzer!!
+
+*/			
+		</script>
+	</head> 
+	<script src="js/jquery.js"></script>
+	<script async defer src="https://lushmatch.com/assets/js/bootstrap.min.js"></script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-pdjniiApMjAV7j92Nfn5zgd3k2s3ze4&libraries=places" type="text/javascript"></script>
+	<script src="https://lushmatch.com/assets/js/jquery.geocomplete.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
+	
+		<body onload=""><script src="assets/js/custom_menu_no_footer.js"></script>
+				<div class="container" style="background:url('https://lushmatch.com/assets/images/b18.jpg');background-size:cover;height:100%;width:100%;left:0;right:0;position:fixed;margin:auto;left:0;right:0;margin-top:50px">
+							<img src="https://lushmatch.com/store/awning_red.png" style="width:100%; position:fixed;top:0px; z-index:9999999999999999; left:0;right:0;" />
+							<img src="https://lushmatch.com/assets/images/guide_question.png" style="position:fixed;z-index:99999999; left:0;right:0;top:100px;width:60%;padding:10px;opacity:1;margin:auto" />
+							
+							<div style="color:white;width:100%; position:fixed;top:250px; z-index:999999999999; left:0;right:0;padding:10px;text-align:left">
+								<table>
+									<tr>
+										<td>
+											<img src="https://lushmatch.com/assets/images/no.png" style="width:120px;padding:10px;opacity:1" />
+										</td>
+										<td>
+											<div>1. Get notified via SMS whenever your are contacted</div>
+										</td>
+									</tr>
+
+									<tr>
+										<td>
+											<img src="https://lushmatch.com/assets/images/yes.png" style="width:120px;padding:10px;opacity:1" />
+										</td>
+										<td>
+											<div>1. Get notified via SMS whenever your are contacted</div>
+										</td>
+									</tr>
+								</table>
+							</div>
+
+		<!-- /REGISTER -->	
+		<script>
+			var start_magic=false
+			var magic_w='65px'
+			var magic_h='65px'
+		</script>	
+
+<script type="text/javascript">
+var test_mode=false
+// Create a Stripe client.
+if (test_mode===true) {
+	var stripe = Stripe('pk_test_qtprDcPj4ouEvG9O2CaP7EJV');
+} else {
+	var stripe = Stripe('pk_live_usFpglAicQ086PYo5g0n4Jiz');
+}
+
+// Create an instance of Elements.
+var elements = stripe.elements();
+
+// Custom styling can be passed to options when creating an Element.
+// (Note that this demo uses a wider set of styles than the guide below.)
+var style = {
+  base: {
+    color: '#32325d',
+    fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+    fontSmoothing: 'antialiased',
+    fontSize: '16px',
+    '::placeholder': {
+      color: '#aab7c4'
+    }
+  },
+  invalid: {
+    color: '#fa755a',
+    iconColor: '#fa755a'
+  }
+};
+
+// Create an instance of the card Element.
+var card = elements.create('card', {style: style});
+
+// Add an instance of the card Element into the `card-element` <div>.
+card.mount('#card-element');
+
+// Handle real-time validation errors from the card Element.
+card.addEventListener('change', function(event) {
+  var displayError = document.getElementById('card-errors');
+  if (event.error) {
+    displayError.textContent = event.error.message;
+  } else {
+    displayError.textContent = '';
+  }
+});
+var amt,plan,desc
+
+function pay(a,p,d) {
+	amt=a
+	plan=p
+	desc=d
+  stripe.createToken(card).then(function(result) {
+    if (result.error) {
+      // Inform the user if there was an error.
+      var errorElement = document.getElementById('card-errors');
+      errorElement.textContent = result.error.message;
+    } else {
+      // Send the token to your server.
+      stripeTokenHandler(result.token);
+    }
+  });
+}
+	// Submit the form with the token ID.
+	function stripeTokenHandler(token) {
+		
+		var url='https://lushmatch.com/x_charge.php?stripe_test_mode=' + test_mode + '&token='+token.id+'&login='+getCookie('login')+'&mid='+getCookie('mid')+'&mobile='+getCookie('mobile')+'&email='+getCookie('email')+'&amt='+amt+'&plan='+plan+'&desc='+desc
+		$.ajax({url:url,success:function(data){$.alert(data)}})
+	  }
+		
+		function getLocation() {
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(displayPosition);
+				} else { 
+					x.innerHTML = "Geolocation is not supported by this browser.";
+				}
+			}
+
+		function update_form() {
+			wait()
+			setTimeout(function(){
+				hide()
+				$.alert('Update Succesfull')
+			},2000)
+		}
+		
+		function loc() {
+			navigator.geolocation.watchPosition(displayPosition);
+		}
+
+		function ntfy(str, xCol) {
+			if (!xCol) xCol = '#fff'
+			document.getElementById('notify').style.bottom = '10px'
+			document.getElementById('notify').style.right = '10px'
+			document.getElementById('notify').style.background = xCol
+			document.getElementById('notify').style.display = 'block'
+			document.getElementById('notify').style.opacity = '1'
+			document.getElementById('notify').style.padding = '10px'
+			document.getElementById('notify_txt').innerHTML = str
+			setTimeout('hide_ntfy()', 5000)
+		}
+
+		function hide_ntfy() {
+			document.getElementById('notify').style.display = 'none'
+			document.getElementById('notify_txt').innerHTML = ''
+		}
+
+		function noProceed() {
+			setCookie('location', city + ', ' + state + ' ' + zip)
+			setCookie('x-location', city + ', ' + state + ' ' + zip)
+			setCookie('street_no', 'NA')
+			setCookie('street', 'NA')
+			setCookie('city', city)
+			setCookie('state', state)
+			setCookie('zip', zip)
+			setCookie('lat', lat)
+			setCookie('lng', lng)
+			setCookie('accurate', 'No')
+		}
+		
+function showPosition(position) {
+    x.innerHTML="Latitude: " + position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude;
+}		
+		  var formatted_address,street_no,street,city,state,zip
+		
+		function error() {}
+		
+		var full_address
+		
+		function displayPosition(position) {
+			var geocoder = new google.maps.Geocoder();
+			var latlng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+			geocoder.geocode({'latLng': latlng}, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				if (results[0]) {
+					formatted_address = results[0].formatted_address
+					var address = "", city = "", state = "", zip = "", country = "";
+					for (var i = 0; i < results[0].address_components.length; i++) {
+						var addr = results[0].address_components[i];
+						if (addr.types[0] == 'country')
+							country = addr.long_name;
+						else if (addr.types[0] == 'street_address') // address 1
+							address = address + addr.long_name;
+						else if (addr.types[0] == 'establishment')
+							address = address + addr.long_name;
+						else if (addr.types[0] == 'route')  // address 2
+							address = address + addr.long_name;
+						else if (addr.types[0] == 'postal_code')       // Zip
+							zip = addr.short_name;
+						else if (addr.types[0] == ['administrative_area_level_1'])       // State
+							state = addr.short_name;
+						else if (addr.types[0] == ['locality'])       // City
+							city = addr.long_name;
+					}
+						street_no=results[0].address_components[0].short_name
+						street=results[0].address_components[1].short_name
+						full_address = formatted_address
+						full_address=street_no + ', ' + street + ' ' + city + ' ' + state + ' ' + zip + ' '  + country
+						console.log('STREET NO: ' + street_no)
+						console.log('STREET: '+street)
+						console.log('CITY: '+city)
+						console.log('STATE: '+state)
+						console.log('ZIP: '+zip)
+						console.log('COUNTRY: '+country)
+						console.log('LOCATION: ' + city + ', ' + state + ' ' + zip)
+						console.log('FULL ADDRESS: ' + formatted_address)
+						setCookie('location', city + ', ' + state + ' ' + zip)
+						setCookie('street_no',street_no)
+						setCookie('street',street)
+						setCookie('city',city)
+						setCookie('state',state)
+						setCookie('zip',zip)
+						setCookie('lat',position.coords.latitude)
+						setCookie('lng',position.coords.longitude)
+						document.getElementById('location').value=city + ', ' + state + ' ' + zip
+						document.getElementById('address').value=city + ', ' + state
+						document.getElementById('street').value=street
+						document.getElementById('cc_city').value=city
+						document.getElementById('cc_state').value=state
+						document.getElementById('zip').value=full_address
+              }
+
+          }
+
+      });
+}
+
+	function create_fb_user() {
+		if (!getCookie('location')) {
+			var url='https://sugardaddydays.com/inc/x_get_city_state_zip.php?lat='+getCookie('lat')+'&lng='+getCookie('lng')
+			var request = $.ajax({
+				url: url,
+				type: "GET",
+				dataType: "html",
+				cache: false,
+				success: function(msg) {
+					var lxc=msg.trim()
+					lx=lxc.split(',')
+					var cc_city = lx[0]
+					var cc_state=lx[1]
+					var cc_location = cc_city + ', ' + cc_state + ' ' + getCookie('zip')
+				}
+			})
+		} else {
+			var cc_city=getCookie('city')
+			var cc_state=getCookie('state')
+			var cc_location=getCookie('location')
+		}
+		var x=''
+		var filename_1 = document.getElementById('filename_1').value
+		var location = document.getElementById('location').value
+		var address = document.getElementById('address').value
+		var age = document.getElementById('age').value
+		var gender = getCookie('gender')
+		var looking_for = getCookie('looking_for')
+		if (gender=='') {
+			gender = 'Sugar Baby'
+			looking_for = 'Sugar Daddy'
+		}		
+		x += 'mob=' + document.getElementById('mobile').value 
+		x += '&password=' + document.getElementById('pswd').value 
+		x += '&email=' + document.getElementById('email').value 
+		x += '&login=' + document.getElementById('login').value 
+		x += '&gender=' + gender
+		x += '&looking_for=' + looking_for
+		x += '&general_info=' + document.getElementById('general_info').value 
+		x += '&age=' + age 
+		x += '&cc_city=' + cc_city
+		x += '&cc_state=' + cc_state
+		x += '&cc_street=' + getCookie('street_no') + ' ' + getCookie('street')
+		x += '&lat=' + getCookie('lat')
+		x += '&lng=' + getCookie('lng')
+		x += '&zip=' + getCookie('zip')
+		x += '&location=' + cc_city + ' ' + cc_state
+		x += '&aff=' + getCookie('aff')
+		x += '&pic=' + filename_1 
+		x += '&pro=' + Math.random() * 100000000 + '' + Math.random() * 100000000 + '' + Math.random() * 100000000 + '' + Math.random() * 100000000 + '' + Math.random() * 100000000
+
+		var url = 'https://lushmatch.com/edit.php?' + x
+		console.log(url)
+		var request = $.ajax({
+		url: url,
+		type: "GET",
+		dataType: "html",
+		cache: false,
+		success: function(msg) {
+				msg=msg.split('|')
+				var res=msg[0]
+				if (res=='OK') {
+					$.alert({theme: 'modern', content: 'Update Successful!',title:false})
+				} else {
+					$.alert({theme: 'black', content: 'Registration Failed!',title:false})
+				}
+			
+			}
+		})		
+	}
+	</script>
+	</body>
+		<script async defer src="https://lushmatch.com/assets/js/jquery-ui.js"></script>
+		<script src="https://lushmatch.com/custom_js/wait.js"></script>
+</html>
