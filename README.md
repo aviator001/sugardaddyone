@@ -1,4 +1,4 @@
-# sugardaddyone
+
 Sugar Daddy Dating App for iPhone and Android Phonegap Cordova
 A Sugar Daddy is a rich old man who offers money or gifts to a less rich, usually younger person in return for companionship. However this is different from prostitution of any sort. Due to the fact that the woman in question does not actively seek clienteles. But has everything paid for her by this one person as long as she continues to provide him with companionship or physical needs. Well that is the definition of sugar daddy in dictionary. But how do women think about sugar daddy? what does sugar daddy mean to women? Let’s hear some voice from our real users:
 
