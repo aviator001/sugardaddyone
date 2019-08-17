@@ -24,8 +24,6 @@ A new experience from the pioneeers of sugar daddy dating - the first site based
     <preference name="ios-statusbarstyle" value="black-opaque" />
     <preference name="detect-data-types" value="true" />
     <preference name="exit-on-suspend" value="false" />
-    <preference name="show-splash-screen-spinner" value="true" />
-    <preference name="auto-hide-splash-screen" value="false" />
     <preference name="disable-cursor" value="true" />
     <preference name="android-installLocation" value="auto" />
     <preference name="AllowInlineMediaPlayback" value="true" />
@@ -36,9 +34,11 @@ A new experience from the pioneeers of sugar daddy dating - the first site based
     <preference name="phonegap-version" value="cli-7.1.0" />
     <preference name="xwalkMultipleApk" value="false" />
     <plugin name="cordova-plugin-camera" />
+    <plugin name="cordova-plugin-media-capture" />
     <plugin name="cordova-plugin-file" version="4.3.2" />
     <plugin name="cordova-plugin-file-transfer" />
     <plugin name="cordova-plugin-geolocation" />
+    <plugin name="cordova-plugin-globalization" />
     <plugin name="cordova-plugin-media" />
     <plugin name="cordova-plugin-whitelist" version="1.0.0" />
     <plugin name="cordova-plugin-inappbrowser" version="1.7.1" />
