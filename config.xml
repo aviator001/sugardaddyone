@@ -34,11 +34,7 @@ A new experience from the pioneeers of sugar daddy dating - the first site based
     <preference name="phonegap-version" value="cli-7.1.0" />
     <preference name="xwalkMultipleApk" value="false" />
     <plugin name="cordova-plugin-camera" />
-    <plugin name="cordova-plugin-media-capture" />
-    <plugin name="cordova-plugin-file" version="4.3.2" />
-    <plugin name="cordova-plugin-file-transfer" />
     <plugin name="cordova-plugin-geolocation" />
-    <plugin name="cordova-plugin-globalization" />
     <plugin name="cordova-plugin-media" />
     <plugin name="cordova-plugin-whitelist" version="1.0.0" />
     <plugin name="cordova-plugin-inappbrowser" version="1.7.1" />
@@ -83,8 +79,6 @@ A new experience from the pioneeers of sugar daddy dating - the first site based
             </application>
             <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="28" />
             <uses-permission android:name="android.permission.CAMERA" />
-            <uses-permission android:name="android.permission.MICROPHONE" />
-            <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 			<activity
 				android:name="one.sugardaddy.app"
 				android:label="@string/title" >
