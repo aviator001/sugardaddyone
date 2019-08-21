@@ -305,6 +305,10 @@
 								<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
 									<input class="form-control btn btn-info" type="button" style=";height:40px;font-size:16px!Important;color:#fff;background:" id="go_fb" onclick="update_form()" value="UPDATE ACCOUNT">						
 								</div>	
+								<br>
+								<div id="xsa" class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
+									<input class="form-control btn btn-danger" type="button" style=";height:40px;font-size:16px!Important;color:#fff;background:" id="" onclick="suspend_account()" value="SUSPEND ACCOUNT">						
+								</div>	
 								<br/>
 								</div>
 								
@@ -526,6 +530,34 @@ function showPosition(position) {
 
       });
 }
+
+	function suspend_account(){
+		var url='https://lushmatch.com/x_suspend_account.php?mid='+getCookie('mid')
+		var request = $.ajax({
+			url: url,
+			type: "GET",
+			dataType: "html",
+			cache: false,
+			success: function(msg) {
+				$.alert({title:'',content:'Account suspended. You will no longer appear in search results or Browse Lists and will not receive any mails or notifications.<br><br> You may come out of hiding and un-suspend account at any time.'})
+				$('#xsa').html('<input class="form-control btn btn-success" type="button" style=";height:40px;font-size:16px!Important;color:#fff;background:" id="" onclick="unsuspend_account()" value="UN-SUSPEND ACCOUNT">')
+			}
+		})
+	}
+
+	function unsuspend_account(){
+		var url='https://lushmatch.com/x_unsuspend_account.php?mid='+getCookie('mid')
+		var request = $.ajax({
+			url: url,
+			type: "GET",
+			dataType: "html",
+			cache: false,
+			success: function(msg) {
+				$.alert({title:'',content:'Account re-activated! You will now appear in search results and/or Browse Lists and will once again, receive mails and/or notifications.<br><br> You may hide and go off grid any time when you suspend your account again.'})
+				$('#xsa').html('<input class="form-control btn btn-danger" type="button" style=";height:40px;font-size:16px!Important;color:#fff;background:" id="" onclick="suspend_account()" value="SUSPEND ACCOUNT">')
+			}
+		})
+	}
 
 	function create_fb_user() {
 		if (!getCookie('location')) {

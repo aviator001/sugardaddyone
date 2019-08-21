@@ -210,6 +210,10 @@
 			}
 		})
 	}
+	var start_local=0
+	var start_new=0
+	var start_new_local=0
+	var start_popular=0
 	var x_start=0,saved=''
 	var miles=getCookie('x_miles')
 	if (!miles) miles=100
@@ -235,13 +239,14 @@
 		if (type=='search') {
 			var url='https://lushmatch.com/x_get_browse_profiles.php?member_id='+nextMID+'&type=search&count='+no+'&search='+qs('search')+'&x_start='+x_start+'&miles='+miles+'&gender='+getCookie('gender')
 		} else {
-			var url='https://lushmatch.com/x_get_browse_profiles.php?member_id='+currMID+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')
-			console.log ('******************LOCAL *************************')
-			console.log(url)
-			console.log(currMID)
-			console.log ('******************LOCAL *************************')
-			if (qs('browse')=='popular') {
-				url='https://lushmatch.com/x_get_browse_profiles.php?user_rights='+currUR+'&type='+qs('browse')+'&count='+no+'&member_id='+currMID+'&gender='+getCookie('gender')
+			if (qs('browse')=='local') {
+				var url='https://lushmatch.com/x_browse_local.php?start='+start_local+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')
+			} else if (qs('browse')=='new') {
+				url='https://lushmatch.com/x_browse_new.php?start='+start_new+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')
+			} else if (qs('browse')=='new_local') {
+				url='https://lushmatch.com/x_browse_new_local.php?start='+start_new_local+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')
+			} else if (qs('browse')=='popular') {
+				url='https://lushmatch.com/x_get_browse_profiles.php?start='+start_popular+'&user_rights='+currUR+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')
 			}
 		}
 		console.log(url)
@@ -369,8 +374,20 @@
 				}
 				nextMID = Math.min.apply(Math, mids)
 				setCookie('nextMID',nextMID)
-				x_start=x_start+profileBatchCount
-				<!-- console.log('ratings:') -->
+				if (type=='search') {
+					x_start=x_start+no
+				} else {
+					if (qs('browse')=='local') {
+						start_local=start_local+no
+					} else if (qs('browse')=='new') {
+						start_new=start_new+no
+					} else if (qs('browse')=='new_local') {
+						start_new_local=start_new_local+no
+					} else if (qs('browse')=='popular') {
+						start_popular=start_popular+no
+					}
+				}
+		<!-- console.log('ratings:') -->
 				<!-- console.log(urs) -->
 				<!-- console.log('mids:') -->
 				<!-- console.log(mids)			 -->
