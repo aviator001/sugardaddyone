@@ -19,7 +19,7 @@ SugarDaddyLocal is a sugar daddy dating app that connects handsome wealthy and c
 Emphasis on Privacy and Quality:
 Integrated anonymous text messaging from your phone without adding any extra app downloads - connect to your sugar daddy or sugar baby with peace of mind. 
 
-Emphasis on Privacy and Quality:
+Emphasis on Privacy and Quality: 
 24/7 moderation by local administrators to ensure high standards and quality, and allowing you to connect to the sugar daddy or sugar baby of your dreams
 
 Emphasis on Safety:

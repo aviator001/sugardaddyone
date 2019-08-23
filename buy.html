@@ -298,9 +298,11 @@ function pay() {
 	// Submit the form with the token ID.
 	function stripeTokenHandler(token) {
 		var url='https://lushmatch.com/x_charge.php?stripe_test_mode=' + test_mode + '&token='+token.id+'&login='+getCookie('login')+'&mid='+getCookie('mid')+'&mobile='+getCookie('mobile')+'&email='+getCookie('email')+'&amt='+amt+'&plan='+plan+'&desc='+desc
+		console.log(url)
 		$.ajax({
 			url:url,
 			success:function(data){
+			alert(data)
 				hide()
 				if (data=='Payment Failed') {
 					$.confirm({

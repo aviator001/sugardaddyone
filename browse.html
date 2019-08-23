@@ -33,9 +33,10 @@
 		<h2 style="font-size:0.9em" class="title">BROWSING <span id="showGen"></span></h2>
 		<div id="" class="text-center">
 			<ul class="portfolio-filter-list">
-				<li><a id="popular" class="hand" onclick="setCookie('x_start','');getPhotoGallery('popular')"><div>POPULAR</div></a></li>
-				<li><a id="latest" class="hand" onclick="setCookie('x_start','');getPhotoGallery('latest')"><div>LATEST</div></a></li>
-				<li><a id="local" class="hand" onclick="setCookie('x_start','');getPhotoGallery('local')"><div>IN YOUR AREA</div></a></li>
+				<li><a id="popular" class="hand" onclick="setCookie('x_start','');getPhotoGallery('popular')"><div style="font-size:0.8em">POP</div></a></li>
+				<li><a id="latest" class="hand" onclick="setCookie('x_start','');getPhotoGallery('latest')"><div style="font-size:0.8em">NEW</div></a></li>
+				<li><a id="local" class="hand" onclick="setCookie('x_start','');getPhotoGallery('local')"><div style="font-size:0.8em">LOCAL</div></a></li>
+				<li><a id="new_local" class="hand" onclick="getPhotoGallery('new_local')"><div style="font-size:0.8em">NEW LOCAL</div></a></li>
 			</ul>
 		</div>
 		<div class="container" style="text-align:center;margin-top:-20px">
@@ -276,10 +277,35 @@
 	var id
 	var x_start
 	var per_page=30
-	
+	function getLocation(type,ox) {
+		var request = $.ajax({
+			url: 'https://lushmatch.com/x_location.php',
+			type: "GET",
+			dataType: "html",
+			cache: false,
+			success: function(msg) {
+			//	setTimeout('mobile_render()',1)
+			}
+		})
+	}
+	var data1=[]
+	var start_local=qs('start')*1
+	var start_new=qs('start')*1
+	var start_new_local=qs('start')*1
+	var start_popular=qs('start')*1
+	var x_start=0,saved=''
+	var miles=getCookie('x_miles')
+	if (!miles) miles=100
+	var no=12
+	var currUR
 	function getPhotoGallery(type,ox) {
-		console.log(type)
-		console.log(ox)
+		if (type) setCookie('type',type)
+		if (type !== 'new_local') {
+			$$('new_local').style.backgroundColor='white'
+			$$('new_local').style.color='black'
+		} else {
+			$$('new_local').style.backgroundColor='#20b2aa'
+		}
 		if (!type) type=getCookie('browse')
 			else setBrowse(type)
 		if (!getCookie('gender')) setCookie('gender','Sugar Daddy')
@@ -288,7 +314,7 @@
 		} else {
 			looking_for='Sugar Babies'
 		}
-		$('#browse_summary').html('Showing ' + type.replace('_',' ').toUpperCase() + ' ' + looking_for.toUpperCase())
+	//	$('#browse_summary').html('Showing ' + type.replace('_',' ').toUpperCase() + ' ' + looking_for.toUpperCase())
 		$('#showGen').html(looking_for.toUpperCase())
 		$$('photoGallery').style.opacity='0.2'
 		if (ox)	ox.className='active hand'
@@ -298,11 +324,18 @@
 		} else {
 			x_start=getCookie('x_start')*1
 		}	
-		console.log(window_width())
-		console.log('https://lushmatch.com/x_browse.php?w_w=' + window_width()+'&x_start='+x_start+'&gender='+getCookie('gender')+'&type='+type+'&ip='+getCookie('ip')+'&location='+getCookie('location')+'&per_page='+per_page)
-
+		if (type=='local') {
+			var url='https://lushmatch.com/x_browse_local.php?start='+start_local+'&type=browse&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')+'&browse='+type
+		} else if (type=='latest') {
+			url='https://lushmatch.com/x_browse_new.php?start='+start_new+'&type=browse&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')+'&browse='+type
+		} else if (type=='new_local') {
+			url='https://lushmatch.com/x_browse_new_local.php?start='+start_new_local+'&type=browse&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')+'&browse='+type
+		} else if (type=='popular') {
+			url='https://lushmatch.com/x_browse_popular.php?start='+start_popular+'&user_rights='+currUR+'&type=browse&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')+'&browse='+type
+		}
+		console.log(url)
 		var request = $.ajax({
-			url: 'https://lushmatch.com/x_browse.php?w_w=' + window_width()+'&x_start='+x_start+'&gender='+getCookie('gender')+'&type='+type+'&ip='+getCookie('ip')+'&location='+getCookie('location')+'&per_page='+per_page,
+			url: url,
 			type: "GET",
 			dataType: "html",
 			cache: false,
@@ -312,12 +345,13 @@
 				$$('imgWait').style.display='none'
 				data=JSON.parse(msg)
 				console.log(data)
+				data.reverse()
 				var lx=data.length
 				var lt=-700
 				for (var i=0;i<data.length;i++) {
 					if (data[i]) {
-						id=data[i].member_id
-						imgG=makeImg('https://lushmatch.com/sb/'+data[i].filename_1, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, 'col-md-3 www_box2')
+						id=data[i].id
+						imgG=makeImg('https://lushmatch.com/sb/'+data[i].filename_1, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, 'col-md-3 www_box2',data[i].id)
 						imgG.style='width:100%;height:100%;padding:0;margin:2px'
 						imgG.id='img_'+type+'_'+id
 						var dpg=document.createElement("div")
@@ -348,12 +382,25 @@
 						$$('pg').appendChild(dpg)
 					}
 				}
+				if (type=='local') {
+					start_local=start_local+no
+					start=start_local
+				} else if (type=='latest') {
+					start_new=start_new+no
+					start=start_new
+				} else if (type=='new_local') {
+					start_new_local=start_new_local+no
+					start=start_new_local
+				} else if (type=='popular') {
+					start_popular=start_popular+no
+					start=start_popular
+				}				
 				var apn=document.createElement('div')
-				if (lx<24) {
-					apn.innerHTML='</div></div><div><br><table style="width:100%"><tr><td><input type="button" value="BACK" style="width:100px;padding:5px;border-radius:6px;background:gold;border:none;height:60px" onclick="back()"></td><td></td></tr></table><br><br><br><br></div>'
-				} else {
-					apn.innerHTML='</div></div><div><br><table style="width:100%"><tr><td><input type="button" value="BACK" style="width:100px;padding:5px;border-radius:6px;background:gold;border:none;height:60px" onclick="back()"></td><td><input type="button" value="FETCH NEXT" style="width:100px;padding:5px;border-radius:6px;background:skyblue;border:none;height:60px" onclick="more()"></td></tr></table><br><br><br><br></div>'
-				}
+				<!-- if (lx<24) { -->
+					<!-- apn.innerHTML='</div></div><div><br><table style="width:100%"><tr><td><input type="button" value="BACK" style="width:100px;padding:5px;border-radius:6px;background:gold;border:none;height:60px" onclick="back()"></td><td></td></tr></table><br><br><br><br></div>' -->
+				<!-- } else { -->
+					apn.innerHTML='</div></div><div><br><table style="width:100%"><tr><td><input type="button" value="BACK" style="width:100px;padding:5px;border-radius:6px;background:gold;border:none;height:60px" onclick="back()"></td><td><input type="button" value="FETCH NEXT" style="width:100px;padding:5px;border-radius:6px;background:skyblue;border:none;height:60px" onclick="getPhotoGallery()"></td></tr></table><br><br><br><br></div>'
+				<!-- } -->
 				$$('photoGallery').appendChild(apn)
 				$("html, body").animate({
 					scrollTop: 0
@@ -367,15 +414,19 @@
 		var tp='popular'
 		$.ajax({'url':url,'success':function(x){setTimeout('getPhotoGallery()',1)}})
 	}
-	
+	var type
 	function more() {
-		if (getCookie('x_start')=='') {
-			x_start=per_page
-		} else {
-			x_start=getCookie('x_start')*1+per_page
+		type=getCookie('type')
+		if (type=='local') {
+			start_local=start_local+no
+		} else if (type=='latest') {
+			start_new=start_new+no
+		} else if (type=='new_local') {
+			start_new_local=start_new_local+no
+		} else if (type=='popular') {
+			start_popular=start_popular+no
 		}
-		setCookie('x_start', x_start)
-		setTimeout('getPhotoGallery()',1)
+		setTimeout('getPhotoGallery('+type+')',1)
 	}
 
 	function back() {
@@ -389,10 +440,11 @@
 	function view_profile(e) {
 		if (e.target.id) {
 			if (e.target.id.indexOf('img_')>-1) {
-				location.href='profileBrowse.html?id='+e.target.id.split('_')[2]+'&type=browse&browse='+e.target.id.split('_')[1]
+				var sp=e.target.id.split('_')
+				location.href='profileBrowse.html?id='+sp[sp.length-1]+'&type=browse&browse='+getCookie('type')+'&start=' + (start*1-no)
 			}
 			if (e.target.id.indexOf('search_')>-1) {
-				location.href='profileSearch?id='+e.target.id.split('_')[1]+'&type=search&search='+$$('searchLocation').value
+				location.href='profileSearch?id='+e.target.id.split('_')[1]+'&type=search&search='+$$('searchLocation').value+'&x_start=' + (start*1-no)
 			}
 		}
 	}
@@ -417,9 +469,10 @@
 	}
 	
 	var ctr=0
-	function makeImg(src, alt, title, className) {
+	function makeImg(src, alt, title, className, id) {
 		var img =  document.createElement('img');
 		img.src = src;
+		img.id='img_'+id
 		if ( alt != null ) img.alt = alt;
 		if ( title != null ) img.title = title;
 		if ( className != null ) img.className = className;
@@ -472,7 +525,7 @@
 	$( "#quickSearchTerm" ).autocomplete( "option", "appendTo", "#xresults" );
 
 	setTimeout(function(){
-		getPhotoGallery(getCookie('browse'))
+//		getPhotoGallery(getCookie('browse'))
 	},5000)
 	
 

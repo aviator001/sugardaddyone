@@ -53,9 +53,27 @@ ul.ui-autocomplete li.ui-menu-item {
 				 Search for anyone by city, zipcode or member name!
 			</p>
 			<div class="portfolio-filter-list">
-				<input placeholder="Enter City , State or Zip" type="text" style="font-size:16px;padding-left:10px;height:50px;width:200px;margin:5px;border-radius:6px;border:1px solid silver" id="searchLocation"><a id="btnSearchLocation" class="hand" style="font-size:1.2em;color:red"  onclick="searchCityStateZip()">Search</a>
-				<br>OR<br>
-				<input placeholder="Enter username" type="text" style="font-size:16px;padding-left:10px;height:50px;width:200px;margin:5px;border-radius:6px;border:1px solid silver" id="searchName"><a id="btnSearchName" class="hand" style="font-size:1.2em;color:red"  onclick="searchUserName()">Search</a>
+				<div>
+					<table>
+						<tr>
+							<td style="text-align:left">
+								<label>City and/or State</label><br>
+								<input placeholder="Enter City and/or State" type="text" style="font-size:16px;padding-left:10px;height:50px;width:200px;margin:5px;border-radius:6px;border:1px solid silver" id="xxx"><a id="btnSearchLocation" class="hand" style="font-size:1.2em;color:red"  onclick="searchLocation()">Search</a>
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:left">
+								<label>ZipCode</label><br>								
+								<input placeholder="Enter ZipCode" type="text" style="font-size:16px;padding-left:10px;height:50px;width:200px;margin:5px;border-radius:6px;border:1px solid silver" id="searchLocation"><a id="btnSearchCityStateZip" class="hand" style="font-size:1.2em;color:red"  onclick="searchCityStateZip()">Search</a>
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:left">
+								<label>UserName</label><br>								
+								<input placeholder="Enter UserName" type="text" style="font-size:16px;padding-left:10px;height:50px;width:200px;margin:5px;border-radius:6px;border:1px solid silver" id="searchName"><a id="btnSearchName" class="hand" style="font-size:1.2em;color:red"  onclick="searchUserName()">Search</a>
+							</td>
+						</tr>
+					</table>	
 			</div>
 		</div>
 
@@ -67,6 +85,9 @@ ul.ui-autocomplete li.ui-menu-item {
 			<img id="imgSearchWait" src="https://lushmatch.com/assets/images/load.gif" alt="waiting for my sugar daddy or sugar baby" style="position:absolute;z-index:999999999999;margin-top:-500px;margin-left:-50px;width:100px;display:none">
 		</div>
 	</section>
+	<div id="xresults_bar" style="display:none;position:fixed;z-index:9999999999999999;width:100%;height:50px;bottom:45px;background:#f0f0f0;padding:0;text-align:center"><button class="btn btn.sm btn-danger" onclick="getBack()" style="padding-top:10px;padding-bottom:10px;margin:5px;color:white;background:red">Back</button> <button class="btn btn.sm btn-danger" onclick="getNext()" style="padding-top:10px;padding-bottom:10px;margin:5px;color:white;background:black">Next</button></div>
+	<div id="xresults_bar2" style="display:none;position:fixed;z-index:9999999999999999;width:100%;height:50px;bottom:45px;background:#f0f0f0;padding:0;text-align:center"><button class="btn btn.sm btn-danger" onclick="getBack2()" style="padding-top:10px;padding-bottom:10px;margin:5px;color:white;background:red">Back</button> <button class="btn btn.sm btn-danger" onclick="getNext2()" style="padding-top:10px;padding-bottom:10px;margin:5px;color:white;background:black">Next</button></div>
+	<div id="xresults_bar3" style="display:none;position:fixed;z-index:9999999999999999;width:100%;height:50px;bottom:45px;background:#f0f0f0;padding:0;text-align:center"><button class="btn btn.sm btn-danger" onclick="getBack3()" style="padding-top:10px;padding-bottom:10px;margin:5px;color:white;background:red">Back</button> <button class="btn btn.sm btn-danger" onclick="getNext3()" style="padding-top:10px;padding-bottom:10px;margin:5px;color:white;background:black">Next</button></div>
 	<div id="loader" style="display:none;z-index:99999999999999999;position:absolute;top:0;left:0;right:0;bottom:0;opacity:0.3;margin:auto;background:#000;font-family:Open Sans Condensed;"></div>
 	<img id="img_loader" style="display:none;z-index:999999999999999999;position:absolute;top:0;left:0;right:0;bottom:0;opacity:1;margin:auto;width:50px" src="https://sugardaddydays.com/assets/images/load.gif">
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -76,8 +97,97 @@ ul.ui-autocomplete li.ui-menu-item {
 <script src="https://lushmatch.com/assets/js/bootstrap.min.js"></script>
 <script src="https://lushmatch.com/assets/js/scripts.js"></script>
 <script src="https://lushmatch.com/jsSocketNode.js"></script>
+<script src="https://lushmatch.com/custom_js/wait.js"></script>
 
 <script>
+	//Load all JS libraries
+	['https://lushmatch.com/custom_js/geocomplete.js','https://maps.googleapis.com/maps/api/js?key=AIzaSyDAuvU_A1iMThoe1i6Joi26nSTDQkjKlDA&libraries=places'].forEach(function(src) {
+		script = document.createElement('script');
+		script.src = src;
+		script.async = false;
+		document.head.appendChild(script);
+	});	
+
+var placeSearch, autocomplete;
+var componentForm = {
+  locality: 'long_name',
+  administrative_area_level_1: 'short_name',
+  postal_code: 'short_name'
+};
+
+function initAutocomplete() {
+  autocomplete = new google.maps.places.Autocomplete(
+    (document.getElementById('xxx')), {
+      types: ['geocode']
+    });
+  autocomplete.addListener('place_changed', fillInAddress);
+}
+var xt=''
+function fillInAddress() {
+  var place = autocomplete.getPlace();
+  for (var i = 0; i < place.address_components.length; i++) {
+    var addressType = place.address_components[i].types[0];
+    if (componentForm[addressType]) {
+      var val = place.address_components[i][componentForm[addressType]];
+      <!-- if (addressType=='route') document.getElementById('xxx').value  = ' ' + val -->
+      if (addressType=='locality') xt  += ' ' + val
+      if (addressType=='administrative_area_level_1') xt  += ' ' + val
+      if (addressType=='postal_code') document.getElementById('searchLocation').value  = val
+    }
+  }
+}
+
+function geolocate() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var geolocation = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      var circle = new google.maps.Circle({
+        center: geolocation,
+        radius: position.coords.accuracy
+      });
+      autocomplete.setBounds(circle.getBounds());
+    });
+  }
+}
+
+setTimeout('initAutocomplete()',1000)
+ 	var no=30
+	function getNext() {
+		x_start=x_start+no
+		searchLocation()
+	}
+	
+	function getBack() {
+		x_start=x_start-no
+		if (x_start<0) x_start=0
+		searchLocation()
+	}
+	
+	function getNext2() {
+		x_start=x_start+no
+		searchCityStateZip()
+	}
+	
+	function getBack2() {
+		x_start=x_start-no
+		if (x_start<0) x_start=0
+		searchCityStateZip()
+	}
+	
+	function getNext3() {
+		x_start=x_start+no
+		searchUserName()
+	}
+	
+	function getBack3() {
+		x_start=x_start-no
+		if (x_start<0) x_start=0
+		searchUserName()
+	}
+	
 	function login1() {
 		var m = $("#email").val(),
 			p = $("#password").val();
@@ -279,7 +389,7 @@ ul.ui-autocomplete li.ui-menu-item {
 			var term=qs('q')
 			if (!isNaN(term)) {
 				$$('searchLocation').value=term
-				 $("#btnSearchLocation").click()
+				// $("#btnSearchLocation").click()
 			} else {
 				$$('searchName').value=term
 				 $("#btnSearchName").click()
@@ -315,9 +425,89 @@ ul.ui-autocomplete li.ui-menu-item {
 	}
 	var bgx=["whitesmoke","aliceblue","lavenderblush","lightcyan","linen","lightyellow","papayawhip","mistyrose","lavender"]
 	var ct=0, smids=[]
-	var x_start
-	var per_page=30
+	var x_start=0
+	var no=30
 	setCookie('x_start_location','')
+	
+	function searchLocation() {
+		smids=[]
+		if (!getCookie('gender')) setCookie('gender','Sugar Daddy')
+		if (getCookie('gender')=='Sugar Baby') looking_for='Sugar Daddies'
+			else looking_for='Sugar Babies'
+		$('#search_summary').html('Searching for your ' + looking_for.toUpperCase() + ' in ' + $$('xxx').value.toUpperCase())
+		$$('searchGallery').style.opacity='0.2'
+		$$('imgSearchWait').style.display=''
+		var location=$('#xxx').val()
+		if (!x_start) {
+			x_start=0
+		}
+		var url='https://lushmatch.com/x_browse_location.php?location=' + location +'&start=' + x_start + '&gender='+getCookie('gender') + '&type=search&count='+no
+		console.log(url)
+		var request = $.ajax({
+			url: url,
+			type: "GET",
+			dataType: "html",
+			cache: false,
+			success: function(msg) {
+				$('#xresults').html('')
+				$('#xresults_bar').show()
+				if (msg==null) {
+					$.alert('No more results')
+					return
+				}
+				console.log(msg)
+				$$('sc').style.display='none'
+				$$('searchGallery').innerHTML=''
+				$$('searchGallery').style.opacity='1'			
+				$$('imgSearchWait').style.display='none'
+				data=JSON.parse(msg)
+				for (var i=0;i<data.length;i++) {
+					if (data[i]) {
+						var src
+						if (data[i].filename_1) {
+							src='https://lushmatch.com/sb/'+ data[i].filename_1
+						} else {
+							if (data[i].gender=='Sugar Baby') {
+								src='https://lushmatch.com/sb/no_photo.png'
+							} else {
+								src='https://lushmatch.com/sb/no_photo_m.png'
+							}
+						}
+						id=data[i].member_id
+						smids.push(id)
+						setCookie('smids',JSON.stringify(smids))
+						imgG=makeImg(src, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, 'searchImg')
+						imgG.id='search_'+id
+						var div=document.createElement("div")
+						div.className="searchElement www_box2 "
+						if (data[i].location) var loc=data[i].location.toUpperCase()
+							else var loc='[No Location Data]'
+						if (data[i].distance) var miles=data[i].distance
+						div.innerHTML="<table style='width:100%;margin:0;padding:0'><tr><td style='width:100px'>"+imgG.outerHTML+"</td><td style='margin:0;text-align:left;padding:10px'><div class='sTitleName'>"+data[i].login.toUpperCase()+"</div><div class='sTitleGender'>"+data[i].gender.toUpperCase()+"</div><div class='sTitleLocation'>"  + loc + "</div><div class='sTitleMiles' style='font-size:12px'>"  + miles + " Miles</div></td></tr></table>"
+						if (ct>bgx.length) {
+							ct=0
+						} else {
+							ct++
+						}
+						div.id='div_'+id
+						div.style.background=bgx[ct]
+						$$('xresults').appendChild(div)
+						$$('xresults').style.cssText='position:absolute;padding-bottom:100px;margin-bottom:100px;width:100%;margin-top:50px!Important;top:0'
+						$$('xresults').style.height=(screen.height-200)+'px'
+						$('#xresults').show()
+					}
+				}
+				var apn=document.createElement('div')
+				apn.innerHTML='<div><br><table style="width:100%"><tr><td><input type="button" value="BACK" style="width:100px;padding:5px;border-radius:6px;background:gold;border:none;height:60px" onclick="back()"></td><td><input type="button" value="FETCH NEXT" style="width:100px;padding:5px;border-radius:6px;background:skyblue;border:none;height:60px" onclick="more()"></td></tr></table></div>'
+				$$('searchGallery').appendChild(apn)
+				$("html, body").animate({
+					scrollTop: 0
+				}, 600);
+			}
+		})
+		
+	} 
+
 	function searchCityStateZip() {
 		smids=[]
 		if (!getCookie('gender')) setCookie('gender','Sugar Daddy')
@@ -326,12 +516,7 @@ ul.ui-autocomplete li.ui-menu-item {
 		$('#search_summary').html('Searching for your ' + looking_for.toUpperCase() + ' in ' + $$('searchLocation').value.toUpperCase())
 		$$('searchGallery').style.opacity='0.2'
 		$$('imgSearchWait').style.display=''
-		if (getCookie('x_start_location')=='') {
-			x_start=0
-		} else {
-			x_start=getCookie('x_start_location')*1
-		}
-		var url='https://lushmatch.com/x_browse.php?w_w=' + window_width()+'&x_start='+x_start+'&gender='+getCookie('gender')+'&type=search&search='+$$('searchLocation').value+'&ip='+getCookie('ip')+'&location='+getCookie('location')+'&per_page='+per_page
+		var url='https://lushmatch.com/x_browse.php?w_w=' + window_width()+'&x_start='+x_start+'&gender='+getCookie('gender')+'&type=search&search='+$$('searchLocation').value+'&ip='+getCookie('ip')+'&location='+getCookie('location')+'&count='+no
 		console.log(url)
 		var request = $.ajax({
 			url: url,
@@ -339,6 +524,8 @@ ul.ui-autocomplete li.ui-menu-item {
 			dataType: "html",
 			cache: false,
 			success: function(msg) {
+				$('#xresults').html('')
+				$('#xresults_bar2').show()
 				if (msg==null) {
 					$.alert('No more results')
 					return
@@ -380,12 +567,12 @@ ul.ui-autocomplete li.ui-menu-item {
 						}
 						div.id='div_'+id
 						div.style.background=bgx[ct]
-						$$('searchGallery').appendChild(div)
+						$$('xresults').appendChild(div)
 					}
 				}
-				var apn=document.createElement('div')
-				apn.innerHTML='<div><br><table style="width:100%"><tr><td><input type="button" value="BACK" style="width:100px;padding:5px;border-radius:6px;background:gold;border:none;height:60px" onclick="back()"></td><td><input type="button" value="FETCH NEXT" style="width:100px;padding:5px;border-radius:6px;background:skyblue;border:none;height:60px" onclick="more()"></td></tr></table></div>'
-				$$('searchGallery').appendChild(apn)
+				$$('xresults').style.cssText='position:absolute;padding-bottom:100px;margin-bottom:100px;width:100%;margin-top:50px!Important;top:0'
+				$$('xresults').style.height=(screen.height-200)+'px'
+				$('#xresults').show()
 				$("html, body").animate({
 					scrollTop: 0
 				}, 600);
@@ -407,19 +594,27 @@ ul.ui-autocomplete li.ui-menu-item {
 	function back() {
 		history.go(0)
 	}
+	setTimeout(function(){
+		if (qs('q')) {
+			searchNameTerm=qs('q')
+			searchUserName()
+		}
+	},1000)
+	var data=[]
 	function searchUserName() {
 		smids=[]
-		$('#search_summary').html('Searching for ' + $$('searchName').value.toUpperCase())
-		$$('searchGallery').style.opacity='0.2'
-		$$('imgSearchWait').style.display=''
 		var searchNameTerm=$$('searchName').value
 		if (!searchNameTerm) searchNameTerm=qs('q')
+		var url='https://lushmatch.com/x_search.php?w_w=' + window_width()+'&login='+searchNameTerm+'&x_start='+x_start+'&count='+no
+		console.log(url)
 		var request = $.ajax({
-			url: 'https://lushmatch.com/x_search.php?w_w=' + window_width()+'&login='+searchNameTerm,
+			url: url,
 			type: "GET",
 			dataType: "html",
 			cache: false,
 			success: function(msg) {
+				$('#xresults').html('')
+				$('#xresults_bar3').show()
 				$$('searchGallery').innerHTML=''
 				$$('searchGallery').style.opacity='1'			
 				$$('imgSearchWait').style.display='none'
@@ -433,51 +628,57 @@ ul.ui-autocomplete li.ui-menu-item {
 				}
 				$$('sc').style.display='none'
 				for (var i=0;i<data.length;i++) {
-					if (data[i]) {
 						var src
 						if (data[i].filename_1) src='https://lushmatch.com/sb/'+ data[i].filename_1
 							else src='https://lushmatch.com/assets/images/no_photo.png'
 						id=data[i].id
 						smids.push(id)
 						setCookie('smids',JSON.stringify(smids))
+						var x_l=data[i].login.split(searchNameTerm)
+						var xlogin=x_l[0]+searchNameTerm
+						if (x_l[1]) xlogin=x_l[0]+'<span style="margin:2px;background:white;padding:3px;padding-top:1px;padding-bottom:1px;border:1px solid black;border-radius:4px">'+searchNameTerm+'</span>'+x_l[1]
 						imgG=makeImg(src, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, 'searchImg')
-						imgG.id='search_'+id
+						imgG.id='img_' + id
 						var div=document.createElement("div")
 						div.className="searchElement www_box2 "
-						div.innerHTML="<table style='width:100%;margin:0;padding:0'><tr><td style='width:100px'>"+imgG.outerHTML+"</td><td style='margin:0;text-align:left;padding:10px'><div class='sTitleName'>"+data[i].login.toUpperCase()+"</div><div class='sTitleGender'>"+data[i].gender.toUpperCase()+"</div><div class='sTitleLocation'>"+data[i].location.toUpperCase()+"</div></td></tr></table>"
+						div.innerHTML="<table id='search_"+id+"' style='width:100%;margin:0;padding:0;font-family:Open Sans;font-weight:300'><tr><td style='width:100px'>"+imgG.outerHTML+"</td><td style='margin:0;text-align:left;padding:10px'><div class='sTitleName' id='search_"+id+"'>"+xlogin+"</div><div style='margin-top:5px' class='sTitleGender'>"+data[i].gender.toUpperCase()+ " " + data[i].age + " Yrs Old</div><div class='sTitleLocation'>"+data[i].location.toUpperCase()+"</div><div style='font-size:16px'>"+data[i].distance+" Miles</div></td></tr></table>"
 						if (ct>bgx.length) {
 							ct=0
 						} else {
 							ct++
 						}
-						div.id='div_'+id
 						div.style.background=bgx[ct]
-						$$('searchGallery').appendChild(div)
-					}
+						$$('xresults').appendChild(div)
 				}
+				$$('xresults').style.cssText='position:absolute;padding-bottom:100px;margin-bottom:100px;width:100%;margin-top:50px!Important;top:0'
+				$$('xresults').style.height=(screen.height-200)+'px'
+				$('#xresults').show()
+				$("html, body").animate({
+					scrollTop: 0
+				}, 600);
+				
 			}
 		})
 		
 	} 
 	
-	window.onclick=view_profile
-	function view_profile(e) {
-		if (e.target.id) {
-			if (e.target.id.indexOf('img_')>-1) {
-				location.href='profileBrowse.html?id='+e.target.id.split('_')[1]+'&type=search&search='+$$('searchLocation').value
-			}
-			if (e.target.id.indexOf('search_')>-1) {
-				location.href='profileBrowse.html?id='+e.target.id.split('_')[1]+'&type=search&search='+$$('searchLocation').value
-			}
-		}
-	}
+	window.onclick=view_search_profile
 
-	function view_search_profile(a) {
-		currMID=a.target.id.split('search_')[1]
-		setCookie('currMID',currMID)
-	   location.href='profile.html?id=' + currMID + '&type=search'
+	function view_search_profile(e) {
+		if (e.target.id.indexOf('search_')>=0) {
+			if (e.target.id.split('_')) currMID=e.target.id.split('_')[1]
+			setCookie('currMID', currMID)
+			location.href='profile.html?id=' + currMID + '&type=search'
+		}
+		if (e.target.id.indexOf('img_')>=0) {
+			if (e.target.id.split('_')) currMID=e.target.id.split('_')[1]
+			setCookie('currMID', currMID)
+			location.href='profile.html?id=' + currMID + '&type=search'
+		}
+		return
 	}
 	
+
 
 	function getBlog() {
 
@@ -531,7 +732,14 @@ ul.ui-autocomplete li.ui-menu-item {
 	});
 	$( "#quickSearchTerm" ).autocomplete( "option", "appendTo", "#xresults" );
 
-
+jQuery(function($) {
+    $('window').on('scroll', function() {
+		alert()
+        if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
+            alert('end reached');
+        }
+    })
+});
 </script>
 </body>
 </html>

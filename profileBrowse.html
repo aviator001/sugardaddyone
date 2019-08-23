@@ -139,6 +139,7 @@
 	<script src="https://lushmatch.com/assets/js/bootstrap.js"></script>
 	<script src="https://lushmatch.com/jsSocketNode.js"></script>
 <script>
+	var no=12
 	var currLogin,currPhoto
 	document.onclick=yesNo
 	function yesNo(e) {
@@ -165,7 +166,7 @@
 	
 	setTimeout('getIP()',1)
 	setTimeout('getLocation()',1)
-	setTimeout('loadProfiles(10)',1)
+	setTimeout('loadProfiles('+no+')',1)
 	
 	function back_to_search() {
 		location.href='index.html?display=search&search='+qs('search')
@@ -196,7 +197,6 @@
 	currMID=qs('id')
 	setCookie('currMID',qs('id'))
 	
-	
 	function mobile_render() {
 	}
 	function getLocation(type,ox) {
@@ -210,10 +210,11 @@
 			}
 		})
 	}
-	var start_local=0
-	var start_new=0
-	var start_new_local=0
-	var start_popular=0
+	var data1=[]
+	var start_local=qs('start')*1
+	var start_new=qs('start')*1
+	var start_new_local=qs('start')*1
+	var start_popular=qs('start')*1
 	var x_start=0,saved=''
 	var miles=getCookie('x_miles')
 	if (!miles) miles=100
@@ -230,6 +231,7 @@
 	function rr() {
 		location.reload()
 	}
+	var first=true
 	var profileBatchCount,ur,currUR,urs=[],prevEl
 	var wh=window_height()*1 
 	function loadProfiles(no) {
@@ -240,13 +242,13 @@
 			var url='https://lushmatch.com/x_get_browse_profiles.php?member_id='+nextMID+'&type=search&count='+no+'&search='+qs('search')+'&x_start='+x_start+'&miles='+miles+'&gender='+getCookie('gender')
 		} else {
 			if (qs('browse')=='local') {
-				var url='https://lushmatch.com/x_browse_local.php?start='+start_local+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')
-			} else if (qs('browse')=='new') {
-				url='https://lushmatch.com/x_browse_new.php?start='+start_new+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')
+				var url='https://lushmatch.com/x_browse_local.php?start='+start_local+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')
+			} else if (qs('browse')=='latest') {
+				url='https://lushmatch.com/x_browse_new.php?start='+start_new+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')
 			} else if (qs('browse')=='new_local') {
-				url='https://lushmatch.com/x_browse_new_local.php?start='+start_new_local+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')
+				url='https://lushmatch.com/x_browse_new_local.php?start='+start_new_local+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')
 			} else if (qs('browse')=='popular') {
-				url='https://lushmatch.com/x_get_browse_profiles.php?start='+start_popular+'&user_rights='+currUR+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')
+				url='https://lushmatch.com/x_browse_popular.php?start='+start_popular+'&user_rights='+currUR+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')
 			}
 		}
 		console.log(url)
@@ -279,8 +281,14 @@
 				var sql=msg.split('|')[1]
 				console.log(sql)
 				data=JSON.parse(data1)
-				console.log('Here')
-				console.log(data)
+				if (first===true) {
+					if (data) {
+						data=fixdata(data)
+						data.reverse()
+						first = false
+					}
+				}
+
 				profileBatchCount=data.length
 				var www=''
 				for (var i=0;i<profileBatchCount;i++) {
@@ -329,6 +337,7 @@
 							str+=	'							</td>'
 							str+=	'							<td style="width:25%;text-align:center">'
 							str+=	'								<a href="javascript:like(\''+'p'+data[i].id+'\')"><img id="yes" src="https://gaysugardaddyfinder.com/assets/images/rest_next.png" style="width:50px"></a>'
+					//		str+=	'								<a href="javascript:advance(\''+'p'+data[i].id+'\')"><img id="yes" src="https://gaysugardaddyfinder.com/assets/images/rest_next.png" style="width:50px"></a>'
 							str+=	'							</td>'
 							str+=	'						</tr>'
 							str+=	'					</table>'
@@ -379,7 +388,7 @@
 				} else {
 					if (qs('browse')=='local') {
 						start_local=start_local+no
-					} else if (qs('browse')=='new') {
+					} else if (qs('browse')=='latest') {
 						start_new=start_new+no
 					} else if (qs('browse')=='new_local') {
 						start_new_local=start_new_local+no
@@ -395,7 +404,18 @@
 			}
 		})
 	}
-	
+	function fixdata(data) {
+	var dat1=[ ]
+		data.reverse()
+		for (var j=0; j<data.length; j++ ) {
+			if (qs('id') == data[j].id) {
+				for (var k=j; k<data.length; k++ ) {
+					dat1.push(data[k])
+				}
+				return dat1
+			}
+		}	
+	}
 	function showText(txt) {
 		$('#aboutM').animate({height: 150}, "fast")
         $('#aboutM').css("opacity", 0.5);
@@ -574,40 +594,45 @@
 		//add_hot_list(currMID,'VIEWED_PROFILE')
 		el.className='animated rollOut'
 		
-		if (ctr==(profileBatchCount-2)) load_next()
+		if (ctr==(profileBatchCount-1)) load_next()
 			else ctr++
 	}
 	
 	function load_next() {
-		var x=10
 		setTimeout('showWait()',1)
-		setTimeout('loadProfiles('+x+')',1)
+		setTimeout('loadProfiles('+no+')',1)
 	}
 
 	var animate=true
 	function dislike(el) {
+		dbm++
+		if (typeof el !== "object") {
+			el=$$(el)
+		}
+		setCookie('currMID',currMID)
+		scale=2
 		if ($$('nob')) $$('nob').style.display=''
 		if ($$('nob')) $$('nob').style.opacity=1
 		setTimeout(function(){
 			recoverNob()
 		},250)
-	
-		scale=2
-		$$('no').style.transform='scale('+scale+')'
+		
+		if ($$('no')) $$('no').style.transform='scale('+scale+')'
 		setTimeout(function(){
 			recoverNo()
 		},250)
+		
 		prevMID=currMID
-		currMID=el.id.replace('p','')
+		currMID=mids[mids.indexOf(currMID)-1]
 		currUR=urs[urs.indexOf(currUR)-1]
 		if (currMID==undefined) currMID = prevMID
 		setCookie('nextMID',currMID)
+
 		nextMID=currMID
 		if (currUR==undefined) currUR = Math.min.apply(Math, urs)
-		add_hot_list(currMID,'VIEWED_PROFILE')
-		el.className='animated slideLeft'
-		el.style.display='none'
-		if (ctr==(profileBatchCount-2)) load_next()
+		el.className='animated rollOut'
+		
+		if (ctr==(profileBatchCount-1)) load_next()
 			else ctr++
 	}
 	var tmrYb, tmrNb, op=1
@@ -725,6 +750,7 @@ function detectswipe(el,func) {
 
     function myfunction(el,d) {
 	console.log(el)
+	console.log(d)
 		if(xtt=='touchmove') {
 			if (d=='l') setTimeout('dislike('+el+')',10)
 			if (d=='r') setTimeout('like('+el+')',10)

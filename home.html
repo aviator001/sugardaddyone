@@ -178,7 +178,7 @@
 						<div style="font-family:Open Sans Condensed;font-size:18px" id="info">Any time you message someone on this site, the user instantly receives your message because all messages are delivered via SMS using anonymous callerIds.</div>						
 						</span>
 							<div style="font-size:12px;width:100%;position:fixed;background:#f0f0f0;opacity:0.8;padding:2px;margin-top:-2px;padding-top:3px" id="ver"></div>	
-							<table style="width:100%;margin:auto;left:0;right:0;margin-top:0px;font-family:Open Sans Condensed;font-size:14px!Important;text-align:center!Important">
+							<table style="display:none;width:100%;margin:auto;left:0;right:0;margin-top:0px;font-family:Open Sans Condensed;font-size:14px!Important;text-align:center!Important">
 								<tr style="background:gold">
 									<td colspan=2 style="text-align:left;width:80%">
 										<h3>
@@ -195,54 +195,55 @@
 									</td>
 								</tr>
 							</table>
-							<table style="width:100%;margin:auto;left:0;right:0;margin-top:0px;font-family:Open Sans Condensed;font-size:14px!Important;margin-top:-15px">
-								<tr style="background:#fff">
-									<td colspan=2 style="text-align:left;width:80%">
-										<h3>
-											<span style="margin-left:10px">MEMBERS <b>NEAR</b> ME</span>
+							<br>
+							<table style="background:#fff;border-top:5px solid silver;width:100%;margin:auto;left:0;right:0;margin-top:0px;font-family:Open Sans Condensed;font-size:14px!Important;">
+								<tr style="background:#fff" class="www_box2" >
+									<td colspan=2 style="text-align:left;width:80%;padding:5px;max-height:30px">
+										<h3 style="margin:0">
+											<span style="font-size:0.8em;padding:10px;"><button onclick="show_local()" id="btnLocal" class="btn btn-sm btn-info" style="margin-top:-10px"> <b>HIDE</b> </button> MEMBERS <b>LOCAL</b> TO ME</span>
 										</h3>
 									</td>
 									<td>
-										<button onclick="fetchNextLocal()" style="margin-right:10px" class="btn btn-xs btn-danger">Fetch Next 20</button>
+										<button onclick="fetchNextLocal()" style="margin-right:10px;margin-top:-5px" id="fetchNextLocal" class="btn btn-xs btn-warning">Fetch Next 10</button>
 									</td>
 								</tr>
-								<tr>
+								<tr class="" >
 									<td colspan=3>
-										<div style="margin-top:-10px" id="lp"><img style="height:60px" src="https://lushmatch.com/assets/img/l4.gif"></div>
+										<div style="margin-top:-5px" id="lp"><img style="height:60px" src="https://lushmatch.com/assets/img/l4.gif"></div>
 									</td>
 								</tr>
 							</table>
-							<table id="np_header" style="width:100%;margin:auto;left:0;right:0;margin-top:0px;font-family:Open Sans Condensed;font-size:14px!Important;margin-top:-15px">
-								<tr style="background:#fff">
-									<td colspan=2 style="text-align:left;width:80%">
-										<h3>
-											<span style="margin-left:10px"><b>NEW</b> MEMBERS</span>
+							<table id="np_header" style="background:#fff;border-top:5px solid silver;width:100%;margin:auto;left:0;right:0;margin-top:0px;font-family:Open Sans Condensed;font-size:14px!Important;margin-top:">
+								<tr  style="background:#fff;height:30px;max-height:40px!Important">
+									<td colspan=2 style="text-align:left;width:80%;padding:5px">
+										<h3 style="margin:0">
+											<span style="font-size:0.8em;padding:10px;"><button id="btnNew" onclick="show_new()" class="btn btn-sm btn-danger" style="margin-top:-10px"> <b>SHOW</b> </button> <B>NEW</B> MEMBERS </span>
 										</h3>
 									</td>
 									<td>
-										<button onclick="fetchNextNew()" style="margin-right:10px" class="btn btn-xs btn-danger">Fetch Next 20</button>
+										<button onclick="fetchNextNew()" style="margin-right:10px;margin-top:-5px;display:none" id="fetchNextNew" class="btn btn-xs btn-warning">Fetch Next 10</button>
 									</td>
 								</tr>
-								<tr>
+								<tr class="" >
 									<td colspan=3>
-										<div style="margin-top:-10px" id="np"><img style="height:60px" src="https://lushmatch.com/assets/img/l4.gif"></div>
+										<div style="margin-top:-5px;display:none" id="np"><img style="height:60px" src="https://lushmatch.com/assets/img/l4.gif"></div>
 									</td>
 								</tr>
 							</table>
-							<table style="width:100%;margin:auto;left:0;right:0;margin-top:0px;font-family:Open Sans Condensed;font-size:14px!Important;margin-top:-15px">
-								<tr style="background:#fff">
-									<td colspan=2 style="text-align:left;width:80%">
-										<h3>
-											<span style="margin-left:10px">LAST 100 <b>NEW</b> MEMBERS <b>NEAR</b> ME</span>
+							<table style="background:#fff;border-top:5px solid silver;width:100%;margin:auto;left:0;right:0;margin-top:0px;font-family:Open Sans Condensed;font-size:14px!Important;">
+								<tr style="border-bottom:5px solid silver;background:#fff;height:30px;max-height:40px!Important">
+									<td colspan=2 style="text-align:left;width:80%;padding:5px;height:30px;max-height:40px!Important">
+										<h3 style="margin:0">
+											<span style="font-size:0.8em;padding:10px;"><button id="btnNewLocal" onclick="show_new_local()" class="btn btn-sm btn-danger" style="margin-top:-10px"> <b>SHOW</b> </button> <B>NEW</b> LOCAL MEMBERS </span>
 										</h3>
 									</td>
 									<td>
-										<button onclick="fetchNextNewLocal()" style="margin-right:10px" class="btn btn-xs btn-danger">Fetch Next 20</button>
+										<button onclick="fetchNextNewLocal()" style="margin-right:10px;margin-top:-5px;display:none" id="fetchNextNewLocal" class="btn btn-xs btn-warning">Fetch Next 10</button>
 									</td>
 								</tr>
 								<tr>
 									<td colspan=3>
-										<div style="margin-top:-10px" id="ne"><img style="height:60px" src="https://lushmatch.com/assets/img/l4.gif"></div>
+										<div style="margin-top:-5px;display:none" id="ne"><img style="height:60px" src="https://lushmatch.com/assets/img/l4.gif"></div>
 									</td>
 								</tr>
 							</table>
@@ -281,6 +282,7 @@
 <script src="https://lushmatch.com/assets/js/scripts.js"></script>
 <link href="https://lushmatch.com/assets/css/bootstrap.css" rel="stylesheet">
 <link href="https://lushmatch.com/assets/css/jquery-ui.css" rel="stylesheet">
+<link href="https://lushmatch.com/css/shadows.css" rel="stylesheet">
 <style>
 	.genActive{background: gold;border:none;opacity:1!Important}
 </style>
@@ -368,6 +370,7 @@
 			}
 			
 			function init() {
+				$('#btnLocal').hide()
 
 				<!-- if ((getCookie('gender')=='Sugar Daddy')||(getCookie('gender')=='Sugar+Daddy')) { -->
 					<!-- console.log('looking for baby') -->
@@ -391,28 +394,26 @@
 			var x_start_featured=0
 			var x_start_local=0
 			var x_start_new=0
+			var x_start_new_local=0
+			var no=10		
 			
 			function fetchNextFeatured() {
 				x_start_featured=x_start_featured+4
-				$$('fp').innerHTML=''
 				getProfilesFeatured()
 			}
 			
 			function fetchNextLocal() {
-				x_start_local=x_start_local+20
-				$$('lp').innerHTML=''
+				x_start_local=x_start_local+no
 				getProfilesLocal()
 			}
 			
 			function fetchNextNew() {
-				x_start_new=x_start_new+20
-				$$('np').innerHTML=''
+				x_start_new=x_start_new+no
 				getProfilesNew()
 			}
-			
+
 			function fetchNextNewLocal() {
-				x_start_new_local=x_start_new_local+20
-				$$('ne').innerHTML=''
+				x_start_new_local=x_start_new_local+no
 				getProfilesNewLocal()
 			}
 			
@@ -461,24 +462,23 @@
 			function view_profile(e) {
 				if (e.target.id) {
 					if (e.target.id.indexOf('img_popular_')>-1) {
-						location.href='profileBrowse.html?id='+e.target.id.split('_')[2]+'&type=browse&browse='+e.target.id.split('_')[1]
+						location.href='profileBrowse.html?id='+e.target.id.split('_')[2]+'&type=browse&browse='+e.target.id.split('_')[1]+'&start='+x_start_popular
 					}
 					if (e.target.id.indexOf('img_local_')>-1) {
-						location.href='profileBrowse.html?id='+e.target.id.split('_')[2]+'&type=browse&browse='+e.target.id.split('_')[1]
+						location.href='profileBrowse.html?id='+e.target.id.split('_')[2]+'&type=browse&browse='+e.target.id.split('_')[1]+'&start='+x_start_local
 					}
 					if (e.target.id.indexOf('img_latest_')>-1) {
-						location.href='profileBrowse.html?id='+e.target.id.split('_')[2]+'&type=browse&browse='+e.target.id.split('_')[1]
+						location.href='profileBrowse.html?id='+e.target.id.split('_')[2]+'&type=browse&browse='+e.target.id.split('_')[1]+'&start='+x_start_new
 					}
 					if (e.target.id.indexOf('img_newest_')>-1) {
-						location.href='profileBrowse.html?id='+e.target.id.split('_')[2]+'&type=browse&browse=new_local'
+						location.href='profileBrowse.html?id='+e.target.id.split('_')[2]+'&type=browse&browse=new_local'+'&start='+x_start_new_local
 					}
 				}
 			}
 
 			
 			function getProfilesLocal() {
-				var x_start=0
-				var url = 'https://lushmatch.com/x_get_home_local.php?w_w=' + window_width()+'&x_start='+x_start_local+'&gender='+getCookie('gender')+'&type=local&ip='+getCookie('ip')+'&location='+getCookie('location')+'&per_page=20'
+				var url = 'https://lushmatch.com/x_browse_local.php?start='+x_start_local+'&gender='+getCookie('gender')+'&type=local&count='+no
 				var request = $.ajax({
 					url: url,
 					type: "GET",
@@ -488,11 +488,12 @@
 						$$('lp').innerHTML=''
 						var data=JSON.parse(msg)
 						console.log(data)
+						data.reverse()
 						var lx=data.length
 						var lt=-700
 						for (var i=0;i<data.length;i++) {
 							if (data[i]) {
-								id=data[i].member_id
+								id=data[i].id
 								imgG=makeImg('https://lushmatch.com/sb/'+data[i].filename_1, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, 'col-md-3 www_box2')
 								imgG.style='width:100%;height:100%;padding:0;margin:2px'
 								imgG.id='img_local_'+id
@@ -502,8 +503,8 @@
 								dpg.style.height='200px'
 								dpg.style.margin='5px'
 								dpg.style.width='100%'
-								dpg.style.maxWidth=(window_width()/10-5)+'px'
-								dpg.style.height=(window_width()/10-5)+'px'
+								dpg.style.maxWidth=(window_width()/5-5)+'px'
+								dpg.style.height=(window_width()/5-5)+'px'
 								dpg.style.margin='2px'
 								dpg.style.padding='0'
 								dpg.style.cursor='pointer'
@@ -516,7 +517,7 @@
 			}
 			function getProfilesNew() {
 				var x_start=0
-				var url = 'https://lushmatch.com/x_get_home_new.php?w_w=' + window_width()+'&x_start='+x_start_new+'&gender='+getCookie('gender')+'&type=latest&ip='+getCookie('ip')+'&location='+getCookie('location')+'&per_page=20'
+				var url = 'https://lushmatch.com/x_browse_new.php?&start='+x_start_new+'&gender='+getCookie('gender')+'&type=latest&count='+no
 				var request = $.ajax({
 					url: url,
 					type: "GET",
@@ -525,11 +526,12 @@
 					success: function(msg) {
 						$$('np').innerHTML=''
 						var data=JSON.parse(msg)
+						data.reverse()
 						var lx=data.length
 						var lt=-700
 						for (var i=0;i<data.length;i++) {
 							if (data[i]) {
-								id=data[i].member_id
+								id=data[i].id
 								imgG=makeImg('https://lushmatch.com/sb/'+data[i].filename_1, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, 'col-md-3 www_box2')
 								imgG.style='width:100%;height:100%;padding:0;margin:2px'
 								imgG.id='img_latest_'+id
@@ -539,8 +541,8 @@
 								dpg.style.height='200px'
 								dpg.style.margin='5px'
 								dpg.style.width='100%'
-								dpg.style.maxWidth=(window_width()/10-5)+'px'
-								dpg.style.height=(window_width()/10-5)+'px'
+								dpg.style.maxWidth=(window_width()/5-5)+'px'
+								dpg.style.height=(window_width()/5-5)+'px'
 								dpg.style.margin='2px'
 								dpg.style.padding='0'
 								dpg.style.cursor='pointer'
@@ -553,7 +555,7 @@
 			}
 			function getProfilesNewLocal() {
 				var x_start=0
-				var url = 'https://lushmatch.com/x_get_home_new_local.php?w_w=' + window_width()+'&x_start='+x_start_new+'&gender='+getCookie('gender')+'&type=local&ip='+getCookie('ip')+'&location='+getCookie('location')+'&per_page=20'
+				var url = 'https://lushmatch.com/x_browse_new_local.php?start='+x_start_new_local+'&gender='+getCookie('gender')+'&type=new_local&count='+no
 				var request = $.ajax({
 					url: url,
 					type: "GET",
@@ -562,11 +564,12 @@
 					success: function(msg) {
 						$$('ne').innerHTML=''
 						var data=JSON.parse(msg)
+						data.reverse()
 						var lx=data.length
 						var lt=-700
 						for (var i=0;i<data.length;i++) {
 							if (data[i]) {
-								id=data[i].member_id
+								id=data[i].id
 								imgG=makeImg('https://lushmatch.com/sb/'+data[i].filename_1, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, 'col-md-3 www_box2')
 								imgG.style='width:100%;height:100%;padding:0;margin:2px'
 								imgG.id='img_newest_'+id
@@ -576,8 +579,8 @@
 								dpg.style.height='200px'
 								dpg.style.margin='5px'
 								dpg.style.width='100%'
-								dpg.style.maxWidth=(window_width()/10-5)+'px'
-								dpg.style.height=(window_width()/10-5)+'px'
+								dpg.style.maxWidth=(window_width()/5-5)+'px'
+								dpg.style.height=(window_width()/5-5)+'px'
 								dpg.style.margin='2px'
 								dpg.style.padding='0'
 								dpg.style.cursor='pointer'
@@ -589,6 +592,54 @@
 				})				
 			}
 
+			function show_local() {
+				$('#lp').show()
+				$('#np').hide()
+				$('#ne').hide()
+				$('#fetchNextLocal').show()
+				$('#fetchNextNew').hide()
+				$('#fetchNextNewLocal').hide()
+				$$('btnNew').style.display=''
+				$$('btnLocal').style.display='none'
+				$$('btnNewLocal').style.display=''
+				$$('btnNew').innerHTML='<b>SHOW</b>'
+				$$('btnNew').className='btn btn-sm btn-danger'
+				$$('btnNewLocal').innerHTML='<b>SHOW</b>'
+				$$('btnNewLocal').className='btn btn-sm btn-danger'
+			}
+			
+			function show_new() {
+				$('#lp').hide()
+				$('#np').show()
+				$('#ne').hide()
+				$('#fetchNextLocal').hide()
+				$('#fetchNextNew').show()
+				$('#fetchNextNewLocal').hide()
+				$$('btnLocal').innerHTML='<b>SHOW</b>'
+				$$('btnLocal').className='btn btn-sm btn-danger'
+				$$('btnNew').style.display='none'
+				$$('btnLocal').style.display=''
+				$$('btnNewLocal').style.display=''
+				$$('btnNewLocal').innerHTML='<b>SHOW</b>'
+				$$('btnNewLocal').className='btn btn-sm btn-danger'
+			}
+			
+			function show_new_local() {
+				$('#lp').hide()
+				$('#np').hide()
+				$('#ne').show()
+				$('#fetchNextLocal').hide()
+				$('#fetchNextNew').hide()
+				$('#fetchNextNewLocal').show()
+				$$('btnLocal').innerHTML='<b>SHOW</b>'
+				$$('btnLocal').className='btn btn-sm btn-danger'
+				$$('btnNew').style.display=''
+				$$('btnLocal').style.display=''
+				$$('btnNewLocal').style.display='none'
+				$$('btnNewLocal').innerHTML='<b>HIDE</b>'
+				$$('btnNewLocal').className='btn btn-sm btn-info'
+			}
+			
 			var ctr=0
 			function makeImg(src, alt, title, className) {
 				var img =  document.createElement('img');
