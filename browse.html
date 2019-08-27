@@ -65,6 +65,16 @@
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-pdjniiApMjAV7j92Nfn5zgd3k2s3ze4&libraries=places" type="text/javascript"></script>
 <script src="https://lushmatch.com/assets/js/jquery.geocomplete.js"></script>
 <script>
+	setTimeout(function(){
+		if (window_width()<=320) {
+			document.body.style.fontSize='10px'
+			$$('popular').style.padding='7px'
+			$$('latest').style.padding='7px'
+			$$('local').style.padding='7px'
+			$$('new_local').style.padding='7px'
+		}
+	},500)
+
 	function login1() {
 		var m = $("#email").val(),
 			p = $("#password").val();

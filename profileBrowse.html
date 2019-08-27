@@ -139,7 +139,9 @@
 	<script src="https://lushmatch.com/assets/js/bootstrap.js"></script>
 	<script src="https://lushmatch.com/jsSocketNode.js"></script>
 <script>
-	var no=12
+	var no_search=qs('count')
+	var no=qs('count')
+	if (!no) no=10
 	var currLogin,currPhoto
 	document.onclick=yesNo
 	function yesNo(e) {
@@ -215,6 +217,7 @@
 	var start_new=qs('start')*1
 	var start_new_local=qs('start')*1
 	var start_popular=qs('start')*1
+	var start_search=qs('start')*1
 	var x_start=0,saved=''
 	var miles=getCookie('x_miles')
 	if (!miles) miles=100
@@ -239,7 +242,13 @@
 		var type=qs('type')
 		var str=''
 		if (type=='search') {
-			var url='https://lushmatch.com/x_get_browse_profiles.php?member_id='+nextMID+'&type=search&count='+no+'&search='+qs('search')+'&x_start='+x_start+'&miles='+miles+'&gender='+getCookie('gender')
+			if (qs('search_type')=='a') {
+				var url='https://lushmatch.com/x_browse_search_a.php?mid='+qs('id')+'&start='+start_search+'&count='+no_search+'&search_term='+qs('search_term')+'&gender='+getCookie('gender')+'&lat='+qs('lat')+'&lng='+qs('lng')
+			} else if (qs('search_type')=='b') {
+				var url='https://lushmatch.com/x_browse_search_b.php?mid='+qs('id')+'&start='+start_search+'&count='+no_search+'&search_term='+qs('search_term')+'&gender='+getCookie('gender')+'&lat='+qs('lat')+'&lng='+qs('lng')
+			} else if (qs('search_type')=='c') {
+				var url='https://lushmatch.com/x_browse_search_c.php?mid='+qs('id')+'&start='+start_search+'&count='+no_search+'&search_term='+qs('search_term')+'&gender='+getCookie('gender')+'&lat='+qs('lat')+'&lng='+qs('lng')
+			}
 		} else {
 			if (qs('browse')=='local') {
 				var url='https://lushmatch.com/x_browse_local.php?start='+start_local+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')
@@ -307,7 +316,7 @@
 							str+=	'<div class="col-md-4 col-sm-4 col-xs-12" style="width:100%;max-width:100%;position:fixed;left:0;right:0;margin:auto;padding:0;margin-top:25px">'
 							str+=	'	<div class="thumbbox1" style="padding:0;background:#f0f0f0;;max-width:500px;margin:auto">'
 							str+=	'		<div id="swm" class="team-thumb overlay-image view-overlay" style="position:absolute;background:white;border:none;z-index:0!Important">'
-							str+=	'			<img onerror="this.src=\'assets/img/no_photo.png\'" id="imgProfile'+data[i].id+'" onclick="view_img(this)" alt="" style="min-width:'+window.screen.width+'px;max-width:'+window.screen.width+'px;width:'+window.screen.width+'px;">'
+							str+=	'			<img onerror="this.src=\'assets/img/no_photo.png\'" id="imgProfile'+data[i].id+'" onclick="view_img(this)" alt="" style="min-width:'+window.screen.width+'px;min-height:'+window.screen.width+'px;width:'+window.screen.width+'px;height:'+window.screen.width+'px;">'
 							str+=	'		</div>'
 							str+=	'		<div style="left:0;right:0;position:fixed;background:#f0f0f0;min-height:190px;width:100%;margin:auto;padding-top:5px;bottom:45px!Important;z-index:99999999999999999999!Important">'
 							str +=  '       <div id="aboutM" class="general_infoP" style="max-height:460px;cursor:hand;cursor:pointer;display:'+disp+';width:100%;background:#111;border-radius:0;position:absolute;opacity:0.7;padding:'+pt+';color:white;bottom:190px!Important;"><b>'+data[i]['general_info']+'</div>'
@@ -383,19 +392,19 @@
 				}
 				nextMID = Math.min.apply(Math, mids)
 				setCookie('nextMID',nextMID)
-				if (type=='search') {
-					x_start=x_start+no
-				} else {
-					if (qs('browse')=='local') {
-						start_local=start_local+no
-					} else if (qs('browse')=='latest') {
-						start_new=start_new+no
-					} else if (qs('browse')=='new_local') {
-						start_new_local=start_new_local+no
-					} else if (qs('browse')=='popular') {
-						start_popular=start_popular+no
-					}
+				if (qs('type')=='search') {
+					start_search=start_search*1+no_search*1
+				} 
+				if (qs('browse')=='local') {
+					start_local=start_local+no
+				} else if (qs('browse')=='latest') {
+					start_new=start_new+no
+				} else if (qs('browse')=='new_local') {
+					start_new_local=start_new_local+no
+				} else if (qs('browse')=='popular') {
+					start_popular=start_popular+no
 				}
+				
 		<!-- console.log('ratings:') -->
 				<!-- console.log(urs) -->
 				<!-- console.log('mids:') -->

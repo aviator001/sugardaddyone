@@ -83,11 +83,11 @@
 		<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic|Open+Sans:300' rel='stylesheet' type='text/css'>
 
 		
-<script src="https://lushmatch.com/jsSocketNode.js"></script>
 	</head>
 <script>var padding=15</script>
 	<body style="font-size:0">		<script src="https://lushmatch.com/custom_menu.js"></script>
 
+		<div id="sr" style="position:absolute;width:100%;top:0px;left:0;background:#f0f0f0;padding-top:100px;padding-bottom:100px"></div>
 
 	  <!--========================================================
                             HEADER
@@ -180,24 +180,40 @@
 				.mm{border-radius:0 0 5px 5px;position:fixed;width:200px;height:100%;left:0px;top:55px;padding:0px;z-index:99999999999999999999999;text-align:left;display:block}
 			</style>
 <script>
-	var mid=getCookie('mid');
-	var member_id=qs('member_id')
-	setTimeout('load_album()',100)
+	var url='https://lushmatch.com/x_get_album.php?member_id='+getCookie('mid')
+	console.log(url)
+	load_album()
 	function load_album(){
 			var request = $.ajax({
-				url: 'https://lushmatch.com/pg_view_album.php?member_id='+member_id+'&mid='+getCookie('mid'),
+				url: url,
 				type: "GET",
 				dataType: "html",
 				cache: false,
 				success: function(msg) {
 					console.log(msg)
-					var xmg=msg.split('||')
-					document.getElementById('sr1').innerHTML=xmg[0]
-					src=xmg[1].split(',')
-					pid=xmg[2].split(',')
-					currSRC=src[0]
+					var data=JSON.parse(msg)
+					if (data) {
+						for (var i=0; i < data.length; i++) {
+							var img=document.createElement('img')
+							var div=document.createElement('div')
+							var toolbar=document.createElement('div')
+							var sr=$$('sr')
+							img.src='https://lushmatch.com/sb/'+data[i].filename_1
+							img.id=data[i].id
+							img.style.cssText='width:100%;border:10px solid white'
+							div.style.cssText='width:300px;height:350px;margin:auto;margin-top:50px;'
+							div.id='holder_'+ img.id
+							toolbar.style.cssText='width:100%;margin:auto;height:40px;background:#f0f0f0'
+							toolbar.id='toolbar_'+ img.id
+							div.appendChild(img)
+							div.appendChild(toolbar)
+							sr.appendChild(div)
+							toolbar.innerHTML='<table style="width:100%;color:white;margin-bottom:50px"><tr><td style="text-align:center;padding:5px"><a href="javascript:edit_photo(\''+data[i].filename_1+'\')"><button class="btn btn-info">EDIT PHOTO</button></a></td><td style="text-align:center;padding:5px"><a href="javascript:del_photo(\''+data[i].filename_1+'\')"><img src="http://lushmatch.com/trash_red.png" style="width:25px;height:30px"></a></td><td style="text-align:center;padding:5px"><a href="javascript:def_photo(\''+data[i].filename_1+'\')"><button class="btn btn-danger">SET DEFAULT</button></a></td></tr></table><br><br>'
+							console.log(div)
+						}
+					}
 					var wx=window.screen.width
-					$$('profile_img').style.cssText='min-width:'+wx+';max-width:'+wx+';width:'+wx+'px;margin-top:120px'
+					
 					if ((qs('member_id')==getCookie('mid')) && (!currSRC)) {
 						location.href='uploadPhoto.html'
 					}
@@ -205,7 +221,6 @@
 				}
 			})
 		}
-		
 		function switch_image(xObj) {
 			document.getElementById('profile_img').src=xObj.src
 		}
@@ -280,10 +295,11 @@
 			}
 		}		
 		
-		function del_photo(z) {
-			console.log('https://lushmatch.com/x_del_photo.php?id='+z)
+		function del_photo(f) {
+			var url='https://lushmatch.com/x_delete_photo.php?mid='+getCookie('mid')+'&filename_1='+f
+			console.log(url)
 			var request = $.ajax({
-				url: 'https://lushmatch.com/x_del_photo.php?id='+z, 
+				url: url, 
 				type: "GET",
 				dataType: "html",
 				cache: false,
@@ -295,18 +311,22 @@
 			})
 		}
 
-		function def_photo(z) {
+		function def_photo(f) {
+			var url='https://lushmatch.com/x_default_photo.php?mid='+getCookie('mid')+'&filename_1='+f
+			console.log(url)
 			var request = $.ajax({
-				url: 'https://lushmatch.com/x_def_photo.php?id='+z, 
+				url: url, 
 				type: "GET",
 				dataType: "html",
 				cache: false,
 				success: function(msg) {
-					if (msg=='') {
-						history.go(0)
-					}
+					history.go(0)
 				}
 			})
+		}
+
+		function edit_photo(f) {
+			location.href='x_edit_photo.html?fn='+f
 		}
 		
 		function window_width() {
@@ -328,7 +348,7 @@
 		}
 		
 		function goback(currMID) {
-			history.go(-1)
+			location.href='profileBrowse.html?id='+currMID+'&type=browse&browse='+getCookie('browse')
 		}
 		
 		function goF() {
@@ -381,12 +401,3 @@
 		}
 
 </script>
-	
-<div id='chief' align=center style=''>
-<link href='https://fonts.googleapis.com/css?family=Ubuntu Condensed|Poiret+One' rel='stylesheet' type='text/css'>
-<div id="notify" style="display:none;opacity:0.8;right:10px;top:100px;z-index:99999999999999;background:#333;box-shadow:0 0 20px #000;width:250px;height:40px;position:fixed;border-radius:4px">
-	<span id="notify_txt"  style="padding:5px;color:#f0f0f0"></span>
-</div>
-<div style="position:absolute;z-index:1;left:0;right:0;margin:auto;text-align:center;margin:auto;width:100%;top:-50px;height:100%;background:#f0f0f0;background-size:cover" id="sr1" class="www_box2"></div>
-<button style="position:absolute;z-index:9999999999999999999999;left:0;right:0;margin:auto;text-align:center;margin:auto;top:200px;width:100px;display:none" id="pa" class="btn btn-danger" onclick="delPhoto()">Delete</button>
-

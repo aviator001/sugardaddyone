@@ -6,15 +6,13 @@
 		<meta name="description" content="A gay sugar daddy dating site that connects handsome wealthy and caring men to hot young women. Worlds first gay sugar daddy site to use disruptive SMS messaging. Find a Gay Sugar Daddy today!" />		
 		<meta name="Author" content="Gautam Sharma" />		
 		<meta name="format-detection" content="telephone=no"/>
-		<title>gay sugar daddy dating | lushmatch.com</title>
+		<title>sugar daddy dating | SDLocal</title>
 		<link rel="canonical" href="">
 		<link rel="icon" href="https://lushmatch.com/assets/img/favicon.png">
 		<link href="https://lushmatch.com/assets/css/font-awesome.css" rel="stylesheet" >
-		<link href="https://lushmatch.com/assets/css/jquery-confirm.css" rel="stylesheet" />
 		<link href="https://lushmatch.com/assets/css/shadows.css" rel="stylesheet" />
 		<link href="https://lushmatch.com/assets/css/jquery-ui.css" rel="stylesheet" />
 		<link href="https://lushmatch.com/assets/css/bootstrap.css" rel="stylesheet">
-		<link href="https://lushmatch.com/assets/css/login.css" rel="stylesheet">
 		<link href="style.css" rel="stylesheet"> 
 		<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic|Open+Sans:300' rel='stylesheet' type='text/css'>
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -39,6 +37,14 @@ ul.ui-autocomplete li.ui-menu-item {
 	  font-size:18px!Important;
 	  font-family:Open Sans
 }
+h1,h2,h3,h4 {
+	font-family:Open Sans!Important;
+	font-weight:300!Important;
+	}
+.jconfirm , .supervan{
+	background:#000!Important;
+	opacity:0.7!Important;
+}
 </style>		
 </head>
 	<body>		<script src="https://lushmatch.com/custom_menu.js"></script>
@@ -47,30 +53,34 @@ ul.ui-autocomplete li.ui-menu-item {
 			<img src="https://lushmatch.com/assets/img/loader.gif" alt="">
 		</div>
 	<section class="page-wrapper gray wow zoomIn">
-		<div id="sc" class="container" style="text-align:center">
-			<h2 class="title">MEMBER PROFILE SEARCH</h2>
-			<p class="tagline">
-				 Search for anyone by city, zipcode or member name!
-			</p>
+		<div id="sc" class="container" style="text-align:center;margin-top:-20px">
 			<div class="portfolio-filter-list">
 				<div>
 					<table>
-						<tr>
-							<td style="text-align:left">
-								<label>City and/or State</label><br>
-								<input placeholder="Enter City and/or State" type="text" style="font-size:16px;padding-left:10px;height:50px;width:200px;margin:5px;border-radius:6px;border:1px solid silver" id="xxx"><a id="btnSearchLocation" class="hand" style="font-size:1.2em;color:red"  onclick="searchLocation()">Search</a>
+						<tr id="s1">
+							<td style="text-align:center">
+								<h5 style=";margin-top:-20px" class="title"><h3 id="t1">SEARCH BY LOCATION</h3>
+								<input onclick="this.value=''" placeholder="City State Country" type="text" style="font-size:16px;padding-left:5px;height:50px;width:68%;margin:5px;border-radius:6px;border:1px solid silver" id="xxx"> <a id="btnSearchLocation" class="hand" style="font-size:1.2em;color:white;background:#666;width:28%"  onclick="searchLocation()">Search</a>
+							</td>
+						</tr>
+						<tr id="s2" style="display:none">
+							<td style="text-align:center">
+								<h5 style=";margin-top:-20px" class="title"><h3 id="t2">SEARCH BY ZIPCODE</h3>
+								<input placeholder="Enter ZipCode" type="text" style="font-size:16px;padding-left:10px;height:50px;width:200px;margin:5px;border-radius:6px;border:1px solid silver" id="searchLocation"><a id="btnSearchCityStateZip" class="hand" style="font-size:1.2em;color:white;background:#666"  onclick="searchCityStateZip()">Search</a>
+							</td>
+						</tr>
+						<tr id="s3" style="display:none">
+							<td style="text-align:center">
+								<h5 style=";margin-top:-20px" class="title"><h3 id="t3">SEARCH BY USER NAME</h3>
+								<input placeholder="Enter UserName" type="text" style="font-size:16px;padding-left:10px;height:50px;width:200px;margin:5px;border-radius:6px;border:1px solid silver" id="searchName"><a id="btnSearchName" class="hand" style="font-size:1.2em;color:white;background:#666"  onclick="searchUserName()">Search</a>
 							</td>
 						</tr>
 						<tr>
 							<td style="text-align:left">
-								<label>ZipCode</label><br>								
-								<input placeholder="Enter ZipCode" type="text" style="font-size:16px;padding-left:10px;height:50px;width:200px;margin:5px;border-radius:6px;border:1px solid silver" id="searchLocation"><a id="btnSearchCityStateZip" class="hand" style="font-size:1.2em;color:red"  onclick="searchCityStateZip()">Search</a>
-							</td>
-						</tr>
-						<tr>
-							<td style="text-align:left">
-								<label>UserName</label><br>								
-								<input placeholder="Enter UserName" type="text" style="font-size:16px;padding-left:10px;height:50px;width:200px;margin:5px;border-radius:6px;border:1px solid silver" id="searchName"><a id="btnSearchName" class="hand" style="font-size:1.2em;color:red"  onclick="searchUserName()">Search</a>
+									<h3 id="t4">CHANGE SEARCH CRTITERIA:</h3>
+									<a id="b1" class="hand" style="font-size:1.0em;color:black;background:gold"  onclick="searchA()">LOCATION</a>
+									<a id="b2" class="hand" style="font-size:1.0em;color:black;background:#f0f0f0"  onclick="searchB()">ZIP</a>
+									<a id="b3" class="hand" style="font-size:1.0em;color:black;background:#f0f0f0"  onclick="searchC()">USERNAME</a>
 							</td>
 						</tr>
 					</table>	
@@ -85,9 +95,9 @@ ul.ui-autocomplete li.ui-menu-item {
 			<img id="imgSearchWait" src="https://lushmatch.com/assets/images/load.gif" alt="waiting for my sugar daddy or sugar baby" style="position:absolute;z-index:999999999999;margin-top:-500px;margin-left:-50px;width:100px;display:none">
 		</div>
 	</section>
-	<div id="xresults_bar" style="display:none;position:fixed;z-index:9999999999999999;width:100%;height:50px;bottom:45px;background:#f0f0f0;padding:0;text-align:center"><button class="btn btn.sm btn-danger" onclick="getBack()" style="padding-top:10px;padding-bottom:10px;margin:5px;color:white;background:red">Back</button> <button class="btn btn.sm btn-danger" onclick="getNext()" style="padding-top:10px;padding-bottom:10px;margin:5px;color:white;background:black">Next</button></div>
-	<div id="xresults_bar2" style="display:none;position:fixed;z-index:9999999999999999;width:100%;height:50px;bottom:45px;background:#f0f0f0;padding:0;text-align:center"><button class="btn btn.sm btn-danger" onclick="getBack2()" style="padding-top:10px;padding-bottom:10px;margin:5px;color:white;background:red">Back</button> <button class="btn btn.sm btn-danger" onclick="getNext2()" style="padding-top:10px;padding-bottom:10px;margin:5px;color:white;background:black">Next</button></div>
-	<div id="xresults_bar3" style="display:none;position:fixed;z-index:9999999999999999;width:100%;height:50px;bottom:45px;background:#f0f0f0;padding:0;text-align:center"><button class="btn btn.sm btn-danger" onclick="getBack3()" style="padding-top:10px;padding-bottom:10px;margin:5px;color:white;background:red">Back</button> <button class="btn btn.sm btn-danger" onclick="getNext3()" style="padding-top:10px;padding-bottom:10px;margin:5px;color:white;background:black">Next</button></div>
+	<div id="xresults_bar" style="display:none;position:fixed;z-index:9999999999999999;width:100%;height:50px;bottom:45px;background:#f0f0f0;padding:0;text-align:center"> <button id="back_a" class="btn btn.sm btn-danger" onclick="getBack()"  style="display:none;padding-top:10px;padding-bottom:10px;margin:5px;color:white;background:red">Back</button> <button class="btn btn.sm btn-danger" id="next_a" onclick="getNext()" style="display:none;padding-top:10px;padding-bottom:10px;margin:5px;color:white;background:black">Next</button></div>
+	<div id="xresults_bar2" style="display:none;position:fixed;z-index:9999999999999999;width:100%;height:50px;bottom:45px;background:#f0f0f0;padding:0;text-align:center"><button id="back_b" class="btn btn.sm btn-danger" onclick="getBack2()" style="display:none;padding-top:10px;padding-bottom:10px;margin:5px;color:white;background:red">Back</button> <button class="btn btn.sm btn-danger" id="next_b" onclick="getNext2()" style="display:none;padding-top:10px;padding-bottom:10px;margin:5px;color:white;background:black">Next</button></div>
+	<div id="xresults_bar3" style="display:none;position:fixed;z-index:9999999999999999;width:100%;height:50px;bottom:45px;background:#f0f0f0;padding:0;text-align:center"><button id="back_c" class="btn btn.sm btn-danger" onclick="getBack3()" style="display:none;padding-top:10px;padding-bottom:10px;margin:5px;color:white;background:red">Back</button> <button class="btn btn.sm btn-danger" id="next_c" onclick="getNext3()" style="display:none;padding-top:10px;padding-bottom:10px;margin:5px;color:white;background:black">Next</button></div>
 	<div id="loader" style="display:none;z-index:99999999999999999;position:absolute;top:0;left:0;right:0;bottom:0;opacity:0.3;margin:auto;background:#000;font-family:Open Sans Condensed;"></div>
 	<img id="img_loader" style="display:none;z-index:999999999999999999;position:absolute;top:0;left:0;right:0;bottom:0;opacity:1;margin:auto;width:50px" src="https://sugardaddydays.com/assets/images/load.gif">
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -98,8 +108,8 @@ ul.ui-autocomplete li.ui-menu-item {
 <script src="https://lushmatch.com/assets/js/scripts.js"></script>
 <script src="https://lushmatch.com/jsSocketNode.js"></script>
 <script src="https://lushmatch.com/custom_js/wait.js"></script>
-
 <script>
+
 	//Load all JS libraries
 	['https://lushmatch.com/custom_js/geocomplete.js','https://maps.googleapis.com/maps/api/js?key=AIzaSyDAuvU_A1iMThoe1i6Joi26nSTDQkjKlDA&libraries=places'].forEach(function(src) {
 		script = document.createElement('script');
@@ -107,57 +117,127 @@ ul.ui-autocomplete li.ui-menu-item {
 		script.async = false;
 		document.head.appendChild(script);
 	});	
+	var search_type,searchNameTerm
+	function searchA() {
+		$('#s1').show()
+		$('#s2').hide()
+		$('#s3').hide()
+		$$('b1').style.background='gold'
+		$$('b2').style.background=''
+		$$('b3').style.background=''
+		search_type='a'
+		setCookie('search_type',search_type)
+	}
+	function searchB() {
+		$('#s1').hide()
+		$('#s2').show()
+		$('#s3').hide()
+		$$('b1').style.background=''
+		$$('b2').style.background='gold'
+		$$('b3').style.background=''
+		search_type='b'
+		setCookie('search_type',search_type)
+	}
+	function searchC() {
+		$('#s1').hide()
+		$('#s2').hide()
+		$('#s3').show()
+		$$('b1').style.background=''
+		$$('b2').style.background=''
+		$$('b3').style.background='gold'
+		search_type='c'
+		setCookie('search_type',search_type)
+	}
+	setTimeout(function(){
+		if (getCookie('search_type')) {
+			search_type=getCookie('search_type')
+			if (search_type=='a') $('#b1').click()
+			if (search_type=='b') $('#b2').click()
+			if (search_type=='c') $('#b3').click()
+		}
+	},1000)
+<!-- var placeSearch, autocomplete; -->
+<!-- var componentForm = { -->
+  <!-- locality: 'long_name', -->
+  <!-- administrative_area_level_1: 'short_name', -->
+  <!-- postal_code: 'short_name' -->
+<!-- }; -->
 
-var placeSearch, autocomplete;
-var componentForm = {
-  locality: 'long_name',
-  administrative_area_level_1: 'short_name',
-  postal_code: 'short_name'
-};
+<!-- function initAutocomplete() { -->
+  <!-- autocomplete = new google.maps.places.Autocomplete( -->
+    <!-- (document.getElementById('xxx')), { -->
+      <!-- types: ['geocode'] -->
+    <!-- }); -->
+  <!-- autocomplete.addListener('place_changed', fillInAddress); -->
+<!-- } -->
+<!-- var xt='' -->
+<!-- function fillInAddress() { -->
+  <!-- var place = autocomplete.getPlace(); -->
+  <!-- for (var i = 0; i < place.address_components.length; i++) { -->
+    <!-- var addressType = place.address_components[i].types[0]; -->
+    <!-- if (componentForm[addressType]) { -->
+      <!-- var val = place.address_components[i][componentForm[addressType]]; -->
+      <!-- <!-- if (addressType=='route') document.getElementById('xxx').value  = ' ' + val --> -->
+      <!-- if (addressType=='locality') xt  += ' ' + val -->
+      <!-- if (addressType=='administrative_area_level_1') xt  += ' ' + val -->
+      <!-- if (addressType=='postal_code') document.getElementById('searchLocation').value  = val -->
+    <!-- } -->
+  <!-- } -->
+<!-- } -->
 
-function initAutocomplete() {
-  autocomplete = new google.maps.places.Autocomplete(
-    (document.getElementById('xxx')), {
-      types: ['geocode']
-    });
-  autocomplete.addListener('place_changed', fillInAddress);
-}
-var xt=''
-function fillInAddress() {
-  var place = autocomplete.getPlace();
-  for (var i = 0; i < place.address_components.length; i++) {
-    var addressType = place.address_components[i].types[0];
-    if (componentForm[addressType]) {
-      var val = place.address_components[i][componentForm[addressType]];
-      <!-- if (addressType=='route') document.getElementById('xxx').value  = ' ' + val -->
-      if (addressType=='locality') xt  += ' ' + val
-      if (addressType=='administrative_area_level_1') xt  += ' ' + val
-      if (addressType=='postal_code') document.getElementById('searchLocation').value  = val
-    }
-  }
-}
+<!-- function geolocate() { -->
+  <!-- if (navigator.geolocation) { -->
+    <!-- navigator.geolocation.getCurrentPosition(function(position) { -->
+      <!-- var geolocation = { -->
+        <!-- lat: position.coords.latitude, -->
+        <!-- lng: position.coords.longitude -->
+      <!-- }; -->
+      <!-- var circle = new google.maps.Circle({ -->
+        <!-- center: geolocation, -->
+        <!-- radius: position.coords.accuracy -->
+      <!-- }); -->
+      <!-- autocomplete.setBounds(circle.getBounds()); -->
+    <!-- }); -->
+  <!-- } -->
+<!-- } -->
 
-function geolocate() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var geolocation = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-      var circle = new google.maps.Circle({
-        center: geolocation,
-        radius: position.coords.accuracy
-      });
-      autocomplete.setBounds(circle.getBounds());
-    });
-  }
-}
-
-setTimeout('initAutocomplete()',1000)
+<!-- setTimeout('initAutocomplete()',1000) -->
  	var no=30
+	setTimeout(function(){
+		if (window_width()<=320) {
+			document.body.style.fontSize='10px'
+			$$('searchName').style.width='150px'
+			$$('searchName').style.height='30px'
+			$$('btnSearchName').style.height='30px'
+			$$('btnSearchName').style.padding='3px 10px 3px 10px'
+			$$('btnSearchCityStateZip').style.height='30px'
+			$$('btnSearchCityStateZip').style.padding='3px 10px 3px 10px'
+			$$('btnSearchLocation').style.height='30px'
+			$$('btnSearchLocation').style.padding='3px 10px 3px 10px'
+			$$('searchName').style.fontSize='12px'
+			$$('xxx').style.width='150px'
+			$$('xxx').style.fontSize='12px'
+			$$('xxx').style.height='30px'
+			$$('b1').style.padding='7px 10px 7px 10px'
+			$$('b2').style.padding='7px 10px 7px 10px'
+			$$('b3').style.padding='7px 10px 7px 10px'
+			$$('b1').style.height='30px'
+			$$('b2').style.height='30px'
+			$$('b3').style.height='30px'
+			$$('searchLocation').style.height='30px'
+			$$('searchLocation').style.width='150px'
+			$$('searchLocation').style.fontSize='12px'
+			$$('t1').style.fontSize='14px'
+			$$('t2').style.fontSize='14px'
+			$$('t3').style.fontSize='14px'
+			$$('t4').style.fontSize='14px'
+		}
+	},500)
+	
 	function getNext() {
-		x_start=x_start+no
+		x_start=x_start*1+no*1
 		searchLocation()
+		$('#back_a').show()
 	}
 	
 	function getBack() {
@@ -169,6 +249,7 @@ setTimeout('initAutocomplete()',1000)
 	function getNext2() {
 		x_start=x_start+no
 		searchCityStateZip()
+		$('#back_b').show()
 	}
 	
 	function getBack2() {
@@ -180,6 +261,7 @@ setTimeout('initAutocomplete()',1000)
 	function getNext3() {
 		x_start=x_start+no
 		searchUserName()
+		$('#back_c').show()
 	}
 	
 	function getBack3() {
@@ -426,10 +508,29 @@ setTimeout('initAutocomplete()',1000)
 	var bgx=["whitesmoke","aliceblue","lavenderblush","lightcyan","linen","lightyellow","papayawhip","mistyrose","lavender"]
 	var ct=0, smids=[]
 	var x_start=0
-	var no=30
+	var no=15
 	setCookie('x_start_location','')
 	
 	function searchLocation() {
+		if ($$('xxx').value) {
+			searchNameTerm=$$('xxx').value.toLowerCase()
+		} else {
+			if (qs('q')) {
+				searchNameTerm=qs('q').trim().toLowerCase()
+			} else {
+				$.confirm({
+					title: 'Error!',
+					type: 'red',
+					theme: 'modern',
+					content: 'Must enter at least One:<br>City or State or Country',
+					buttons: {
+						ok: function () {
+						}
+					}
+				});
+			}
+		}
+		if (!searchNameTerm) return false
 		smids=[]
 		if (!getCookie('gender')) setCookie('gender','Sugar Daddy')
 		if (getCookie('gender')=='Sugar Baby') looking_for='Sugar Daddies'
@@ -441,7 +542,7 @@ setTimeout('initAutocomplete()',1000)
 		if (!x_start) {
 			x_start=0
 		}
-		var url='https://lushmatch.com/x_browse_location.php?location=' + location +'&start=' + x_start + '&gender='+getCookie('gender') + '&type=search&count='+no
+		var url='https://lushmatch.com/x_browse_search_a.php?lat=' + lat +'&lng='+lng+'&start=' + x_start + '&gender='+getCookie('gender') + '&type=search&count='+no
 		console.log(url)
 		var request = $.ajax({
 			url: url,
@@ -451,6 +552,7 @@ setTimeout('initAutocomplete()',1000)
 			success: function(msg) {
 				$('#xresults').html('')
 				$('#xresults_bar').show()
+				$('#next_a').hide()
 				if (msg==null) {
 					$.alert('No more results')
 					return
@@ -461,62 +563,99 @@ setTimeout('initAutocomplete()',1000)
 				$$('searchGallery').style.opacity='1'			
 				$$('imgSearchWait').style.display='none'
 				data=JSON.parse(msg)
-				for (var i=0;i<data.length;i++) {
-					if (data[i]) {
-						var src
-						if (data[i].filename_1) {
-							src='https://lushmatch.com/sb/'+ data[i].filename_1
-						} else {
-							if (data[i].gender=='Sugar Baby') {
-								src='https://lushmatch.com/sb/no_photo.png'
-							} else {
-								src='https://lushmatch.com/sb/no_photo_m.png'
-							}
-						}
-						id=data[i].member_id
-						smids.push(id)
-						setCookie('smids',JSON.stringify(smids))
-						imgG=makeImg(src, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, 'searchImg')
-						imgG.id='search_'+id
-						var div=document.createElement("div")
-						div.className="searchElement www_box2 "
-						if (data[i].location) var loc=data[i].location.toUpperCase()
-							else var loc='[No Location Data]'
-						if (data[i].distance) var miles=data[i].distance
-						div.innerHTML="<table style='width:100%;margin:0;padding:0'><tr><td style='width:100px'>"+imgG.outerHTML+"</td><td style='margin:0;text-align:left;padding:10px'><div class='sTitleName'>"+data[i].login.toUpperCase()+"</div><div class='sTitleGender'>"+data[i].gender.toUpperCase()+"</div><div class='sTitleLocation'>"  + loc + "</div><div class='sTitleMiles' style='font-size:12px'>"  + miles + " Miles</div></td></tr></table>"
-						if (ct>bgx.length) {
-							ct=0
-						} else {
-							ct++
-						}
-						div.id='div_'+id
-						div.style.background=bgx[ct]
-						$$('xresults').appendChild(div)
-						$$('xresults').style.cssText='position:absolute;padding-bottom:100px;margin-bottom:100px;width:100%;margin-top:50px!Important;top:0'
-						$$('xresults').style.height=(screen.height-200)+'px'
-						$('#xresults').show()
-					}
+				if (data) {
+					if (data.length>=no*1) $('#next_a').show()
 				}
-				var apn=document.createElement('div')
-				apn.innerHTML='<div><br><table style="width:100%"><tr><td><input type="button" value="BACK" style="width:100px;padding:5px;border-radius:6px;background:gold;border:none;height:60px" onclick="back()"></td><td><input type="button" value="FETCH NEXT" style="width:100px;padding:5px;border-radius:6px;background:skyblue;border:none;height:60px" onclick="more()"></td></tr></table></div>'
-				$$('searchGallery').appendChild(apn)
-				$("html, body").animate({
-					scrollTop: 0
-				}, 600);
+				if (!data) {
+					no_results()
+					return
+				} else {
+					for (var i=0;i<data.length;i++) {
+						if (data[i]) {
+							var src
+							if (data[i].filename_1) {
+								src='https://lushmatch.com/sb/'+ data[i].filename_1
+							} else {
+								if (data[i].gender=='Sugar Baby') {
+									src='https://lushmatch.com/sb/no_photo.png'
+								} else {
+									src='https://lushmatch.com/sb/no_photo_m.png'
+								}
+							}
+							id=data[i].id
+							smids.push(id)
+							setCookie('smids',JSON.stringify(smids))
+							imgG=makeImg(src, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, 'searchImg',id)
+							imgG.id='search_'+id
+							var div=document.createElement("div")
+							div.className="searchElement www_box2 "
+							if (data[i].location) var loc=data[i].location.toUpperCase()
+								else var loc='[No Location Data]'
+							if (data[i].distance) var miles=data[i].distance
+							div.innerHTML="<table style='width:100%;margin:0;padding:0'><tr><td style='width:100px'>"+imgG.outerHTML+"</td><td style='margin:0;text-align:left;padding:10px'><div class='sTitleName'>"+data[i].login.toUpperCase()+"</div><div class='sTitleGender'>"+data[i].gender.toUpperCase()+"</div><div class='sTitleLocation'>"  + loc + "</div><div class='sTitleMiles' style='font-size:12px'>"  + miles + " Miles</div></td></tr></table>"
+							if (ct>bgx.length) {
+								ct=0
+							} else {
+								ct++
+							}
+							div.id='div_'+id
+							div.style.background=bgx[ct]
+							$$('xresults').appendChild(div)
+							$$('xresults').style.cssText='position:absolute;padding-bottom:100px;margin-bottom:100px;width:100%;margin-top:50px!Important;top:0'
+							$$('xresults').style.height=(screen.height-200)+'px'
+							$('#xresults').show()
+						}
+					}
+					var apn=document.createElement('div')
+					apn.innerHTML='<div><br><table style="width:100%"><tr><td><input id="bottom_back" type="button" value="BACK" style="width:100px;padding:5px;border-radius:6px;background:gold;border:none;height:60px;display:none" onclick="back()"></td><td><input type="button" value="FETCH NEXT" style="width:100px;padding:5px;border-radius:6px;background:skyblue;border:none;height:60px" onclick="more()"></td></tr></table></div>'
+					$$('searchGallery').appendChild(apn)
+					$("html, body").animate({
+						scrollTop: 0
+					}, 600);
+				}
+
 			}
 		})
 		
 	} 
 
+	function no_results()  {
+		var apn='<div><br><table style="width:100%"><tr><td><div style="background:red;width:90%;border-radius:10px;border:5px solid white;color:white;font-size:24px;text-align:center;padding:20px;font-weight:300"> NO RESULTS FOUND </div></td></tr></table></div>'
+		$.confirm({title:'',
+		buttons: {
+			ok: function () {
+				location.href=location.href
+			}},
+		theme:'supervan',content:apn})
+	}
+
 	function searchCityStateZip() {
+		if ($$('searchLocation').value) {
+			searchNameTerm=$$('searchLocation').value.toLowerCase()
+		} else {
+			if (qs('q')) {
+				searchNameTerm=qs('q').trim().toLowerCase()
+			} else {
+				$.confirm({
+					title: 'Error!',
+					type: 'red',
+					theme: 'modern',
+					content: 'Zip Code Cannot be Blank',
+					buttons: {
+						ok: function () {
+						}
+					}
+				});
+			}
+		}
+		if (!searchNameTerm) return false		
 		smids=[]
 		if (!getCookie('gender')) setCookie('gender','Sugar Daddy')
 		if (getCookie('gender')=='Sugar Baby') looking_for='Sugar Daddies'
 			else looking_for='Sugar Babies'
-		$('#search_summary').html('Searching for your ' + looking_for.toUpperCase() + ' in ' + $$('searchLocation').value.toUpperCase())
 		$$('searchGallery').style.opacity='0.2'
 		$$('imgSearchWait').style.display=''
-		var url='https://lushmatch.com/x_browse.php?w_w=' + window_width()+'&x_start='+x_start+'&gender='+getCookie('gender')+'&type=search&search='+$$('searchLocation').value+'&ip='+getCookie('ip')+'&location='+getCookie('location')+'&count='+no
+		var url='https://lushmatch.com/x_browse_search_b.php?&start='+x_start+'&gender='+getCookie('gender')+'&search_term='+searchNameTerm+'&count='+no
 		console.log(url)
 		var request = $.ajax({
 			url: url,
@@ -536,6 +675,14 @@ setTimeout('initAutocomplete()',1000)
 				$$('searchGallery').style.opacity='1'			
 				$$('imgSearchWait').style.display='none'
 				data=JSON.parse(msg)
+				if (!data) {
+					$('#next_b').hide()
+					no_results()
+					return
+				}
+				if (data) {
+					if (data.length>=no*1) $('#next_b').show()
+				}
 				for (var i=0;i<data.length;i++) {
 					if (data[i]) {
 						var src
@@ -548,17 +695,16 @@ setTimeout('initAutocomplete()',1000)
 								src='https://lushmatch.com/assets/images/no_photo_m.png'
 							}
 						}
-						id=data[i].member_id
+						id=data[i].id
 						smids.push(id)
 						setCookie('smids',JSON.stringify(smids))
-						imgG=makeImg(src, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, 'searchImg')
+						imgG=makeImg(src, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, 'searchImg',id)
 						imgG.id='search_'+id
 						var div=document.createElement("div")
 						div.className="searchElement www_box2 "
 						if (data[i].location) var loc=data[i].location.toUpperCase()
 							else var loc='[No Location Data]'
-						if (data[i].miles) var miles=data[i].miles
-						miles=Math.floor(miles)
+						if (data[i].distance) var miles=data[i].distance
 						div.innerHTML="<table style='width:100%;margin:0;padding:0'><tr><td style='width:100px'>"+imgG.outerHTML+"</td><td style='margin:0;text-align:left;padding:10px'><div class='sTitleName'>"+data[i].login.toUpperCase()+"</div><div class='sTitleGender'>"+data[i].gender.toUpperCase()+"</div><div class='sTitleLocation'>"  + loc + "</div><div class='sTitleMiles' style='font-size:12px'>"  + miles + " Miles</div></td></tr></table>"
 						if (ct>bgx.length) {
 							ct=0
@@ -603,9 +749,27 @@ setTimeout('initAutocomplete()',1000)
 	var data=[]
 	function searchUserName() {
 		smids=[]
-		var searchNameTerm=$$('searchName').value
-		if (!searchNameTerm) searchNameTerm=qs('q')
-		var url='https://lushmatch.com/x_search.php?w_w=' + window_width()+'&login='+searchNameTerm+'&x_start='+x_start+'&count='+no
+		if ($$('searchName').value) {
+			searchNameTerm=$$('searchName').value.toLowerCase()
+		} else {
+			if (qs('q')) {
+				searchNameTerm=qs('q').trim().toLowerCase()
+			} else {
+				$.confirm({
+					title: 'Error!',
+					type: 'red',
+					theme: 'modern',
+					content: 'User Name Cannot be Blank',
+					buttons: {
+						ok: function () {
+							return
+						}
+					}
+				});
+			}
+		}
+		if (!searchNameTerm) return false
+		var url='https://lushmatch.com/x_browse_search_c.php?start='+x_start+'&gender='+getCookie('gender')+'&search_term='+searchNameTerm+'&count='+no
 		console.log(url)
 		var request = $.ajax({
 			url: url,
@@ -621,9 +785,12 @@ setTimeout('initAutocomplete()',1000)
 				if (msg.trim()=='null') {
 					$$('searchLocation').value=qs('q')
 					$("#btnSearchLocation").click()
+					$('#next_c').hide()
+					no_results()
 					return false
 				}	else 	{
 					data=JSON.parse(msg)
+					if (data.length>=no*1) $('#next_b').show()
 					$$('sc').style.display='none'
 				}
 				$$('sc').style.display='none'
@@ -634,14 +801,29 @@ setTimeout('initAutocomplete()',1000)
 						id=data[i].id
 						smids.push(id)
 						setCookie('smids',JSON.stringify(smids))
-						var x_l=data[i].login.split(searchNameTerm)
-						var xlogin=x_l[0]+searchNameTerm
-						if (x_l[1]) xlogin=x_l[0]+'<span style="margin:2px;background:white;padding:3px;padding-top:1px;padding-bottom:1px;border:1px solid black;border-radius:4px">'+searchNameTerm+'</span>'+x_l[1]
-						imgG=makeImg(src, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, 'searchImg')
+						var x_l=data[i].login.toLowerCase().split(searchNameTerm)
+						var xlogin=''
+						if (!x_l[0] && !x_l[1]) {
+							xlogin='<span style="margin:2px;background:white;padding:3px;padding-top:1px;padding-bottom:1px;border:1px solid black;border-radius:4px">'+searchNameTerm+'</span>'
+						} else {
+							if (x_l[0] && x_l[1]) {
+								xlogin=x_l[0]+'<span style="margin:2px;background:white;padding:3px;padding-top:1px;padding-bottom:1px;border:1px solid black;border-radius:4px">'+searchNameTerm+'</span>'+x_l[1]
+							} else {
+								if (!x_l[0] && x_l[1]) {
+									xlogin='<span style="margin:2px;background:white;padding:3px;padding-top:1px;padding-bottom:1px;border:1px solid black;border-radius:4px">'+searchNameTerm+'</span>'+x_l[1]
+								} else {
+									if (x_l[0] && !x_l[1]) {
+										xlogin=x_l[0] + '<span style="margin:2px;background:white;padding:3px;padding-top:1px;padding-bottom:1px;border:1px solid black;border-radius:4px">'+searchNameTerm+'</span>'+x_l[1]
+									}
+								}
+							}
+						}
+						imgG=makeImg(src, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, 'searchImg',id)
 						imgG.id='img_' + id
 						var div=document.createElement("div")
 						div.className="searchElement www_box2 "
-						div.innerHTML="<table id='search_"+id+"' style='width:100%;margin:0;padding:0;font-family:Open Sans;font-weight:300'><tr><td style='width:100px'>"+imgG.outerHTML+"</td><td style='margin:0;text-align:left;padding:10px'><div class='sTitleName' id='search_"+id+"'>"+xlogin+"</div><div style='margin-top:5px' class='sTitleGender'>"+data[i].gender.toUpperCase()+ " " + data[i].age + " Yrs Old</div><div class='sTitleLocation'>"+data[i].location.toUpperCase()+"</div><div style='font-size:16px'>"+data[i].distance+" Miles</div></td></tr></table>"
+						var dist=data[i].distance
+						div.innerHTML="<table id='search_"+id+"' style='width:100%;margin:0;padding:0;font-family:Open Sans;font-weight:300'><tr><td style='width:100px'>"+imgG.outerHTML+"</td><td style='margin:0;text-align:left;padding:10px'><div class='sTitleName' id='search_"+id+"'>"+xlogin+"</div><div style='margin-top:5px' class='sTitleGender'>"+data[i].gender.toUpperCase()+ " " + data[i].age + " Yrs Old</div><div class='sTitleLocation'>"+data[i].location.toUpperCase()+"</div><div style='font-size:16px'>"+dist+" Miles</div></td></tr></table>"
 						if (ct>bgx.length) {
 							ct=0
 						} else {
@@ -663,17 +845,17 @@ setTimeout('initAutocomplete()',1000)
 	} 
 	
 	window.onclick=view_search_profile
-
+	search_type='a'
 	function view_search_profile(e) {
 		if (e.target.id.indexOf('search_')>=0) {
 			if (e.target.id.split('_')) currMID=e.target.id.split('_')[1]
 			setCookie('currMID', currMID)
-			location.href='profile.html?id=' + currMID + '&type=search'
+			location.href='profileBrowse.html?id=' + currMID + '&type=search&search_type='+search_type+'&search_term='+searchNameTerm+'&start='+x_start+'&count='+no+'&lat='+lat+'&lng='+lng
 		}
 		if (e.target.id.indexOf('img_')>=0) {
 			if (e.target.id.split('_')) currMID=e.target.id.split('_')[1]
 			setCookie('currMID', currMID)
-			location.href='profile.html?id=' + currMID + '&type=search'
+			location.href='profileBrowse.html?id=' + currMID + '&type=search&search_type='+search_type+'&search_term='+searchNameTerm+'&start='+x_start+'&count='+no+'&lat='+lat+'&lng='+lng
 		}
 		return
 	}
@@ -685,9 +867,10 @@ setTimeout('initAutocomplete()',1000)
 	}
 	
 	var ctr=0
-	function makeImg(src, alt, title, className) {
+	function makeImg(src, alt, title, className,currMID) {
 		var img =  document.createElement('img');
 		img.src = src;
+		img.id=currMID
 		if ( alt != null ) img.alt = alt;
 		if ( title != null ) img.title = title;
 		if ( className != null ) img.className = className;
@@ -710,15 +893,20 @@ setTimeout('initAutocomplete()',1000)
 		}
 		getPhotoGallery()
 	}
-</script>
-<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="https://lushmatch.com/assets/js/jquery-ui.js"></script>
-<script>	
-	$("#searchLocation").autocomplete({
-		source: "https://lushmatch.com/x_ac_location.php",
+	var city,state,country,zip,lat,lng
+	$("#xxx").autocomplete({
+		source: "https://lushmatch.com/x_ac_city.php",
 		minLength: 1,
 		select: function( event, ui ) {
-			$('#searchLocation').val( ui.item.value);
+			city=ui.item.value.split(',')[0].trim()
+			state=ui.item.value.split(',')[1]
+			country=ui.item.value.split(',')[2].trim()
+			lat=ui.item.value.split(',')[3].trim()
+			lng=ui.item.value.split(',')[4].trim()
+			setTimeout(function(){
+				$('#xxx').val(city + ' ' + state + ' ' + country);
+			},100)
+			console.log(ui)
 		}
 	});
 
@@ -741,5 +929,9 @@ jQuery(function($) {
     })
 });
 </script>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://lushmatch.com/assets/js/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
 </body>
 </html>
