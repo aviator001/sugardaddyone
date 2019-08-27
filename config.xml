@@ -24,8 +24,6 @@ A new experience from the pioneeers of sugar daddy dating - the first site based
     <preference name="ios-statusbarstyle" value="black-opaque" />
     <preference name="detect-data-types" value="true" />
     <preference name="exit-on-suspend" value="false" />
-    <preference name="show-splash-screen-spinner" value="true" />
-    <preference name="auto-hide-splash-screen" value="false" />
     <preference name="disable-cursor" value="true" />
     <preference name="android-installLocation" value="auto" />
     <preference name="AllowInlineMediaPlayback" value="true" />
@@ -42,7 +40,6 @@ A new experience from the pioneeers of sugar daddy dating - the first site based
     <plugin name="cordova-plugin-geolocation" />
     <plugin name="cordova-plugin-globalization" />
     <plugin name="cordova-plugin-media" />
-    <plugin name="cordova-plugin-splashscreen" />
     <plugin name="cordova-plugin-whitelist" version="1.0.0" />
     <plugin name="cordova-plugin-inappbrowser" version="1.7.1" />
     <plugin name="cordova-plugin-android-permissions" spec="~0.10.0" />
@@ -63,21 +60,11 @@ A new experience from the pioneeers of sugar daddy dating - the first site based
         <feature name="Capture">
             <param name="android-package" value="com.android.plugins.Permissions" />
         </feature>
-        <feature name="Device">
-            <param name="android-package" value="org.apache.cordova.device.Device" />
-        </feature>
-        <feature name="Media">
-            <param name="android-package" value="org.apache.cordova.media.AudioHandler" />
-        </feature>
         <feature name="Geolocation">
             <param name="android-package" value="org.apache.cordova.geolocation.Geolocation" />
         </feature>
         <feature name="InAppBrowser">
             <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
-        </feature>
-        <feature name="SplashScreen">
-            <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
-            <param name="onload" value="true" />
         </feature>
 	    <config-file target="res/values/strings.xml" parent="/*">
         <string name="title">SDOne</string>
