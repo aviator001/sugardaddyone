@@ -290,7 +290,11 @@
 			return false;
 		};
 
-			
+	function go_crop() {
+		location.href='crop.html?fn='+qs('fn')
+	}
+	
+	
 	function photo_filter(obj,f) {
 		wait_light('Processing Image')
 		var tmr=3000
@@ -382,7 +386,7 @@
 									<div id="controls" style="max-width:100%;position:fixed;margin:auto;display:none;margin-top:0px;bottom:0!Important">
 										<a href="album.html"><div class="btn btn-info col-xs-4"  style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_blue2.png) center; background-size:cover;border-radius:0;height:40px;opacity:1;;color:black;padding-top:10px;font-size:12px">BACK</div></a>
 										<div class="btn btn-danger  col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_blue2.png) center; background-size:cover;border-radius:0;height:40px;opacity:1;;color:black;padding-top:10px;font-size:12px" onclick="photo_filter('RESET'); history.go(0)">RESET</div>
-										<div class="btn btn-info  col-xs-4" id="crop" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_blue2.png) center; background-size:cover;border-radius:0;height:40px;opacity:1;;color:black;padding-top:10px;font-size:12px"  onclick="checkCoords();go()">CROP</div>
+										<div class="btn btn-info  col-xs-4" id="crop" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_blue2.png) center; background-size:cover;border-radius:0;height:40px;opacity:1;;color:black;padding-top:10px;font-size:12px"  onclick="go_crop()">CROP</div>
 										<div class="btn btn-success  col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:40px;opacity:1;;color:black;padding-top:10px;font-size:12px;display:none"  id="sv" onclick="save()">SAVE</div>
 										<div class="btn btn-default col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:40px;opacity:1;;color:white;padding-top:10px;font-size:12px" onclick="photo_filter('ROTATE1');toggle_class(this)">ROTATE+</div>
 										<div class="btn btn-default col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:40px;opacity:1;;color:white;padding-top:10px;font-size:12px"  onclick="photo_filter('ROTATE2');toggle_class(this)">ROTATE-</div>

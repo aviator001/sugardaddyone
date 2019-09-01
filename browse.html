@@ -75,229 +75,6 @@
 		}
 	},500)
 
-	function login1() {
-		var m = $("#email").val(),
-			p = $("#password").val();
-			console.log("x_login.php?user_input=" + m + "&pswd=" + p)
-		$.ajax({
-			url: "x_login.php?user_input=" + m + "&pswd=" + p,
-			type: "GET",
-			dataType: "html",
-			cache: !1,
-			success: function(em) {
-				var o = JSON.parse(em);
-				setCookie("logged", "1")
-				setCookie("mid", o.mid)
-				setCookie("login", o.login)
-				setCookie("mobile", o.mobile)
-				setCookie("long_code", o.long_code)
-				setCookie("location", o.location)
-				setCookie("email", o.email)
-				window.top.location.href = "home"
-			}
-		})
-	}
-	
-	function load() {
-		$('#loader').show()
-		$('#img_loader').show()
-	}
-	
-	function unload() {
-		$('#loader').hide()
-		$('#img_loader').hide()
-	}
-
-	var sesx=Math.round(Math.random()*100000000000000000)
-	sesx=sesx.toString(16)
-	var ref
-	var txc
-	var fbData
-	var ft
-	var js
-	function loadExtURL() {
-		var url="https://lushmatch.com/php/pg_callback.php?fbid="+sesx
-		ref = window.open(url, '_BLANK', 'location=no');
-		txc=setTimeout('chkFBSession()',1000)
-	}
-
-	function chkFBSession() {
-		if (fbData) {
-			clearTimeout(txc)
-		} else {
-			getData()
-			txc=setTimeout('chkFBSession()',1000)	
-		}
-	}
-
-	function getData() {
-		var url = 'https://lushmatch.com/php/x_get_pgap_fb.php?id=' + sesx + '&x=' + Math.random()*1000000000000
-		var request = $.ajax({
-			url: url,
-			type: "GET",
-			dataType: "html",
-			cache: false,
-			success: function(msg) {
-				js=(JSON.parse(msg))
-				if (js.mobile) {
-					clearTimeout(txc)
-					console.log(js)
-					loginFBData(js)
-					return
-				}	
-				console.log(js.name)
-				if (js.name==null) {
-					fbData=false
-				} else {
-					clearTimeout(txc)
-					fbData=true
-					ref.close()
-					//Register with Facebook, User has closed window
-					saveFBData(js)
-				}
-			}
-		})
-	}
-
-	function loginFBData(objFB) {
-		var mobile=objFB.mobile
-		var mid=objFB.mid
-		var login=objFB.login
-		var long_code=objFB.long_code
-		var email=objFB.email
-		var gender=objFB.gender
-		setCookie('mobile',mobile)
-		setCookie('mid',mid)
-		setCookie('login',login)
-		setCookie('long_code',long_code)
-		setCookie('email',email)
-		setCookie('gender',gender)
-		location.href='home'
-	}
-
-	function saveFBData(objFB) {
-		console.log(js)
-		var age=2016-objFB.age*1
-		var gender=(objFB.sex=='male')?'Sugar Daddy':'Sugar Baby'
-		var login=objFB.email.split('@')[0]
-		var email=objFB.email
-		var fid=objFB.fb_id
-		var name=objFB.name
-		var url='register_complete?name='+name+'&age='+age+'&email='+email+'&gender='+gender+'&uid='+fid+'&login='+login
-		location.href=url
-	}
-		
-
-	function getIP() {
-		$.getJSON("https://jsonip.com/?callback=?", function (data) {
-			setCookie('ip',data.ip);
-		});
-	}
-	
-	function $$(obj) {
-		return document.getElementById(obj)
-	}
-	
-	function fb_step2() {
-		$('#f0')('Thanks! Now - a quick self description/intro/what youre looking for (allowance etc)')
-		$('#f4').hide()
-		$('#f7').show()
-	}	
-	
-	function fb_step3() {
-		$('#f0')('And finally...we need your profile photo!')
-		$('#f7').hide()
-		$('#f8').show()
-	}
-	
-	function finish_fb_registration() {
-		$('#f8').hide()
-		$('#f9').show()
-		$('#f0')('Thank you for registering. Your account is active and you are fully logged In. We sent you an email with account information.<br><br>Click below to proceed to the members home page.')
-	}
-	
-	function go_members_home() {
-		window.top.location.href='home'
-	}
-		
-	function reg() {
-		location.href='register'	
-	}
-
-	function showRegistration() {
-		location.href='register'
-		$('#f1').hide()
-		$('#f2').hide()
-		$('#f3').hide()
-		$('#f5').hide()
-		$('#f6').hide()
-		$('#f7').hide()
-		$('#f8').hide()
-		$('#f9').hide()
-		$('#f10').hide()
-		$$('modalLogin').style.display=''
-		regForm() 
-	}	
-	function login2() {
-		$$('modalLogin').style.display=''
-	}
-	function loginForm() {
-		$('.social_login').hide()
-		$('.user_login').show()
-	}
-	function backLogin() {
-		$('.social_login').show()
-		$('.user_login').hide()
-	}
-	function backForgot() {
-		$('.forgot_password').hide()
-		$('.user_login').show()
-	}
-	function backRegister() {
-		$('.social_login').show()
-		$('.user_register').hide()
-	}
-	function regForm() {
-		location.href='register'
-		$('.social_login').hide()
-		$('.user_register').show()
-	}
-	function showForgot() {
-		$('.user_login').hide()
-		$('.forgot_password').show()
-	}
-	setTimeout('getIP()',1)
-	setTimeout('getLocation()',1)
-	var browse_type=getCookie('browse')
-	if (!browse_type) browse_type='popular'
-	setTimeout('getPhotoGallery(browse_type)',1000)
-	var imgG, div, data=[], looking_for, watchID, tmr
-	
-	function mobile_render() {
-		if (getCookie('isMobile')=='mobile') {
-		} else {
-		}
-	}
-	function getLocation(type,ox) {
-			$.ajax({url:'https://lushbytes.com/x_location.php',success:function(data){var x=JSON.parse(data)[0];console.log(x);setCookie('city',x.city);setCookie('state',x.state);setCookie('zip',x.zip);setCookie('lat',x.lat);setCookie('ip',x.ip);setCookie('map',x.map);setCookie('lng',x.lng);setCookie('location',x.city + ' ' + x.state + ' ' + x.zip)}})
-
-				setTimeout('mobile_render()',1)
-	}
-		
-	var id
-	var x_start
-	var per_page=30
-	function getLocation(type,ox) {
-		var request = $.ajax({
-			url: 'https://lushmatch.com/x_location.php',
-			type: "GET",
-			dataType: "html",
-			cache: false,
-			success: function(msg) {
-			//	setTimeout('mobile_render()',1)
-			}
-		})
-	}
 	var data1=[]
 	var start_local=qs('start')*1
 	var start_new=qs('start')*1
@@ -308,8 +85,14 @@
 	if (!miles) miles=100
 	var no=12
 	var currUR
+	
 	function getPhotoGallery(type,ox) {
-		if (type) setCookie('type',type)
+		if (!type) {
+			type=getCookie('type')
+		} else {
+			setCookie('type',type)
+		}
+		
 		if (type !== 'new_local') {
 			$$('new_local').style.backgroundColor='white'
 			$$('new_local').style.color='black'
@@ -343,6 +126,8 @@
 		} else if (type=='popular') {
 			url='https://lushmatch.com/x_browse_popular.php?start='+start_popular+'&user_rights='+currUR+'&type=browse&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')+'&browse='+type
 		}
+		var bc=[]
+		bc=['lavender','lightcyan','skyblue','peachpuff','lightyellow','#37C8A7','thistle','pink','white']
 		console.log(url)
 		var request = $.ajax({
 			url: url,
@@ -365,19 +150,33 @@
 						imgG.style='width:100%;height:100%;padding:0;margin:2px'
 						imgG.id='img_'+type+'_'+id
 						var dpg=document.createElement("div")
+						var banner_top=document.createElement("div")
+						var banner_bottom=document.createElement("div")
+						var banner_text_top=document.createElement("div")
+						var banner_text_bottom=document.createElement("div")
+						banner_top.style.cssText='height:25px;margin:0;width:100%;maxWidth:' + (window_width()/3-5)+'px;background:'+bc[Math.ceil(Math.random()*bc.length)-1]+';opacity:0.7;position:absolute;top:0;left:2px'
+						banner_bottom.style.cssText='height:25px;margin:0;width:100%;maxWidth:' + (window_width()/3-5)+'px;background:transparent;opacity:1;position:absolute;top:0;left:0'
+						banner_text_top.className='col-md-3 col-xs-1 www_box'
+						banner_text_top.style.cssText='height:25px;margin:0;width:100%;maxWidth:' + (window_width()/3-5)+'px;padding:2px;background:transparent;opacity:1;position:absolute;top:0;left:0;color:black;text-shadow:0 0 1px #fff; font-family:tahoma; font-size:12px'
+						banner_text_top.innerHTML=data[i].location
+						banner_text_bottom.className='col-md-3 col-xs-1 www_box'
+						banner_text_bottom.style.cssText='height:25px;margin:0;width:100%;maxWidth:' + (window_width()/3-5)+'px;padding:2px;background:transparent;opacity:1;position:absolute;bottom:-8px;left:0;color:white;font-family:tahoma; font-size:12px'
+						banner_text_bottom.innerHTML='<b>' + Math.round(data[i].distance) + '</b> Miles'
 						dpg.className='col-md-3 col-xs-1 www_box2'
+						dpg.style.position='relative'
 						dpg.style.width='200px'
 						dpg.style.height='200px'
 						dpg.style.margin='5px'
-//						if (getCookie('isMobile')=='mobile') {
-							dpg.style.width='100%'
-							dpg.style.maxWidth=(window_width()/3-5)+'px'
-							dpg.style.height=(window_width()/3-5)+'px'
-							dpg.style.margin='2px'
-//						}
+						dpg.style.width='100%'
+						dpg.style.maxWidth=(window_width()/3-5)+'px'
+						dpg.style.height=(window_width()/3-5)+'px'
+						dpg.style.margin='2px'
 						dpg.style.padding='0'
 						dpg.style.cursor='pointer'
 						dpg.appendChild(imgG)
+						dpg.appendChild(banner_top)
+						dpg.appendChild(banner_text_top)
+						dpg.appendChild(banner_text_bottom)
 						var ad=document.createElement("img")
 						ad.src="https://lushmatch.com/assets/images/ed_trash.png"
 						ad.style.display='none'
@@ -406,11 +205,7 @@
 					start=start_popular
 				}				
 				var apn=document.createElement('div')
-				<!-- if (lx<24) { -->
-					<!-- apn.innerHTML='</div></div><div><br><table style="width:100%"><tr><td><input type="button" value="BACK" style="width:100px;padding:5px;border-radius:6px;background:gold;border:none;height:60px" onclick="back()"></td><td></td></tr></table><br><br><br><br></div>' -->
-				<!-- } else { -->
-					apn.innerHTML='</div></div><div><br><table style="width:100%"><tr><td><input type="button" value="BACK" style="width:100px;padding:5px;border-radius:6px;background:gold;border:none;height:60px" onclick="back()"></td><td><input type="button" value="FETCH NEXT" style="width:100px;padding:5px;border-radius:6px;background:skyblue;border:none;height:60px" onclick="getPhotoGallery()"></td></tr></table><br><br><br><br></div>'
-				<!-- } -->
+				apn.innerHTML='</div></div><div><br><table style="width:100%"><tr><td><input type="button" value="BACK" style="width:100px;padding:5px;border-radius:12px;background:transparent;border:2px solid silver;height:50px" onclick="back()"></td><td><input type="button" value="NEXT" style="width:100px;padding:5px;border-radius:12px;background:transparent;border:2px solid silver;height:50px" onclick="getPhotoGallery()"></td></tr></table><br><br><br><br></div>'
 				$$('photoGallery').appendChild(apn)
 				$("html, body").animate({
 					scrollTop: 0
@@ -437,6 +232,14 @@
 			start_popular=start_popular+no
 		}
 		setTimeout('getPhotoGallery('+type+')',1)
+	}
+	
+	$( document ).ready( readyFn );
+	
+	function readyFn() {
+		type=getCookie('type')
+		if (!type) type='popular'
+		setTimeout('getPhotoGallery("'+type+'")',1500)
 	}
 
 	function back() {

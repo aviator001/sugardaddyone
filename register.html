@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>				
-		<title>SugarDaddyOne.com :: Sugar Daddy Dating Site</title>		
+		<title>SugarDaddyLocal.com :: Sugar Daddy Dating Site</title>		
 		<meta name="keywords" content="sugar daddy, , Sugar Daddy, sugardaddy,  sugardaddy, wealthy  men, twink, hot young  men, boyz,  dating, sugar daddy dating site, daddy dating, find daddy, find twink, lushmatch" />		
 		<meta name="description" content="A place that connects handsome wealthy and caring  men to hot young  males" />		
 		<meta name="Author" content="Gautam Sharma" />		
 		<!-- mobile settings -->		 
 		<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />		
 		<!-- Fav Icons -->		
-		<link rel="icon" href="assets/img/favicon.ico">		
-		<link rel="apple-touch-icon" href="assets/img/favicon.ico">		
-		<link href="css/font-awesome.css" rel="stylesheet">				
+		<link rel="icon" href="favicon.png">		
+		<link rel="apple-touch-icon" href="favicon.png">		
+		<link href="https://lushmatch.com/assets/css/font-awesome.css" rel="stylesheet">				
 		<!-- Custom CSS -->		
 		<link href="https://lushmatch.com/assets/css/essentials.css" rel="stylesheet" type="text/css" />		
 		<link href="https://lushmatch.com/assets/css/layout.css" rel="stylesheet" type="text/css" />		
@@ -69,12 +69,12 @@
 	</style>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 	</head> 
-	<body class="boxed pattern4" style="overflow-y:auto">
+	<body style="overflow-y:auto">
 		<div class="modal" id="modal" style="position:absolute;z-index:999;background:#000;opacity:0.8;height:100%;width:100%;top:0;left:0;display:none;cursor:hand;cursor:pointer"></div>
 		<div id="modal_text" class="modal_window" onclick="javascript:history.go(0)" id="modal_window" style="padding:20px;border-radius:6px;position:absolute;z-index:9999;box-shadow:0 0 150px #000;display:none;background:#f0f0f0;top:0;bottom:0;left:0;right:0;margin:auto;width:300px;height:420px;font-family:Open Sans;font-size:18px;"><b>Error - Location Required</b><br>In order to use this site, you must agree to share your current location. We will never disclose this information to anyone, but we need this to provide you with the best experience. If you need help on how to enable your location, <a href="https://support.google.com/chrome/answer/142065?hl=en"><span style='color:brown'><b>Click Here</b></span></a><br><br><span style='color:#0093D9;cursor:hand;cursor:pointer'>Clear location settings and then click HERE to try again!</span></div>
 		<div class="usersOnline pull-right" id="search_results" style="display:none;position:absolute;top:0;bottom:0px;right:10px;z-index:99999999999;overflow-y:auto;overflow-x:hidden;width:420px;height:100%" onscroll="scrolled(this)"><table border=0></table></div>
 		<div id="dark1" class="dark_a" style="opacity:0;display:none"></div> 
-		<div id="wrapper" class="www_wrapper" style="background:url(assets/img/b71.jpg);background-size:cover;box-shadow:0px 0px 50px rgba(0,0,0,1);border-radius:5px;margin-top:-50px;margin-bottom:40px;overflow-x:hidden;;overflow-y:hidden;height:1000px">
+		<div id="wrapper" class="www_wrapper" style="background:#f0f0f0;background-size:cover;box-shadow:0px 0px 50px rgba(0,0,0,1);border-radius:5px;margin-top:-50px;margin-bottom:40px;overflow-x:hidden;;overflow-y:hidden;height:1000px">
 			<section id="section" style="text-align:center;margin:0;padding:0;overflow-y:auto;overflow-x:hidden;height:100%" align=center>
 				<div id="main_content">
 					<?/***
@@ -113,6 +113,15 @@
 					<div class="col-md-6" style="position:absolute;margin:auto;left:0;right:0;margin-bottom:5px;overflow:auto;font-family:Open Sans;position:absolute;z-index:99999999999999999999999999999999">
 						<div class="white-row"  style="box-shadow:0 0 20px #333;height:100%;font-family:Open Sans">		
 							<div id="form_errors" class="alert alert-info" style="display:none"></div>
+							<div class="row">			
+								<div style="width:100%" class="form-group">
+									<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
+										<label class="block">Your Location</label>						
+										<input type="text" name="location" id="location" value="" placeholder="Your Location" class="form-control input-box" onclick="clear_error(this)" style="color:grey;font-size:18px">						
+										<div id="location_err_txt" style="color:skyblue;text-align:left"></div>				
+									</div>
+								</div>
+							</div>		
 							<div class="row">			
 								<div style="width:100%" class="form-group">
 									<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
@@ -161,7 +170,7 @@
 							<div class="row">			
 								<div style="width:100%" class="form-group">				
 									<div class="col-md-6" style="text-align:left;font-weight:300">										
-										<label class="block">Gender</label>										
+										<label class="block">Your Gender</label>										
 										<input type="radio" name="gender" id="SD" value="SD" class="form-control" checked="checked" onclick="setGender('Sugar Daddy','Sugar Baby')">
 										<i style="margin-left:10px;font-size:32px;color:red" class="fa fa-male">
 											<span style="margin-left:10px;font-size:18px;font-family:Open Sans;" onclick="setGender('Sugar Daddy','Sugar Baby')">Sugar Daddy</span>
@@ -171,14 +180,6 @@
 										<i style="margin-left:10px;font-size:32px" class="fa fa-male">
 											<span style="margin-left:10px;font-size:18px;font-family:Open Sans;" onclick="setGender('Sugar Baby','Sugar Daddy')">Sugar Baby</span>
 										</i>
-									</div>
-								</div>
-							</div>
-							<div class="row">			
-								<div style="width:100%" class="form-group">				
-									<div class="col-md-12" style="text-align:left;font-weight:300">					
-										<label class="block">My Location</label>						
-										<textarea style="width:100%;background:aliceblue;height:50px;border:1px solid silver;;border-radius:6px;padding:5px" id="location"></textarea>
 									</div>
 								</div>
 							</div>
@@ -197,13 +198,12 @@
 							<div class="row">			
 								<div class="col-md-6">				
 									<input type="submit" value="FINISH SIGNUP" STYLE="font-size:18px;width:150px;height:50px;text-shadow:none;font-family:Open Sans" class="btn btn-danger push-bottom" data-loading-text="Loading..."  onclick="validate_form()"><br>
-									<span id="location"></span>
 								</div>
 							</div>
 							<br>
 							<div class="row">			
 							</div>
-							<div style="text-align:center;margin:10px;color:silver">Issues with site? Click here or email help@SugarDaddyOne.com</div>
+							<div style="text-align:center;margin:10px;color:silver">Issues with site? Click here or email help@sugardaddylocal.com</div>
 						</div>
 					</div>
 				</div>
@@ -221,16 +221,48 @@
 			var magic_w='65px'
 			var magic_h='65px'
 		</script>	
+		<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 		<script type="text/javascript" src="js/jquery.js"></script>
 		<script type="text/javascript" src="https://lushmatch.com/custom_js/cookie.js"></script>
 		<script type="text/javascript" src="https://lushmatch.com/custom_js/wait.js"></script>
-		<script type="text/javascript" src="https://lushmatch.com/custom_js/locate.js"></script>
-		<script type="text/javascript" src="https://lushmatch.com/custom_js/awesomplete.js"></script>
 		<link rel="stylesheet" href="https://lushmatch.com/css/jquery-confirm.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>	
-		<script type="text/javascript" src="https://lushmatch.com/register_sdone.js"></script>
+		<script src="https://lushmatch.com/assets/js/jquery-ui.js"></script>
+		<script type="text/javascript" src="https://lushmatch.com/register.js"></script>
 	</body>
+	<script>
+		var city,state,country,zip,lat,lng,zip
+setTimeout(function(){
+		$("#location").autocomplete({
+			source: "https://lushmatch.com/x_ac_city_state_zip_country.php",
+			minLength: 1,
+			select: function( event, ui ) {
+				city=ui.item.value.split(',')[0].trim()
+				state=ui.item.value.split(',')[1].trim()
+				country=ui.item.value.split(',')[2].trim()
+				lat=ui.item.value.split(',')[3].trim()
+				lng=ui.item.value.split(',')[4].trim()
+				zip=ui.item.value.split(',')[5].trim()
+				if (city) city += ' '
+				if (state) state += ' '
+				if (zip) zip += ' '
+				setTimeout(function(){
+					setCookie('location', (city + state + zip + country).trim())
+					setCookie('city',city)
+					setCookie('state',state)
+					setCookie('zip',zip)
+					setCookie('lat',lat)
+					setCookie('lng',lng)					
+					$('#location').val(getCookie('location'))
+				},100)
+
+			}
+		});
+
+},1)
+	</script>
+	<script type="text/javascript" src="https://lushmatch.com/custom_js/locate.js"></script>
+	
 </html>
 				
