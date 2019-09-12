@@ -7,7 +7,7 @@
 		<meta name="Author" content="Gautam Sharma" />		
 		<meta name="format-detection" content="telephone=no"/>
 		<title>Sugar Daddy & Sugar Baby Dating | sugardaddylocal.com</title>
-		<link rel="canonical" href="https://sugardaddylocal.com"
+		<link rel="canonical" href="https://sugardaddylocal.com">
 		<link rel="icon" href="favicon.png">
 			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
@@ -42,14 +42,12 @@
 	font-family:Open Sans!Important;
 	font-weight:300;
 	color:maroon;
-	font-size:32px!Important;
 	text-align:center
 }
 .genderP {
 	font-family:Open Sans!Important;
 	font-weight:bold;
 	color:#333;
-	font-size:16px!Important;
 	width:100%;
 	text-align:center;
 }
@@ -57,27 +55,27 @@
 	font-family:Open Sans;
 	font-weight:300;
 	color:#333;
-	font-size:21px;
 	width:100%;
 	text-align:center;
 }
 .general_infoP {
 	font-family:Open Sans;
 	font-weight:300;
-	color:#000;
+	color:#fff;
 	font-size:16px;
 	width:100%;
-	text-align:left;
-	border-radius:4px;
-	background:#fcfcfc;
+	text-align:center;
+	border-radius:0px;
+	background:#000;
 	padding:10px;
+	position: absolute;
+	bottom:0
 }					
 		</style>
 	</head>
-	<body>		<script src="https://lushmatch.com/custom_menu.js"></script>
-
-	<section class="page-wrapper gray wow zoomIn" style="width:100%;text-align:center;margin-top:5px">
-	<div id="con" class="container" style="overflow:auto;background:url(assets/images/bgs.jpg) center no-repeat;background-size:cover;height:100%">
+	<body style="background:#c0c0c0">
+	<script src="https://sugardaddylocal.com/custom_menu.js"></script>
+	<div id="con" class="container">
 		<div style="display:none">
 			<input type="checkbox"id="photos" style="margin:10px" checked /><span style="font-size:18px;font-family:Open Sans;margin-top:10px;position:absolute"> Show Profiles with Photos Only</span>
 		</div>
@@ -91,10 +89,6 @@
 			<!-- <a href="javascript:yes()"><img id="yes" src="https://gaysugardaddyfinder.com/assets/images/in_yes.png" style="width:65px"></a> -->
 		<!-- </div> -->
 	</div>
-	<div><input type="button" value="Go Back" onclick="javascript:history.go(-1)" style="margin-top:500px"></div>
-	</section>
-		
-
 	<script src="https://lushmatch.com/assets/js/jquery.js"></script>
 	<script src="https://lushmatch.com/assets/js/jquery-ui.js"></script>
 	<script src="https://lushmatch.com/assets/js/jquery-confirm.min.js"></script>
@@ -212,22 +206,33 @@
 
 	function loadProfiles(no) {
 	var profileBatchCount,ur,currUR,urs=[]
-		if (window.screen.height<=500) {
-			var mh='200px!Important'
-			var mw='200px'
-			var mtp='0'
+		if (window_width()<=500) {
+			var mw=window_width()+'px'
+			var mh=mw
 			var pt='0px'
+			var mtop=40
+			var mt=0
+			var tb='bottom'
+			var cph=window.innerHeight-window.innerWidth-120
+			var gip=cph+40
+			var lf='21px'
+			var sf='15px'
 		} else {
+			var lf='32px'
+			var sf='18px'
 			var mh='500px'
 			var mw='500px'
-			var mtp='-55px'
 			var pt='5px'
+			var mtop=610
+			var mt=80
+			var tb='top'
+			var cph=200
 		}
 		var tt='400px'
 		if (window.screen.height<window.screen.width) {
 			var showw=''
 			var tt='300px'
-		}
+		} 
 		ctr=0
 		var str=''
 		var url = 'https://lushmatch.com/x_get_profile_data.php?member_id='+qs('id')+'&type=search&search='+qs('q')+'&my_mid='+getCookie('mid')
@@ -249,43 +254,49 @@
 					general_info=data[i].general_info
 					var disp='block'
 				}
-							str+=	'<div class="col-md-4 col-sm-4 col-xs-12" style="width:100%;max-width:100%;position:fixed;left:0;right:0;margin:auto;padding:0;margin-top:25px">'
-							str+=	'	<div class="thumbbox1" style="padding:0;background:#f0f0f0;;max-width:500px;margin:auto">'
-							str+=	'		<div id="swm" class="team-thumb overlay-image view-overlay" style="position:absolute;background:white;border:none;">'
-							str+=	'			<img onerror="this.src=\'assets/img/no_photo.png\'" id="imgProfile'+data[i].id+'" onclick="view_img(this)" alt="" style="width:100%;min-height:'+mh+';min-width:'+mh+'">'
+							str+=	'<div class="col-md-4 col-sm-4 col-xs-12" style="width:100%;max-width:500px;position:fixed;left:0;right:0;margin:auto;padding:0;margin-top:0px;">'
+							str+=	'		<div id="swm" class="team-thumb overlay-image view-overlay" style="position:relative;background:white;border:none;margin-top:'+mt+'px">'
+							str+=	'			<img onerror="this.src=\'assets/img/no_photo.png\'" id="imgProfile'+data[i].id+'" onclick="view_img(this)" alt="" style="max-width:'+mh+';width:'+mh+';min-width:'+mh+'">'
+							str+=   '      		<div id="aboutM" class="general_infoP" style="bottom:0;margin-bottom:0px;opacity:0.6;z-index:99999999999999999999999999999">'+data[i].general_info+'</div>'
 							str+=	'		</div>'
-							str+=	'		<div style="left:0;right:0;position:fixed;background:#f0f0f0;min-height:180px;width:100%;margin:auto;padding-top:5px;bottom:40px!Important">'
-							str +=  '       <div id="aboutM" class="general_infoP" style="max-height:600px!Important;cursor:hand;cursor:pointer;display:'+disp+';width:100%;z-index:99999999999999999999;background:#111;border-radius:0;position:absolute;opacity:0.7;padding:'+pt+';color:white;bottom: 175px!Important;font-size:0.9em!Important;"><b>'+data[i]['general_info']+'</div>'
+							str+=	'		<div style="left:0;right:0;position:fixed;background:#f0f0f0;margin:auto;padding-top:5px;'+tb+':'+mtop+'px!Important;width:'+mw+'">'
 							str+=	'			<div id="profileText'+i+'" class="team-info">'
-							str+=	'				<div id="login'+i+'" class="loginP">'+data[i].login.toUpperCase().substr(0,10)+'</div>'
-							str+=	'				<div class="genderP">'
-							str+=	'					<span id="gender'+i+'">'+data[i].gender.toUpperCase()+'</span><span id="age1">'+' AGE: '+data[i].age+'</span>'
+							str+=	'				<div id="login'+i+'" class="loginP" style="font-size:'+lf+'">'+data[i].login.toUpperCase().substr(0,10)+', ' + data[i].age + '</div>'
+							str+=	'				<div class="genderP" style="font-weight:300;font-size:'+sf+'">'
+							str+=	'					<span id="gender'+i+'">'+data[i].gender.toUpperCase()+'</span> <span><b>'+data[i].location.toUpperCase().substr(0,15) + '</b></span>'
 							str+=	'				</div>'
-							str+=	'				<div id="location'+i+'" class="locationP">'+data[i].location.toUpperCase().substr(0,15)+'</div>'
-							str+=	'				<div class="team-social" style="">'
-							str+=	'					<a href="javascript:send_mail('+data[i].id+')"><img src="https://lushmatch.com/bubble01.png" style="position:absolute;width:80px;opacity:0.8;margin-left:-70px;margin-top:-15px"></a>'
-							str+=	'					<a href="javascript:send_mail('+data[i].id+')"><img src="https://lushmatch.com/yyy_mail.png"></a>'
-							str+=	'					<a href="javascript:toggle_favs()" style="text-decoration:none"><img id="fav' + data[i].id + '" src="https://lushmatch.com/yyy_fav_off.png"></a>'
-							str+=	'					<a href="javascript:video_call(\''+data[i].login+'\')"><img src="https://lushmatch.com/yyy_video.png"></a>'
-							str+=	'					<a href="javascript:video_call(\''+data[i].login+'\')"><img src="https://lushmatch.com/bubble02.png" style="position:absolute;width:70px;opacity:0.8;right:10px;margin-top:-15px"></a>'
-							str+=	'				</div>'
-							str+=	'				<div style="width:100%;position:absolute;height:100px;background:;bottom:50px;max-width:500px;margin:auto">'
-							str+=	'					<table style="width:100%;max-width:500px">'
+							str+=	'				<div id="location'+i+'" class="locationP"></div>'
+							str+=	'					<table style="height:'+cph+'px;width:'+mw+';background:#f0f0f0;margin:auto">'
 							str+=	'						<tr>'
-							str+=	'							<td style="width:25%;text-align:center">'
-							str+=	'								<a href="javascript:dislike(\''+'p'+data[i].id+'\')"><img id="no" src="https://gaysugardaddyfinder.com/assets/images/rest_prev.png" style="width:50px"></a>'
-							str+=	'							</td>'
-							str+=	'							<td style="width:50%;text-align:center">'
+							str+=	'							<td style="width:12.5%;text-align:center">'
 							str+=	'							</td>'
 							str+=	'							<td style="width:25%;text-align:center">'
-							str+=	'								<a href="javascript:like(\''+'p'+data[i].id+'\')"><img id="yes" src="https://gaysugardaddyfinder.com/assets/images/rest_next.png" style="width:50px"></a>'
+							str+=	'								<a href="javascript:send_mail('+data[i].id+')"><img src="https://lushmatch.com/yyy_mail.png"></a>'
+							str+=	'							</td>'
+							str+=	'							<td style="width:20%;text-align:center">'
+							str+=	'								<a href="javascript:toggle_favs()" style="text-decoration:none"><img id="fav' + data[i].id + '" src="https://lushmatch.com/yyy_fav_off.png"></a>'
+							str+=	'							</td>'
+							str+=	'							<td style="width:25%;text-align:center">'
+							str+=	'								<a href="javascript:video_call(\''+data[i].login+'\')"><img src="https://lushmatch.com/yyy_video.png"></a>'
+							str+=	'							</td>'
+							str+=	'							<td style="width:12.5%;text-align:center">'
 							str+=	'							</td>'
 							str+=	'						</tr>'
+							str+=	'						<tr>'
+							str+=	'							<td style="width:12.5%;text-align:center;background:">'
+							str+=	'							</td>'
+							str+=	'							<td style="width:25%;text-align:center;background:">SEND MSG'
+							str+=	'							</td>'
+							str+=	'							<td style="width:25%;text-align:center;background:">ADD TO FAV'
+							str+=	'							</td>'
+							str+=	'							<td style="width:25%;text-align:center;background:">VIDEO CALL'
+							str+=	'							</td>'
+							str+=	'							<td style="width:12.5%;text-align:center;background:">'
+							str+=	'							</td>'
+							str+=	'						</tr><tr><td colspan=5><br></td></tr>'
 							str+=	'					</table>'
 							str+=	'				</div>'
 							str+=	'			</div>'
-							str+=	'		</div>'
-							str+=	'	</div>'
 							str+=	'</div>'
 				id=data[i].id
 				ur=data[i].user_rights 

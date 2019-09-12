@@ -15,13 +15,14 @@
 		<link href="https://lushmatch.com/assets/css/bootstrap.css" rel="stylesheet">
 		<link href="style.css" rel="stylesheet">
 		<link href="https://lushmatch.com/assets/css/animate.css" rel="stylesheet">
-		<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic|Open+Sans:300' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic|Open+Sans:300|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+		
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
-		<style>
+		<style> 
 			div,span,p,td {
 				font-family:Open sans!Important
 			}
@@ -68,50 +69,55 @@
 				border-radius:4px;
 				background:#fcfcfc;
 				padding:10px;
-			}			
+			}	
+.fullScreen {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 999999100;
+    object-fit: cover
+}	
 	</style>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300|Open+Sans+Condensed:300" rel="stylesheet" type="text/css" />
 
-		<body style="background:url(assets/images/b1e2.jpg)center;background-size:cover;"><script src="https://lushmatch.com/custom_menu_no_footer.js"></script>
+		<body style="background:#f0f0f0"><script src="https://sugardaddylocal.com/custom_menu.js"></script>
 
 	<div class="page-loader">
 		<img src="https://lushmatch.com/assets/img/loader.gif" alt="">
 	</div>
-
-	<section id="oSection" class="page-wrapper"  style="width:100%;max-width:1200px;margin:auto;margin-top:0">
-		<div class="container" style="text-align:center">
-			<div class="row">
-				<div class="col-md-12" id="inbox" style="width:100%;padding:25px;background:;font-family:Open Sans!Important;">
-					
-				</div>
+	<div class="container" style="text-align:center">
+		<div class="row">
+			<div class="col-md-3" id="inbox" style="width:500px;background:#fff!Important;font-family:Open Sans!Important;margin:auto;left:0;right:0;position:absolute;padding-top:40px">
+				
 			</div>
-
+			<div class="col-md-3" id="tt" style="width:500px;background:#fff!Important;font-family:Open Sans!Important;margin:auto;left:0;right:0;position:fixed">
+				<table align=center>
+					<tr>
+						<td style="width:10%;text-align:center">
+							<a href="javascript:show_attach()"><i style="font-size:2em" class="fa fa-paperclip"></i></a>
+						</td>
+						<td id="cp"  style="width:80%">
+							<textarea style="width:100%" id="mail_pad"></textarea>
+						</td>
+						<td style="width:10%;text-align:center">
+							<a id="x_send" href="javascript:send_message()"><i style="font-size:2em" class="fa fa-paper-plane"></i></a>
+						</td>
+					</tr>
+				</table>
 			</div>
-		</div>
-	</section>
-	<div id="frmHolder">
-		<form style="width:100%;max-width:650px;border:none;display:none" id="dz" action="upload.php"></form>
-	</div>
-	<div id="attachments" style="display:none" class="col-md-12" style="margin-top:10px">
-		<label for="member-photo">Email Attachments</label>
-		<div id="pbar_holder">
-			<div id="pbar" style="background:url(assets/images/bar_orange.png);width:0px;height:50px"></div><span id="pc"></span>
-		</div>
-		<form style="width:100%;max-width:650px;border:none" class="dropzone dz-preview" id="member" action="upload.php"></form>
-	</div>
-	
-	<textarea id="mail_pad" style="position:absolute;left:0;bottom:0;height:60px;width:100%;padding-left:10px;padding-right:60px"></textarea>
-	<div onclick="show_attach()" style="display:none;margin-right:5px;border-radius:4px;padding:10px;margin-top:5px;background:#d3d9de;color:#fff;height:50px!Important;width:50px!Important;position:absolute;left:5px;bottom:5px">
-		<i style="font-size:2em" class="fa fa-paperclip"></i>
-	</div>
-	<div id="mail_sender" onclick="send_message()" style="margin-left:5px;border-radius:4px;padding:10px;margin-top:5px;background:#75DFAF;color:#fff;height:50px!Important;width:50px!Important;position:absolute;right:5px;bottom:5px">
-		<i style="font-size:2em" class="fa fa-paper-plane"></i>
+		</div> 
 	</div>
 
 <div id="cover" style="display:none;position:fixed;width:100%;height:100%;background:#000;opacity:0.7;z-index:99999999;top:0;left:0;bottom:0;right:0"></div>
 <div id="send_sms" onkeyup="deduct()" class="modal_window" style="font-size:0.8em;padding:10px;border-radius:6px;position:absolute;z-index:9999999999999;display:none;background:#f0f0f0;top:50px;left:0;right:0;margin:auto;width:320px;max-width:320px;height:500px;font-family:Open Sans;font-size:24px;"><span id="tip" style='color:brown;font-family:Open Sans'>SEND ANONYMOUS SMS<br><br><span style="font-size:18px;color:#333;font-family:Open Sans">1. Your number will not be revealed</span></span><br><div contentEditable onblur='fill_txt()' onclick='erase_txt()' id='message_text' style='word-wrap:break-word;font-family:Open Sans;font-size:24px;contentEditable:true;color:#0093D9;cursor:hand;cursor:pointer;border-radius:4px;border:3px solid lightblue;height:170px;max-height:170px;color:#333;overflow-y:scroll;overflow-x:hidden;color:grey;background:#fff;padding:20px;background:#fff'>Type Message Here</div><div><span style="left:20px;position:absolute">CHARACTERS REMAINING: <b><span id="cr">160</span></b></span></div><br><br><div style='margin-top:10px'><span style="font-size:16px"  class="btn btn-info" onclick='send_sms()' id="send_mail">SEND</span>&nbsp;<span style="font-size:16px"  class="btn btn-danger" onclick="document.all.modal_text.style.display='none'" id="">GO BACK</span></div></div>
 
-	<div id="loader" style="display:none;z-index:99999999999999999;position:absolute;top:0;left:0;right:0;bottom:0;opacity:0.3;margin:auto;background:#000;font-family:Open Sans Condensed;"></div>
-	<img id="img_loader" style="display:none;z-index:999999999999999999;position:absolute;top:0;left:0;right:0;bottom:0;opacity:1;margin:auto;width:50px" src="https://lushmatch.com/assets/images/wait.gif">
+<div id="loader" style="display:none;z-index:99999999999999999;position:absolute;top:0;left:0;right:0;bottom:0;opacity:0.3;margin:auto;background:#000;font-family:Open Sans Condensed;"></div>
+<img id="img_loader" style="display:none;z-index:999999999999999999;position:absolute;top:0;left:0;right:0;bottom:0;opacity:1;margin:auto;width:50px" src="https://lushmatch.com/assets/images/wait.gif">
+	<iframe id="idz" src="add_photo.html" style="position:fixed;top:50px;width:100%;border:none;z-index:999999999999999999999;display:none"></iframe>
 
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="https://lushmatch.com/assets/js/jquery-ui.js"></script>
@@ -124,19 +130,54 @@
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-pdjniiApMjAV7j92Nfn5zgd3k2s3ze4&libraries=places" type="text/javascript"></script>
 <script src="https://lushmatch.com/dz/dropzone.min.js"></script>
 <script>
-			window.onkeypress=che
-			function che (e) {
-			  if (e.target.id=='mail_pad') {
-				  if ( e.keyCode == 13 ) {
-						send_message()
-				  }
-			  }
-			}
-
+	window.onkeypress=che
+	function che (e) {
+	  if (e.target.id=='mail_pad') {
+		  if ( e.keyCode == 13 ) {
+				send_message()
+		  }
+	  }
+	}
+		
+	function view_img(iObj) {
+		if (iObj.className=='fullScreen') iObj.className='www_box5'
+			else iObj.className='fullScreen'
+	}
+	
+	function $$(oo) {
+		return document.getElementById(oo)
+	}
+	
+	function render_mobile() {
+		if (getCookie('isMobile')=='mobile') {
+			var w_w=window_width()
+			var bb=45
+		} else {
+			var w_w=500
+			var bb=0
+		}
+		//$$('container').style.width=w_w+'px'
+		$$('inbox').style.width=w_w+'px'
+		$$('inbox').style.background='white'
+		//$$('container').style.background='white'
+		//$$('container').style.height=window.innerHeight+'px'
+		$$('tt').style.width=w_w*1+10+'px'
+		$$('cp').style.width=(w_w*1-100) +'px'
+		$$('cp').style.minWidth=(w_w*1-100) +'px'
+		$$('cp').style.maxWidth=(w_w*1-100) +'px'
+		$$('tt').style.minWidth=(w_w+5) +'px'
+		$$('tt').style.maxWidth=(w_w+5) +'px'
+		$$('tt').style.width=(w_w+5) +'px'
+		$$('tt').style.bottom=bb+'px'
+		$$('tt').style.background='aliceblue'
+		$$('tt').style.height='70px'
+		$$('tt').style.padding='10px'
+	}
+	
 	//TO DO:
 	// Get Gender
 	// Get Geo Location
-	setTimeout('mobile_render()',3000)
+	setTimeout('render_mobile()',1000)
 	setTimeout('getIP()',1)
 	setTimeout('getLocation()',1)
 	tmr=setTimeout('getMail()',1)
@@ -151,7 +192,7 @@
 		function chk(e) {
 			console.log(e.target.id)
 			if (e.target.id=='') stopAllTimeouts()
-				else tmr=setTimeout('getMail()',5000)
+				else tmr=setTimeout('getMail()',1000)
 		}
 		function jwait() {
 			$$('img_loader').style.display='block'
@@ -403,75 +444,7 @@
 	var myDropzone
 	var abort
 	function show_attach() {
-		files=0
-		uploads=0
-		$$('dz').style.display='block'
-		if ($$('attachments').style.display=='block') {
-			$$('attachments').style.display='none'
-			return false
-		}
-		$$('attachments').style.display='block'
-		var url="upload.php"
-		myDropzone = new Dropzone("form#dz", {
-			url: url,
-			maxFilesize: 1000000000,
-			renameFilename: function (file) {
-				attach_id=guid()		
-				setCookie('attach_id', attach_id)
-				console.log(file)
-				console.log('Renamed '+file+' to ' + attach_id)
-				return file.renameFilename = attach_id + "." + file.split('.').pop();
-			}
-		});
-		
-		myDropzone.on("addedfile", function(file) {
-			if ((file.type.indexOf('video')<0) && (file.type.indexOf('image')<0)) return false
-			if (file.size>1000000000) {
-				alert('too big')
-				abort=true
-				return false
-			} else {
-				abort=false
-			}
-			if (abort===true) return false
-			files++
-			uploads++
-			console.log('Added Upload #' + uploads + ': ' + attach_id)
-		});
-		
-		myDropzone.on("totaluploadprogress", function(progress) {
-			if ($$('pbar').style.display=='none') {
-				$$('pbar').style.display='block'
-				$$('pbar_holder').style.display='block'
-				$$('pc').style.display='block'			
-			}
-			if (abort===true) return false
-			$$('pbar').style.width=Math.round(progress,0)+'%'
-			$$('pc').innerHTML=Math.round(progress,0) + '<b>%</b>'
-		})
-		
-		myDropzone.on("complete", function(file) {
-			files--
-			if (files==0) {
-				$$('dz').outerHTML=''
-				$$('frmHolder').innerHTML=''
-				var frm=document.createElement('form')
-				frm.id='dz'
-				frm.action='upload.php'
-				frm.style.cssText='width:100%;max-width:650px;border:none;display:none'
-				frm.className="dropzone dz-preview"
-				$$('frmHolder').appendChild(frm)
-				if ($$('mail_pad').value=='') {
-					$('#mail_sender').click()
-				}
-			}
-			if (abort===true) return false
-			$$('pbar').style.width='0px'
-			$$('pbar').style.display='none'
-			$$('pbar_holder').style.display='none'
-			$$('pc').style.display='none'
-		});
-		$('#dz').click()
+		$$('idz').style.display='block'
 	}
 	
 	function fs(el) {
@@ -502,18 +475,16 @@
 		var from_u=getCookie('mid')
 		var url = encodeURI('https://lushmatch.com/x_send_mail.php?to=' + getCookie('chatting_with') + '&from=' + from_u + '&message=' + message + '&attach_id=' + getCookie('attach_id')+'&long_code='+getCookie('long_code'))
 		console.log(url)
-		jwait('sending')
+		wait('sending')
 		var request = $.ajax({
 			url: url, 
 			type: "GET",
 			dataType: "html",
 			cache: false,
 			success: function(msg) {
-				$$('dz').style.display='none'
-				jhide()
+				hide()
 				$$('mail_pad').value=''
-				$$('attachments').style.display='none'
-			//	socket.send(JSON.stringify({'type':'NEW_MAIL', 'data': {'fromUser':getCookie('login'),'toUser':getCookie('chatting_with_login'),'msg':'<span id="toaster"><img style="height:25px;position:fixed;left:5px;padding-bottom:5px" src="https://lushmatch.com/assets/images/new_mail_msg.png"><span style="margin-left:40px;font-family:Open Sans; font-weight:300">NEW MAIL FROM '+ getCookie('login').toUpperCase() + '</span><img onclick="viewMessageDetail('+getCookie('mid')+',\'' + getCookie('login') + '\')" style="cursor:hand;cursor:pointer;height:27px;position:fixed;right:35px;padding-bottom:5px" src="https://lushmatch.com/assets/images/open_email.png"><img onclick="closeToaster()" src="https://lushmatch.com/assets/images/close_email.png" style="cursor:hand;cursor:pointer;height:27px;position:fixed;right:5px;padding-bottom:5px"><span>'}}))
+				getMailX()
 			}
 			
 		})
@@ -541,7 +512,13 @@
 			}
 		})
 	}
-	
+
+	function xsend(e) {
+		if (e.keyCode==13) {
+			$('#x_send').click()
+			e.preventDefault()
+		}
+	}	
 	<!-- $("#searchLocation").autocomplete({ -->
 		<!-- source: "x_ac_location.php", -->
 		<!-- minLength: 1, -->
@@ -560,8 +537,10 @@
 	<!-- }); -->
 	<!-- $( "#quickSearchTerm" ).autocomplete( "option", "appendTo", "#xresults" ); -->
 
-	
-
+window.keypress=xsend	
+if (tmr2) clearInterval(tmr2)
+getMailX() 
+setTimeout('getMessages()',100)
 </script>
 </body>
 </html>

@@ -23,7 +23,6 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.css">
 		<style>
-			* {box-shadow:none!Important;}
 			.tooltipsy {
 				color: #0093D9;
 				background-size:cover;
@@ -46,6 +45,8 @@
 			text {
 				disbled:true
 			}
+			h2,h3,h4 {font-family: Open Sans;
+					font-weight:300}
 /**
  * The CSS shown here will not be introduced in the Quickstart guide, but shows
  * how you can use CSS to style your Element's container.
@@ -76,55 +77,15 @@
 
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
-}			
+}
+.cardbox {
+display:;background:aliceblue;padding:10px;text-align:center
+}		
 		</style>
-		<script src="https://lushmatch.com/assets/js/jquery.js"></script>
-		
 		<script>
 			var wl = window.location.href;
 			var mob = (window.location.href.indexOf('file://')>=0);
 			setTimeout('dinit()',1)
-	var winH, winW
-	function window_height() {
-		if (document.body) {
-		 winH = document.body.offsetHeight;
-		}
-
-		if (document.compatMode=='CSS1Compat' &&
-			document.documentElement &&
-			document.documentElement.offsetHeight ) {
-			winH = document.documentElement.offsetHeight;
-			return winH
-		}
-
-		if (window.innerHeight && window.innerHeight) {
-			 winH = window.innerHeight;
-			 return winH;
-		}
-	}		
-
-		function window_width() {
-			if (document.body) {
-			 winW = document.body.offsetWidth;
-			}
-
-			if (document.compatMode=='CSS1Compat' &&
-				document.documentElement &&
-				document.documentElement.offsetWidth ) {
-				winW = document.documentElement.offsetWidth;
-				return winW
-			}
-
-			if (window.innerWidth && window.innerWidth) {
-				 winW = window.innerWidth;
-				 return winW;
-			}
-		}
-			
-				
-			function $$(id) {
-				return document.getElementById(id)
-			}
 			function qs(name, url) {
 				if (!url) {
 				  url = window.location.href;
@@ -185,31 +146,7 @@
 
 			}
 	function dinit() {
-		var url = 'https://lushmatch.com/x_get_user_info.php?member_id=' + getCookie('mid')
-		console.log(url)
-		var request = $.ajax({
-				url: url,
-				type: "GET",
-				dataType: "html",
-				cache: false,
-				success: function(msg) {
-					console.log(msg)
-					msg=JSON.parse(msg)
-					document.getElementById('mobile').value=msg.mobile
-					document.getElementById('name').value=msg.name
-					document.getElementById('email').value=msg.email
-					document.getElementById('login').value=msg.login
-					document.getElementById('gender').value=msg.gender
-					document.getElementById('looking_for').value=msg.looking_for
-					document.getElementById('age').value=msg.age
-					document.getElementById('general_info').value=msg.general_info
-					document.getElementById('location').value=msg.location
-					var pswd=msg.pswd
-					document.getElementById('pswd').value=pswd
-					setCookie('gender',msg.gender)
-					setCookie('looking_for',msg.looking_for)
-				}
-			})			
+		
 	}
 	function setGender(gen) {
 		var looking_for=document.createElement('div')
@@ -254,113 +191,35 @@
 	<script src="js/jquery.js"></script>
 	<script async defer src="https://lushmatch.com/assets/js/bootstrap.min.js"></script>
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-pdjniiApMjAV7j92Nfn5zgd3k2s3ze4&libraries=places" type="text/javascript"></script>
+	<script src="https://lushmatch.com/custom_js/wait.js"></script>
 	<script src="https://lushmatch.com/assets/js/jquery.geocomplete.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
 	
-		<body onload=""><script src="assets/js/custom_menu_no_footer.js"></script>
-					<input type="hidden" name="source" id="phonegap">
-					<input type="hidden" name="photo" id="photo">
-					<input type="hidden" name="address" id="address">
-					<input type="hidden" name="street" id="street">
-					<input type="hidden" name="cc_city" id="cc_city">
-					<input type="hidden" name="cc_state" id="cc_state">
-					<input type="hidden" name="zip" id="zip">
-					<input type="hidden" name="filename_1" id="filename_1">
-					<div id="main_row" class="row"  style="width:500px;max-width:500px;background:#f0f0f0;margin:auto;margin-top:50px">		
-						<div id="main" class="col-md-12" style="width:100%;margin:auto;margin-bottom:5px;background:#f0f0f0">
-<br/><br/>
-						<span style='font-family:Open Sans;color:black;font-size:18px'>EDIT ACCOUNT</span>
-						<div id="form_errors" class="alert alert-info" style="display:none"></div>
-							<div id="main_sub_row" class="row" style="font-size:0.8em;margin:0">			
-								<br/>
-								<div class="col-md-12" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
-									<label class="block">MOBILE NUMBER</label>					
-									<input class="form-control" type="text" style="width:100%;height:40px;font-size:16px!Important" id="mobile"  onchange="update(this)">
-								</div>	
-								<div class="col-md-12" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none;display:none">					
-									<label class="block">NAME</label>					
-									<input class="form-control" type="text" style="width:100%;height:40px;font-size:16px!Important" id="name"  onchange="update(this)">
-								</div>	
-								<br>
-								<div class="col-md-12" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
-									<label class="block">LOGIN</label>					
-									<input class="form-control" disabled type="text" style=";height:40px;font-size:16px!Important" id="login">
-								</div>	
-								<br>
-								<div class="col-md-12" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
-									<label class="block">EMAIL</label>						
-									<input class="form-control"type="text" style=";height:40px;font-size:16px!Important" id="email">
+		<body onload="">
+				<div class="container" style="background:url('https://lushmatch.com/p1.png');background-size:cover;height:100%;width:100%;left:0;right:0;position:fixed;margin:auto;left:0;right:0">
+								<div style="margin-top:150px;text-align:center">
+								<h2>Pay Using Stripe</h2>
+								<div id="product"></div>			
 								</div>
-								<br>
-								<div class="col-md-12" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
-									<label class="block">I AM A</label>					
-									<select class="form-control" type="select" id="gender" style="height:40px;font-size:16px!Important" onchange="update(this);setGender(this.value)">
-										<option name="Sugar Daddy">Sugar Daddy</option>
-										<option name="Sugar Baby">Sugar Baby</option>
-									</select>
-									<input type="hidden" name="looking_for" id="looking_for">
-								</div>
-								<!-- <br> -->
-								<!-- <div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					 -->
-									<!-- <label class="block">SEEKING</label>						 -->
-									<!-- <select class="form-control" type="select" id="looking_for" style="height:40px;font-size:16px!Important" onchange="update(this)"> -->
-										<!-- <option name="Sugar Daddy">Sugar Daddy</option> -->
-										<!-- <option name="Sugar Baby">Sugar Baby</option> -->
-									<!-- </select>								 -->
-								<!-- </div> -->
-								<br>
-								<div class="col-md-12" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
-									<label class="block">GENERATED PASSWORD</label>				
-									<input class="form-control" type="text" style=";height:40px;font-size:16px!Important" id="pswd">								
-								</div>				
-								<br>
-								<div class="col-md-12" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
-									<label class="block">AGE</label>
-									<input class="form-control" type="text" style=";height:40px;font-size:16px!Important" id="age">						
-								</div>
-								<br>
-								<div class="col-md-12" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
-									<label class="block">ABOUT YOU</label>
-									<textarea class="form-control" id="general_info" style=";height:160px;font-size:16px!Important" onchange="update(this)"></textarea>						
-								</div>								
-								<br>
-								<div class="col-md-12" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
-									<label class="block">YOUR LOCATION</label>
-									<input class="form-control"type="text" id="location" style=";height:40px;font-size:16px!Important" onclick="loc()">						
-								</div>								
-								<br><br>
-								<div class="col-md-12">
-								<br/><div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
-									<input class="form-control btn btn-info" type="button" style=";height:40px;font-size:16px!Important;color:#fff;background:" id="go_fb" onclick="update_form()" value="UPDATE ACCOUNT">						
-								</div>	
-								<div id="xsa" class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
-									<input class="form-control btn btn-danger" type="button" style=";height:40px;font-size:16px!Important;color:#fff;background:" id="" onclick="suspend_account()" value="SUSPEND ACCOUNT">						
-								</div>	
-								</div>
-								<br/>
-								</div>								<br/><br/>
-
-								
 								<script src="https://js.stripe.com/v3/"></script>
-								  <div class="www_box2 form-row" style="display:none;background:aliceblue;padding:10px;text-align:center;margin:10px;border:10px solid white">
-									<label for="card-element">
-									  Pay Using Stripe
-									</label>
+								  <div class="www_box2 form-row cardbox">
 									<div id="card-element">
 									  A Stripe Element will be inserted here.
 									</div>
-									Used to display form errors.
 									<div id="card-errors" role="alert"></div>
-								  <hr>
-								  <button onclick="pay(500,10,'Monthly Subscription')" class="btn btn-info" style="width:100%;border-radius:0 0 0 0;">Buy Monthly Subscription - $5</button><br>OR
-								  <button onclick="pay(100,11,'Single Phone Number')"  class="btn btn-warning" style="width:100%;;border-radius:0 0 0 0">Buy Anonymous Phone Number - $1</button><br>OR
-								  <button onclick="pay(1000,12,'100 SMS Credits')"  class="btn btn-info" style="width:100%;border-radius:0 0 0 0">Buy 100 SMS Credits - $10</button>
+								  <button onclick="pay()"  class="btn btn-info" style="width:100%;border-radius:0 0 0 0">Pay Now</button>
 								</div>
 
 						</div>
 						<!-- /card -->
 					</div>
-					<br/><br/>
+					<!-- /accordion payment -->
+					
+					</div>		
+						</div>		
+					</div>
+				</div>
+		<!-- /REGISTER -->	
 		<script>
 			var start_magic=false
 			var magic_w='65px'
@@ -368,6 +227,13 @@
 		</script>	
 
 <script type="text/javascript">
+var desc=qs('desc')
+var amt=qs('amt')
+var pid = qs('id')
+setTimeout(function(){
+	$$('product').innerHTML = '<h4><b>' + desc + ' - $' + qs('amt')*1/100 + '</b></h4>'
+},1000)
+
 var test_mode=false
 // Create a Stripe client.
 if (test_mode===true) {
@@ -414,10 +280,9 @@ card.addEventListener('change', function(event) {
 });
 var amt,plan,desc
 
-function pay(a,p,d) {
-	amt=a
-	plan=p
-	desc=d
+function pay() {
+	plan=pid
+	desc=desc
   stripe.createToken(card).then(function(result) {
     if (result.error) {
       // Inform the user if there was an error.
@@ -425,15 +290,62 @@ function pay(a,p,d) {
       errorElement.textContent = result.error.message;
     } else {
       // Send the token to your server.
+	  wait()
       stripeTokenHandler(result.token);
     }
   });
 }
 	// Submit the form with the token ID.
 	function stripeTokenHandler(token) {
-		
 		var url='https://lushmatch.com/x_charge.php?stripe_test_mode=' + test_mode + '&token='+token.id+'&login='+getCookie('login')+'&mid='+getCookie('mid')+'&mobile='+getCookie('mobile')+'&email='+getCookie('email')+'&amt='+amt+'&plan='+plan+'&desc='+desc
-		$.ajax({url:url,success:function(data){$.alert(data)}})
+		console.log(url)
+		$.ajax({
+			url:url,
+			success:function(data){
+			alert(data)
+				hide()
+				if (data=='Payment Failed') {
+					$.confirm({
+						title: 'Failed!',
+						content: data,
+						type: 'red',
+						typeAnimated: true,
+						buttons: {
+							tryAgain: {
+								text: 'Try Again',
+								btnClass: 'btn-green',
+								action: function(){
+									location.href=location.href
+								}
+							},
+							cancel: {
+								text: 'Cancel',
+								btnClass: 'btn-red',
+								action: function(){
+									location.href='home.html'
+								}
+							}
+						}
+					});
+				} else {
+					$.confirm({
+						title: 'Success!',
+						content: data,
+						type: 'green',
+						typeAnimated: true,
+						buttons: {
+							tryAgain: {
+								text: 'Ok',
+								btnClass: 'btn-green',
+								action: function(){
+									location.href='home.html'
+								}
+							}
+						}
+					});
+				}
+			}
+		})
 	  }
 		
 		function getLocation() {
@@ -554,49 +466,79 @@ function showPosition(position) {
       });
 }
 
-	function suspend_account(){
-		var url='https://lushmatch.com/x_suspend_account.php?mid='+getCookie('mid')
-		var request = $.ajax({
-			url: url,
-			type: "GET",
-			dataType: "html",
-			cache: false,
-			success: function(msg) {
-				$.alert({title:'',content:'Account suspended. You will no longer appear in search results or Browse Lists and will not receive any mails or notifications.<br><br> You may come out of hiding and un-suspend account at any time.'})
-				$('#xsa').html('<input class="form-control btn btn-success" type="button" style=";height:40px;font-size:16px!Important;color:#fff;background:" id="" onclick="unsuspend_account()" value="UN-SUSPEND ACCOUNT">')
-			}
-		})
-	}
+	function create_fb_user() {
+		if (!getCookie('location')) {
+			var url='https://sugardaddydays.com/inc/x_get_city_state_zip.php?lat='+getCookie('lat')+'&lng='+getCookie('lng')
+			var request = $.ajax({
+				url: url,
+				type: "GET",
+				dataType: "html",
+				cache: false,
+				success: function(msg) {
+					var lxc=msg.trim()
+					lx=lxc.split(',')
+					var cc_city = lx[0]
+					var cc_state=lx[1]
+					var cc_location = cc_city + ', ' + cc_state + ' ' + getCookie('zip')
+				}
+			})
+		} else {
+			var cc_city=getCookie('city')
+			var cc_state=getCookie('state')
+			var cc_location=getCookie('location')
+		}
+		var x=''
+		var filename_1 = document.getElementById('filename_1').value
+		var location = document.getElementById('location').value
+		var address = document.getElementById('address').value
+		var age = document.getElementById('age').value
+		var gender = getCookie('gender')
+		var looking_for = getCookie('looking_for')
+		if (gender=='') {
+			gender = 'Sugar Baby'
+			looking_for = 'Sugar Daddy'
+		}		
+		x += 'mob=' + document.getElementById('mobile').value 
+		x += '&password=' + document.getElementById('pswd').value 
+		x += '&email=' + document.getElementById('email').value 
+		x += '&login=' + document.getElementById('login').value 
+		x += '&gender=' + gender
+		x += '&looking_for=' + looking_for
+		x += '&general_info=' + document.getElementById('general_info').value 
+		x += '&age=' + age 
+		x += '&cc_city=' + cc_city
+		x += '&cc_state=' + cc_state
+		x += '&cc_street=' + getCookie('street_no') + ' ' + getCookie('street')
+		x += '&lat=' + getCookie('lat')
+		x += '&lng=' + getCookie('lng')
+		x += '&zip=' + getCookie('zip')
+		x += '&location=' + cc_city + ' ' + cc_state
+		x += '&aff=' + getCookie('aff')
+		x += '&pic=' + filename_1 
+		x += '&pro=' + Math.random() * 100000000 + '' + Math.random() * 100000000 + '' + Math.random() * 100000000 + '' + Math.random() * 100000000 + '' + Math.random() * 100000000
 
-	function unsuspend_account(){
-		var url='https://lushmatch.com/x_unsuspend_account.php?mid='+getCookie('mid')
+		var url = 'https://lushmatch.com/edit.php?' + x
+		console.log(url)
 		var request = $.ajax({
-			url: url,
-			type: "GET",
-			dataType: "html",
-			cache: false,
-			success: function(msg) {
-				$.alert({title:'',content:'Account re-activated! You will now appear in search results and/or Browse Lists and will once again, receive mails and/or notifications.<br><br> You may hide and go off grid any time when you suspend your account again.'})
-				$('#xsa').html('<input class="form-control btn btn-danger" type="button" style=";height:40px;font-size:16px!Important;color:#fff;background:" id="" onclick="suspend_account()" value="SUSPEND ACCOUNT">')
+		url: url,
+		type: "GET",
+		dataType: "html",
+		cache: false,
+		success: function(msg) {
+				msg=msg.split('|')
+				var res=msg[0]
+				if (res=='OK') {
+					$.alert({theme: 'modern', content: 'Update Successful!',title:false})
+				} else {
+					$.alert({theme: 'black', content: 'Registration Failed!',title:false})
+				}
+			
 			}
-		})
+		})		
 	}
-	if (getCookie('isMobile')=='mobile') {
-		render_mob()
-	} else {
-	
-	}
-	function render_mob() {
-		$$('main_row').style.maxWidth=window_width()+'px'
-		$$('main_row').style.width=window_width()+'px'
-		$$('main').style.maxWidth=window_width()+'px'
-		$$('main').style.width=window_width()+'px'
-		$$('main_sub_row').style.width='100%'
-	}		
 	</script>
 	</body>
-		<script src="https://lushmatch.com/assets/js/jquery-ui.js"></script>
-		<script src="https://sugardaddylocal.com/custom_menu.js"></script>
-		<script src="https://lushmatch.com/custom_js/base.js"></script>
+		<script async defer src="https://lushmatch.com/assets/js/jquery-ui.js"></script>
+		<script src="https://lushmatch.com/custom_menu.js"></script>
 		<script src="https://lushmatch.com/custom_js/wait.js"></script>
 </html>
