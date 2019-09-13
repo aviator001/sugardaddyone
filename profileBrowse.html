@@ -232,7 +232,7 @@
 		} else {
 			if (qs('browse')=='local') {
 				var url='https://lushmatch.com/x_browse_local.php?start='+start_local+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')
-			} else if (qs('browse')=='latest') {
+			} else if ((qs('browse')=='new') || (qs('browse')=='latest')) {
 				url='https://lushmatch.com/x_browse_new.php?start='+start_new+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')
 			} else if (qs('browse')=='new_local') {
 				url='https://lushmatch.com/x_browse_new_local.php?start='+start_new_local+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')
