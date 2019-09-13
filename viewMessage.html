@@ -117,7 +117,7 @@
 
 <div id="loader" style="display:none;z-index:99999999999999999;position:absolute;top:0;left:0;right:0;bottom:0;opacity:0.3;margin:auto;background:#000;font-family:Open Sans Condensed;"></div>
 <img id="img_loader" style="display:none;z-index:999999999999999999;position:absolute;top:0;left:0;right:0;bottom:0;opacity:1;margin:auto;width:50px" src="https://lushmatch.com/assets/images/wait.gif">
-	<iframe id="idz" src="add_photo.html" style="position:fixed;top:50px;width:100%;border:none;z-index:999999999999999999999;display:none"></iframe>
+	<iframe id="iqdz" src="add_photo.html" style="position:fixed;top:50px;width:100%;border:none;z-index:999999999999999999999;display:none"></iframe>
 
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="https://lushmatch.com/assets/js/jquery-ui.js"></script>
@@ -444,7 +444,10 @@
 	var myDropzone
 	var abort
 	function show_attach() {
-		$$('idz').style.display='block'
+		$$('iqdz').style.display='block'
+		$$('iqdz').style.height='1000px'
+		window.frames['iqdz'].style.height=window_height()+'px'
+		window.frames['iqdz'].style.background='#000'	
 	}
 	
 	function fs(el) {
