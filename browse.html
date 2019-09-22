@@ -498,18 +498,7 @@
 		$$('local').className='hand'
 		if ($$(type)) $$(type).className='active hand'
 	}
-	
-	function setGender() {
-		if (getCookie('gender')=='Sugar Daddy') {
-			setCookie('gender','Sugar Baby')
-			$('#sp0').html('SHOW SUGAR BABIES')
-		} else {
-			setCookie('gender','Sugar Daddy')
-			$('#sp0').html('SHOW SUGAR DADDIES')
-		}
-		getPhotoGallery()
-	}
-	
+
 	$("#searchLocation").autocomplete({
 		source: "x_ac_location.php",
 		minLength: 1,
@@ -528,7 +517,11 @@
 	$( "#quickSearchTerm" ).autocomplete( "option", "appendTo", "#xresults" );
 	
 	setTimeout(function(){
-		type=getCookie('type')
+		if (qs('ext')=='1' && qs('type')) {
+			type=qs('type')
+		} else {
+			type=getCookie('type')
+		}
 		$('#'+type).click()
 	},500)
 
@@ -537,6 +530,7 @@
 <script src='js/jquery.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.0/rangeslider.min.js'></script>
 <script>
+
 var ptr,tmr
       $(function () {
   const cssClasses = [

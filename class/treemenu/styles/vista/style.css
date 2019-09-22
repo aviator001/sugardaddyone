@@ -1,0 +1,30 @@
+.tm_vista .tmTree ul.tmSubTree
+{
+    background: url(images/line.gif) repeat-y;
+}
+.tm_vista .tmTree li.tmSingle
+{  
+    background: url(images/node.gif) no-repeat;
+}
+.tm_vista ul.tmTree li.tmLast
+{
+    background: url(images/lastnode.gif) no-repeat;
+}
+.tm_vista ul.tmTree li.tmFirst
+{
+    background: url(images/firstnode.gif) no-repeat;
+}
+.tm_vista .tmNoChildren .tmNode
+{
+    margin-left: 12px;
+}
+.tm_vista .tmTree ul,
+.tm_vista .tmSubTree ul
+{
+    /*offset for each menu level*/
+    padding-left: 18px;
+}
+.tm_vista .tmImage
+{
+    margin-right: 3px;
+}

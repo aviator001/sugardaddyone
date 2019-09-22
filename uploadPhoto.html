@@ -11,8 +11,10 @@
 		<meta name="format-detection" content="telephone=no"/>
 		<link rel="icon" href="https://lushmatch.com/images/favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" href="https://lushmatch.com/assets/css/stream.css"/>
-		<link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+		<link href="https://lushmatch.com/assets/css/jquery-ui.css" rel="stylesheet" />
+		<link href="https://lushmatch.com/assets/css/bootstrap.css" rel="stylesheet">
 		<style>
 			html,body {
 				margin: 0 0;
@@ -79,11 +81,10 @@
 		</style>
 		<script src="cordova.js"></script>
 		<script src="js/jquery.js"></script>
-		<script src="https://lushmatch.com/jsSocketNode.js"></script>
 		<script src="https://lushmatch.com/custom_js/wait.js"></script>
-		<script src="https://lushmatch.com/custom_menu.js"></script>
+		<script src="https://sugardaddylocal.com/custom_menu.js"></script>
 	</head>
-	<body style="background:url(assets/img/bg7.jpg) center;background-size:cover;">
+	<body>
 	<script>var padding=15</script>
 	<script>
 		setTimeout('init()',10)
@@ -179,7 +180,7 @@
 			var fname=getCookie('login') + '_' + Math.round(Math.random()*10000000000) + '.jpg'
 		    $.ajax({url: "https://lushmatch.com/iupload.php",
 		        type: 'POST',
-		        data: {filename: fname, image: imageData, login: getCookie('login'), mid: getCookie('mid')},
+		        data: {filename: fname, image: imageData, login: getCookie('login'), mid: getCookie('mid'), email: getCookie('email')},
 		        success: function(data, status, xhr) {
 					hide()
 					document.getElementById('img'+imx).outerHTML='<img style="width100px;height:100px;border:10px solid #a3d900" src="https://lushmatch.com/sb/'+fname+'">'
@@ -365,21 +366,6 @@
 		var ar=[]
 		var mr=[]
 
-		function show_drop_down_menu() {
-			var k
-			for (k=2;k<=7;k++) {
-				setTimeout('sddm('+k+')',100*k)
-			}
-			setTimeout('hide_drop_down_menu()',3000)
-		}
-		var moomoo=2
-		function hide_drop_down_menu() {
-			for (k=7;k>=2;k--) {
-				setTimeout('sddh('+k+')',100*moomoo)
-				moomoo++
-			}			
-		}
-		
 		function sddh(moo) {
 			var meow=document.getElementById('m'+moo)
 			meow.style.display='none'
@@ -443,17 +429,20 @@
 			}
 		}
 	</script>
-	<div class="container">
+	<div class="container"  style="position:absolute;left:0;top:0;right:0;bottom:0;width:100%;height:100%;background:url(https://sugardaddylocal.com/assets/fav_bg_02.jpg) no-repeat; background-size:cover">
 		<div class="row">
-			<div class="col-md-12" style="text-align:center"></div>
-			<div class="col-md-4" style="text-align:center;margin-top:100px">
-				<img src="https://lushmatch.com/a8.png" style="width:100px;margin:20px;cursor:hand;cursor:pointer" onclick="take_photo2()">
-				<img src="https://lushmatch.com/a26.png" style="width:100px;margin:20px;cursor:hand;cursor:pointer" onclick="take_photo()">
+			<div class="col-md-12" style="text-align:center;margin:20px;padding:20px;font-weight:300;font-family:Open Sans;font-size:21px;color:#000;text-shadow: 1px 1px 1px solid white">
+				<br>
+				TO TAKE A PHOTO CLICK ON THE CAMERA ICON BELOW
+				<br>
+				<img src="https://sugardaddylocal.com/assets/a26.png" style="width:70px;margin:auto;margin-top:10px;cursor:hand;cursor:pointer" onclick="take_photo()">
 			</div>
-			<div id="album"></div>
+			<div class="col-md-12" style="text-align:center;position:absolute;bottom:60px;width:100%">
+				<button onclick="history.go(-1)" class="btn btn-danger">CANCEL</button> <a href='upload_photo.html'><button class="btn btn-default">UPLOAD FROM <b>GALLERY</b></button></a>
+			</div>
+			<div style="width:100%;padding:10px;text-align:center" id="album"></div>
 			<video style="display:none" src="" id="vid"></video>
 		</div>
 	</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>		
-	<script src="assets/js/custom_menu.js"></script>
 </html>

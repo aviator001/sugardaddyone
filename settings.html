@@ -266,7 +266,7 @@
 					<input type="hidden" name="cc_state" id="cc_state">
 					<input type="hidden" name="zip" id="zip">
 					<input type="hidden" name="filename_1" id="filename_1">
-					<div id="main_row" class="row"  style="width:500px;max-width:500px;background:#f0f0f0;margin:auto;margin-top:50px">		
+					<div id="main_row" class="row"  style="max-width:500px;background:#f0f0f0;margin:auto;margin-top:50px">		
 						<div id="main" class="col-md-12" style="width:100%;margin:auto;margin-bottom:5px;background:#f0f0f0">
 <br/><br/>
 						<span style='font-family:Open Sans;color:black;font-size:18px'>EDIT ACCOUNT</span>
@@ -587,8 +587,8 @@ function showPosition(position) {
 	
 	}
 	function render_mob() {
-		$$('main_row').style.maxWidth=window_width()+'px'
-		$$('main_row').style.width=window_width()+'px'
+		$$('main_row').style.maxWidth='500px'
+		$$('main_row').style.width='100%'
 		$$('main').style.maxWidth=window_width()+'px'
 		$$('main').style.width=window_width()+'px'
 		$$('main_sub_row').style.width='100%'

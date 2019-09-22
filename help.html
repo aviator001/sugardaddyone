@@ -7,70 +7,83 @@
 		<meta name="Author" content="Gautam Sharma" />		
 		<meta name="format-detection" content="telephone=no"/>
 		<title>Sugar Daddy & Sugar Baby Dating | lushmatch.com</title>	<meta name="keywords" content="sugar daddy,sugar baby,sugardaddy,wealthy  men, dating,Sugar Daddy dating site, daddy dating, find daddy, find golddigger, lushmatch" />
-	<meta name="description" content="A place that connects handsome wealthy and caring  men to hot young  males" />
-	<meta name="Author" content="Gautam Sharma" />
-	<!-- mobile settings -->
-	<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
-	</head>
-		<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic|Open+Sans:300' rel='stylesheet' type='text/css'>
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
+		<meta name="description" content="A place that connects handsome wealthy and caring  men to hot young  males" />
+		<meta name="Author" content="Gautam Sharma" />
+		<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
 		<style>
-			div,span,p,td {
-				font-family:Open sans!Important
-			}
-			input[type=checkbox]{ 
-				background-color: #f0f0f0;
-				width:30px;
-				height:30px;
-			}
-			input[type=checkbox]:checked{
-				background-color: silver;
-				width:30px;
-				height:30px;
-			}
-			.loginP {
-				font-family:Open Sans!Important;
-				font-weight:300;
-				color:maroon;
-				font-size:32px!Important;
-				text-align:center
-			}
-			.genderP {
-				font-family:Open Sans!Important;
-				font-weight:bold;
-				color:#333;
-				font-size:16px!Important;
-				width:100%;
-				text-align:center;
-			}
-			.locationP {
-				font-family:Open Sans;
-				font-weight:300;
-				color:#333;
-				font-size:21px;
-				width:100%;
-				text-align:center;
-			}
-			.general_infoP {
-				font-family:Open Sans;
-				font-weight:300;
-				color:#000;
-				font-size:16px;
-				width:100%;
-				text-align:left;
-				border-radius:4px;
-				background:#fcfcfc;
-				padding:10px;
-			}			
-		</style>	<body style="overflow:hidden!Important">
-	<!-- <iframe src="https://lushmatch.com/support" seamless style="border:none;position:absolute;width:100%;height:100%;left:0;top:0;overflow:hidden!Important"></iframe> -->
-		<br><br><br><br><br><br><div><h4 style="text-align:center">For support, please write us at cs@sugardaddylocal.com</h4></div>
+			* {text-decoration:none!Important;}
+		</style>
+	</head>
+	<body style="overflow:hidden!Important;opacity:0;display:none">
 		<script src="js/jquery.js"></script>
-		<script src="https://lushmatch.com/custom_menu.js"></script>
+		<script src="class/treemenu/js/script.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+		<script>
+		function getCookie(cname)	{ 
+			if (mob===true) {
+				var cvalue = window.localStorage.getItem(cname);
+				return cvalue
+			} else {
+				var name = cname + "="; 
+				var ca = document.cookie.split(';'); 
+				for(var i=0; i<ca.length; i++) { 
+				  var c = ca[i].trim(); 
+				  if (c.indexOf(name)==0) return c.substring(name.length,c.length); 
+				} 
+				return ""; 
+			}
+		} 
 
+		var mob = (window.location.href.indexOf('file://')>=0);
+
+		var u,i1,i2
+				u='https://sugardaddylocal.com/master_menu.php?mid='+getCookie('mid')
+				setTimeout(function(){
+					$.ajax({url:u,success:function(data){
+						document.documentElement.innerHTML=data
+						i1=document.createElement('img')
+						i2=document.createElement('img')
+						i1.src="https://lushmatch.com/assets/images/wb52.png"
+						i1.style.cssText='position:absolute;right:10px;top:10px;z-index:99999999999999999;max-width:30px;width:30px;min-width:30px;height:30px;border-radius:5px'
+						document.documentElement.appendChild(i1)
+						i1.onclick=goback
+					}
+				},1000)
+			})
+
+			$("html, body").animate({ scrollTop: 0 }, "slow");
+			setTimeout(function(){
+				$('#imgetree_1').click()
+				$('#imgetree_1_1').click()
+				$('#imgetree_1_1_1').click()
+				$('#imgetree_1_2').click()
+				$('#imgetree_1_2_5').click()
+				$("html, body").animate({ opacity: 1 }, "slow");
+			},1500)
+			
+			function goback() {
+				history.go(-1)
+			}
+
+			function preview_profile() {
+				location.href='profile.html?id='+getCookie('mid')
+			}
+			
+			function choose_upload() {
+				$.confirm({
+					theme: 'modern',
+					title: 'Select Source!',
+					content: 'You can either take a brand new photo using your devices camera, or you can upload an existing photo from your gallery.<br><br>So, whats it gonna be?',
+					buttons: {
+						camera: function () {
+							location.href='uploadPhoto.html'
+						},
+						gallery: function () {
+							location.href='upload_photo.html'
+						}
+					}
+				});
+			}
+		</script>
 	</body>
 </html>
