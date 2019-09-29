@@ -24,7 +24,7 @@
 <script src="js/jquery.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-61204113-1"></script>
 <script>
-	var version=28
+	var version=29
 	setCookie('version',version)
 	setTimeout('setVersion()',1000)
 	window.dataLayer = window.dataLayer || [];
@@ -543,6 +543,7 @@
 					setCookie("long_code", o.long_code)
 					setCookie("location", o.location)
 					setCookie("email", o.email)
+					setCookie("gender", o.gender)
 					setCookie('saveUser',$$('email').value)
 					setCookie('savePass',$$('password').value)					
 					window.top.location.href = "home.html"		
