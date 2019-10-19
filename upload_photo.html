@@ -114,21 +114,21 @@
 		<script src="cordova.js"></script>
 		<script src="js/jquery.js"></script>
 		<script src="https://lushmatch.com/custom_js/wait.js"></script>
-		<script src="https://sugardaddylocal.com/custom_menu.js"></script>
+		<script src="https://sugardaddylocal.com/custom_menu_updated.js"></script>
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300|Open+Sans+Condensed:300" rel="stylesheet" type="text/css" />
 		<script src="js/jquery.js"></script>
 		<script src="js/common.js"></script>
 		<script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
 		<link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
 	</head>
-	<body class="stretched">
-	<div class="container"  style="position:absolute;left:0;top:0;right:0;bottom:0;width:100%;height:100%;background:url(https://sugardaddylocal.com/assets/fav_bg_02.jpg) no-repeat; background-size:cover">
+	<body class="stretched" style="background:#c0c0c0">
+	<div class="container"  style="position:absolute;left:0;top:0;right:0;bottom:0;width:100%;height:100%;background:#c0c0c0">
 		<div class="row">
-			<div class="col-md-12" style="text-align:center;margin:20px;padding:20px;font-weight:300;font-family:Open Sans;font-size:21px;color:#000;text-shadow: 1px 1px 1px solid white">
-				<form action="http://lushmatch.com/gallery_uploads.php"  style="width:100%;border:none;background:none" class="dropzone dz-preview" id="member"></form>
+			<div class="col-md-12" style="text-align:center;margin:20px;padding:20px;font-weight:300;font-family:Open Sans;font-size:16px;color:#000;text-shadow: 1px 1px 1px solid white">
+				<div style="font-size:24px;font-weight:300;color:white"><br>NOW USING GALLERY</div><form action="http://lushmatch.com/gallery_uploads.php"  style="width:100%;border:none;background:none" class="dropzone dz-preview" id="member"></form>
 			</div>
 			<div class="col-md-12" style="text-align:center;position:absolute;bottom:60px;width:100%">
-				<button onclick="history.go(-1)" class="btn btn-danger">CANCEL</button> <a href='uploadPhoto.html'><button  class="btn btn-default">UPLOAD USING <b>CAMERA</b></button></a>
+				<button onclick="history.go(-1)" class="btn btn-default">CANCEL</button> <a href='uploadPhoto.html'><button  class="btn btn-default">UPLOAD USING <b>CAMERA</b></button></a>
 			</div>
 			<div style="width:100%;padding:10px;text-align:center" id="album"></div>
 			<video style="display:none" src="" id="vid"></video>
@@ -158,7 +158,7 @@
 		myDropzone = new Dropzone("form#member", { 
 			url: url,
 			maxFilesize: 1000000000,
-			dictDefaultMessage: "<div id='xe' style='background:#000;color:#fff;font-family:Open sans;color:#fff;font-weight:300;top:0;position:fixed;width:100%;left:0;right:0;margin:auto;height:"+window_height()+"px'><br><br><br><br><br><br>CLICK HERE<BR>to select Photos or Videos to Attach<br><br></div>",
+			dictDefaultMessage: "<div id='xe' style='background:;color:#fff;font-family:Open sans;color:#fff;font-weight:300;top:0;position:fixed;width:100%;left:0;top:7%;right:0;margin:auto;height:75%;z-index:99999999999999999;color:black'><br><br><br>TO SELECT PHOTOS OR VIDEOS<br>CLICK BELOW<br><br><img style='width:70px' src='images/gallery.png'></div>",
             init: function() {
                 this.on("sending", function(file, xhr, formData){
 					formData.append("mid", getCookie('mid'));
@@ -207,6 +207,7 @@
 		var from_u=getCookie('mid')
 		var url = encodeURI('https://sugardaddylocal.com/x_send_mail.php?to=' + getCookie('chatting_with') + '&from=' + from_u + '&message=' + message + '&attach_id=' + getCookie('attach_id')+'&w_w='+window_width())
 		console.log(url)
+		win()
 	});
 
 	function setCookie(cname,cvalue,exdays)	{
@@ -234,7 +235,70 @@
 		}
 		return '<span style="padding-top:5px">'+px+'</span>'
 	}
-	
+
+		function win() {
+			$.alert({
+				title: 'Success',
+				content: 'Images uploaded, saved and cataloged. Whats next?',
+				btnClose:true,
+				buttons: {
+					b1: {
+						text: 'My Albums',
+						btnClass: 'btn-white',
+						action: function(){
+							location.href='frame_albums.html'
+						}
+					},
+					b2: {
+						text: 'My Uploads',
+						btnClass: 'btn-white',
+						action: function(){
+							location.href='show_uploads.html'
+						}
+					},
+					b3: {
+						text: 'Take More',
+						btnClass: 'btn-blue',
+						action: function(){
+							history.go(0)
+						}
+					},
+					b4: {
+						text: 'To Settings',
+						btnClass: 'btn-red',
+						action: function(){
+							location.href='settings.html'
+						}
+					}
+				}
+			});
+		}
+
+		function fail(error) {
+			alert("An error has occurred: "+error)
+		}	
+
+		var currPage='upload_photo.html'
+
+		function fs(el) {
+		if (!el) el = document.documentElement
+		, rfs = // for newer Webkit and Firefox
+			   el.requestFullScreen
+			|| el.webkitRequestFullScreen
+			|| el.mozRequestFullScreen
+			|| el.msRequestFullScreen
+		;
+		if(typeof rfs!="undefined" && rfs){
+		  rfs.call(el);
+		} else if(typeof window.ActiveXObject!="undefined"){
+		  // for Internet Explorer
+		  var wscript = new ActiveXObject("WScript.Shell");
+		  if (wscript!=null) {
+			 wscript.SendKeys("{F11}");
+		  }
+		}
+		}
+	setTimeout('fs()',1000)
 	function guid() {
 	  function s4() {
 		return Math.floor((1 + Math.random()) * 0x10000)

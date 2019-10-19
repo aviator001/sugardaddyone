@@ -24,6 +24,361 @@
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 		<style>
+			body{
+				margin-top:20px;
+				background:#eee;
+			}
+			.team-card-style-1, .team-card-style-3, .team-card-style-5 {
+			  position: relative;
+			  max-width: 360px;
+			  text-align: center;
+			  background:#fff;
+			 box-shadow: 0 22px 36px -12px rgba(64, 64, 64, .13);
+			}
+			.team-contact-link {
+			  display: block;
+			  margin-top: 4px;
+			  transition: all 0.25s;
+			  font-size: 12px;
+			  font-weight: 700;
+			  text-decoration: none;
+			}
+			.team-contact-link > i {
+			  display: inline-block;
+			  font-size: 1.1em;
+			  vertical-align: middle;
+			}
+			.team-card-style-1 .team-position, .team-card-style-3 .team-position, .team-card-style-4 .team-position {
+			  display: block;
+			  margin-bottom: 8px;
+			  color: #8c8c8c;
+			  font-size: 12px;
+			  font-weight: 700;
+			  opacity: 0.6;
+			}
+			.team-card-style-3 .team-name, .team-card-style-4 .team-name, .team-card-style-5 .team-name {
+			  margin-bottom: 16px;
+			  font-size: 18px;
+			  font-weight: 600;
+			}
+			.team-thumb > img {
+			  display: block;
+			  width: 100%;
+			}
+			.team-card-style-1 {
+			  padding-bottom: 36px;
+			}
+			.team-card-style-1 > * {
+			  position: relative;
+			  z-index: 5;
+			}
+			.team-card-style-1::before {
+			  position: absolute;
+			  top: 0;
+			  left: 0;
+			  width: 100%;
+			  height: 0;
+			  transition: all 0.3s 0.12s;
+			  content: '';
+			  opacity: 0;
+			}
+			.team-card-style-1 .team-card-inner {
+			  margin-bottom: 16px;
+			  padding-top: 48px;
+			  padding-right: 16px;
+			  padding-bottom: 20px;
+			  padding-left: 16px;
+			  background-color: #fff;
+			}
+			.team-card-style-1 .team-thumb {
+			  width: 108px;
+			  height: 108px;
+			  margin: auto;
+			  margin-bottom: 16px;
+			  border-radius: 50%;
+			  overflow: hidden;
+			}
+			.team-card-style-1 .team-social-bar {
+			  margin-top: 16px;
+			  margin-bottom: 8px;
+			  transform: scale(0.8);
+			}
+			.team-card-style-1 .team-contact-link {
+			  transition-delay: 0.12s;
+			  color: #8c8c8c;
+			  opacity: 0.6;
+			}
+			.team-card-style-1 .team-contact-link:hover {
+			  color: #8c8c8c;
+			  opacity: 1;
+			}
+			.team-card-style-1 .team-card-inner, .team-card-style-1 .team-thumb, .team-card-style-1 .team-social-bar {
+			  transition: all 0.3s 0.12s;
+			}
+			.team-card-style-1 .team-position, .team-card-style-1 .team-name {
+			  transition: color 0.3s 0.12s;
+			}
+			.team-card-style-1 .team-name {
+			  margin-bottom: 0;
+			  font-size: 20px;
+			  font-weight: bold;
+			}
+			.no-touchevents .team-card-style-1:hover::before {
+			  height: 100%;
+			  box-shadow: 0 22px 36px -12px rgba(64, 64, 64, .13);
+			  opacity: 1;
+			}
+			.no-touchevents .team-card-style-1:hover .team-card-inner {
+			  background-color: transparent;
+			  box-shadow: none;
+			}
+			.no-touchevents .team-card-style-1:hover .team-thumb {
+			  transform: scale(1.1);
+			}
+			.no-touchevents .team-card-style-1:hover .team-social-bar {
+			  transform: scale(1);
+			}
+			.no-touchevents .team-card-style-1:hover .team-contact-link, .no-touchevents .team-card-style-1:hover .team-position, .no-touchevents .team-card-style-1:hover .team-name {
+			  color: #fff;
+			}
+			.no-touchevents .team-card-style-1:hover .team-contact-link {
+			  opacity: 1;
+			}
+			.team-card-style-2 {
+			  position: relative;
+			}
+			.team-card-style-2 > img {
+			  display: block;
+			  width: 100%;
+			}
+			.team-card-style-2::before, .team-card-style-2::after {
+			  display: block;
+			  position: absolute;
+			  top: 0;
+			  left: 0;
+			  width: 100%;
+			  height: 100%;
+			  transition: opacity 0.35s 0.12s;
+			  content: '';
+			  z-index: 1;
+			}
+			.team-card-style-2::before {
+			  background-color: rgba(0, 0, 0, .25);
+			}
+			.team-card-style-2::after {
+			  opacity: 0;
+			}
+			.team-card-style-2 .team-card-inner {
+			  position: absolute;
+			  top: 50%;
+			  width: 100%;
+			  padding: 20px;
+			  transform: translateY(-45%);
+			  transition: all 0.35s 0.12s;
+			  text-align: center;
+			  opacity: 0;
+			  z-index: 5;
+			}
+			.team-card-style-2 .team-name, .team-card-style-2 .team-position, .team-card-style-2 .team-contact-link {
+			  color: #fff;
+			}
+			.team-card-style-2 .team-name {
+			  margin-bottom: 5px;
+			  font-size: 20px;
+			  font-weight: bold;
+			}
+			.team-card-style-2 .team-position {
+			  display: block;
+			  margin-bottom: 16px;
+			  font-size: 12px;
+			  font-weight: 600;
+			  text-transform: uppercase;
+			}
+			.team-card-style-2 .team-social-bar {
+			  margin-top: 16px;
+			  margin-bottom: 8px;
+			}
+			.team-card-style-2 .team-contact-link {
+			  opacity: 1;
+			}
+			.team-card-style-2:hover::before {
+			  opacity: 0;
+			}
+			.team-card-style-2:hover::after {
+			  opacity: 0.7;
+			}
+			.team-card-style-2:hover .team-card-inner {
+			  transform: translateY(-50%);
+			  opacity: 1;
+			}
+			.team-card-style-3, .team-card-style-4 {
+			  position: relative;
+			  padding-top: 30px;
+			  padding-right: 20px;
+			  padding-bottom: 38px;
+			  padding-left: 20px;
+			  transition: all 0.35s;
+			  border: 1px solid #e7e7e7;
+			}
+			.team-card-style-3 .team-thumb, .team-card-style-4 .team-thumb {
+			  width: 90px;
+			  margin: auto;
+			  margin-bottom: 17px;
+			}
+			.team-card-style-3 .team-position, .team-card-style-4 .team-position {
+			  margin-bottom: 0;
+			}
+			.team-card-style-3 .team-contact-link, .team-card-style-4 .team-contact-link {
+			  color: #404040;
+			  font-weight: 600;
+			}
+			.team-card-style-3 .team-contact-link > i, .team-card-style-4 .team-contact-link > i {
+			  color: #8c8c8c !important;
+			}
+			.team-card-style-3 .team-contact-link:hover, .team-card-style-4 .team-contact-link:hover {
+			  color: rgba(64, 64, 64, .6);
+			}
+			.team-card-style-3 .team-social-bar-wrap, .team-card-style-4 .team-social-bar-wrap {
+			  position: absolute;
+			  bottom: -18px;
+			  left: 0;
+			  width: 100%;
+			}
+			.team-card-style-3 .team-social-bar-wrap > .team-social-bar, .team-card-style-4 .team-social-bar-wrap > .team-social-bar {
+			  display: table;
+			  margin: auto;
+			  background-color: #fff;
+			  box: 0 12px 20px 1px rgba(64, 64, 64, .11);
+			}
+			.team-card-style-3:hover, .team-card-style-4:hover {
+			  border-color: transparent;
+			  box: 0 12px 20px 1px rgba(64, 64, 64, .09);
+			}
+			.team-card-style-4 {
+			  padding-top: 24px;
+			  padding-bottom: 31px;
+			  padding-left: 24px;
+			}
+			.team-card-style-4 .team-name {
+			  margin-bottom: 5px;
+			}
+			.team-card-style-4 .team-social-bar-wrap {
+			  position: relative;
+			  bottom: auto;
+			  left: auto;
+			  margin-top: 20px;
+			}
+			.team-card-style-4 .team-social-bar-wrap > .team-social-bar {
+			  margin: 0;
+			}
+			.team-card-style-5 {
+			  padding-bottom: 24px;
+			  transition: box-shadow 0.35s 0.12s;
+			}
+			.team-card-style-5 .team-thumb {
+			  position: relative;
+			  margin-bottom: 24px;
+			}
+			.team-card-style-5 .team-thumb::after {
+			  display: block;
+			  position: absolute;
+			  top: 0;
+			  left: 0;
+			  width: 100%;
+			  height: 100%;
+			  transition: opacity 0.35s 0.12s;
+			  background-color: #ac32e4;
+			  content: '';
+			  opacity: 0;
+			  z-index: 1;
+			}
+			.team-card-style-5 .team-card-inner {
+			  position: absolute;
+			  bottom: 0;
+			  left: 0;
+			  width: 100%;
+			  padding: 16px;
+			  padding-bottom: 26px;
+			  transform: translateY(10px);
+			  transition: all 0.35s 0.12s;
+			  text-align: center;
+			  opacity: 0;
+			  z-index: 5;
+			}
+			.team-card-style-5 .team-contact-link, .team-card-style-5 .team-contact-link:hover {
+			  color: #fff;
+			}
+			.team-card-style-5 .sb-style-6.sb-light-skin, .team-card-style-5 .sb-style-7.sb-light-skin {
+			  border-color: rgba(255, 255, 255, .35);
+			}
+			.team-card-style-5 .team-name {
+			  margin-bottom: 6px;
+			  padding: 0 16px;
+			}
+			.team-card-style-5 .team-position {
+			  display: block;
+			  padding: 0 16px;
+			  transition: color 0.35s 0.12s;
+			}
+			.team-card-style-5:hover {
+			  box-shadow: 0 12px 20px 1px rgba(64, 64, 64, .09);
+			}
+			.team-card-style-5:hover .team-thumb::after {
+			  opacity: 0.7;
+			}
+			.team-card-style-5:hover .team-card-inner {
+			  transform: translateY(0);
+			  opacity: 1;
+			}
+			.team-card-style-5:hover .team-position {
+			  color: #ac32e4;
+			}
+			.team-card-style-3 .team-social-bar-wrap>.team-social-bar, .team-card-style-4 .team-social-bar-wrap>.team-social-bar {
+				display: table;
+				margin: auto;
+				background-color: #fff;
+				-webkit-box-shadow: 0 12px 20px 1px rgba(64,64,64,0.11);
+				box-shadow: 0 12px 20px 1px rgba(64,64,64,0.11);
+			}
+			.social-btn {
+				display: inline-block;
+				width: 36px;
+				height: 36px;
+				margin: 0;
+				-webkit-transition: all .3s;
+				transition: all .3s;
+				font-size: 18px;
+				line-height: 36px;
+				vertical-align: middle;
+				text-align: center !important;
+				text-decoration: none;
+			}
+			.sb-twitter {
+				color: #55acee !important;
+			}
+			.sb-github {
+				color: #4183c4 !important;
+			}
+			.sb-linkedin {
+				color: #0976b4 !important;
+			}
+			.sb-skype {
+				color: #00aff0 !important;
+			}
+			.sb-style-2, .sb-style-3, .sb-style-4, .sb-style-5 {
+			  margin-right: 10px;
+			  margin-bottom: 10px;
+			  border-radius: 50%;
+			  background-color: #f5f5f5;
+			}
+			.sb-style-2.sb-light-skin, .sb-style-3.sb-light-skin, .sb-style-4.sb-light-skin, .sb-style-5.sb-light-skin {
+			  background-color: rgba(255, 255, 255, .1);
+			}
+			.sb-style-2:hover, .sb-style-3:hover, .sb-style-4:hover, .sb-style-5:hover, .sb-style-2.hover, .sb-style-3.hover, .sb-style-4.hover, .sb-style-5.hover {
+			  background-color: #fff;
+			  box-shadow: 0 12px 20px 1px rgba(64, 64, 64, .11);
+			}
+
 			div,span,p,td {
 				font-family:Open sans!Important
 			}
@@ -75,10 +430,9 @@
 			* {overflow:hidden}
 		</style>
 	</head>
-	<body>		<script src="https://sugardaddylocal.com/custom_menu.js"></script>
+	<body>		<script src="https://sugardaddylocal.com/custom_menu_updated.js"></script>
 	<div id="con" class="container">
-		<div id="profiles" class="" style="text-align:center;margin-top:25px;background:url(assets/images/bgs.jpg) center no-repeat;background-size:cover;">
-			<img src='assets/images/load.gif' style='width:100px'><br><br><div>FETCHING PROFILES<br>PLEASE WAIT</div>
+		<div id="profiles" class="" style="text-align:center;margin-top:25px;">
 		</div>
 	</div>
 	<script>
@@ -89,24 +443,26 @@
 			if($$('yes')) $$('yes').style.display='none'
 			if($$('no')) $$('no').style.display='none'
 			var di=document.createElement('div')
-			di.style.cssText='position:absolute;left:0;right:0;margin:auto;top:100px;height:400px;width:80%;max-width:650px;text-align:center;color:#000;font-size:2em;font-weight:300'
+			var ii=document.createElement('div')
+			di.style.cssText='opacity:0.1;position:absolute;left:0;right:0;margin:auto;top:0px;height:100%;width:100%;text-align:center;color:#000;font-size:2em;font-weight:300'
 			$$('profiles').innerHTML=''
 			$$('profiles').appendChild(di)
-			di.innerHTML="<img src='assets/images/load.gif' style='width:100px'><br><br><div>FETCHING PROFILES<br>PLEASE WAIT</div>"	
+			$$('profiles').appendChild(ii)
+			ii.innerHTML="<img src='js/loading.gif' style='width:40px;position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;background:none'>"	
 		}
-		setTimeout('showWait()',1)
 	
 	</script>
-	<link rel="stylesheet" href="rangeslider.css"/>
 	<script src="https://lushmatch.com/assets/js/jquery.js"></script>
 	<script src="https://lushmatch.com/assets/js/jquery-confirm.min.js"></script>
 	<script src="https://lushmatch.com/assets/js/common.js"></script>
 	<script src="https://lushmatch.com/assets/js/events.js"></script>
 	<script src="https://lushmatch.com/assets/js/jquery-ui.js"></script>
 	<script src="https://lushmatch.com/jsSocketNode.js"></script>
-	<script src="rangeslider.js"></script>
+	<script src="https://sugardaddylocal.com/js/wait.js"></script>
 
 <script>
+		setTimeout('wait3()',1)
+
 	var no_search=qs('count')
 	var no=qs('count')
 	if (!no) no=10
@@ -214,10 +570,12 @@
 	//	first=true
 		currMID=data[ptr].id
 		console.log(currMID)
-		setTimeout('loadProfiles('+no+')',1000)
+		setTimeout('loadProfiles('+no+')',100)
 	}
 	
 	function loadProfiles(no) {
+		hide()
+		wait3()
 		ctr=0
 		var type=qs('type')
 		var str=''
@@ -231,13 +589,13 @@
 			}
 		} else {
 			if (qs('browse')=='local') {
-				var url='https://lushmatch.com/x_browse_local.php?start='+start_local+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')
+				var url='https://sugardaddylocal.com/x_browse_local.php?start='+start_local+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')
 			} else if ((qs('browse')=='new') || (qs('browse')=='latest')) {
-				url='https://lushmatch.com/x_browse_new.php?start='+start_new+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')
+				url='https://sugardaddylocal.com/x_browse_new.php?start='+start_new+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')
 			} else if (qs('browse')=='new_local') {
-				url='https://lushmatch.com/x_browse_new_local.php?start='+start_new_local+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')
+				url='https://sugardaddylocal.com/x_browse_new_local.php?start='+start_new_local+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')
 			} else if (qs('browse')=='popular') {
-				url='https://lushmatch.com/x_browse_popular.php?start='+start_popular+'&user_rights='+currUR+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')
+				url='https://sugardaddylocal.com/x_browse_popular.php?start='+start_popular+'&user_rights='+currUR+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')
 			}
 		}
 		var imt,br,bkg='background: #fff',yes_pd=0
@@ -283,6 +641,7 @@
 			dataType: "html",
 			cache: false,
 			success: function(msg) {
+				hide()
 				<!-- window.top.frames[0].setMin(0) -->
 				<!-- window.top.frames[0].setMax(data.length) -->
 				<!-- ptr=data.indexOf(qs('id')) -->
@@ -293,7 +652,8 @@
 				var sql=msg.split('|')[1]
 				console.log(sql)
 				data=JSON.parse(data1)
-				
+				var bg=Math.floor(Math.random()*10)
+				if (bg>10) bg=0
 				if (first===true) {
 					if (data) {
 						data=fixdata(data)
@@ -315,49 +675,41 @@
 					var disp='block'
 				}
 					currLogin=data[i].login
-							str+=	'<div class="col-md-4 col-sm-4 col-xs-12" style="width:100%;max-width:500px;position:fixed;left:0;right:0;margin:auto;padding:0;margin-top:0px;">'
-							str+=	'		<div id="swm" class="team-thumb overlay-image view-overlay" style="position:relative;'+bkg+';border:none;margin-top:'+mt+'px">'
-							str+=	'			<img onerror="this.src=\'assets/img/no_photo.png\'" id="imgProfile'+data[i].id+'" onclick="view_img(this)" alt="" style="max-width:'+mh+';width:'+mh+';min-width:'+mh+';min-height:'+mh+';height:'+mh+';max-height:'+mh+';border-radius:'+br+'px;margin:'+imt+'px">'
-							str+=   '      		<div id="aboutM" class="general_infoP" style="background:#000;color:#fff;position:absolute;bottom:0;margin-bottom:0px;opacity:0.6;z-index:99999999999999999999999999999">'+data[i].general_info+'</div>'
-							str+=	'		</div>'
-							str+=	'		<div style="left:0;right:0;position:fixed;bottom:'+btm+'px;background:#f0f0f0;margin:auto;padding-top:5px;'+tb+':'+mtop+'px!Important;width:'+mw+'">'
-							str+=	'			<div id="profileText'+i+'" class="team-info">'
-							str+=	'					<table style="width:100%;background:#f0f0f0">'
-							str+=	'						<tr>'
-							str+=	'							<td style="width:20%;text-align:center">'
-							str+=	'								<a href="javascript:dislike(\''+'p'+data[i].id+'\')"><img id="no" src="https://gaysugardaddyfinder.com/assets/images/in_no.png" style="width:75px;padding:'+yes_pd+'px"></a>'
-							str+=	'							</td>'
-							str+=	'							<td style="width:60%">'
-							str+=	'								<div id="login'+i+'" class="loginP" style="font-size:32px!Important">'+data[i].login.toUpperCase().substr(0,10) + '</div>'
-							str+=	'							</td>'
-							str+=	'							<td style="width:20%;text-align:left">'
-							str+=	'								<a href="javascript:like(\''+'p'+data[i].id+'\')"><img id="yes" src="https://gaysugardaddyfinder.com/assets/images/in_yes.png" style="width:75px;padding:'+yes_pd+'px;"></a>'
-							str+=	'							</td>'
-							str+=	'						</tr>'
-							str+=	'					</table>'
-							str+=	'					<div class="genderP" style="font-weight:300;margin-top:-20px">'
-							str+=	'						<div style="font-size:18px!Important" class="genderP id="gender'+i+'">'+data[i].gender.toUpperCase()+' AGE' + data[i].age +  '</div> <div class="locationP" style="font-size:14px"><b>' + data[i].distance +' </b>MILES AWAY</b><div style="font-wight:300;font-family:Open Sans;font-size:21px">'+data[i].location.toUpperCase().substr(0,15) + '</div>'
+							str+=	'		<div class="col-md-4 col-sm-4 col-xs-12" style="max-height:475px!Important;width:100%;max-width:500px;position:fixed;left:0;right:0;margin:auto;padding:0;margin-top:0px;">'
+							str+=	'			<div class="team-card-style-1" style="box-shadow:none!Important;max-height:475px!Important;left:0;right:0;position:;bottom:'+btm+'px;background:;margin:auto;margin-bottom:10%;margin-top:10%;'+tb+':'+mtop+'px!Important;width:'+mw+';padding-top:0">'
+							str+=	'				<div class="team-card-style-1" style="background:url(https://sugardaddylocal.com/bg/fav_bg_0'+bg+'.jpg);background-size:cover;height:150px"></div>'
+							str+=	'				<img id="imgProfile'+data[i].id+'" src="https://lushmatch.com/sb/'+data[i].filename_1+'" style="width:200px;height:200px;border-radius:200px;border:10px solid white;margin:auto;margin-top:-100px">'
+							str+=	'				<div class="team-card-style-1" id="profileText'+i+'" class="team-info">'
+							str+=	'					<div>'
+							str+=	'						<table style="width:40%;margin:auto">'
+							str+=	'							<tr>'
+							str+=	'								<td style="width:50%;text-align:center">'
+							str+=	'									<div style="width:60px;height:60px;border-radius:60px;background:#f7e66a;padding:15px;"><a href="member_photo_albums.html?mid='+qs('id')+'"><img src="images/gallery_p.png" style="width:30px;margin-right:10px"></a></div>'
+							str+=	'								</td>'
+							str+=	'								<td style="width:50%;text-align:center">'
+							str+=	'									<div style="width:60px;height:60px;border-radius:60px;background:#f7e66a;padding:15px"><a href="member_video_albums.html?mid='+qs('id')+'"><img src="images/vgal.png" style="width:30px;margin-right:10px"></a></div>'
+							str+=	'								</td>'
+							str+=	'							</tr>'
+							str+=	'						</table>'
 							str+=	'					</div>'
-							str+=	'					<div id="location'+i+'" class="locationP"></div>'
-							str+=	'					<table style="margin-top:'+mgt+'px;margin-bottom:'+mgt+'px;width:'+mw+';background:#f0f0f0;">'
-							str+=	'						<tr>'
-							str+=	'							<td style="width:12.5%;text-align:center">'
-							str+=	'							</td>'
-							str+=	'							<td style="width:25%;text-align:center">'
-							str+=	'								<a href="javascript:send_mail('+data[i].id+')"><img src="https://lushmatch.com/yyy_mail.png"  style="width:60px"></a>'
-							str+=	'							</td>'
-							str+=	'							<td style="width:20%;text-align:center">'
-							str+=	'								<a href="javascript:toggle_favs()" style="text-decoration:none"><img id="fav' + data[i].id + '" style="width:60px" src="https://lushmatch.com/yyy_fav_off.png"></a>'
-							str+=	'							</td>'
-							str+=	'							<td style="width:25%;text-align:center">'
-							str+=	'								<a href="javascript:video_call(\''+data[i].login+'\')"><img src="https://lushmatch.com/yyy_video.png" style="width:60px"></a>'
-							str+=	'							</td>'
-							str+=	'							<td style="width:12.5%;text-align:center">'
-							str+=	'							</td></tr>'
-							str+=	'					</table>'
+							str+=	'					<br>'
+							var gen=data[i].gender.toUpperCase()
+							var gg=gen
+							str+=	'					<div style="font-size:18px!Important;margin-top:-15px;margin-bottom:10px"><b>'+data[i].login.toUpperCase()+'</b></div><div style="font-size:18px!Important;;margin-top:-10px" class="genderP id="gender'+i+'">'+' ' + gg +' <b>' + data[i].age+'</b><div style="font-wight:300;font-family:Open Sans;font-size:21px">'+data[i].location.toUpperCase().substr(0,15) + '</div><div id="location'+i+'" class="locationP"></div></div>'
+							str+=	'						<table style="width:100%;text-align:center;margin-top:'+(mgt)+'px;margin-bottom:'+mgt+'px;padding-bottom:25px;width:'+mw+';">'
+							str+=	'							<tr>'
+							str+=	'								<td style="width:100%;text-align:center">'
+							str+=	'									<a href="javascript:toggle_favs()" style="text-decoration:none"><div class="col-xs-1" style="height:50px;width:50px;border-radius:50px;padding:12px;border:0px solid grey;margin-left:5%;margin-right:5%;background:lavenderblush"><img src="images/heart_w.png" style="width:20px"></div></a>'
+							str+=	'									<a href="javascript:send_mail('+data[i].id+')" style="text-decoration:none"><div class="col-xs-1" style="height:50px;width:50px;border-radius:50px;padding:12px;border:0px solid grey;margin-left:5%;margin-right:5%;background:lavender"><img src="images/bubble_w.png" style="width:20px"></div></a>'
+							str+=	'									<a href="javascript:video_call(\''+data[i].login+'\')" style="text-decoration:none"><div class="col-xs-1" style="height:50px;width:50px;border-radius:50px;padding:12px;border:0px solid grey;margin-left:5%;margin-right:5%;background:#f0f0f0"><img src="images/video_w.png" style="width:25px"></div></a>'
+							str+=	'									<a href="javascript:toggle_favs()" style="text-decoration:none"><div class="col-xs-1" style="height:50px;width:50px;border-radius:50px;padding:12px;border:0px solid grey;margin-left:5%;margin-right:5%;background:gainsboro"><img src="images/info2.png" style="width:25px;opacity:0.8"></div></a>'
+							str+=	'								</td>'
+							str+=	'							</tr>'
+							str+=	'						</table>'
+							str+=	'					</div>'
 							str+=	'				</div>'
 							str+=	'			</div>'
-							str+=	'</div>'
+							str+=	'		</div>'
 							id=data[i].id
 							ur=data[i].user_rights
 							//if (mids.indexOf(id)<0) {
@@ -430,6 +782,9 @@
 				return dat1
 			}
 		}	
+	}
+	function getRating(mid) {
+		$.ajax({url:'rating.php?mid='+mid,success:function(data){$$('x_r').html(data)}})
 	}
 	function showText(txt) {
 		$('#aboutM').animate({height: 150}, "fast")

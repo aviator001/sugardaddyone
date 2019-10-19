@@ -84,7 +84,7 @@
 	</style>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300|Open+Sans+Condensed:300" rel="stylesheet" type="text/css" />
 
-		<body style="background:#f0f0f0"><script src="https://sugardaddylocal.com/custom_menu.js"></script>
+		<body style="background:#f0f0f0"><script src="https://sugardaddylocal.com/custom_menu_updated.js"></script>
 
 	<div class="page-loader">
 		<img src="https://lushmatch.com/assets/img/loader.gif" alt="">
@@ -540,6 +540,68 @@
 	<!-- }); -->
 	<!-- $( "#quickSearchTerm" ).autocomplete( "option", "appendTo", "#xresults" ); -->
 
+	var str=''
+	str ='		<div id="bottom_barx" style="position:fixed;bottom:0px;width:100%;margin:auto;left:0;right:0;background:#e0e0e0!Important">'
+	str+='			<table style="left:0;right:0;padding:0;margin:auto;font-size:0;width:100%;width:100%;background:#e0e0e0!Important;">'
+	str+='				<tbody>'
+	str+='					<tr>'
+	str+='						<td style="width:20%;text-align:center;padding:10px"><a href="javascript:history.go(-1)"><img style="width:25px;text-align:center;margin:0!Important;padding:0!Important;cursor:hand;cursor:pointer" src="images/backx.png"></a></td>'
+	str+='						<td style="width:20%;text-align:center;padding:10px"><a href="home.html"><img style="width:30px;text-align:center;margin:0!Important;padding:0!Important;cursor:hand;cursor:pointer" src="img/home2.png"></a></td>'
+	str+='						<td style="width:20%;text-align:center;padding:10px"><a href="javascript:show_wait();search()"><img style="width:30px;text-align:center;margin:0!Important;padding:0!Important" src="img/search2.png"></a></td>'
+	str+='						<td style="width:20%;text-align:center;padding:10px"><a href="javascript:show_wait();killCookie();settings()"><img style="width:30px;text-align:center;margin:0!Important;padding:0!Important" src="img/settings2.png" onclick="javascript:xback()"></td>'
+	str+='						<td style="width:20%;text-align:center;padding:10px"><a href="javascript:show_wait();inbox()"><img style="width:30px;text-align:center;margin:0!Important;padding:0!Important" src="img/messages2.png"></a></td>'
+	str+='					</tr>'
+	str+='				</tbody>'
+	str+='			</table>'
+	str+='		</div>'
+	
+	var dvr=document.createElement('div')
+	dvr.innerHTML=str
+	document.documentElement.appendChild(dvr)
+
+	var top_header=document.createElement('div')
+	top_header.id='top_header'
+	top_header.style.cssText='position:fixed;width:100%;height:70px;max-height:40px!Important;top:0;z-index:99999'
+
+	function killCookie() {
+		setTimeout(function(){
+			setCookie('frameSrc','')
+		},1)		
+	}
+	
+	var str=''
+	str+='<table id="table_header" style="box-shadow:0 0 10px #000;height:40px;background:#666;width:100%;margin:auto;left:0;right:0;margin-top:0px;font-family:Open Sans Condensed;font-size:14px!Important;">'
+	str+='		<tr>'
+	str+='			<td id="tdA" style="text-align:left;width:15%;padding:5px;height:30px;max-height:40px!Important">'
+	str+='				<a href="shortlist.html?view=list"><img style="width:30px" src="images/cart.png"></a>'
+	str+='				<div id="shortlist_count" style="width:25px;height:25px;border-radius:25px;position:absolute;background:red;color:white;font-size:16px;text-align:center;margin-top:-30px;margin-left:23px">0</div>'
+	str+='			</td>'
+	str+='			<td id="tdB" style="width:45%;text-align:left">'
+	str+='				<a href="shortlist.html?view=list"><img style="width:30px;margin-top:3px" src="img/mailicon.png"></a>'
+	str+='				<div id="mail_count" style="width:25px;height:25px;border-radius:25px;position:absolute;background:red;color:white;font-size:16px;text-align:center;margin-top:-28px;margin-left:23px">0</div>'
+	str+='			</td>'
+	str+='			<td id="tdC" style="width:40%;text-align:right">'
+	str+='				<table id="standardHeader" style="width:100%;text-align:right">'
+	str+='					<tr>'
+	str+='						<td id="tdC1">'
+	str+='							<a href="map.html"><img src="img/view_map.png" style="width:20px"></a>'
+	str+='						</td>'
+	str+='						<td id="tdC2">'
+	str+='							<span id="span_list"><a href="javascript:list_view()"><img id="img_list" src="img/view_list.png"></a></span>'
+	str+='							<span id="span_gallery" style="opacity:1"><a href="javascript:gallery_view()"><img id="img_gallery" style="width:20px" src="img/view_gallery.png"></a></span>'
+	str+='						</td>'
+	str+='						<td id="tdC3">'
+	str+='							<a href="javascript:show_drop_down_menu()"><img style="margin-right:5px" src="img/menu.png"></a>'
+	str+='						</td>'
+	str+='					</tr>'
+	str+='				</table>'
+	str+='			</td>'
+	str+='		</tr>'
+	str+='	</table>'
+	str+='	<img id="line_spark" src="images/line_1.png" style="display:none;position:fixed;top:36px;z-index:-1;opacity:1">'
+	str+='	<img id="glow_spark" src="images/glow_w.png" style="display:none;width:35px;height:40px;position:fixed;top:39px;z-index:2;opacity:0.6">'
+	top_header.innerHTML=str	
+	document.documentElement.appendChild(top_header)
 window.keypress=xsend	
 if (tmr2) clearInterval(tmr2)
 getMailX() 
