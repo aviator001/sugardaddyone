@@ -2,10 +2,11 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0">
+		<meta name="viewport" content="width=1024">
 		<meta name="description" content="A Sugar Daddy dating site that connects handsome wealthy and caring men to hot young women. Worlds first Sugar Daddy site to use disruptive SMS messaging. Find a Sugar Daddy today!" />		
 		<meta name="Author" content="Gautam Sharma" />		
 		<meta name="format-detection" content="telephone=no"/>
+		<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />		
 		<title>Elite Dating | SugarDaddyOne.com</title>
 		<link rel="canonical" href="">
 		<link rel="icon" href="favicon.png">
@@ -21,6 +22,13 @@
 		<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic|Open+Sans:300' rel='stylesheet' type='text/css'>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 <!-- Global site tag (gtag.js) - Google Analytics -->
+<style>
+	* 	{
+			max-width:480px!Important;
+			margin:auto;
+			
+		}
+</style>
 <script src="js/jquery.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-61204113-1"></script>
 <script>
@@ -100,7 +108,7 @@
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script> 
 		<![endif]-->
 </head>
-	<body>
+	<body style="background:black">
 		<div class="page-loader">
 			<img src="assets/img/loader.gif" alt="">
 		</div>
@@ -111,8 +119,7 @@
 						<nav class="navbar navbar-default redq" role="navigation">
 						<div class="container">
 							<!-- Brand and toggle get grouped for better mobile display -->
-							<div class="navbar-header"  style="width:300px;position:absolute;margin:auto;left:0;right:0">
-								<a class="" href="index.html"><img src="assets/img/logo_narrow.png" id="logo_upper" alt="" style="width:100%;position:absolute;top:20px;left:10px"></a>
+							<div class="navbar-header"  style="width:300px;position:;margin:auto;left:0;right:0">
 							</div>
 							<div class="collapse navbar-collapse" style="background:">
 								<a class="navbar-brand mobile pull-left" href="#"><img src="https://lushmatch.com/icon.png" style="width:100px"></a>
@@ -132,7 +139,8 @@
 				<!-- end .container -->
 			</div>
 		</header> 
-		<div id="large-header" class="large-header">
+		<img src="assets/img/logo_narrow.png" style="margin-left:25%;margin-right:25%;width:50%;position:absolute;z-index:999999999999999999;top:80px">
+		<div id="large-header" class="large-header" style="margin-top:-70px">
 			<canvas id="demo-canvas"></canvas>
 			<h1 class="main-title" style="font-size:2.2em;width:100%">INSTANTLY <div class="thin wow pulse" data-wow-duration="1.8s" data-wow-delay="0.5s" data-wow-iteration="3">CONNECT</div>
 			<div class="smallh wow zoomIn" style="line-height:20px!Important"> TO THE SUGAR DADDY OR SUGAR BABY OF YOUR DREAMS RIGHT NOW </div><br/>
@@ -143,13 +151,13 @@
 			</h1>
 		</div>
 
-	<div id="send_email" onkeyup="deduct()" class="modal_window" style="padding:20px;border-radius:6px;position:absolute;z-index:9999999999999;display:none;background:#f0f0f0;top:100px;left:0;right:0;margin:auto;width:320px;max-width:320px;height:500px;font-family:Ubuntu Condensed;font-size:24px;"><div id="tip" style='color:brown;font-family:Ubuntu Condensed'>SEND ANONYMOUS SMS<br><br><div style="font-size:18px;color:#333;font-family:Ubuntu Condensed">1. Your number will not be revealed<br>2. Message will show as coming from </div></div><br><br><div contentEditable onblur='fill_txt()' onclick='erase_txt()' id='message_text' style='word-wrap:break-word;font-family:Ubuntu Condensed;font-size:24px;contentEditable:true;color:#0093D9;cursor:hand;cursor:pointer;border-radius:4px;border:3px solid lightblue;height:170px;max-height:170px;color:#333;overflow-y:scroll;overflow-x:hidden;color:grey;background:#fff;padding:20px;background:#fff'>Type Message Here</div><div><div style="left:20px;position:absolute">CHARACTERS REMAINING: <b><div id="cr">160</div></b></div></div><br><br><div style='margin-top:10px'><div style="font-size:22px"  class="btn btn-info" onclick='send_sms()' id="send_mail">SEND</div>&nbsp;<div style="font-size:22px"  class="btn btn-danger" onclick="document.all.modal_text.style.display='none'" id="">GO BACK</div></div></div>
-	<div id="send_sms" onkeyup="deduct()" class="modal_window" style="padding:20px;border-radius:6px;position:absolute;z-index:9999999999999;display:none;background:#f0f0f0;top:100px;left:0;right:0;margin:auto;width:320px;max-width:320px;height:500px;font-family:Ubuntu Condensed;font-size:24px;"><div id="tip" style='color:brown;font-family:Ubuntu Condensed'>SEND ANONYMOUS SMS<br><br><div style="font-size:18px;color:#333;font-family:Ubuntu Condensed">1. Your number will not be revealed<br>2. Message will show as coming from </div></div><br><br><div contentEditable onblur='fill_txt()' onclick='erase_txt()' id='message_text' style='word-wrap:break-word;font-family:Ubuntu Condensed;font-size:24px;contentEditable:true;color:#0093D9;cursor:hand;cursor:pointer;border-radius:4px;border:3px solid lightblue;height:170px;max-height:170px;color:#333;overflow-y:scroll;overflow-x:hidden;color:grey;background:#fff;padding:20px;background:#fff'>Type Message Here</div><div><div style="left:20px;position:absolute">CHARACTERS REMAINING: <b><div id="cr">160</div></b></div></div><br><br><div style='margin-top:10px'><div style="font-size:22px"  class="btn btn-info" onclick='send_sms()' id="send_mail">SEND</div>&nbsp;<div style="font-size:22px"  class="btn btn-danger" onclick="img.style.display='block';document.all.cover.style.display='none';document.all.modal_text.style.display='none';document.all.modal.style.display='none'" id="">GO BACK</div></div></div>
-	<section id="modalLogin" class="popupContainer" style="position:absolute;display:none;z-index:999999999999999999999;background:aliceblue;margin:auto;left:0;right:0">
+	<div id="send_email" onkeyup="deduct()" class="modal_window" style="padding:20px;border-radius:6px;position:;z-index:9999999999999;display:none;background:#f0f0f0;top:100px;left:0;right:0;margin:auto;width:320px;max-width:320px;height:500px;font-family:Ubuntu Condensed;font-size:24px;"><div id="tip" style='color:brown;font-family:Ubuntu Condensed'>SEND ANONYMOUS SMS<br><br><div style="font-size:18px;color:#333;font-family:Ubuntu Condensed">1. Your number will not be revealed<br>2. Message will show as coming from </div></div><br><br><div contentEditable onblur='fill_txt()' onclick='erase_txt()' id='message_text' style='word-wrap:break-word;font-family:Ubuntu Condensed;font-size:24px;contentEditable:true;color:#0093D9;cursor:hand;cursor:pointer;border-radius:4px;border:3px solid lightblue;height:170px;max-height:170px;color:#333;overflow-y:scroll;overflow-x:hidden;color:grey;background:#fff;padding:20px;background:#fff'>Type Message Here</div><div><div style="left:20px;position:">CHARACTERS REMAINING: <b><div id="cr">160</div></b></div></div><br><br><div style='margin-top:10px'><div style="font-size:22px"  class="btn btn-info" onclick='send_sms()' id="send_mail">SEND</div>&nbsp;<div style="font-size:22px"  class="btn btn-danger" onclick="document.all.modal_text.style.display='none'" id="">GO BACK</div></div></div>
+	<div id="send_sms" onkeyup="deduct()" class="modal_window" style="padding:20px;border-radius:6px;position:;z-index:9999999999999;display:none;background:#f0f0f0;top:100px;left:0;right:0;margin:auto;width:320px;max-width:320px;height:500px;font-family:Ubuntu Condensed;font-size:24px;"><div id="tip" style='color:brown;font-family:Ubuntu Condensed'>SEND ANONYMOUS SMS<br><br><div style="font-size:18px;color:#333;font-family:Ubuntu Condensed">1. Your number will not be revealed<br>2. Message will show as coming from </div></div><br><br><div contentEditable onblur='fill_txt()' onclick='erase_txt()' id='message_text' style='word-wrap:break-word;font-family:Ubuntu Condensed;font-size:24px;contentEditable:true;color:#0093D9;cursor:hand;cursor:pointer;border-radius:4px;border:3px solid lightblue;height:170px;max-height:170px;color:#333;overflow-y:scroll;overflow-x:hidden;color:grey;background:#fff;padding:20px;background:#fff'>Type Message Here</div><div><div style="left:20px;position:">CHARACTERS REMAINING: <b><div id="cr">160</div></b></div></div><br><br><div style='margin-top:10px'><div style="font-size:22px"  class="btn btn-info" onclick='send_sms()' id="send_mail">SEND</div>&nbsp;<div style="font-size:22px"  class="btn btn-danger" onclick="img.style.display='block';document.all.cover.style.display='none';document.all.modal_text.style.display='none';document.all.modal.style.display='none'" id="">GO BACK</div></div></div>
+	<section id="modalLogin" class="popupContainer" style="position:;display:none;z-index:999999999999999999999;background:aliceblue;margin:auto;left:0;right:0">
 		<div id="cover" style="display:;position:fixed;width:100%;height:100%;background:#000;opacity:0.7;z-index:;top:0;left:0;bottom:0;right:0"></div>
 		<div class="popupHeader" style="background:#f0f0f0;height:55px!Important;width:100%;font-size:2em">
 			<div class="header_title" style="font-size:24px!Important">Login</div>
-			<div id="close_me" style="right:10px;position:absolute"><img src="https://terrawire.com/images/new_close.png" style="width:15px"></div>
+			<div id="close_me" style="right:10px;position:"><img src="https://terrawire.com/images/new_close.png" style="width:15px"></div>
 		</div>
 		<div class="popupHeader">
 			<!-- Social Login -->
@@ -227,8 +235,8 @@
 				</div>
 		</div>
 	</section>
-	<div id="loader" style="display:none;z-index:99999999999999999;position:absolute;top:0;left:0;right:0;bottom:0;opacity:0.3;margin:auto;background:#000;font-family:Open Sans Condensed;"></div>
-	<img id="img_loader" style="display:none;z-index:999999999999999999;position:absolute;top:0;left:0;right:0;bottom:0;opacity:1;margin:auto;width:50px" src="assets/img/load.gif">
+	<div id="loader" style="display:none;z-index:99999999999999999;position:;top:0;left:0;right:0;bottom:0;opacity:0.3;margin:auto;background:#000;font-family:Open Sans Condensed;"></div>
+	<img id="img_loader" style="display:none;z-index:999999999999999999;position:;top:0;left:0;right:0;bottom:0;opacity:1;margin:auto;width:50px" src="assets/img/load.gif">
 	<script type="application/ld+json">
 	{
 	  "@context": "http://schema.org",

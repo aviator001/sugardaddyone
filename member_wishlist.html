@@ -11,7 +11,7 @@
 	<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic|Open+Sans:300' rel='stylesheet' type='text/css'>
     <style type="text/css">
     	body{
-    background:#eee;    
+    background:#fff;    
 }
 .widget-author {
   margin-bottom: 58px;
@@ -187,8 +187,12 @@ a.list-group-item, .list-group-item-action {
     background-color: transparent;
     content: '';
 }
+h1 {
+	font-family:Open Sans;font-weight:300;text-align:center;padding:5px;background:none
+}
+
 h2 {
-	font-family:Open Sans;font-weight:300;text-align:center;padding:5px;background:aliceblue
+	font-family:Open Sans;font-weight:300;text-align:center;padding:5px;background:none
 }
 
 .font-bigger{
@@ -196,9 +200,12 @@ h2 {
 }
     </style>
 	<script src="https://lushmatch.com/assets/js/jquery.js"></script>
+	<script src="https://sugardaddylocal.com/custom_menu_updated.js"></script>
 	<script>
 	dinit()
+	
 	function dinit() {
+	
 		var url = 'https://lushmatch.com/x_get_user_info.php?member_id=' + qs('mid')
 		console.log(url)
 		var request = $.ajax({
@@ -207,16 +214,34 @@ h2 {
 				dataType: "html", 
 				cache: false,
 				success: function(msg) {
-					console.log(msg)
 					msg=JSON.parse(msg)
-					window.top.document.getElementById('full_name').innerHTML=msg.login
-					window.top.document.getElementById('joined').innerHTML=msg.xReg_Date
-					window.top.document.getElementById('user_photo').src='https://lushmatch.com/sb/'+msg.filename_1
-					window.top.document.getElementById('user_photo').style.width='100px'
-					window.top.document.getElementById('user_photo').style.height='100px'
-					window.top.document.getElementById('user_photo').style.borderRadius='150px'
-					window.top.document.getElementById('user_photo').style.marginTop='-25px'
-					window.top.document.getElementById('user_photo').style.border='10px solid white'
+										console.log(msg)
+
+					if ((msg.filename_1.indexOf('png')>=0) || (msg.filename_1.indexOf('jpg')>=0)) {
+						var type='photo'
+					} else {
+						var type='video'
+					}
+					if (type=='photo') {
+						$$('mv').innerHTML=''
+						$$('user_photo').src='https://lushmatch.com/sb/'+msg.filename_1
+						$$('user_photo').style.display='block'
+					} else {
+						$$('user_photo').style.display='none'
+						var video = document.createElement('video');
+						$$('mv').innerHTML=''
+						video.controls = false;
+						video.muted=true
+						video.autoplay=true
+						video.className='col-xs-3 www_box'
+						video.style.cssText='object-fit:cover;width:100px;height:100px;border-radius:100px;;border:none;margin:0;padding:0;border:5px solid #f0f0f0;margin-top:-25px'
+						$$('mv').appendChild(video);
+						video.id=id
+						video.load()
+						video.src='https://lushmatch.com/sb/'+msg.filename_1
+						video.loop=true
+						video.play()
+					}
 				}
 			})			
 	}
@@ -343,23 +368,19 @@ h2 {
 		</script>	
 </head>
 <body>
-<div class="container mt-5">
+<div class="container mt-5"> 
     <div class="row">
-        <div class="col-lg-4 pb-5">
-            <!-- Account Sidebar-->
-            <div class="author-card pb-3">
-				<h2>MY WISHLIST</h2>
-                <div class="author-card-cover" style="background-image: url(images/b5.jpg);background-size:cover"></div>
+        <div class="col-lg-4 pb-5" style="padding:0">
+		
+            <div class="author-card pb-3" style="background: url(https://sugardaddylocal.com/bg/fav_bg_00.jpg);background-size:cover">
+				<div style="width:100%;opacity:1;background:#f0f0f0;!Important;z-index:9999"><h2 id="blogin" style="margin-left:120px;text-shadow:1px 1px 1px #fff">MY WISHLIST</h2></div>
+
+                
                 <div class="author-card-profile">
-						<button style="position:absolute; margin-left:115px;margin-top:65px" onclick="go_member_profile()" class="btn">Back to Members Profile</button>
-                    <div class=""><img src="https://bootdey.com/img/Content/avatar/avatar1.png" id="user_photo">
-                    </div>
-                    <div class="author-card-details">
-                        <h5 class="author-card-name text-lg"><span id="full_name"></span></h5><span class="author-card-position">Joined <span id="joined"></span></span>
-                    </div>
+					<br><div id="mv"></div><img src="https://bootdey.com/img/Content/avatar/avatar1.png" style="border:10px solid white;width:130px;height:130px;border-radius:130px;margin-top:-50px" id="user_photo">
                 </div>
             </div>
-            <div class="wizard">
+            <div class="wizard" style="background:white">
                 <nav id="wishlist" class="list-group list-group-flush">
                 </nav>
             </div>
@@ -415,7 +436,7 @@ h2 {
 		var str=''
 		function loadWishList() {
 			console.log('x_get_wishlists.php?mid='+qs('mid'))
-			var url='x_get_wishlists.php?mid='+qs('mid')
+			var url='https://sugardaddylocal.com/x_get_wishlists.php?mid='+qs('mid')
 			var request = $.ajax({
 				url: url,
 				type: "GET",
@@ -423,7 +444,7 @@ h2 {
 				cache: false,
 				success: function(msg) {
 					if (msg=='null') {
-						str='No Items Found'
+						str='<div style="width:100%;padding:50px;margin-top:100px"><h2>There is nothing that I wish for at this moment</h2></div>'
 					} else {
 						var data=JSON.parse(msg)
 						console.log(data)
@@ -435,7 +456,7 @@ h2 {
 							var title=t[0]+' '+t[1]+' '+t[2]+' '+t[3]
 							title=title.substr(0,24)
 							itm='<table><tr><td style="width:10%;text-align:center"><a href="javascript:wish_detail('+data[i].itemID+')"><img src="' + data[i].image + '" style="width:40px;height:40px;border-radius:40px"></a></td><td style="width:90%"><table style="width:100%;"><tr><td style="background:;min-width:65%!Important;max-width:65%!Important;width:65%!Important;text-align:left"><div style="background:;min-width:65%!Important;max-width:65%!Important;width:65%!Important;text-align:left"><a style="color:black" href="javascript:wish_detail('+data[i].itemID+')">ITEM ' + (i+1) + '</a></div></td><td style="text-align:right;position:absolute;right:10px">$'+data[i].price+'</td></tr><tr><td colspan=3 style="color:silver;font-size:0.9em"><a style="color:silver" href="javascript:wish_detail('+data[i].itemID+')">'+title+'</a></td></tr></table></td></tr></table>'
-							str+='<a id="wish' + i + '" class="list-group-item d-flex justify-content-between align-items-center font-weight-medium text-uppercase font-bigger">'+ itm +'</a> <button class="btn btn-danger" style="font-size:14px"><b>BUY HER THIS GIFT NOW!</button></b>'
+							str+='<a id="wish' + i + '" class="list-group-item d-flex justify-content-between align-items-center font-weight-medium text-uppercase font-bigger">'+ itm +'</a> <button class="btn btn-danger" style="font-size:14px" onclick="buythis('+data[i].itemID+')"><b>BUY HER THIS GIFT NOW!</button></b>'
 						}
 					}
 					$('#wishlist').html(str)
@@ -454,6 +475,10 @@ h2 {
 		
 		function wish_detail(iid) {
 			window.top.location.href='ebay_item_detail.html?iid=' + iid + '&return=member_wishlist&'+'&mid='+qs('mid')
+		}
+		
+		function buythis(iid) {
+			$.alert('Coming Soon. We are working hard to bring you this functionality')
 		}
 		
 		function del_wish(wid) {

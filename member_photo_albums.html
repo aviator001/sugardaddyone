@@ -419,8 +419,9 @@ h2 {
 						albums=data.albums
 						var str=''
 						for (var i=0; i<albums.length; i++) {
-							if (albums[i].album_private=="true") {
-								str+='<a id="album_' + albums[i].album_id + '" style="justify-content:left!Important" class="list-group-item d-flex justify-content-between align-items-center font-weight-medium text-uppercase font-bigger" href="http://visuallock.com/mobile.html?jump=login"><img src="images/lock.png" style="width:20px"><span style="color:silver;margin-left:20px">' + albums[i].album_name +' [' + counts[i] + ' pix] </span></a>'
+							if (albums[i].album_private=="1") {
+//								str+='<a id="album_' + albums[i].album_id + '" style="justify-content:left!Important" class="list-group-item d-flex justify-content-between align-items-center font-weight-medium text-uppercase font-bigger" href="http://visuallock.com/mobile.html?jump=login"><img src="images/lock.png" style="width:20px"><span style="color:silver;margin-left:20px">' + albums[i].album_name +' [' + counts[i] + ' pix] </span></a>'
+								str+='<a id="album_' + albums[i].album_id + '" style="justify-content:left!Important" class="list-group-item d-flex justify-content-between align-items-center font-weight-medium text-uppercase font-bigger" href="gallery.html?mid='+qs('mid')+'&album_id=' + albums[i].album_id + '&type=photo&private=1"><img src="images/lock.png" style="width:20px"><span style="color:silver;margin-left:20px">' + albums[i].album_name +' [' + counts[i] + ' pix] </span></a>'
 							} else {
 								str+='<a id="album_' + albums[i].album_id + '" style="justify-content:left!Important" class="list-group-item d-flex justify-content-between align-items-center font-weight-medium text-uppercase font-bigger" href="gallery.html?mid='+qs('mid')+'&album_id=' + albums[i].album_id + '&type=photo"><img src="images/gallery_p.png" style="width:35px"><span style="color:silver;margin-left:20px">' + albums[i].album_name +' [' + counts[i] + ' pix] </span></a>'
 							}

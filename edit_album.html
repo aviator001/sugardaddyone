@@ -380,20 +380,20 @@ h2 {
 				<div style="padding:20px;opacity:1;background:#f0f0f0!Important;z-index:9999;width:100%;font-size:21px;margin-top:-100px"><b>ALBUM SETTINGS</b></div>
 				<div style="padding:5px;font-size:15px;padding:20px;margin-top:0px">
 					<table style="width:100%;font-size:14px;color:#000">
-						<tr>
-							<td>
+						<tr style="min-height:40px">
+							<td style="min-height:40px">
 								<b>PERMISSIONS</b>
 							</td>
-							<td style="width:50%"></b>
-								<b>ALBUM NAME</b>
+							<td style="width:50%;min-height:40px"></b>
+								<div style="display:none" id="cap"><b>SET ALBUM PASSWORD</b></div>
 							</td>
 						</tr>
-						<tr>
+						<tr style="min-height:40px">
 							<td>
-								<img id="pv" onclick="toggle_private()" src="images/exit_0.png" style="position:absolute;width:25px;margin-top:-25px"><div style="position:absolute;width:20px;margin-left:30px;margin-top:-25px;width:125px;font-size:15px">PRIVATE ALBUM?</div>
+								<table style="width:100%;margin:12px;font-size:15px"><tr><td><img id="pv" onclick="toggle_private1()" src="images/exit_0.png" style="width:25px;"></td><td>PRIVATE ALBUM?</td></tr></table>
 							</td>
-							<td>
-								<a href="javascript:msg_dis()"><input class="jco form-group" type="text" placeholder="Album Caption" readonly style="padding-left:2px;width:150px;height:40px" disabled id="caption" value="My Photos"></a>
+							<td style="width:50%;min-height:40px">
+								<input class="jco form-group" type="text" placeholder="Album Password" style="display:none;padding-left:2px;width:150px;height:40px" id="album_password" value="">
 							</td>
 						</tr>
 						<tr>
@@ -404,6 +404,11 @@ h2 {
 						<tr>
 							<td colspan=2>
 								<textarea id="album_desc" style="width:100%;padding:5px;border-radius:10px"></textarea>
+							</td>
+						</tr>
+						<tr>
+							<td colspan=2>
+								<button onclick="update_album()" class="btn btn=green">Update Album</button>
 							</td>
 						</tr>
 					</table>
@@ -449,7 +454,7 @@ h2 {
 			location.href='profile.html?id='+getCookie('mid')
 		}
 		
-
+		var general=[]
 		function load_media() {
 			console.log('x_get_media.php?mid='+getCookie('mid')+'&type='+qs('type')+'&album_id='+qs('album_id'))
 			var url='https://sugardaddylocal.com/x_get_media.php?mid='+getCookie('mid')+'&type='+qs('type')+'&album_id='+qs('album_id')
@@ -463,6 +468,28 @@ h2 {
 					console.log(data)
 					content=data.content
 					presence=data.presence
+					var album_private=data.data.album_private
+					var album_desc=data.data.album_desc
+					var album_password=data.data.album_password
+					$$('album_password').value=album_password
+					$$('album_desc').textContent=album_desc
+					if (album_private=='1') {
+						pp='private'
+						$$('pv').src="images/exit.png"
+						$('#album_password').show()
+						$$('album_password').style.marginTop='10px'
+						$$('pv').style.marginTop='5px'
+						$('#cap').show()					
+					} else {
+						pp='public'
+						$$('pv').src="images/exit_0.png"
+						$('#album_password').hide()
+						$$('album_password').style.marginTop=''
+						$$('pv').style.marginTop=''
+						$('#cap').hide()					
+						$$('album_password').value=''
+						album_password=''
+					}
 					console.log(content)
 					console.log(presence)
 					var str=''
@@ -598,6 +625,64 @@ h2 {
 				})
 			console.log(a,b,c,d)
 		}
+		var pp
+		function toggle_private1() {
+			if ($$('pv').src.indexOf('images/exit_0.png')>0) {
+				album_private=true
+				ab='1'
+				pp='private'
+				$$('pv').src="images/exit.png"
+				$('#album_password').show()
+				$$('album_password').style.marginTop='10px'
+				$$('pv').style.marginTop='5px'
+				$('#cap').show()
+			} else {
+				album_private=false
+				ab='0'
+				pp='public'
+				$$('pv').src="images/exit_0.png"
+				$('#album_password').hide()
+				$('#cap').hide()
+				$$('album_password').value=''
+			}
+		}
+					
+		function update_album() {
+			if ($$('album_password').value=='' && pp=='private')  {
+				$.confirm({
+					type: 'red',
+					theme: 'modern',
+					title: 'Password Needed',
+					content: 'Album cannot be set as private without a password. Please enter create an album password',
+					buttons: {
+					ok: function () {
+				
+						}
+					}
+				});
+			} else {
+				var request = $.ajax({
+					url: 'https://sugardaddylocal.com/x_update_album.php?album_password='+encodeURIComponent($$('album_password').value)+'&album_desc='+encodeURIComponent($$('album_desc').value)+'&album_id='+qs('album_id')+'&mid='+getCookie('mid'),
+					type: "GET",
+					dataType: "html", 
+					cache: false,
+					success: function(msg) {
+						$.confirm({
+							type: 'green',
+							theme: 'modern',
+							title: 'Update Complete!',
+							content: 'Album updated and set to be ' + pp,
+							buttons: {
+							ok: function () {
+						
+								}
+							}
+						});
+					}
+				})
+			}
+		}
+					
 		
 		function toggle_private() {
 			if ($$('pv').src.indexOf('images/exit_0.png')>0) {

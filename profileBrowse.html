@@ -430,11 +430,20 @@
 			* {overflow:hidden}
 		</style>
 	</head>
-	<body>		<script src="https://sugardaddylocal.com/custom_menu_updated.js"></script>
+	<body>
+	<script src="https://sugardaddylocal.com/custom_menu_updated.js"></script>
 	<div id="con" class="container">
 		<div id="profiles" class="" style="text-align:center;margin-top:25px;">
 		</div>
+		<div style="width:60%;border:none;margin:auto;left:0;right:0;position:fixed;top:50px;z-index:99999999999999;display:;height:75px">
+			<img id="s1" src="images/star_off.png">
+			<img id="s1" src="images/star_off.png">
+			<img id="s1" src="images/star_off.png">
+			<img id="s1" src="images/star_off.png">
+			<img id="s1" src="images/star_off.png">
+		</div>
 	</div>
+	
 	<script>
 		function $$(obj) {
 			return document.getElementById(obj)
@@ -670,53 +679,97 @@
 							setCookie('chatting_with',data[i].id)
 							var currEl=$$('p'+data[i].id)
 				general_info='No Profile Text'
+				if (data[i].gender=='Sugar Baby') factx='PRINCESS SCORE'
+					else factx='mMY REPUTITION'
 				if (data[i].general_info) {
 					general_info=data[i].general_info
+					if (general_info) {
+						if (general_info.length>100) {
+							var gi=data[i].general_info
+							var g=gi.replace(/\'/g, "-")
+							g=g.replace(/"/g, "-")
+							
+							general_info='<div style="font-size:12!px;padding-left:20px;padding-right:20px">'+g.substr(0,100) + '</div><img onclick="$.alert(\''+g+'\')" src="images/more.png" style="width:30px;height:30px">'
+							var general_info=g.substr(0,110) + ' <b STYLE="color:red" onclick="$.alert(\''+g+'\')"> ... MORE > </b>'
+							
+						}
+					}
 					var disp='block'
 				}
 					currLogin=data[i].login
-							str+=	'		<div class="col-md-4 col-sm-4 col-xs-12" style="max-height:475px!Important;width:100%;max-width:500px;position:fixed;left:0;right:0;margin:auto;padding:0;margin-top:0px;">'
-							str+=	'			<div class="team-card-style-1" style="box-shadow:none!Important;max-height:475px!Important;left:0;right:0;position:;bottom:'+btm+'px;background:;margin:auto;margin-bottom:10%;margin-top:10%;'+tb+':'+mtop+'px!Important;width:'+mw+';padding-top:0">'
-							str+=	'				<div class="team-card-style-1" style="background:url(https://sugardaddylocal.com/bg/fav_bg_0'+bg+'.jpg);background-size:cover;height:150px"></div>'
-							str+=	'				<img id="imgProfile'+data[i].id+'" src="https://lushmatch.com/sb/'+data[i].filename_1+'" style="width:200px;height:200px;border-radius:200px;border:10px solid white;margin:auto;margin-top:-100px">'
+							str+=	'		<div class="col-md-4 col-sm-4 col-xs-12" style="max-height:500px!Important;width:100%;max-width:500px;position:absolute;left:0;right:0;margin:auto;padding:0px;margin-top:0px;border-radius:12px">'
+							str+=	'			<div class="team-card-style-1" style="box-shadow:none!Important;max-height:500px!Important;left:0;right:0;position:;bottom:'+btm+'px;background:;margin:auto;margin-bottom:10%;border-radius:12px;margin-top:10%;'+tb+':'+mtop+'px!Important;width:'+mw+';padding-top:0">'
+							str+=	'				<div class="team-card-style-1" style="box-shadow:none!Important;background:url(https://sugardaddylocal.com/bg/fav_bg_0'+bg+'.jpg);background-size:cover;height:150px"></div>'
+							str+=	'				<a href="member_get_albums.html?id=' + data[i].id + '"><img id="imgProfile'+data[i].id+'" src="https://lushmatch.com/sb/'+data[i].filename_1+'" style="width:200px;height:200px;border-radius:200px;border:10px solid white;margin:auto;margin-top:-100px"></a>'
+							str+=	'				<a href="javascript:load_next()"><img src="images/nav4.png" style="width:70px;height:70px;position:absolute;margin-top:-30px;"></a>'
+							str+=	'				<a href="javascript:load_next()"><img src="images/nav9.png" style="margin-left:-' + 0.72*screen.width+'px;margin-top:-30px;width:70px;height:70px;position:absolute;"></a>'
 							str+=	'				<div class="team-card-style-1" id="profileText'+i+'" class="team-info">'
 							str+=	'					<div>'
-							str+=	'						<table style="width:40%;margin:auto">'
+							str+=	'						<table style="width:80%;margin:auto;">'
 							str+=	'							<tr>'
-							str+=	'								<td style="width:50%;text-align:center">'
-							str+=	'									<div style="width:60px;height:60px;border-radius:60px;background:#f7e66a;padding:15px;"><a href="member_photo_albums.html?mid='+qs('id')+'"><img src="images/gallery_p.png" style="width:30px;margin-right:10px"></a></div>'
+							str+=	'								<td style="width:25%;text-align:center">'
+							str+=	'									<div id="sun1" style="text-align:center;width:60px;height:60px;background:url(images/sun5.png);background-size:cover"><a href="javascript:send_mail('+data[i].id+')"><img src="images/bubble_w.png" style="margin:20px;width:25px;"></a></div>'
 							str+=	'								</td>'
-							str+=	'								<td style="width:50%;text-align:center">'
-							str+=	'									<div style="width:60px;height:60px;border-radius:60px;background:#f7e66a;padding:15px"><a href="member_video_albums.html?mid='+qs('id')+'"><img src="images/vgal.png" style="width:30px;margin-right:10px"></a></div>'
+							str+=	'								<td style="width:25%;text-align:center">'
+							str+=	'									<div id="sun2" style="text-align:center;width:60px;height:60px;background:url(images/sun5.png);background-size:cover"><a href="javascript:video_call(\''+data[i].login+'\')"><img src="images/video_w.png" style="margin:20px;width:25px;"></a></div>'
+							str+=	'								</td>'
+							str+=	'								<td style="width:25%;text-align:center">'
+							str+=	'									<div id="sun3" style=";opacity:1;text-align:center;width:60px;height:60px;background:url(images/sun5.png);background-size:cover"><a href="javascript:coming_soon()"><img src="images/ir.png" style="margin:18px;width:25px;"></a></div>'
+							str+=	'								</td>'
+							str+=	'								<td style="width:25%;text-align:center">'
+							str+=	'									<div id="sun4" style="text-align:center;width:60px;height:60px;background:url(images/sun5.png);background-size:cover"><a href="javascript:toggle_favs()"><img src="images/heart_w.png" style="margin:20px;width:25px;"></a></div>'
+							str+=	'								</td>'
+							str+=	'							</tr>'
+							str+=	'							<tr>'
+							str+=	'								<td style="width:25%;text-align:center;font-size:10px">'
+							str+=	'									<b>MSG USER</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+							str+=	'								</td>'
+							str+=	'								<td style="width:25%;text-align:center;font-size:10px">'
+							str+=	'									<b>VIDEO CALL</b>&nbsp;&nbsp;'
+							str+=	'								</td>'
+							str+=	'								<td style="width:25%;text-align:center;font-size:10px;opacity:0.5">'
+							str+=	'									<b>SEND A ROSE</b>	'
+							str+=	'								</td>'
+							str+=	'								<td style="width:25%;text-align:center;font-size:10px">'
+							str+=	'								<b>ADD FAV</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
 							str+=	'								</td>'
 							str+=	'							</tr>'
 							str+=	'						</table>'
 							str+=	'					</div>'
-							str+=	'					<br>'
+							str+=	'					<br><br><br>'
 							var gen=data[i].gender.toUpperCase()
 							var gg=gen
-							str+=	'					<div style="font-size:18px!Important;margin-top:-15px;margin-bottom:10px"><b>'+data[i].login.toUpperCase()+'</b></div><div style="font-size:18px!Important;;margin-top:-10px" class="genderP id="gender'+i+'">'+' ' + gg +' <b>' + data[i].age+'</b><div style="font-wight:300;font-family:Open Sans;font-size:21px">'+data[i].location.toUpperCase().substr(0,15) + '</div><div id="location'+i+'" class="locationP"></div></div>'
-							str+=	'						<table style="width:100%;text-align:center;margin-top:'+(mgt)+'px;margin-bottom:'+mgt+'px;padding-bottom:25px;width:'+mw+';">'
+							str+=	'					<div style="font-size:15px!Important;margin-top:-45px;margin-bottom:10px;width:100%"><b>'+data[i].login.toUpperCase()+', ' + data[i].age+'</b><div style="font-wight:300;font-family:Open Sans;font-size:15px;color:silver"><b>'+data[i].location.toUpperCase().substr(0,15) + '</b></div><div id="location'+i+'" class=""></div><div style="font-size:12px!Important;padding-left:30px;padding-right:30px">'+general_info+'</div></div>'
+							str+=	'						<table style="width:100%;text-align:center;margin:auto;margin-top:'+(mgt)+'px;margin-bottom:'+mgt+'px;padding-bottom:25px;width:70%;">'
 							str+=	'							<tr>'
-							str+=	'								<td style="width:100%;text-align:center">'
-							str+=	'									<a href="javascript:toggle_favs()" style="text-decoration:none"><div class="col-xs-1" style="height:50px;width:50px;border-radius:50px;padding:12px;border:0px solid grey;margin-left:5%;margin-right:5%;background:lavenderblush"><img src="images/heart_w.png" style="width:20px"></div></a>'
-							str+=	'									<a href="javascript:send_mail('+data[i].id+')" style="text-decoration:none"><div class="col-xs-1" style="height:50px;width:50px;border-radius:50px;padding:12px;border:0px solid grey;margin-left:5%;margin-right:5%;background:lavender"><img src="images/bubble_w.png" style="width:20px"></div></a>'
-							str+=	'									<a href="javascript:video_call(\''+data[i].login+'\')" style="text-decoration:none"><div class="col-xs-1" style="height:50px;width:50px;border-radius:50px;padding:12px;border:0px solid grey;margin-left:5%;margin-right:5%;background:#f0f0f0"><img src="images/video_w.png" style="width:25px"></div></a>'
-							str+=	'									<a href="javascript:toggle_favs()" style="text-decoration:none"><div class="col-xs-1" style="height:50px;width:50px;border-radius:50px;padding:12px;border:0px solid grey;margin-left:5%;margin-right:5%;background:gainsboro"><img src="images/info2.png" style="width:25px;opacity:0.8"></div></a>'
-							str+=	'								</td>'
+							str+=	'									<td style="width:20%;text-align:center"><a href="javascript:wishlist('+data[i].id+')" style="text-decoration:none"><img src="images/wlist.png" style="display:none;width:25px"></a></td>'
+							str+=	'									<td style="width:15%;text-align:center"><a href="javascript:wishlist('+data[i].id+')" style="text-decoration:none"><img src="images/new_wish.png" style="width:25px"></a></td>'
+							str+=	'									<td style="width:15%;text-align:center"><a href="javascript:coming_soon()"><img src="images/offer.png" style="width:25px;opacity:1"></a></td>'
+							str+=	'									<td style="width:15%;text-align:center"><a href="javascript:coming_soon()"><img src="images/rewards.png" style="width:20px;opacity:2"></a></td>'
+							str+=	'									<td style="width:15%;text-align:center"><a href="javascript:coming_soon()"><img src="images/people.png" style="opacity:2;width:25px"></a></td>'
+							str+=	'									<td style="width:20%;text-align:center"><a href="javascript:coming_soon()"><img src="images/people.png" style="display:none;opacity:2;width:25px"></a></td>'
+							str+=	'							</tr>'
+							str+=	'							<tr>'
+							str+=	'									<td style="width:20%;text-align:center;vertical-align:top"><a href="javascript:wishlist('+data[i].id+')" style="display:none;text-decoration:none;font-size:10px"><b>WISHLIST</b></a></td>'
+							str+=	'									<td style="width:15%;text-align:center;vertical-align:top"><a href="javascript:wishlist('+data[i].id+')" style="text-decoration:none;font-size:10px;color:orange"><b>WISHLIST</b></a></td>'
+							str+=	'									<td style="width:15%;text-align:center;font-size:10px;opacity:1"><a href="javascript:coming_soon()"><b style="color:grey">OFFERS</b></a></td>'
+							str+=	'									<td style="width:15%;text-align:center;font-size:10px;opacity:1"><a href="member_rewards.html"><b style="color:orange">REWARDS</b></a></td>'
+							str+=	'									<td style="width:15%;text-align:center;font-size:10px;opacity:1"><a href="javascript:coming_soon()"><b style="color:grey">REVIEWS</b></a></td>'
+							str+=	'									<td style="width:20%;text-align:center;font-size:10px;opacity:1"><a href="javascript:coming_soon()"><b></b></a></td>'
 							str+=	'							</tr>'
 							str+=	'						</table>'
 							str+=	'					</div>'
 							str+=	'				</div>'
 							str+=	'			</div>'
 							str+=	'		</div>'
+							
 							id=data[i].id
 							ur=data[i].user_rights
 							//if (mids.indexOf(id)<0) {
 								var div=document.createElement('div')
 								div.id='p'+id
 								div.innerHTML=str
-								if (i==0) saved=div
+								if (i==0) saved=div 
 								$$('profiles').appendChild(div)
 								mids[i]=id
 								urs[i]=ur
@@ -768,6 +821,12 @@
 			}
 		})
 	}
+	function coming_soon() {
+		$.alert('This feature will be avaialable on Nov 1st 2019')
+	}
+	function getRating(mid) {
+		$.ajax({url:'rating.php?mid='+mid,success:function(data){$$('x_r').html(data)}})
+	}
 	function xtest(x) {
 		console.log(x)
 	}
@@ -782,6 +841,9 @@
 				return dat1
 			}
 		}	
+	}
+	function wishlist(mid) {
+		location.href='member_wishlist.html?mid='+mid
 	}
 	function getRating(mid) {
 		$.ajax({url:'rating.php?mid='+mid,success:function(data){$$('x_r').html(data)}})
@@ -829,12 +891,19 @@
 					fromLongCode		: 	getCookie('long_code')
 		}
 		socket.send(JSON.stringify({type:'NEW_VIDEO', data: objData}))
+		var url='https://terrawire.com:9001/video/?login='+getCookie('login')+'&action=1';
+		openw(url)
 	}
-	
+
+	var windowObjectReference;
+	var strWindowFeatures = "menubar=no,location=no,resizable=no,scrollbars=no,status=no";
+
+	function openw(url) {
+	  windowObjectReference = window.open(url, "VideoCall", strWindowFeatures);
+	}		
 
 	function video_invite_sms(to_login, from_login) {
-//		$.alert({title:'', content:'Functionality will be available soon, we are working out some kinks. Thank you for your patience'})
-		$.ajax({url:'https://lushmatch.com/sendSMS.php?to_login='+to_login+'&from_login='+from_login+'&from_long_code='+getCookie('long_code'),success:function(data){console.log(data);location.href='https://sugardaddylocal.com/video.html?login='+getCookie('login')+'&action=1'}})
+		$.ajax({url:'https://lushmatch.com/sendSMS.php?to_login='+to_login+'&from_login='+from_login+'&from_long_code='+getCookie('long_code'),success:function(data){console.log(data);}})
 	}
 	
 	function toggle_favs() {
@@ -1130,6 +1199,37 @@ function detectswipe(el,func) {
 			return false
 		 }
     }
+	
+
+	
+	var speed=5
+	window.speed=speed
+	
+	function start_spin(id) {
+		speed=window.speed
+		setTimeout(function(){
+			spin($$(id))
+		},100)
+	}
+	
+	function spin(obj) {
+		obj.style.transform="rotate('5deg')"
+		if (tmr) clearTimeout(tmr)
+		var tmr=setTimeout(function(){
+					spin(obj)
+				},(1-window.speed*1)*100)
+	}
+	
+	function speed_up() {
+		if (speed<10) speed++
+		window.speed=speed
+	}
+	
+	function speed_dn() {
+		if (speed>1) speed
+		window.speed=speed
+	}
+	
 	
 </script>
 </body>

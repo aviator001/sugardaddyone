@@ -24,7 +24,12 @@
 		<link rel="stylesheet" href="https://lushmatch.com/assets/css/bootstrap.min.css">
 		<!-- Optional theme -->
 		<link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet' type='text/css'>
-
+<style>
+	* 	{
+			max-width:480px!Important;
+			margin:auto;
+		}
+</style>
 		<style>
 			.tooltipsy {
 				color: #0093D9;
@@ -52,7 +57,7 @@
 				background:pink;
 				text-align:center;
 				width:350px;
-				position:absolute;
+				position:;
 				left:0;
 				right:0;
 				margin:auto;
@@ -69,25 +74,25 @@
 	</style>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 	</head> 
-	<body style="overflow-y:auto">
-		<div class="modal" id="modal" style="position:absolute;z-index:999;background:#000;opacity:0.8;height:100%;width:100%;top:0;left:0;display:none;cursor:hand;cursor:pointer"></div>
-		<div id="modal_text" class="modal_window" onclick="javascript:history.go(0)" id="modal_window" style="padding:20px;border-radius:6px;position:absolute;z-index:9999;box-shadow:0 0 150px #000;display:none;background:#f0f0f0;top:0;bottom:0;left:0;right:0;margin:auto;width:300px;height:420px;font-family:Open Sans;font-size:18px;"><b>Error - Location Required</b><br>In order to use this site, you must agree to share your current location. We will never disclose this information to anyone, but we need this to provide you with the best experience. If you need help on how to enable your location, <a href="https://support.google.com/chrome/answer/142065?hl=en"><span style='color:brown'><b>Click Here</b></span></a><br><br><span style='color:#0093D9;cursor:hand;cursor:pointer'>Clear location settings and then click HERE to try again!</span></div>
-		<div class="usersOnline pull-right" id="search_results" style="display:none;position:absolute;top:0;bottom:0px;right:10px;z-index:99999999999;overflow-y:auto;overflow-x:hidden;width:420px;height:100%" onscroll="scrolled(this)"><table border=0></table></div>
+	<body style="overflow-y:auto;background:#f0f0f0">
+		<div class="modal" id="modal" style="position:;z-index:999;background:#000;opacity:0.8;height:100%;width:100%;top:0;left:0;display:none;cursor:hand;cursor:pointer"></div>
+		<div id="modal_text" class="modal_window" onclick="javascript:history.go(0)" id="modal_window" style="padding:20px;border-radius:6px;position:;z-index:9999;display:none;background:#f0f0f0;top:0;bottom:0;left:0;right:0;margin:auto;width:300px;height:420px;font-family:Open Sans;font-size:18px;"><b>Error - Location Required</b><br>In order to use this site, you must agree to share your current location. We will never disclose this information to anyone, but we need this to provide you with the best experience. If you need help on how to enable your location, <a href="https://support.google.com/chrome/answer/142065?hl=en"><span style='color:brown'><b>Click Here</b></span></a><br><br><span style='color:#0093D9;cursor:hand;cursor:pointer'>Clear location settings and then click HERE to try again!</span></div>
+		<div class="usersOnline pull-right" id="search_results" style="display:none;position:;top:0;bottom:0px;right:10px;z-index:99999999999;overflow-y:auto;overflow-x:hidden;width:420px;height:100%" onscroll="scrolled(this)"><table border=0></table></div>
 		<div id="dark1" class="dark_a" style="opacity:0;display:none"></div> 
-		<div id="wrapper" class="www_wrapper" style="background:#f0f0f0;background-size:cover;box-shadow:0px 0px 50px rgba(0,0,0,1);border-radius:5px;margin-top:-50px;margin-bottom:40px;overflow-x:hidden;;overflow-y:hidden;height:1000px">
+		<div id="wrapper" class="www_wrapper" style="box-shadow:none!Important;border-radius:5px;margin-top:-50px;margin-bottom:50px;overflow-x:hidden;overflow-y:hidden;">
 			<section id="section" style="text-align:center;margin:0;padding:0;overflow-y:auto;overflow-x:hidden;height:100%" align=center>
 				<div id="main_content">
 					<?/***
 					START HTML CONTENT FOR PAGE
 					***/?>
-					<div style="position:absolute;width:100%;height:100%;top:0px;left:0px;right:0px;bottom:0px;background:#000;opacity:0.9;z-index:9999100000;display:none" id="pay_modal"></div>	
-					<div style="position:absolute;top:0;left:0;right:0;bottom:0;opacity:1.0;z-index:9999100001;display:none;margin:auto;FONT-FAMILY:Open Sans;FONT-SIZE:14PX;color:#fff" id="wait">		
-						<div style="background:red;position:absolute;top:0;left:0;right:0;bottom:0;opacity:1.0;z-index:9999100001;margin:auto;width:300px;height:200px">			
+					<div style="position:;width:100%;height:100%;top:0px;left:0px;right:0px;bottom:0px;background:#000;opacity:0.9;z-index:9999100000;display:none" id="pay_modal"></div>	
+					<div style="position:;top:0;left:0;right:0;bottom:0;opacity:1.0;z-index:9999100001;display:none;margin:auto;FONT-FAMILY:Open Sans;FONT-SIZE:14PX;color:#fff" id="wait">		
+						<div style="background:red;position:;top:0;left:0;right:0;bottom:0;opacity:1.0;z-index:9999100001;margin:auto;width:300px;height:200px">			
 							<div  style="top:0;left:0;right:0;bottom:0;opacity:1.0;margin:auto"><img src="https://lushmatch.com/assets/img/loader.gif"></div>			
-							<div style="padding-top:75px;position:absolute;top:0;left:0;right:0;bottom:0;opacity:1.0;z-index:9999100001;margin-left:40%:auto;" id="spl_text"></div>
+							<div style="padding-top:75px;position:;top:0;left:0;right:0;bottom:0;opacity:1.0;z-index:9999100001;margin-left:40%:auto;" id="spl_text"></div>
 						</div>
 					</div>	
-					<div style="padding:10px;margin:auto;position:absolute;top:0px;left:0px;right:0px;bottom:0px;cursor:hand;cursor:pointer;text-align:left;padding-left:5px;font-family:Open Sans;font-size:20px;display:none;position:absolute;z-index:9999999999999; background:#f0f0f0; border-radius:6px; width: 300px; height:220px" id="bo">		<font style='font-family:Open Sans;font-size:20px;color:#f0f0f0'>PHONE VERIFICATION<br><font style='font-family:Open Sans;font-size:18px;color:#333'>To verify your account, please enter below the 4 digit pin we sent as a text to your phone<br>
+					<div style="padding:10px;margin:auto;position:;top:0px;left:0px;right:0px;bottom:0px;cursor:hand;cursor:pointer;text-align:left;padding-left:5px;font-family:Open Sans;font-size:20px;display:none;position:;z-index:9999999999999; background:#f0f0f0; border-radius:6px; width: 300px; height:220px" id="bo">		<font style='font-family:Open Sans;font-size:20px;color:#f0f0f0'>PHONE VERIFICATION<br><font style='font-family:Open Sans;font-size:18px;color:#333'>To verify your account, please enter below the 4 digit pin we sent as a text to your phone<br>
 						<table style="background:#f0f0f0" align=center style='margin-top:10px;height:50px;width:150px' cellspacing=10>
 							<tr>
 								<td>
@@ -110,12 +115,12 @@
 							</tr>
 						</table>
 					</div>
-					<div class="col-md-6" style="position:absolute;margin:auto;left:0;right:0;margin-bottom:5px;overflow:auto;font-family:Open Sans;position:absolute;z-index:99999999999999999999999999999999">
-						<div class="white-row"  style="box-shadow:0 0 20px #333;height:100%;font-family:Open Sans">		
+					<div class="col-md-12" style="position:;margin:auto;left:0;right:0;margin-bottom:5px;overflow:auto;font-family:Open Sans;position:;z-index:99999999999999999999999999999999">
+						<div class="white-row"  style="box-shadow:0 0 20px #333;font-family:Open Sans;margin-top:50px;margin-bottom:50px">		
 							<div id="form_errors" class="alert alert-info" style="display:none"></div>
 							<div class="row">			
 								<div style="width:100%" class="form-group">
-									<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
+									<div class="col-md-12" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
 										<label class="block">Your Location</label>						
 										<input type="text" name="location" id="location" value="" placeholder="Your Location" class="form-control input-box" onclick="clear_error(this)" style="color:grey;font-size:18px">						
 										<div id="location_err_txt" style="color:skyblue;text-align:left"></div>				

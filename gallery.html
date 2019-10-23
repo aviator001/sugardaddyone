@@ -12,7 +12,8 @@
     <link href="https://spoiledbymen.com/ps/website/dist/photoswipe.css?v=4.1.3-1.0.4" rel="stylesheet" />
     <link href="https://spoiledbymen.com/ps/website/dist/default-skin/default-skin.css?v=4.1.3-1.0.4" rel="stylesheet" />
     
-    
+    	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+
       <script src="https://spoiledbymen.com/ps/website/dist/photoswipe.min.js?v=4.1.3-1.0.4"></script>
       <script src="https://spoiledbymen.com/ps/website/dist/photoswipe-ui-default.min.js?v=4.1.3-1.0.4"></script>
 
@@ -25,6 +26,29 @@
 .pswp--has_mouse .pswp__button--arrow--right{
 	-webkit-transition: opacity 333ms cubic-bezier(.4,0,.22,1);
 	transition: opacity 333ms cubic-bezier(.4,0,.22,1);
+}
+.jconfirm-bg{
+	background:black!Important
+}
+.jconfirm, *{
+	font-family:Open Sans;
+	font-weight:300;
+}
+input[type=text] {
+	height:30px;
+	border-radius:8px;
+	border:none;
+	padding:5px
+}
+.btn-default {
+background:white!Important;
+color:black!Important;
+}
+.info {
+	background: #00CED1!Important
+}
+.danger {
+	background: red!Important
 }
 	  </style>
   </head>
@@ -209,7 +233,73 @@ var items = []
 loadAlbumImages(qs('album_id'))
 
 function loadAlbumImages(album_id) {
-	var url='https://sugardaddylocal.com/x_get_album_media.php?mid='+qs('mid')+'&type='+qs('type')+'&album_id='+album_id
+	if (qs('private')=='1'){
+		var request = $.ajax({
+			url: 'https://sugardaddylocal.com/x_get_album_password.php?album_id='+album_id+'&mid='+qs('mid'),
+			type: "GET",
+			dataType: "html", 
+			cache: false,
+			success: function(msg) {
+				var password=msg
+				$.confirm({
+					title: 'Password Required',
+					theme: 'supervan',
+					content: '' +
+					'<form action="" class="formName">' +
+					'<div class="form-group">' +
+					'<label>Enter Password</label>' +
+					'<div><input type="text" placeholder="Album Password" class="name form-control" required /></div>' +
+					'</div>' +
+					'</form>',
+					buttons: {
+						formSubmit: {
+							text: 'Authenticate',
+							btnClass: 'info',
+							action: function () {
+								var name = this.$content.find('.name').val();
+								if(!name){
+									$.alert('provide a valid Password');
+									return false;
+								}
+								if (name==password) {
+									getPhotos(album_id,password)
+								} else {
+									$.alert('Invalid Password. Authentication fas failed.');
+									return false;
+								}
+							}
+						},
+						cancel: function () {
+							btnClass: 'danger'
+
+							//close
+						},
+					},
+					onContentReady: function () {
+						// bind to events
+						var jc = this;
+						this.$content.find('form').on('submit', function (e) {
+							// if the user submits the form by pressing enter in the field.
+							e.preventDefault();
+							jc.$$formSubmit.trigger('click'); // reference the button and click it
+						});
+					}
+
+		})
+		}
+		})
+		
+	} else {
+		getPhotos(album_id)
+	}
+
+}
+function getPhotos(album_id,password) {
+	if (password) {
+		var url='https://sugardaddylocal.com/x_get_album_media.php?mid='+qs('mid')+'&type='+qs('type')+'&album_id='+album_id+'&password='+password
+	} else {
+		var url='https://sugardaddylocal.com/x_get_album_media.php?mid='+qs('mid')+'&type='+qs('type')+'&album_id='+album_id
+	}
 	console.log(url)
 	var request = $.ajax({
 		url: url,
@@ -223,49 +313,52 @@ function loadAlbumImages(album_id) {
 			}
 
 			// define options (if needed)
-var options = {
-	index: 3,
-	escKey: false,
-	history:false,
-	// ui option
-	timeToIdle: 4000,
-	closeOnScroll: false,
-	closeEl:false,
-	captionEl: true,
-	fullscreenEl: true,
-	zoomEl: true,
-	shareEl: true,
-	counterEl: true,
-	arrowEl: true,
-	preloaderEl: true,
+				var options = {
+					index: 3,
+					escKey: false,
+					history:false,
+					// ui option
+					timeToIdle: 4000,
+					closeOnScroll: false,
+					closeEl:false,
+					captionEl: true,
+					fullscreenEl: true,
+					zoomEl: true,
+					shareEl: true,
+					counterEl: true,
+					arrowEl: true,
+					preloaderEl: true,
 
-// Tap on sliding area should close gallery
-tapToClose: false,
+				// Tap on sliding area should close gallery
+				tapToClose: false,
 
-// Tap should toggle visibility of controls
-tapToToggleControls: false,
+				// Tap should toggle visibility of controls
+				tapToToggleControls: false,
 
-// Mouse click on image should close the gallery,
-// only when image is smaller than size of the viewport
-clickToCloseNonZoomable: true,
-closeOnVerticalDrag:false,
-loop:true
-};
+				// Mouse click on image should close the gallery,
+				// only when image is smaller than size of the viewport
+				clickToCloseNonZoomable: true,
+				closeOnVerticalDrag:false,
+				loop:true
+				};
 
-// Note that options object is cloned during the initialization.
-// But you can access it via `gallery.options`.
-// For example, to dynamically change `escKey`:
+				// Note that options object is cloned during the initialization.
+				// But you can access it via `gallery.options`.
+				// For example, to dynamically change `escKey`:
 
-// `options.escKey = false` will not work
+				// `options.escKey = false` will not work
 
-			// Initializes and opens PhotoSwipe
+				// Initializes and opens PhotoSwipe
 			var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
 			gallery.init();			
 		}
-	})			
+	})	
+
 }
 
 </script>
 <script src="https://sugardaddylocal.com/custom_menu_updated.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
   </body>
 </html>

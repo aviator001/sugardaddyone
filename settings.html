@@ -423,7 +423,7 @@ h3 {
 				<h3>ADMIN CONTROL PANEL</h3>					
 
             </div>
-            <div class="wizard">
+            <div class="wizard" style="border-bottom:5px solid white">
                 <nav class="list-group list-group-flush">
 					<a id="media" style="background:aliceblue" class="list-group-item" href="javascript:toggle_children('media')">
                         <div class="d-flex justify-content-between align-items-center">
@@ -495,11 +495,25 @@ h3 {
 					<a id="wishlist" style="background:aliceblue" class="list-group-item" href="javascript:toggle_children('wishlist')">
 						<div class="d-flex justify-content-between align-items-center">
 							<div><i class="fe-icon-tag mr-1 text-muted"></i>
-								<div id="wishlist_caption" class="d-inline-block font-weight-medium text-uppercase f-big " style="">+ Offers and Gifts</div>
+								<div id="wishlist_caption" class="d-inline-block font-weight-medium text-uppercase f-big " style="">+ Offers and Desires</div>
 							</div><span class="badge badge-secondary">2</span>
 						</div>
 					</a>
 					<span id="wishlist_children" style="display:none">
+						<a id="albums" class="list-group-item" href="javascript:window.top.location.href='frame_wish.html'">
+							<div class="d-flex justify-content-between align-items-center">
+								<div><i class="fe-icon-heart mr-1 text-muted"></i>
+									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">My Wishlist</div>
+								</div><span class="badge badge-secondary"></span>
+							</div>
+						</a>
+						<a id="albums" class="list-group-item" href="javascript:preview_wishlist()">
+							<div class="d-flex justify-content-between align-items-center">
+								<div><i class="fe-icon-heart mr-1 text-muted"></i>
+									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">Preview My Wishlist</div>
+								</div><span class="badge badge-secondary"></span>
+							</div>
+						</a>
 						<a id="profile" class="list-group-item" href="javascript:location.href='frame_price.html'">
 							<div class="d-flex justify-content-between align-items-center">
 								<div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
@@ -507,15 +521,8 @@ h3 {
 								</div><span class="badge badge-secondary"></span>
 							</div>
 						</a>                    
-						<a id="albums" class="list-group-item" href="javascript:window.top.location.href='frame_wish.html'">
-							<div class="d-flex justify-content-between align-items-center">
-								<div><i class="fe-icon-heart mr-1 text-muted"></i>
-									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">My Diary of Desires</div>
-								</div><span class="badge badge-secondary"></span>
-							</div>
-						</a>
 					</span>
-					<a id="account" style="background:aliceblue" class="list-group-item" href="javascript:toggle_children('account')">
+					<a id="account" style="display:none;background:aliceblue" class="list-group-item" href="javascript:toggle_children('account')">
 						<div class="d-flex justify-content-between align-items-center">
 							<div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
 								<div id="account_caption" class="d-inline-block font-weight-medium text-uppercase f-big"> + My Account</div>
@@ -574,42 +581,35 @@ h3 {
 						</div>
 					</a>   
 					<span id="matches_children" style="display:none">
-						<a id="albums" class="list-group-item" href="javascript:window.top.location.href='frame_reviews.html'">
+						<a id="albums" class="list-group-item" href="javascript:window.top.location.href='userHotLists.html'">
 							<div class="d-flex justify-content-between align-items-center">
 								<div><i class="fe-icon-tag mr-1 text-muted"></i>
 									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">Members I Like</div>
 								</div><span class="badge badge-secondary"></span>
 							</div>
 						</a>	
-						<a id="albums" class="list-group-item" href="javascript:window.top.location.href='frame_reviews.html'">
+						<a id="albums" class="list-group-item" href="javascript:window.top.location.href='userHotLists_alt.html'">
 							<div class="d-flex justify-content-between align-items-center">
 								<div><i class="fe-icon-tag mr-1 text-muted"></i>
 									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">Members that Like Me</div>
 								</div><span class="badge badge-secondary"></span>
 							</div>
 						</a>	
-						<a id="albums" class="list-group-item" href="javascript:window.top.location.href='frame_favourites.html'">
+						<a id="albums" class="list-group-item" href="javascript:window.top.location.href='favourites.html'">
 							<div class="d-flex justify-content-between align-items-center">
 								<div><i class="fe-icon-tag mr-1 text-muted"></i>
 									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">My Favourites</div>
 								</div><span class="badge badge-secondary"></span>
 							</div>
 						</a>
-						<a id="albums" class="list-group-item" href="javascript:window.top.location.href='frame_favourites.html'">
-							<div class="d-flex justify-content-between align-items-center">
-								<div><i class="fe-icon-tag mr-1 text-muted"></i>
-									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">My Reviews</div>
-								</div><span class="badge badge-secondary"></span>
-							</div>
-						</a>
-						<a id="albums" class="list-group-item" href="javascript:window.top.location.href='frame_favourites.html'">
-							<div class="d-flex justify-content-between align-items-center">
-								<div><i class="fe-icon-tag mr-1 text-muted"></i>
-									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">Browse for More Members</div>
-								</div><span class="badge badge-secondary"></span>
-							</div>
-						</a>
-						<a id="albums" class="list-group-item" href="javascript:window.top.location.href='frame_favourites.html'">
+						<!-- <a id="albums" class="list-group-item" href="javascript:window.top.location.href='browse.html'"> -->
+							<!-- <div class="d-flex justify-content-between align-items-center"> -->
+								<!-- <div><i class="fe-icon-tag mr-1 text-muted"></i> -->
+									<!-- <div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">Browse for More Members</div> -->
+								<!-- </div><span class="badge badge-secondary"></span> -->
+							<!-- </div> -->
+						<!-- </a> -->
+						<a id="albums" class="list-group-item" href="javascript:window.top.location.href='search.html'">
 							<div class="d-flex justify-content-between align-items-center">
 								<div><i class="fe-icon-tag mr-1 text-muted"></i>
 									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">Search for New Matches</div>
@@ -617,7 +617,7 @@ h3 {
 							</div>
 						</a>
 					</span>
-					<a id="support" style="background:aliceblue" class="list-group-item" href="javascript:toggle_children('support')">
+					<a id="support" style="display:none;background:aliceblue" class="list-group-item" href="javascript:toggle_children('support')">
 						<div class="d-flex justify-content-between align-items-center">
 							<div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
 								<div id="my_profile_caption" class="d-inline-block font-weight-medium text-uppercase f-big "> + Support</div>
@@ -654,13 +654,20 @@ h3 {
 							</div>
 						</a>					
 					</span>
-						<a id="" style="background:red;color:white;" class="list-group-item" href="javascript:toggle_children('support')">
-						<div class="d-flex justify-content-between align-items-center">
-							<div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
-								<div id="my_profile_caption" class="d-inline-block font-weight-medium text-uppercase f-big " style="color:white;text-shadow:none"> + My Tokens</div>
-							</div><span class="badge badge-secondary">7</span>
-						</div>
-					</a>  
+						<!-- <a id="" style="background:red;color:white;" class="list-group-item" href="javascript:toggle_children('support')"> -->
+						<!-- <div class="d-flex justify-content-between align-items-center"> -->
+							<!-- <div><i class="fe-icon-shopping-bag mr-1 text-muted"></i> -->
+								<!-- <div id="my_profile_caption" class="d-inline-block font-weight-medium text-uppercase f-big " style="color:white;text-shadow:none"> + My Tokens</div> -->
+							<!-- </div><span class="badge badge-secondary">7</span> -->
+						<!-- </div> -->
+					<!-- </a>  						<!-- <a id="" style="background:red;color:white;" class="list-group-item" href="javascript:toggle_children('support')"> -->
+						<!-- <div class="d-flex justify-content-between align-items-center"> -->
+							<!-- <div><i class="fe-icon-shopping-bag mr-1 text-muted"></i> -->
+								<!-- <div id="my_profile_caption" class="d-inline-block font-weight-medium text-uppercase f-big " style="color:white;text-shadow:none"> + My Tokens</div> -->
+							<!-- </div><span class="badge badge-secondary">7</span> -->
+						<!-- </div> -->
+					<!-- </a>   -->
+					
 					<span id="support_children" style="display:none">
 						<a id="faqs" style="background:white" id="profile" class="list-group-item" href="frame_faqs.html">
 							<div class="d-flex justify-content-between align-items-center">
@@ -704,11 +711,11 @@ h3 {
 		var currObj=$$('profile')
 		
 			function preview_photo_gallery() {
-				location.href='https://spoiledbymen.com/member_preview_all_photos.html?mid='+getCookie('mid')
+				location.href='member_preview_all_photos.html?mid='+getCookie('mid')
 			}
 			
 			function preview_video_gallery() {
-				location.href='http://spoiledbymen.com/member_preview_all_videos.html?mid='+getCookie('mid')
+				location.href='member_preview_all_videos.html?mid='+getCookie('mid')
 			}
 			
 			function toggle_children(objz) {
@@ -724,6 +731,11 @@ h3 {
 			function goback() {
 				history.go(-1)
 			}
+
+			function preview_wishlist() {
+				location.href='member_wishlist.html?mid='+getCookie('mid')
+			}
+			
 
 			function preview_profile() {
 				location.href='profile.html?id='+getCookie('mid')

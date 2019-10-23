@@ -75,14 +75,14 @@
 		}
 	</style>
 	<body>
-	<iframe id="eCatalog" src="https://sugardaddylocal.com/x_ebay_catalog_tree.php?" style="display:none; border:none; width:100%;height:94%;left:0;top:6%;position:fixed;z-index:999999999999999999999;display:;background:aliceblue" seamless></iframe>
+	<iframe id="eCatalog" src="" style="display:none; border:none; width:100%;height:94%;left:0;top:100px;position:fixed;z-index:999999999999999999999;display:;background:aliceblue" seamless></iframe>
 	<div class="content" style="background:#fcfcfc">
 		<div class="container" style="background:#fcfcfc">
 			<div class="row" style="background:#fcfcfc">
 				<div class="col-lg-4" style="background:#fcfcfc">
-						<a href="javascript:window.top.show_catalog()"><img src="images/cog23.png" style="z-index:9999;position:fixed;left:10px;top:15px;width:25px;opacity:0.5"></a>
+						<a href="javascript:window.top.show_catalog()"><img src="images/settings.png" style="z-index:9999;position:fixed;left:10px;top:63px;width:25px;opacity:0.5"></a>
 						<div id="xc" class="form-group" style="padding-top:15px;padding-left:40px;padding-right:40px;z-index:999;position:fixed;left:0;top:0;height:50px;width:100%;background:aliceblue"></div>
-						<a href="javascript:window.top.hide_search()"><img src="images/delete.png" style="z-index:9999;position:fixed;right:10px;top:15px;width:25px;opacity:0.5"></a>
+						<a href="javascript:history.go(-1)"><img src="images/del.png" style="z-index:9999;position:fixed;right:10px;top:63px;width:25px;opacity:0.5"></a>
 				</div>
 			</div>
 			<div class="row">
@@ -99,6 +99,20 @@
 	<script src="https://lushmatch.com/custom_js/base.js"></script>
 	<script src="https://lushmatch.com/custom_js/wait.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>	<script type="text/javascript">
+//	document.domain = "sugardaddylocal.com";
+	window.addEventListener('message',function(e) {
+		var key = e.message ? 'message' : 'data';
+		var data = e[key];
+		var session=JSON.parse(data)
+		var cat=session.cat
+		var catID=session.catID
+		setCookie('catID',catID)
+		setCookie('cat',cat)
+		$('#xitem').val('')
+		$('#xitem').focus()
+		window.parent.frames['eCatalog'].style.display='none'
+	},false);
+
 	var cat
 	var sub
 	var arrk=[]
@@ -241,6 +255,7 @@
 		})
 	}
 	function show_catalog(){
+		window.parent.frames['eCatalog'].src='https://sugardaddylocal.com/x_ebay_catalog_tree.php?mid='+getCookie('mid')
 		window.parent.frames['eCatalog'].style.display='block'
 	}
 	function hide_catalog(){

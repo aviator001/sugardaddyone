@@ -207,7 +207,8 @@ font-weight:bold
 				Everything you select here will appear on your profile as services offered.
 				</i>
 			</div>
-			<div class="form-group" id="offers" style="padding:0">					
+			<div class="form-group" id="offers" style="width:99%;margin:auto">
+					<img src="images/load.gif" style="position:absolute;left:0;right:0;width:70px;margin:auto">
 			</div>
 		</div>
 		<div class="col-md-12" style="padding:0">
@@ -428,7 +429,27 @@ font-weight:bold
 			
 	setTimeout(function(){
 		getOffers()
-	},3000)
+	},2000)
+function saveOffer(obj) {
+	var o=obj.id
+	var offer_id=obj.getAttribute('data-offer-id')
+	var offer_type_id=obj.getAttribute('data-offer-type-id')
+	var q_s = 'mid=' + getCookie('mid') + '&offer_id='+offer_id+'&offer_details='+encodeURIComponent($$('offer_details_' + offer_id).value)+'&min_bid='+$$('min_bid_'+offer_id).value+'&offer_type_id='+offer_type_id+'&offer_start_date='+$$('start_date_'+offer_id).value+'&offer_start_time='+$$('start_time_'+offer_id).value+'&offer_end_date='+$$('end_date_'+offer_id).value+'&offer_end_time='+$$('end_time_'+offer_id).value
+	if (offer_type_id=='99') q_s = 'offer_title=' + encodeURIComponent($$('offer_title_'+offer_id).textContent) + '&' + q_s
+	var url = 'https://sugardaddylocal.com/x_offer_save.php?'+q_s
+	console.log(url)
+	$.ajax({url:url,success:function(data){$.alert({title:'',content:'Offer Saved Sucessfully and is now visible to all members'})}})
+}
+
+function toggle(obj) {
+	if ($$('of' + obj.id.substr(1,obj.id.length-1) + '').style.display=='none') {
+		$$('of' + obj.id.substr(1,obj.id.length-1) + '').style.display=''
+		obj.src='images/sw_on_orange.png'
+	} else {
+		$$('of' + obj.id.substr(1,obj.id.length-1) + '').style.display='none'
+		obj.src='images/sw_off.png'
+	}
+}
 var test_mode=false
 // Create a Stripe client.
 if (test_mode===true) {
