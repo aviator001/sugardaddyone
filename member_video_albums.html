@@ -409,8 +409,8 @@ h2 {
 			var albums=[]
 			var counts=[]
 			function load_albums() {
-				var url='https://sugardaddylocal.com/x_get_albums.php?mid='+qs('mid')+'&type=video'
-				console.log(url)
+				console.log('x_get_albums.php?mid='+qs('mid')+'&type=video')
+				var url='https://sugardaddylocal.com/x_get_approved_video_albums.php?mid='+qs('mid')+'&type=video'
 				var request = $.ajax({
 					url: url,
 					type: "GET",
@@ -419,12 +419,11 @@ h2 {
 					success: function(msg) {
 						var data=JSON.parse(msg)
 						console.log(data)
-						counts=data.counts
-						albums=data.albums
 						var str=''
-						for (var i=0; i<albums.length; i++) {
-							str+='<a id="album_' + albums[i].album_id + '" style="justify-content:left!Important" class="list-group-item d-flex justify-content-between align-items-center font-weight-medium text-uppercase font-bigger"><img src="img/new_video_file.png" style="width:20px;margin-right:10px">'+ albums[i].album_name + '<span style="color:silver;margin-left:10px">[' + counts[i] + ' vids] </span><div onclick="member_view_video_album('+albums[i].album_id+',\''+ albums[i].album_name +'\')"style="background:gainsboro;color:#000;text-shadow:1px 1px 1px #fff;width:55px;padding:10px;height:30px;padding-top:5px;position:absolute;right:40px;">VIEW</div> <div onclick="member_fav_video_album('+albums[i].album_id+',\''+ albums[i].album_name +'\',\'video\','+qs('mid')+')"style="background:gold;color:#000;text-shadow:1px 1px 1px #fff;margin-left:0px;width:30px;height:30px;padding:4px;padding-left:7px;position:absolute;right:5px;"><img onclick="saveAlbum('+albums[i].album_id+')" src="img/heart.png" style="width:15px"></div></a>'
+						for (var i=0; i<data.length; i++) {
+							str+='<a id="album_' + data[i].album_id + '" style="justify-content:left!Important" class="list-group-item d-flex justify-content-between align-items-center font-weight-medium text-uppercase font-bigger"><img src="img/new_video_file.png" style="width:20px;margin-right:10px">'+ data[i].album_name + '<span style="color:silver;margin-left:10px">[' + data[i].count + ' vids] </span><div onclick="member_view_video_album('+data[i].album_id+',\''+ data[i].album_name +'\')"style="background:gainsboro;color:#000;text-shadow:1px 1px 1px #fff;width:55px;padding:10px;height:30px;padding-top:5px;position:absolute;right:40px;">VIEW</div> <div onclick="member_fav_video_album('+data[i].album_id+',\''+ data[i].album_name +'\',\'video\','+qs('mid')+')"style="background:gold;color:#000;text-shadow:1px 1px 1px #fff;margin-left:0px;width:30px;height:30px;padding:4px;padding-left:7px;position:absolute;right:5px;"><img onclick="saveAlbum('+data[i].album_id+')" src="img/heart.png" style="width:15px"></div></a>'
 						}
+					//	str += '<a style="background:aliceblue" id="wish3" class="list-group-item d-flex justify-content-between align-items-center  font-weight-medium text-uppercase font-bigger"><button onclick="add_album()" class="btn"> ADD video ALBUM </button> <button onclick="go_to_settings()"  class="btn"> SETTINGS </button></a>'
 						$('#albums').html(str)
 					}
 				})			

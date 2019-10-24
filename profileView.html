@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0">
+		<meta name="description" content="A sugar daddy dating site that connects handsome wealthy and caring men to hot young women. Worlds first sugar daddy site to use disruptive SMS messaging. Find a Sugar Daddy today!" />		
+		<meta name="Author" content="Gautam Sharma" />		
+		<meta name="format-detection" content="telephone=no"/>
+		<title>Sugar Daddy & Sugar Baby Dating | sugardaddylocal.com</title>
+		<link rel="canonical" href="https://sugardaddylocal.com"
+		<link rel="icon" href="favicon.png">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+		<link href="https://lushmatch.com/assets/css/font-awesome.css" rel="stylesheet" >
+		<link href="https://lushmatch.com/assets/css/jquery-ui.css" rel="stylesheet" />
+		<link href="https://lushmatch.com/assets/css/jquery-confirm.css" rel="stylesheet" />
+		<link href="https://lushmatch.com/css/bootstrap.css" rel="stylesheet" />
+		<link href="https://lushmatch.com/assets/css/shadows.css" rel="stylesheet" />
+		<link href="https://lushmatch.com/assets/css/animate.css" rel="stylesheet">
+		<link href="https://lushmatch.com/assets/css/magic.css" rel="stylesheet">
+		<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic|Open+Sans:300' rel='stylesheet' type='text/css'> 
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<style>
+			body{
+				margin-top:20px;
+				background:#eee;
+			}
+			.team-card-style-1, .team-card-style-3, .team-card-style-5 {
+			  position: relative;
+			  max-width: 360px;
+			  text-align: center;
+			  background:#fff;
+			 box-shadow: 0 22px 36px -12px rgba(64, 64, 64, .13);
+			}
+			.team-contact-link {
+			  display: block;
+			  margin-top: 4px;
+			  transition: all 0.25s;
+			  font-size: 12px;
+			  font-weight: 700;
+			  text-decoration: none;
+			}
+			.team-contact-link > i {
+			  display: inline-block;
+			  font-size: 1.1em;
+			  vertical-align: middle;
+			}
+			.team-card-style-1 .team-position, .team-card-style-3 .team-position, .team-card-style-4 .team-position {
+			  display: block;
+			  margin-bottom: 8px;
+			  color: #8c8c8c;
+			  font-size: 12px;
+			  font-weight: 700;
+			  opacity: 0.6;
+			}
+			.team-card-style-3 .team-name, .team-card-style-4 .team-name, .team-card-style-5 .team-name {
+			  margin-bottom: 16px;
+			  font-size: 18px;
+			  font-weight: 600;
+			}
+			.team-thumb > img {
+			  display: block;
+			  width: 100%;
+			}
+			.team-card-style-1 {
+			  padding-bottom: 36px;
+			}
+			.team-card-style-1 > * {
+			  position: relative;
+			  z-index: 5;
+			}
+			.team-card-style-1::before {
+			  position: absolute;
+			  top: 0;
+			  left: 0;
+			  width: 100%;
+			  height: 0;
+			  transition: all 0.3s 0.12s;
+			  content: '';
+			  opacity: 0;
+			}
+			.team-card-style-1 .team-card-inner {
+			  margin-bottom: 16px;
+			  padding-top: 48px;
+			  padding-right: 16px;
+			  padding-bottom: 20px;
+			  padding-left: 16px;
+			  background-color: #fff;
+			  box-shadow: 0 22px 36px -12px rgba(64, 64, 64, .13);
+			}
+			.team-card-style-1 .team-thumb {
+			  width: 108px;
+			  height: 108px;
+			  margin: auto;
+			  margin-bottom: 16px;
+			  border-radius: 50%;
+			  overflow: hidden;
+			}
+			.team-card-style-1 .team-social-bar {
+			  margin-top: 16px;
+			  margin-bottom: 8px;
+			  transform: scale(0.8);
+			}
+			.team-card-style-1 .team-contact-link {
+			  transition-delay: 0.12s;
+			  color: #8c8c8c;
+			  opacity: 0.6;
+			}
+			.team-card-style-1 .team-contact-link:hover {
+			  color: #8c8c8c;
+			  opacity: 1;
+			}
+			.team-card-style-1 .team-card-inner, .team-card-style-1 .team-thumb, .team-card-style-1 .team-social-bar {
+			  transition: all 0.3s 0.12s;
+			}
+			.team-card-style-1 .team-position, .team-card-style-1 .team-name {
+			  transition: color 0.3s 0.12s;
+			}
+			.team-card-style-1 .team-name {
+			  margin-bottom: 0;
+			  font-size: 20px;
+			  font-weight: bold;
+			}
+			.no-touchevents .team-card-style-1:hover::before {
+			  height: 100%;
+			  box-shadow: 0 22px 36px -12px rgba(64, 64, 64, .13);
+			  opacity: 1;
+			}
+			.no-touchevents .team-card-style-1:hover .team-card-inner {
+			  background-color: transparent;
+			  box-shadow: none;
+			}
+			.no-touchevents .team-card-style-1:hover .team-thumb {
+			  transform: scale(1.1);
+			}
+			.no-touchevents .team-card-style-1:hover .team-social-bar {
+			  transform: scale(1);
+			}
+			.no-touchevents .team-card-style-1:hover .team-contact-link, .no-touchevents .team-card-style-1:hover .team-position, .no-touchevents .team-card-style-1:hover .team-name {
+			  color: #fff;
+			}
+			.no-touchevents .team-card-style-1:hover .team-contact-link {
+			  opacity: 1;
+			}
+			.team-card-style-2 {
+			  position: relative;
+			}
+			.team-card-style-2 > img {
+			  display: block;
+			  width: 100%;
+			}
+			.team-card-style-2::before, .team-card-style-2::after {
+			  display: block;
+			  position: absolute;
+			  top: 0;
+			  left: 0;
+			  width: 100%;
+			  height: 100%;
+			  transition: opacity 0.35s 0.12s;
+			  content: '';
+			  z-index: 1;
+			}
+			.team-card-style-2::before {
+			  background-color: rgba(0, 0, 0, .25);
+			}
+			.team-card-style-2::after {
+			  opacity: 0;
+			}
+			.team-card-style-2 .team-card-inner {
+			  position: absolute;
+			  top: 50%;
+			  width: 100%;
+			  padding: 20px;
+			  transform: translateY(-45%);
+			  transition: all 0.35s 0.12s;
+			  text-align: center;
+			  opacity: 0;
+			  z-index: 5;
+			}
+			.team-card-style-2 .team-name, .team-card-style-2 .team-position, .team-card-style-2 .team-contact-link {
+			  color: #fff;
+			}
+			.team-card-style-2 .team-name {
+			  margin-bottom: 5px;
+			  font-size: 20px;
+			  font-weight: bold;
+			}
+			.team-card-style-2 .team-position {
+			  display: block;
+			  margin-bottom: 16px;
+			  font-size: 12px;
+			  font-weight: 600;
+			  text-transform: uppercase;
+			}
+			.team-card-style-2 .team-social-bar {
+			  margin-top: 16px;
+			  margin-bottom: 8px;
+			}
+			.team-card-style-2 .team-contact-link {
+			  opacity: 1;
+			}
+			.team-card-style-2:hover::before {
+			  opacity: 0;
+			}
+			.team-card-style-2:hover::after {
+			  opacity: 0.7;
+			}
+			.team-card-style-2:hover .team-card-inner {
+			  transform: translateY(-50%);
+			  opacity: 1;
+			}
+			.team-card-style-3, .team-card-style-4 {
+			  position: relative;
+			  padding-top: 30px;
+			  padding-right: 20px;
+			  padding-bottom: 38px;
+			  padding-left: 20px;
+			  transition: all 0.35s;
+			  border: 1px solid #e7e7e7;
+			}
+			.team-card-style-3 .team-thumb, .team-card-style-4 .team-thumb {
+			  width: 90px;
+			  margin: auto;
+			  margin-bottom: 17px;
+			}
+			.team-card-style-3 .team-position, .team-card-style-4 .team-position {
+			  margin-bottom: 0;
+			}
+			.team-card-style-3 .team-contact-link, .team-card-style-4 .team-contact-link {
+			  color: #404040;
+			  font-weight: 600;
+			}
+			.team-card-style-3 .team-contact-link > i, .team-card-style-4 .team-contact-link > i {
+			  color: #8c8c8c !important;
+			}
+			.team-card-style-3 .team-contact-link:hover, .team-card-style-4 .team-contact-link:hover {
+			  color: rgba(64, 64, 64, .6);
+			}
+			.team-card-style-3 .team-social-bar-wrap, .team-card-style-4 .team-social-bar-wrap {
+			  position: absolute;
+			  bottom: -18px;
+			  left: 0;
+			  width: 100%;
+			}
+			.team-card-style-3 .team-social-bar-wrap > .team-social-bar, .team-card-style-4 .team-social-bar-wrap > .team-social-bar {
+			  display: table;
+			  margin: auto;
+			  background-color: #fff;
+			  box-shadow: 0 12px 20px 1px rgba(64, 64, 64, .11);
+			}
+			.team-card-style-3:hover, .team-card-style-4:hover {
+			  border-color: transparent;
+			  box-shadow: 0 12px 20px 1px rgba(64, 64, 64, .09);
+			}
+			.team-card-style-4 {
+			  padding-top: 24px;
+			  padding-bottom: 31px;
+			  padding-left: 24px;
+			}
+			.team-card-style-4 .team-name {
+			  margin-bottom: 5px;
+			}
+			.team-card-style-4 .team-social-bar-wrap {
+			  position: relative;
+			  bottom: auto;
+			  left: auto;
+			  margin-top: 20px;
+			}
+			.team-card-style-4 .team-social-bar-wrap > .team-social-bar {
+			  margin: 0;
+			}
+			.team-card-style-5 {
+			  padding-bottom: 24px;
+			  transition: box-shadow 0.35s 0.12s;
+			}
+			.team-card-style-5 .team-thumb {
+			  position: relative;
+			  margin-bottom: 24px;
+			}
+			.team-card-style-5 .team-thumb::after {
+			  display: block;
+			  position: absolute;
+			  top: 0;
+			  left: 0;
+			  width: 100%;
+			  height: 100%;
+			  transition: opacity 0.35s 0.12s;
+			  background-color: #ac32e4;
+			  content: '';
+			  opacity: 0;
+			  z-index: 1;
+			}
+			.team-card-style-5 .team-card-inner {
+			  position: absolute;
+			  bottom: 0;
+			  left: 0;
+			  width: 100%;
+			  padding: 16px;
+			  padding-bottom: 26px;
+			  transform: translateY(10px);
+			  transition: all 0.35s 0.12s;
+			  text-align: center;
+			  opacity: 0;
+			  z-index: 5;
+			}
+			.team-card-style-5 .team-contact-link, .team-card-style-5 .team-contact-link:hover {
+			  color: #fff;
+			}
+			.team-card-style-5 .sb-style-6.sb-light-skin, .team-card-style-5 .sb-style-7.sb-light-skin {
+			  border-color: rgba(255, 255, 255, .35);
+			}
+			.team-card-style-5 .team-name {
+			  margin-bottom: 6px;
+			  padding: 0 16px;
+			}
+			.team-card-style-5 .team-position {
+			  display: block;
+			  padding: 0 16px;
+			  transition: color 0.35s 0.12s;
+			}
+			.team-card-style-5:hover {
+			  box-shadow: 0 12px 20px 1px rgba(64, 64, 64, .09);
+			}
+			.team-card-style-5:hover .team-thumb::after {
+			  opacity: 0.7;
+			}
+			.team-card-style-5:hover .team-card-inner {
+			  transform: translateY(0);
+			  opacity: 1;
+			}
+			.team-card-style-5:hover .team-position {
+			  color: #ac32e4;
+			}
+			.team-card-style-3 .team-social-bar-wrap>.team-social-bar, .team-card-style-4 .team-social-bar-wrap>.team-social-bar {
+				display: table;
+				margin: auto;
+				background-color: #fff;
+				-webkit-box-shadow: 0 12px 20px 1px rgba(64,64,64,0.11);
+				box-shadow: 0 12px 20px 1px rgba(64,64,64,0.11);
+			}
+			.social-btn {
+				display: inline-block;
+				width: 36px;
+				height: 36px;
+				margin: 0;
+				-webkit-transition: all .3s;
+				transition: all .3s;
+				font-size: 18px;
+				line-height: 36px;
+				vertical-align: middle;
+				text-align: center !important;
+				text-decoration: none;
+			}
+			.sb-twitter {
+				color: #55acee !important;
+			}
+			.sb-github {
+				color: #4183c4 !important;
+			}
+			.sb-linkedin {
+				color: #0976b4 !important;
+			}
+			.sb-skype {
+				color: #00aff0 !important;
+			}
+			.sb-style-2, .sb-style-3, .sb-style-4, .sb-style-5 {
+			  margin-right: 10px;
+			  margin-bottom: 10px;
+			  border-radius: 50%;
+			  background-color: #f5f5f5;
+			}
+			.sb-style-2.sb-light-skin, .sb-style-3.sb-light-skin, .sb-style-4.sb-light-skin, .sb-style-5.sb-light-skin {
+			  background-color: rgba(255, 255, 255, .1);
+			}
+			.sb-style-2:hover, .sb-style-3:hover, .sb-style-4:hover, .sb-style-5:hover, .sb-style-2.hover, .sb-style-3.hover, .sb-style-4.hover, .sb-style-5.hover {
+			  background-color: #fff;
+			  box-shadow: 0 12px 20px 1px rgba(64, 64, 64, .11);
+			}
+
+			div,span,p,td {
+				font-family:Open sans!Important
+			}
+			input[type=checkbox]{ 
+				background-color: #f0f0f0;
+				width:30px;
+				height:30px;
+			}
+			input[type=checkbox]:checked{
+				background-color: silver;
+				width:30px;
+				height:30px;
+			}
+			.loginP {
+				font-family:Open Sans!Important;
+				font-weight:300;
+				color:maroon;
+				font-size:32px!Important;
+				text-align:center
+			}
+			.genderP {
+				font-family:Open Sans!Important;
+				font-weight:bold;
+				color:#333;
+				font-size:21px!Important;
+				width:100%;
+				text-align:center;
+				font-weight:300
+			}
+			.locationP {
+				font-family:Open Sans;
+				font-weight:300;
+				color:#333;
+				font-size:18px;
+				width:100%;
+				text-align:center;
+			}
+			.general_infoP {
+				font-family:Open Sans;
+				font-weight:300;
+				color:#000;
+				font-size:16px;
+				width:100%;
+				text-align:left;
+				border-radius:4px;
+				background:#fcfcfc;
+				padding:10px;
+			}
+			* {overflow:hidden}
+		</style>	</head>
+	<body style="background:#f4f4f4">
+	<script src="custom_menu.js"></script>
+	<div id="con" class="container">
+		<div style="display:none">
+			<input type="checkbox"id="photos" style="margin:10px" checked /><span style="font-size:18px;font-family:Open Sans;margin-top:10px;position:absolute"> Show Profiles with Photos Only</span>
+		</div>
+		<div id="profiles" class="" style="text-align:center;margin-top:25px;background:url(assets/images/bgs.jpg) center no-repeat;background-size:cover;">
+			<img src='assets/images/load.gif' style='width:100px'><br><br><div>FETCHING PROFILES<br>PLEASE WAIT</div>
+		</div>
+		<!-- <div style="position:fixed;top:418px;width:25%;left:10px"> -->
+			<!-- <a href="javascript:no()"><img id="no" src="https://gaysugardaddyfinder.com/assets/images/in_no.png" style="width:65px"></a> -->
+		<!-- </div> -->
+		<!-- <div style="position:fixed;top:418px;width:25%;right:10px"> -->
+			<!-- <a href="javascript:yes()"><img id="yes" src="https://gaysugardaddyfinder.com/assets/images/in_yes.png" style="width:65px"></a> -->
+		<!-- </div> -->
+	</div>
+	<script src="https://lushmatch.com/assets/js/jquery.js"></script>
+	<script src="https://lushmatch.com/assets/js/jquery-ui.js"></script>
+	<script src="https://lushmatch.com/assets/js/jquery-confirm.min.js"></script>
+	<script src="https://lushmatch.com/assets/js/common.js"></script>
+	<script src="https://lushmatch.com/assets/js/events.js"></script>
+	<script src="https://lushmatch.com/assets/js/bootstrap.js"></script>
+	<script src="https://lushmatch.com/jsSocketNode.js"></script>
+	
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+	
+<script>
+
+	var nextMID,smids
+	function getIP() {
+	}
+	
+	function $$(obj) {
+		return document.getElementById(obj)
+	}
+
+	var imgG, div, data=[], looking_for, watchID, tmr, hidden, shown, active
+	var currMID
+	var mids=[]
+	var str='', fn, active='2'
+	var ctr
+	var imgG, div, data=[], looking_for, watchID, tmr
+	var currUR=100000
+	currMID=qs('id')
+	setCookie('currMID',qs('id'))
+
+			
+	setTimeout('showWait()',1)
+	setTimeout('getIP()',1)
+	setTimeout('getLocation()',1)
+	setTimeout('loadProfiles(1)',1)
+	
+	function back_to_search() {
+		location.href='index.html?display=search&search='+qs('search')
+	}
+	
+	function send_mail() {
+		location.href='sendMail.html?to_member_id='+getCookie('chatting_with')
+	}
+	
+	function send_sms() {
+		location.href='sendSMS.html?to_member_id='+qs('id')
+	}
+	
+	function view_img(io){
+		location.href='viewAlbum.html?member_id='+currMID
+	}
+
+	
+
+	function mobile_render() {
+
+	}
+	function getLocation(type,ox) {
+		var request = $.ajax({
+			url: 'https://lushmatch.com/x_location.php',
+			type: "GET",
+			dataType: "html",
+			cache: false,
+			success: function(msg) {
+			//	setTimeout('mobile_render()',1)
+			}
+		})
+	}
+		
+	function showSearchHeader() {
+		$$('ttl').style.background='aliceblue'
+		$$('ttl').style.opacity='1'
+		$$('tt3').style.opacity='1'
+		$$('ttl').style.color='#000'
+		$$('ttl').style.fontSize='15px'
+		$$('tt2').innerHTML='<b>Showing Search Results. Click here to return</b>'
+		$$('tt3').innerHTML='<span style="font-size:24px"><b>1</b> of ' + smids.length+'</span>'
+	}
+	function viewMessageDetail(xid,xlogin) {
+		setCookie('chatting_with',xid)
+		setCookie('chatting_with_login',xlogin)
+		location.href='viewMessage.html?xid='+xid
+	}
+	
+	function getCookie(cname)	{ 
+		if (window.location.href.indexOf('file://')>=0) {
+			var cvalue = window.localStorage.getItem(cname);
+			return cvalue
+		} else {
+			var name = cname + "="; 
+			var ca = document.cookie.split(';'); 
+			for(var i=0; i<ca.length; i++) { 
+			  var c = ca[i].trim(); 
+			  if (c.indexOf(name)==0) return c.substring(name.length,c.length); 
+			} 
+			return ""; 
+		}
+	} 
+	var wl = window.location.href;
+	var mob = (window.location.href.indexOf('file://')>=0);
+
+	function setCookie(cname,cvalue)	{
+		if (window.location.href.indexOf('file://')>=0) {
+			window.localStorage.setItem(cname, cvalue);
+		} else {
+			var d = new Date(); 
+			d.setTime(d.getTime()+(1*24*60*60*1000)); 
+			var expires = "expires="+d.toGMTString(); 
+			document.cookie = cname + "=" + cvalue + "; " + expires; 
+		}
+	} 
+
+	function $$(oo) {
+		return document.getElementById(oo)
+	}
+				var general_info
+
+		var imt,br,bkg='background: #fff',yes_pd=0
+		if (window_width()<=500) {
+			var mw=window_width()+'px'
+			var mh=mw
+			var pt='0px'
+			var mtop=40
+			var mt=0
+			var tb='bottom'
+			var cph=window.innerHeight-window.innerWidth-120
+			var gip=cph+40
+			var hh=window_height() * 0.15
+			var btm=200
+		} else {
+			var mh='500px'
+			var mw='500px'
+			var pt='5px'
+			var mtop=610
+			var mt=80
+			var tb='top'
+			var cph=200
+			var hh=800
+			var btm=window_height()*0.7 - 610
+		}
+		if (window_height()<=500) {
+			mh='150px'
+			br=150
+			imt=30
+			bkg='background:url(https://sugardaddylocal.com/b3.jpg) center; background-size:cover'
+			yes_pd=10
+		}
+		var mgt=window_height()/20-15
+		var tt='400px'
+		if (window.screen.height<window.screen.width) {
+			var showw='none'
+			var tt='300px'
+		}
+	function loadProfiles(no) {
+	var profileBatchCount,ur,currUR,urs=[]
+
+		ctr=0
+		var str=''
+		var url = 'https://lushmatch.com/x_get_profile_data.php?member_id='+qs('id')+'&type=search&search='+qs('q')+'&my_mid='+getCookie('mid')
+		console.log(url)
+		var request = $.ajax({
+			url: url,
+			type: "GET",
+			dataType: "html",
+			cache: false,
+			success: function(msg) {
+				console.log(msg)
+				$$('profiles').innerHTML=''
+				data=JSON.parse(msg)[0]
+				console.log('here')
+				console.log(data)
+				var www=''
+				str=''
+				var i=0
+				general_info='No Profile Text'
+				if (data.general_info) {
+					general_info=data.general_info
+					var disp='block'
+				}
+				
+
+				str+=	'		<div class="col-md-4 col-sm-4 col-xs-12" style=";width:100%;max-width:500px;left:0;right:0;margin:auto;padding:0;margin-top:0px;">'
+				str+=	'			<div class="team-card-style-1" style="left:0;right:0;position:fixed;bottom:'+btm+'px;background:;margin:auto;margin-bottom:10%;margin-top:10%;'+tb+':'+mtop+'px!Important;width:'+mw+';padding-top:0">'
+				str+=	'				<div class="team-card-style-1" style="background:url(https://sugardaddylocal.com/bg/fav_bg_02.jpg);background-size:cover;height:150px"></div>'
+				str+=	'				<div id="holder" style="display:;height:100px"></div>'
+							str+=	'						<table style="width:80%;margin:auto;">'
+							str+=	'							<tr>'
+							str+=	'								<td style="width:25%;text-align:center">'
+							str+=	'									<div id="sun1" style="text-align:center;width:60px;height:60px;background:url(images/sun5.png);background-size:cover"><a href="javascript:send_mail('+data.id+')"><img src="images/bubble_w.png" style="margin:20px;width:25px;"></a></div>'
+							str+=	'								</td>'
+							str+=	'								<td style="width:25%;text-align:center">'
+							str+=	'									<div id="sun2" style="text-align:center;width:60px;height:60px;background:url(images/sun5.png);background-size:cover"><a href="javascript:video_call(\''+data.login+'\')"><img src="images/video_w.png" style="margin:20px;width:25px;"></a></div>'
+							str+=	'								</td>'
+							str+=	'								<td style="width:25%;text-align:center">'
+							str+=	'									<div id="sun3" style=";opacity:1;text-align:center;width:60px;height:60px;background:url(images/sun5.png);background-size:cover"><a href="javascript:coming_soon()"><img src="images/ir.png" style="margin:18px;width:25px;"></a></div>'
+							str+=	'								</td>'
+							str+=	'								<td style="width:25%;text-align:center">'
+							str+=	'									<div id="sun4" style="text-align:center;width:60px;height:60px;background:url(images/sun5.png);background-size:cover"><a href="javascript:toggle_favs()"><img src="images/heart_w.png" style="margin:20px;width:25px;"></a></div>'
+							str+=	'								</td>'
+							str+=	'							</tr>'
+							str+=	'							<tr>'
+							str+=	'								<td style="width:25%;text-align:center;font-size:10px">'
+							str+=	'									<b>MSG USER</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+							str+=	'								</td>'
+							str+=	'								<td style="width:25%;text-align:center;font-size:10px">'
+							str+=	'									<b>VIDEO CALL</b>&nbsp;&nbsp;'
+							str+=	'								</td>'
+							str+=	'								<td style="width:25%;text-align:center;font-size:10px;opacity:0.5">'
+							str+=	'									<b>SEND A ROSE</b>	'
+							str+=	'								</td>'
+							str+=	'								<td style="width:25%;text-align:center;font-size:10px">'
+							str+=	'								<b>ADD FAV</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+							str+=	'								</td>'
+							str+=	'							</tr>'
+							str+=	'						</table>'
+				str+=	'					<div style="font-size:15px!Important" class="genderP id="gender'+i+'"><span style="font-size:32px;margin-top:10px">'+data.login.toUpperCase()+'</div>'
+				str+=	'				<div id="" style="display:;height:75px"><img src="images/star.png" style="width:25px;margin:10px;margin-top:0;"><img src="images/star.png" style="width:25px;margin:10px;margin-top:0;"><img src="images/star.png" style="width:25px;margin:10px;margin-top:0;"><img src="images/star.png" style="width:25px;margin:10px;margin-top:0;"><img src="images/star.png" style="width:25px;margin:10px;margin-top:0;"></div>'
+				str+=	'				<div class="" id="profileText0" class="team-info" style="margin-top:-30px">'
+				str+=	'					<div style="font-size:15px!Important" class="genderP id="gender'+i+'">'+data.gender.toUpperCase()+' ' + data.age+'<div style="font-wight:300;font-family:Open Sans;font-size:15px">'+data.location.toUpperCase().substr(0,15) + '</div><div id="location'+i+'" class="locationP"></div><div style="font-size:0.8em;margin:20px"><b>'+data.general_info+'</b></div></div>'
+				str+=	'						<table style="width:100%;text-align:center;margin-top:0px;margin-bottom:'+mgt+'px;padding-bottom:15px;width:'+mw+';height:60px">'
+							str+=	'							<tr>'
+							str+=	'									<td style="width:20%;text-align:center"><a href="javascript:wishlist('+data.id+')" style="text-decoration:none"><img src="images/wlist.png" style="display:none;width:25px"></a></td>'
+							str+=	'									<td style="width:15%;text-align:center"><a href="javascript:wishlist('+data.id+')" style="text-decoration:none"><img src="images/new_wish.png" style="width:25px"></a></td>'
+							str+=	'									<td style="width:15%;text-align:center"><a href="javascript:coming_soon()"><img src="images/offer.png" style="width:25px;opacity:1"></a></td>'
+							str+=	'									<td style="width:15%;text-align:center"><a href="javascript:coming_soon()"><img src="images/rewards.png" style="width:20px;opacity:2"></a></td>'
+							str+=	'									<td style="width:15%;text-align:center"><a href="javascript:coming_soon()"><img src="images/people.png" style="opacity:2;display:none;width:25px"></a></td>'
+							str+=	'									<td style="width:20%;text-align:center"><a href="javascript:coming_soon()"><img src="images/people.png" style="display:none;opacity:2;width:25px"></a></td>'
+							str+=	'							</tr>'
+							str+=	'							<tr>'
+							str+=	'									<td style="width:20%;text-align:center;vertical-align:top"><a href="javascript:wishlist('+data.id+')" style="display:none;text-decoration:none;font-size:10px"><b>WISHLIST</b></a></td>'
+							str+=	'									<td style="width:15%;text-align:center;vertical-align:top"><a href="javascript:wishlist('+data.id+')" style="text-decoration:none;font-size:10px;color:orange"><b>WISHLIST</b></a></td>'
+							str+=	'									<td style="width:15%;text-align:center;font-size:10px;opacity:1"><a href="javascript:coming_soon()"><b style="color:grey">OFFERS</b></a></td>'
+							str+=	'									<td style="width:15%;text-align:center;font-size:10px;opacity:1"><a href="member_rewards.html"><b style="color:orange">REWARDS</b></a></td>'
+							str+=	'									<td style="width:15%;text-align:center;font-size:10px;opacity:1"><a href="javascript:coming_soon()"><b style="color:grey;display:none">REVIEWS</b></a></td>'
+							str+=	'									<td style="width:20%;text-align:center;font-size:10px;opacity:1"><a href="javascript:coming_soon()"><b></b></a></td>'
+							str+=	'							</tr>'
+				str+=	'						</table>'
+				str+=	'					</div>'
+				str+=	'				</div>'
+				str+=	'			</div>'
+				str+=	'		</div>'
+				id=data.id
+				ur=data.user_rights 
+				var div=document.createElement('div')
+				div.id='p'+id
+				div.innerHTML=str
+				console.log(div)
+				$$('profiles').appendChild(div)
+				mids=id
+				urs=ur
+				currMID=id
+				currUR=ur
+				setCookie('chatting_with', id)
+				setCookie('chatting_with_login', data.login)
+				setCookie('chatting_with_mobile', data.mobile)
+				$('.page-loader').delay(500).fadeOut(500);
+				setTimeout(function(){
+				if (data.filename_1.indexOf('mp4')<0) {
+					img=document.createElement('img')
+					img.id='imgProfile'+data.id
+					img.src='https://lushmatch.com/sb/'+data.filename_1
+					img.style.cssText='left:0;right:0;width:200px;height:200px;min-width:200px!Important;border-radius:200px;border:10px solid white;margin:auto;object-fit:cover;position:fixed;padding:0;z-index:999999999999999999;margin-top:-100px'
+					$$('holder').appendChild(img)
+				} else {
+					video = document.createElement('video');
+					video.controls = false;
+					video.muted=true
+					video.autoplay=true
+					video.className='col-xs-3'
+					video.style.cssText='left:0;right:0;width:200px;height:200px;min-width:200px!Important;border-radius:200px;border:10px solid white;margin:auto;object-fit:cover;position:fixed;padding:0;z-index:999999999999999999;margin-top:-100px'
+					video.id='profile_video'
+					$('#holder').append(video)
+					video.load()
+					video.src='https://lushmatch.com/sb/'+data.filename_1
+					video.loop=true
+					video.play()
+				}			
+				},1000)
+			}
+		})
+	if (general_info) {
+		$('#aboutM').show()
+	}				
+}
+
+	function toggle_f() {
+		$.alert('Since this is your profile, it would be fair to assume (for reasons beyond comprehension of little machines like me) that you were indeed trying to contact yourself through this app.<br><br>You know we are always here for you, right?')
+	}
+
+	if (general_info) {
+		$('#aboutM').show()
+	}	
+	function coming_soon() {
+		$.alert('This feature will be avaialable on Nov 1st 2019')
+	}
+	function getRating(mid) {
+		$.ajax({url:'rating.php?mid='+mid,success:function(data){$$('x_r').html(data)}})
+	}
+	function xtest(x) {
+		console.log(x)
+	}
+	function showText(txt) {
+		$('#aboutM').animate({height: 150}, "fast")
+        $('#aboutM').css("opacity", 0.5);
+        $('#aboutM').css("background", "#000");
+		$('#aboutM').animate({opacity: 0.8}, "fast")
+
+		$$('aboutM').innerHTML=txt
+		setTimeout(function(){
+			$('#aboutM').css("opacity", 0.8);
+			$('#aboutM').animate({height: 25}, "slow")
+			$$('aboutM').innerHTML='+ SHOW FULL PROFILE TEXT'
+			$('#aboutM').css("background", "red");
+		},10000)
+	}
+		setTimeout(function(){
+			<!-- $('#aboutM').css("opacity", 1); -->
+			<!-- $('#aboutM').css("background", "red"); -->
+			<!-- $('#aboutM').animate({height: 25}, "slow") -->
+			<!-- $$('aboutM').innerHTML='<span><img src="https://lushmatch.com/a2.gif" style="height:25px;transform:rotate(-90deg);margin-right:10px"></span><span style="font-size:0.8em"><b><strong> SHOW FULL PROFILE TEXT</b></span><span><img src="https://lushmatch.com/a2.gif" style="height:25px;transform:rotate(90deg);margin-left:10px"></span>' -->
+		},100)
+
+
+	
+	var objData=[]
+	function video_call(to_login) {
+		video_invite_sms(to_login,getCookie('login'))
+		objData={
+					msg					: 	'<span id="toaster"><img style="height:25px;position:fixed;left:5px;padding-bottom:5px" src="https://gaysugardaddyfinder.com/assets/images/new_video_msg.png"><span style="margin-left:40px;font-family:Open Sans; font-weight:300">NEW VIDEO CALL FROM '+ to_login + '</span><a href="inbox#'+getCookie('mid')+'"><img onclick="START VIEDEO IM" style="cursor:hand;cursor:pointer;height:27px;position:fixed;right:35px;padding-bottom:5px" src="https://gaysugardaddyfinder.com/assets/images/open_email.png"></a><img onclick="closeToaster()" src="https://gaysugardaddyfinder.com/assets/images/close_email.png" style="cursor:hand;cursor:pointer;height:27px;position:fixed;right:5px;padding-bottom:5px"><span>',
+					toUser				: 	to_login,
+					type				: 	'NEW_VIDEO',
+					fromUser			: 	getCookie('login'),
+					fromLongCode		: 	getCookie('long_code')
+		}
+		socket.send(JSON.stringify({type:'NEW_VIDEO', data: objData}))
+		var url='https://terrawire.com:9001/video/?login='+getCookie('login')+'&action=1';
+		openw(url)
+	}
+
+	var windowObjectReference;
+	var strWindowFeatures = "menubar=no,location=no,resizable=no,scrollbars=no,status=no";
+
+	function openw(url) {
+	  windowObjectReference = window.open(url, "VideoCall", strWindowFeatures);
+	}		
+
+	function video_invite_sms(to_login, from_login) {
+		$.ajax({url:'https://lushmatch.com/sendSMS.php?to_login='+to_login+'&from_login='+from_login+'&from_long_code='+getCookie('long_code'),success:function(data){console.log(data);}})
+	}
+	
+	function toggle_favs() {
+		var url = 'https://lushmatch.com/x_add_fav.php?to=' + currMID + '&from=' + getCookie('mid')
+		console.log(url)
+		var request = $.ajax({
+			url: url,
+			type: "GET",
+			dataType: "html",
+			cache: false,
+			success: function(msg) {
+				$.dialog(msg.trim())
+				if (msg.trim()=='User added to favorites!') {
+					$$('fav'+currMID).src='https://lushmatch.com/yyy_fav.png'
+				} else {
+					$$('fav'+currMID).src='https://lushmatch.com/yyy_fav_off.png'
+				}
+				new_fav_notification(getCookie('chatting_with_login'))
+			}
+		})
+	}
+
+	function aboutMe() {
+		
+	}
+	var objData=[]
+
+	function chk_fav(){
+		var member_id=currMID
+		var oi=document.getElementById('fav'+member_id)
+		console.log('x_chk_fav.php?mid='+mid+'&member_id='+member_id)
+		var request = $.ajax({
+			url: 'https://lushmatch.com/x_chk_fav.php?member_id='+member_id, 
+			type: "GET",
+			dataType: "html",
+			cache: false,
+			success: function(msg) {
+				console.log(msg)
+				if (msg=="true")  $$('fav'+currMID).style.color='red'
+					else $$('fav'+currMID).style.color='silver'
+			}
+		})		
+	}
+			
+	function add_hot_list(member_id,htype) {
+		var member_id=currMID
+		console.log('x_hot_list.php?htype=id&member_id='+member_id+'&type='+htype)
+		var request = $.ajax({
+			url: 'https://lushmatch.com/x_hot_list.php?htype=id&member_id='+member_id+'&type='+htype+'&mid='+getCookie('mid'), 
+			type: "GET",
+			dataType: "html",
+			cache: false,
+			success: function(msg) {
+				if (msg=='') {
+				}
+			}
+		})
+	}
+
+	var cycle,tmrY,tmrN,scale
+	function like(el) {
+		add_hot_list(currMID,'CLICKED_YES')
+		scale=2
+		$$('yes').style.transform='scale('+scale+')'
+		setTimeout(function(){
+			recoverYes()
+		},250)
+		currMID=mids[mids.indexOf(el.id.replace('p',''))-1]
+		console.log(currMID)
+		console.log(currUR)
+		add_hot_list(currMID,'VIEWED_PROFILE')
+		el.className='animated rollOut'
+		if (ctr==(profileBatchCount-2)) load_next()
+			else ctr++
+	}
+	
+	function load_next() {
+		var x=10
+		setTimeout('showWait()',1)
+		setTimeout('loadProfiles('+x+')',1)
+	}
+
+	function showWait() {
+		var di=document.createElement('div')
+		di.style.cssText='position:absolute;left:0;right:0;margin:auto;top:100px;height:400px;width:80%;max-width:650px;text-align:center;color:#000;font-size:2em;font-weight:300'
+		$$('profiles').innerHTML=''
+		$$('profiles').appendChild(di)
+		di.innerHTML="<img src='https://lushmatch.com/assets/images/load.gif' style='width:100px'><br><br><div>FETCHING PROFILES<br>PLEASE WAIT</div>"	
+	}
+	function wishlist(mid) {
+		location.href='member_wishlist.html?mid='+mid
+	}
+
+	var animate=true
+	function dislike(el) {
+		scale=2
+		$$('no').style.transform='scale('+scale+')'
+		setTimeout(function(){
+			recoverNo()
+		},250)
+		currMID=el.id.replace('p','')
+		console.log(currMID)
+		console.log(currUR)
+		add_hot_list(currMID,'VIEWED_PROFILE')
+		el.className='animated slideLeft'
+		if (ctr==(profileBatchCount-1)) load_next()
+			else ctr++
+	}
+	
+	function recoverYes() {
+		if (scale>=1) {
+			scale=scale-0.1
+			$$('yes').style.transform='scale('+scale+')'
+			tmrY=setTimeout('recoverYes()',10)
+		} else {
+			scale=1
+			clearTimeout(tmrY)
+		}
+	}
+	function recoverNo(obj) {
+		if (scale>=1) {
+			scale=scale-0.1
+			$$('no').style.transform='scale('+scale+')'
+			tmrN=setTimeout('recoverNo()',10)
+		} else {
+			scale=1
+			clearTimeout(tmrN)
+		}
+	}
+	setCookie('chatting_with',qs('id'))
+	//alert(getCookie('chatting_with'))
+
+	var winH, winW
+
+	function window_height() {
+		if (document.body) {
+		 winH = document.body.offsetHeight;
+		}
+
+		if (document.compatMode=='CSS1Compat' &&
+			document.documentElement &&
+			document.documentElement.offsetHeight ) {
+			winH = document.documentElement.offsetHeight;
+			return winH
+		}
+
+		if (window.innerHeight && window.innerHeight) {
+			 winH = window.innerHeight;
+			 return winH;
+		}
+	}		
+
+	
+
+</script><button onclick="history.go(-1)" class="btn btn-danger" style="position:fixed;bottom:10px;width:100px;margin:auto;left:0;right:0">Back</button>
+</body>
+</html>

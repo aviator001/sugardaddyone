@@ -57,30 +57,49 @@ h1,h2,h3,h4 {
 			<div class="portfolio-filter-list">
 				<div>
 					<table>
-						<tr id="s1">
-							<td style="text-align:center">
-								<h5 style=";margin-top:-20px" class="title"><h3 id="t1">SEARCH BY LOCATION</h3>
-								<input onclick="this.value=''" placeholder="City State Country" type="text" style="font-size:16px;padding-left:5px;height:40px;width:68%;margin:5px;border-radius:6px;border:1px solid silver" id="xxx"> <a id="btnSearchLocation" class="hand" style="height:40px!Important;font-size:1em;color:white;background:#666;width:28%;"  onclick="searchLocation()">Search</a>
-							</td>
-						</tr>
-						<tr id="s2" style="display:none">
-							<td style="text-align:center">
-								<h5 style=";margin-top:-20px" class="title"><h3 id="t2">SEARCH BY ZIPCODE</h3>
-								<input placeholder="Enter ZipCode" type="text" style="font-size:16px;padding-left:10px;height:40px;width:200px;margin:5px;border-radius:6px;border:1px solid silver" id="searchLocation"><a id="btnSearchCityStateZip" class="hand" style="height:40px!Important;font-size:1em;color:white;background:#666"  onclick="searchCityStateZip()">Search</a>
+	<tr id="s1">
+							<td>
+								<table>
+									<tr>
+										<td colspan=2 style="text-align:center">
+											<h5 style=";margin-top:-20px" class="title"><h3 id="t1">SEARCH BY LOCATION</h3>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<input onclick="this.value=''" placeholder="City State Country" type="text" style="font-size:16px;padding-left:5px;height:40px;width:200px;margin:5px;border-radius:6px;border:1px solid silver" id="xxx"> 
+										</td>
+										<td>
+											<a id="btnSearchLocation" class="hand" style="height:40px!Important;font-size:1em;color:white;background:#666"  onclick="searchLocation()">Search</a>
+										</td>
+									</tr>
+								</table>
 							</td>
 						</tr>
 						<tr id="s3" style="display:none">
-							<td style="text-align:center">
-								<h5 style=";margin-top:-20px" class="title"><h3 id="t3">SEARCH BY USER NAME</h3>
-								<input placeholder="Enter UserName" type="text" style="font-size:16px;padding-left:10px;height:40px;width:200px;margin:5px;border-radius:6px;border:1px solid silver" id="searchName"><a id="btnSearchName" class="hand" style="height:40px!Important;font-size:1em;color:white;background:#666;height:40px!Important;"  onclick="searchUserName()">Search</a>
+							<td>
+								<table>
+									<tr>
+										<td colspan=2 style="text-align:center">
+											<h5 style=";margin-top:-20px" class="title"><h3 id="t3">SEARCH BY USER NAME</h3>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<input placeholder="Enter UserName" type="text" style="font-size:16px;padding-left:10px;height:40px;width:200px;margin:5px;border-radius:6px;border:1px solid silver" id="searchName">
+										</td>
+										<td>
+											<a id="btnSearchName" class="hand" style="height:40px!Important;font-size:1em;color:white;background:#666;height:40px!Important;"  onclick="searchUserName()">Search</a>
+										</td>
+									</tr>
+								</table>
 							</td>
 						</tr>
 						<tr>
 							<td style="text-align:left">
-									<div style="margin-bottom:5px;margin:20px;margin-top:30px;margin-bottom:10px" id="t4">To Change Selection Criteria, select below::</div>
-									<a id="b1" class="hand" style="border:none;height:40px!Important;font-size:1.0em;color:black;border-radius:10px"  onclick="searchA()">LOCATION</a>
-									<a id="b2" class="hand" style="border:none;height:40px!Important;font-size:1.0em;color:black;border-radius:10px"  onclick="searchB()">ZIP</a>
-									<a id="b3" class="hand" style="border:none;height:40px!Important;font-size:1.0em;color:black;border-radius:10px"  onclick="searchC()">USERNAME</a>
+								<div style="margin-bottom:5px;margin:20px;margin-top:30px;margin-bottom:10px" id="t4">To Change Selection Criteria, select below::</div>
+								<a id="b1" class="hand" style="border:none;height:40px!Important;font-size:1.0em;color:black;border-radius:10px"  onclick="searchA()">LOCATION</a>
+								<a id="b3" class="hand" style="border:none;height:40px!Important;font-size:1.0em;color:black;border-radius:10px"  onclick="searchC()">USERNAME</a>
 							</td>
 						</tr>
 					</table>	
@@ -90,11 +109,12 @@ h1,h2,h3,h4 {
 		<div class="container" style="text-align:center">
 			<h2 class="title" id="search_summary" style="font-size:1em"></h2>
 			<div class="row" id="searchGallery" style="text-align:center">
-
+				
 			</div>
 			<img id="imgSearchWait" src="https://lushmatch.com/assets/images/load.gif" alt="waiting for my sugar daddy or sugar baby" style="position:absolute;z-index:999999999999;margin-top:-500px;margin-left:-50px;width:100px;display:none">
 		</div>
 	</section>
+	<div id="xresults"></div>
 	<div id="xresults_bar" style="display:none;position:fixed;z-index:9999999999999999;width:100%;height:50px;bottom:45px;background:#f0f0f0;padding:0;text-align:center"> <button id="back_a" class="btn btn.sm btn-danger" onclick="getBack()"  style="display:none;padding-top:10px;padding-bottom:10px;margin:5px;color:white;background:red">Back</button> <button class="btn btn.sm btn-danger" id="next_a" onclick="getNext()" style="display:none;padding-top:10px;padding-bottom:10px;margin:5px;color:white;background:black">Next</button></div>
 	<div id="xresults_bar2" style="display:none;position:fixed;z-index:9999999999999999;width:100%;height:50px;bottom:45px;background:#f0f0f0;padding:0;text-align:center"><button id="back_b" class="btn btn.sm btn-danger" onclick="getBack2()" style="display:none;padding-top:10px;padding-bottom:10px;margin:5px;color:white;background:red">Back</button> <button class="btn btn.sm btn-danger" id="next_b" onclick="getNext2()" style="display:none;padding-top:10px;padding-bottom:10px;margin:5px;color:white;background:black">Next</button></div>
 	<div id="xresults_bar3" style="display:none;position:fixed;z-index:9999999999999999;width:100%;height:50px;bottom:45px;background:#f0f0f0;padding:0;text-align:center"><button id="back_c" class="btn btn.sm btn-danger" onclick="getBack3()" style="display:none;padding-top:10px;padding-bottom:10px;margin:5px;color:white;background:red">Back</button> <button class="btn btn.sm btn-danger" id="next_c" onclick="getNext3()" style="display:none;padding-top:10px;padding-bottom:10px;margin:5px;color:white;background:black">Next</button></div>
@@ -120,30 +140,16 @@ h1,h2,h3,h4 {
 	var search_type,searchNameTerm
 	function searchA() {
 		$('#s1').show()
-		$('#s2').hide()
 		$('#s3').hide()
 		$$('b1').style.background='gold'
-		$$('b2').style.background=''
 		$$('b3').style.background=''
 		search_type='a'
 		setCookie('search_type',search_type)
 	}
-	function searchB() {
-		$('#s1').hide()
-		$('#s2').show()
-		$('#s3').hide()
-		$$('b1').style.background=''
-		$$('b2').style.background='gold'
-		$$('b3').style.background=''
-		search_type='b'
-		setCookie('search_type',search_type)
-	}
 	function searchC() {
 		$('#s1').hide()
-		$('#s2').hide()
 		$('#s3').show()
 		$$('b1').style.background=''
-		$$('b2').style.background=''
 		$$('b3').style.background='gold'
 		search_type='c'
 		setCookie('search_type',search_type)
@@ -152,7 +158,6 @@ h1,h2,h3,h4 {
 		if (getCookie('search_type')) {
 			search_type=getCookie('search_type')
 			if (search_type=='a') $('#b1').click()
-			if (search_type=='b') $('#b2').click()
 			if (search_type=='c') $('#b3').click()
 		}
 	},1000)
@@ -508,9 +513,25 @@ h1,h2,h3,h4 {
 	var bgx=["whitesmoke","aliceblue","lavenderblush","lightcyan","linen","lightyellow","papayawhip","mistyrose","lavender"]
 	var ct=0, smids=[]
 	var x_start=0
-	var no=15
+	var no=100
 	setCookie('x_start_location','')
-	
+	var ids=[]
+
+	function getfile() {
+		var ii='img/bg/fav_bg_0' + (Math.floor(Math.random() * 7) + 1)
+		ii = ii + '.jpg'
+		return ii
+	}	
+	var x_start_new_local=0
+	var no		
+
+	var max_img_width, max_img_height,hy
+	function fetchNextNewLocal() {
+		x_start_new_local=x_start_new_local+no
+		if (getCookie('view_result')=="gallery") getProfilesNewLocal()
+			else getProfilesNewLocal_list()
+	}
+			
 	function searchLocation() {
 		if ($$('xxx').value) {
 			searchNameTerm=$$('xxx').value.toLowerCase()
@@ -542,7 +563,7 @@ h1,h2,h3,h4 {
 		if (!x_start) {
 			x_start=0
 		}
-		var url='https://lushmatch.com/x_browse_search_a.php?lat=' + lat +'&lng='+lng+'&start=' + x_start + '&gender='+getCookie('gender') + '&type=search&count='+no
+		var url='https://sugardaddylocal.com/x_browse_search_a.php?lat=' + lat +'&lng='+lng+'&start=' + x_start + '&gender='+getCookie('gender') + '&type=search&count='+no
 		console.log(url)
 		var request = $.ajax({
 			url: url,
@@ -572,40 +593,67 @@ h1,h2,h3,h4 {
 				} else {
 					for (var i=0;i<data.length;i++) {
 						if (data[i]) {
-							var src
-							if (data[i].filename_1) {
-								src='https://lushmatch.com/sb/'+ data[i].filename_1
-							} else {
-								if (data[i].gender=='Sugar Baby') {
-									src='https://lushmatch.com/sb/no_photo.png'
+								if (data[i].filename_1=='') fnn='images/no_photo.png'
+									else fnn=data[i].filename_1
+								id=data[i].id
+								ids += data[i].id + ','
+								imgB=document.createElement('img')
+								imgB.src=getfile()  
+								imgB.style='width:100%;height:40%;border-radius:5px 5px 0 0 ;position:absolute;padding:0;margin:0px;top:0'
+								imgG=makeImg('https://lushmatch.com/sb/'+fnn, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, 'col-md-3')
+								imgG.style='width:60%;border-radius:60%;position:absolute;padding:0;margin:0px;border:5px solid white'
+								imgG.id='img_newest_'+id+'|'+x_start_new_local
+								imgG.style.position='absolute'
+								imgG.style.margin='auto'
+								imgG.style.left='0'
+								imgG.style.right='0'
+								imgG.style.marginTop='20%'
+								var cr=''
+								var corner=document.createElement('img')
+								var dpg=document.createElement("div")
+								var cStr=document.createElement('div')
+								dpg.className='col-md-3 col-xs-1'
+								dpg.style.margin='0px'
+								dpg.style.background='#f0f0f0'
+								dpg.style.border='none'
+								if (getCookie('isMobile')) {
+									dpg.style.maxWidth=max_img_width+'px'
+									dpg.style.width =((screen.width*0.45)) + 'px'
+									dpg.style.height=((screen.width*0.45)+80) + 'px'
+									imgG.style.width=((screen.width*0.45)-60) + 'px'
+									imgG.style.height=((screen.width*0.45)-60) + 'px'
+									dpg.style.margin='2%'
+									dpg.style.boxShadow='1px 1px 2px #fff'
+									dpg.style.borderRadius='5px'
 								} else {
-									src='https://lushmatch.com/sb/no_photo_m.png'
+									dpg.style.maxWidth=(500/5-5)+'px'
+									dpg.style.height=(500/5-5)+'px'
 								}
-							}
-							id=data[i].id
-							smids.push(id)
-							setCookie('smids',JSON.stringify(smids))
-							imgG=makeImg(src, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, 'searchImg',id)
-							imgG.id='search_'+id
-							var div=document.createElement("div")
-							div.className="searchElement www_box2 "
-							if (data[i].location) var loc=data[i].location.toUpperCase()
-								else var loc='[No Location Data]'
-							if (data[i].distance) var miles=data[i].distance
-							div.innerHTML="<table style='width:100%;margin:0;padding:0'><tr><td style='width:100px'>"+imgG.outerHTML+"</td><td style='margin:0;text-align:left;padding:10px'><div class='sTitleName'>"+data[i].login.toUpperCase()+"</div><div class='sTitleGender'>"+data[i].gender.toUpperCase()+"</div><div class='sTitleLocation'>"  + loc + "</div><div class='sTitleMiles' style='font-size:12px'>"  + miles + " Miles</div></td></tr></table>"
-							if (ct>bgx.length) {
-								ct=0
-							} else {
-								ct++
-							}
-							div.id='div_'+id
-							div.style.background=bgx[ct]
-							$$('xresults').appendChild(div)
-							$$('xresults').style.cssText='position:absolute;padding-bottom:100px;margin-bottom:100px;width:100%;margin-top:50px!Important;top:0'
-							$$('xresults').style.height=(screen.height-200)+'px'
-							$('#xresults').show()
+								dpg.style.padding='0'
+								dpg.style.cursor='pointer'
+								dpg.style.position='relative'
+								cr+='<table style="position:absolute;bottom:40px;max-height:30px;width:100%;margin-bottom:30px;border-radius:0 0 5px 5px;background:none"><tr>'
+								cr+='<tr><td colspan=4 style="text-align:center;width:100%;padding:5px;color:#000;font-size:16px">'+data[i].login.substr(0,10).toUpperCase()+' ' + data[i].age + ' ' + (data[i].gender=='sugar baby'?'M':'F')+' <div style="margin:auto;color:maroon"><b>'+data[i].distance+' Miles Away</b></div></td></tr><tr>'
+								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:-10px"><img onclick="send_mail('+id+')" style="width:20px;margin-bottom:5px" src="img/new_chat.png"></td>'
+								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:-10px"><img onclick="videocall(\''+data[i].login+'\')" style="width:20px;margin-bottom:5px" src="img/new_video_chat.png"></td>'
+								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:-10px"><img onclick="view_wish('+id+')" style="width:20px;margin-bottom:5px" src="img/new_wish.png"></td>'
+								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:-10px"><img onclick="view_offers('+id+')" style="width:25px;margin-bottom:5px" src="images/bid.png"></td>'
+								cr+='</tr></table>'
+								cStr.innerHTML=cr
+								dpg.appendChild(imgB)
+								dpg.appendChild(imgG)
+								dpg.appendChild(corner)
+								dpg.appendChild(cStr)
+								corner.outerHTML='<a onclick="shortlist('+id+')"><img src="images/corner.png" id="corner_'+id+'" style="position: absolute; top: 0px; right: 0px; width: 75px; height: 75px; z-index: 99;"></a>'
+								$$('xresults').appendChild(dpg)
 						}
 					}
+					
+					
+
+
+
+								
 					var apn=document.createElement('div')
 					apn.innerHTML='<div><br><table style="width:100%"><tr><td><input id="bottom_back" type="button" value="BACK" style="width:100px;padding:5px;border-radius:6px;background:gold;border:none;height:60px;display:none" onclick="back()"></td><td><input type="button" value="FETCH NEXT" style="width:100px;padding:5px;border-radius:6px;background:skyblue;border:none;height:60px" onclick="more()"></td></tr></table></div>'
 					$$('searchGallery').appendChild(apn)
@@ -618,7 +666,69 @@ h1,h2,h3,h4 {
 		})
 		
 	} 
+			var slist=[ ]
+			function update_shortlist(id) {
+				if (getCookie('shortlist')) {
+					slist=JSON.parse(getCookie('shortlist'))
+				}
+				$$('shortlist_count').innerHTML='<b>'+slist.length+'</b>'
+				$.each(slist, function(i, el){
+					$$('corner_'+el).src='images/added.png'					
+				});
+				
+			}
+			var bg,ht,tmr,intval,alpha
+			function flash_header() {
+				ht=50
+				bg='white'
+				intval=1
+				alpha=1
+				start_flash()
+			}
+			function start_flash() {
+				if (ht>=40) {
+					$$('table_header').style.background=bg
+					$$('table_header').style.height=ht+'px'
+					$$('table_header').style.boxShadow='0 20px 30px rgba(255,255,255,'+alpha+')'
+					if (bg=='black') bg='grey'
+						else bg='black'
+					ht--
+					intval=intval+2
+					alpha=alpha-(1/10)
+					tmr=setTimeout('start_flash()',intval)
+				} else {
+					clearTimeout(tmr)
+					$$('table_header').style.background='black'
+					return
+				}
+			}
+			function shortlist(id) {
+				if (getCookie('shortlist')) {
+					slist=JSON.parse(getCookie('shortlist'))
+				}
+				if (slist.indexOf(id)>=0) {
+					slist.splice(slist.indexOf(id),1)
+					if ($$('corner_'+id)) $$('corner_'+id).src='images/corner.png'
+				//	$$('tr_'+id).style.background='white'
+				} else {
+					slist.push(id*1)
+					slist=removeDuplicates(slist)
+					if ($$('corner_'+id)) $$('corner_'+id).src='images/added.png'
+				//	$$('tr_'+id).style.background='gainsboro'
+				}
+				setCookie('shortlist',JSON.stringify(slist))
+				if ($$('shortlist_count')) $$('shortlist_count').innerHTML='<b>'+slist.length+'</b>'
+				flash_header()
+			}
 
+			function removeDuplicates(arr) {
+				var uniqueNames = [];
+				$.each(arr, function(i, el){
+					if($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
+				});
+				return uniqueNames
+			}
+			
 	function no_results()  {
 		var apn='<div><br><table style="width:100%"><tr><td><div style="background:red;width:90%;border-radius:10px;border:5px solid white;color:white;font-size:24px;text-align:center;padding:20px;font-weight:300"> NO RESULTS FOUND </div></td></tr></table></div>'
 		$.confirm({title:'',
@@ -847,20 +957,22 @@ h1,h2,h3,h4 {
 	window.onclick=view_search_profile
 	search_type='a'
 	function view_search_profile(e) {
-		if (e.target.id.indexOf('search_')>=0) {
-			if (e.target.id.split('_')) currMID=e.target.id.split('_')[1]
-			setCookie('currMID', currMID)
-			location.href='profileBrowse.html?id=' + currMID + '&type=search&search_type='+search_type+'&search_term='+searchNameTerm+'&start='+x_start+'&count='+no+'&lat='+lat+'&lng='+lng
-		}
-		if (e.target.id.indexOf('img_')>=0) {
-			if (e.target.id.split('_')) currMID=e.target.id.split('_')[1]
-			setCookie('currMID', currMID)
-			location.href='profileBrowse.html?id=' + currMID + '&type=search&search_type='+search_type+'&search_term='+searchNameTerm+'&start='+x_start+'&count='+no+'&lat='+lat+'&lng='+lng
+		<!-- if (e.target.id.indexOf('search_')>=0) { -->
+			<!-- if (e.target.id.split('_')) currMID=e.target.id.split('_')[1] -->
+			<!-- setCookie('currMID', currMID) -->
+			<!-- location.href='profileBrowse.html?id=' + currMID + '&type=search&search_type='+search_type+'&search_term='+searchNameTerm+'&start='+x_start+'&count='+no+'&lat='+lat+'&lng='+lng -->
+		<!-- } -->
+		<!-- if (e.target.id.indexOf('img_')>=0) { -->
+			<!-- if (e.target.id.split('_')) currMID=e.target.id.split('_')[1] -->
+			<!-- setCookie('currMID', currMID) -->
+			<!-- location.href='profileBrowse.html?id=' + currMID + '&type=search&search_type='+search_type+'&search_term='+searchNameTerm+'&start='+x_start+'&count='+no+'&lat='+lat+'&lng='+lng -->
+		<!-- } -->
+		if (e.target.id.indexOf('img_newest_')>-1) {
+			url='profileBrowse.html?id='+e.target.id.split('_')[2].split('|')[0]+'&type=search&search_type=a&search_term='+searchNameTerm+''+'&start='+e.target.id.split('_')[2].split('|')[1]+'&count='+no+'&lat='+lat+'&lng='+lng
+			location.href=url
 		}
 		return
 	}
-	
-
 
 	function getBlog() {
 
@@ -874,6 +986,9 @@ h1,h2,h3,h4 {
 		if ( alt != null ) img.alt = alt;
 		if ( title != null ) img.title = title;
 		if ( className != null ) img.className = className;
+		img.onError=function(){
+			img.src='images/no_photo.png'
+		}
 		ctr++
 		return img;
 	}

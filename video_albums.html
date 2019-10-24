@@ -197,7 +197,6 @@ h2 {
     </style>
 	<script src="https://lushmatch.com/assets/js/jquery.js"></script>
 	<script>
-	dinit()
 
 	
 	function dinit() {
@@ -413,8 +412,8 @@ h2 {
 			var albums=[]
 			var counts=[]
 			function load_albums() {
-				console.log('x_get_albums.php?mid='+getCookie('mid')+'&type=video')
-				var url='https://sugardaddylocal.com/x_get_albums.php?mid='+getCookie('mid')+'&type=video'
+				var url='https://sugardaddylocal.com/x_get_video_albums.php?mid='+getCookie('mid')+'&type=video'
+				console.log(url)
 				var request = $.ajax({
 					url: url,
 					type: "GET",
@@ -423,11 +422,9 @@ h2 {
 					success: function(msg) {
 						var data=JSON.parse(msg)
 						console.log(data)
-						counts=data.counts
-						albums=data.albums
 						var str=''
-						for (var i=0; i<albums.length; i++) {
-							str+='<a id="album_' + albums[i].album_id + '" style="justify-content:left!Important" class="list-group-item d-flex justify-content-between align-items-center font-weight-medium text-uppercase font-bigger" href="javascript:add_items('+albums[i].album_id+')">'+ (i+1) + '. ' + albums[i].album_name + '<span style="color:silver;margin-left:20px">[' + counts[i] + ' vids] </span><div onclick="edit_album('+albums[i].album_id+',\''+ albums[i].album_name +'\')"style="background:gainsboro;color:#000;text-shadow:1px 1px 1px #fff;width:55px;padding:10px;height:30px;padding-top:5px;position:absolute;right:30px;">EDIT</div><img onclick="del_album(' + albums[i].album_id + ')" src="images/del.png" style="width:30px;position:absolute;right:5px"></a>'
+						for (var i=0; i<data.length; i++) {
+							str+='<a id="album_' + data[i].album_id + '" style="justify-content:left!Important" class="list-group-item d-flex justify-content-between align-items-center font-weight-medium text-uppercase font-bigger" href="javascript:add_items('+data[i].album_id+')">'+ (i+1) + '. ' + data[i].album_name + '<span style="color:silver;margin-left:20px">[' + data[i].count + ' vids] </span><div onclick="edit_album('+data[i].album_id+',\''+ data[i].album_name +'\')"style="background:gainsboro;color:#000;text-shadow:1px 1px 1px #fff;width:55px;padding:10px;height:30px;padding-top:5px;position:absolute;right:30px;">EDIT</div><img onclick="del_album(' + data[i].album_id + ')" src="images/del.png" style="width:30px;position:absolute;right:5px"></a>'
 						}
 						str += '<a style="background:aliceblue" id="wish3" class="list-group-item d-flex justify-content-between align-items-center  font-weight-medium text-uppercase font-bigger"><button onclick="add_album()" class="btn"> ADD VIDEO ALBUM </button> <button onclick="go_to_settings()"  class="btn"> SETTINGS </button></a>'
 						$('#albums').html(str)
