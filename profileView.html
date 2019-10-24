@@ -770,33 +770,6 @@
 		},100)
 
 
-	
-	var objData=[]
-	function video_call(to_login) {
-		video_invite_sms(to_login,getCookie('login'))
-		objData={
-					msg					: 	'<span id="toaster"><img style="height:25px;position:fixed;left:5px;padding-bottom:5px" src="https://gaysugardaddyfinder.com/assets/images/new_video_msg.png"><span style="margin-left:40px;font-family:Open Sans; font-weight:300">NEW VIDEO CALL FROM '+ to_login + '</span><a href="inbox#'+getCookie('mid')+'"><img onclick="START VIEDEO IM" style="cursor:hand;cursor:pointer;height:27px;position:fixed;right:35px;padding-bottom:5px" src="https://gaysugardaddyfinder.com/assets/images/open_email.png"></a><img onclick="closeToaster()" src="https://gaysugardaddyfinder.com/assets/images/close_email.png" style="cursor:hand;cursor:pointer;height:27px;position:fixed;right:5px;padding-bottom:5px"><span>',
-					toUser				: 	to_login,
-					type				: 	'NEW_VIDEO',
-					fromUser			: 	getCookie('login'),
-					fromLongCode		: 	getCookie('long_code')
-		}
-		socket.send(JSON.stringify({type:'NEW_VIDEO', data: objData}))
-		var url='https://terrawire.com:9001/video/?login='+getCookie('login')+'&action=1';
-		openw(url)
-	}
-
-	var windowObjectReference;
-	var strWindowFeatures = "menubar=no,location=no,resizable=no,scrollbars=no,status=no";
-
-	function openw(url) {
-	  windowObjectReference = window.open(url, "VideoCall", strWindowFeatures);
-	}		
-
-	function video_invite_sms(to_login, from_login) {
-		$.ajax({url:'https://lushmatch.com/sendSMS.php?to_login='+to_login+'&from_login='+from_login+'&from_long_code='+getCookie('long_code'),success:function(data){console.log(data);}})
-	}
-	
 	function toggle_favs() {
 		var url = 'https://lushmatch.com/x_add_fav.php?to=' + currMID + '&from=' + getCookie('mid')
 		console.log(url)
