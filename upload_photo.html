@@ -153,7 +153,7 @@
 		return "";
 	}
 	var url="https://lushmatch.com/gallery_uploads.php"
-	var myDropzone, files=0
+	var myDropzone, tfiles=0
 	if (!myDropzone) {
 		myDropzone = new Dropzone("form#member", { 
 			url: url,
@@ -179,7 +179,7 @@
 		}
 		if (abort===true) return false
 		setCookie('attach_id',guid())
-		files++
+		tfiles++
 		if (file.type.indexOf('png')>=0) ext='png'
 		if (file.type.indexOf('jpg')>=0) ext='jpg'
 		if (file.type.indexOf('gif')>=0) ext='gif'
@@ -191,8 +191,6 @@
 		if((file.type=='video/x-ms-wmv')||(file.type=='video/avi')) {
 			alert('Only .mpg .mpeg and .mp4 files allowed for now')
 			return false
-		} else {
-			files++
 		}
 		currImg=file.name
 		usr_img.push(currImg)
@@ -202,12 +200,12 @@
 
 		
 	myDropzone.on("complete", function(file) {
-		files--
+		tfiles--
 		var message=file.name
 		var from_u=getCookie('mid')
 		var url = encodeURI('https://sugardaddylocal.com/x_send_mail.php?to=' + getCookie('chatting_with') + '&from=' + from_u + '&message=' + message + '&attach_id=' + getCookie('attach_id')+'&w_w='+window_width())
 		console.log(url)
-		win()
+		if (tfiles==0) win()
 	});
 
 	function setCookie(cname,cvalue,exdays)	{
@@ -235,18 +233,21 @@
 		}
 		return '<span style="padding-top:5px">'+px+'</span>'
 	}
+	
+	var done=false
 
 		function win() {
+			if (done===true) return false
 			$.alert({
 				title: 'Success',
-				content: 'Images uploaded, saved and cataloged. Whats next?',
+				content: 'Image(s) uploaded, saved and cataloged. Whats next?',
 				btnClose:true,
 				buttons: {
 					b1: {
-						text: 'My Albums',
+						text: 'Home',
 						btnClass: 'btn-white',
 						action: function(){
-							location.href='frame_albums.html'
+							location.href='home.html'
 						}
 					},
 					b2: {
@@ -257,14 +258,7 @@
 						}
 					},
 					b3: {
-						text: 'Take More',
-						btnClass: 'btn-blue',
-						action: function(){
-							history.go(0)
-						}
-					},
-					b4: {
-						text: 'To Settings',
+						text: 'My Account',
 						btnClass: 'btn-red',
 						action: function(){
 							location.href='settings.html'
@@ -272,6 +266,7 @@
 					}
 				}
 			});
+			done=true
 		}
 
 		function fail(error) {

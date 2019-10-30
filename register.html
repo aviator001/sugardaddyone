@@ -26,7 +26,7 @@
 		<link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet' type='text/css'>
 <style>
 	* 	{
-			max-width:480px!Important;
+			max-width:800px!Important;
 			margin:auto;
 		}
 </style>
@@ -79,12 +79,9 @@
 		<div id="modal_text" class="modal_window" onclick="javascript:history.go(0)" id="modal_window" style="padding:20px;border-radius:6px;position:;z-index:9999;display:none;background:#f0f0f0;top:0;bottom:0;left:0;right:0;margin:auto;width:300px;height:420px;font-family:Open Sans;font-size:18px;"><b>Error - Location Required</b><br>In order to use this site, you must agree to share your current location. We will never disclose this information to anyone, but we need this to provide you with the best experience. If you need help on how to enable your location, <a href="https://support.google.com/chrome/answer/142065?hl=en"><span style='color:brown'><b>Click Here</b></span></a><br><br><span style='color:#0093D9;cursor:hand;cursor:pointer'>Clear location settings and then click HERE to try again!</span></div>
 		<div class="usersOnline pull-right" id="search_results" style="display:none;position:;top:0;bottom:0px;right:10px;z-index:99999999999;overflow-y:auto;overflow-x:hidden;width:420px;height:100%" onscroll="scrolled(this)"><table border=0></table></div>
 		<div id="dark1" class="dark_a" style="opacity:0;display:none"></div> 
-		<div id="wrapper" class="www_wrapper" style="box-shadow:none!Important;border-radius:5px;margin-top:-50px;margin-bottom:50px;overflow-x:hidden;overflow-y:hidden;">
+		<div id="wrapper" class="www_wrapper" style="box-shadow:none!Important;border-radius:5px;margin-top:-50px;margin-bottom:50px;overflow-x:hidden;overflow-y:hidden;width:100%">
 			<section id="section" style="text-align:center;margin:0;padding:0;overflow-y:auto;overflow-x:hidden;height:100%" align=center>
 				<div id="main_content">
-					<?/***
-					START HTML CONTENT FOR PAGE
-					***/?>
 					<div style="position:;width:100%;height:100%;top:0px;left:0px;right:0px;bottom:0px;background:#000;opacity:0.9;z-index:9999100000;display:none" id="pay_modal"></div>	
 					<div style="position:;top:0;left:0;right:0;bottom:0;opacity:1.0;z-index:9999100001;display:none;margin:auto;FONT-FAMILY:Open Sans;FONT-SIZE:14PX;color:#fff" id="wait">		
 						<div style="background:red;position:;top:0;left:0;right:0;bottom:0;opacity:1.0;z-index:9999100001;margin:auto;width:300px;height:200px">			
@@ -92,7 +89,7 @@
 							<div style="padding-top:75px;position:;top:0;left:0;right:0;bottom:0;opacity:1.0;z-index:9999100001;margin-left:40%:auto;" id="spl_text"></div>
 						</div>
 					</div>	
-					<div style="padding:10px;margin:auto;position:;top:0px;left:0px;right:0px;bottom:0px;cursor:hand;cursor:pointer;text-align:left;padding-left:5px;font-family:Open Sans;font-size:20px;display:none;position:;z-index:9999999999999; background:#f0f0f0; border-radius:6px; width: 300px; height:220px" id="bo">		<font style='font-family:Open Sans;font-size:20px;color:#f0f0f0'>PHONE VERIFICATION<br><font style='font-family:Open Sans;font-size:18px;color:#333'>To verify your account, please enter below the 4 digit pin we sent as a text to your phone<br>
+					<div style="padding:10px;margin:auto;position:;top:0px;left:0px;right:0px;bottom:0px;cursor:hand;cursor:pointer;text-align:left;padding-left:5px;font-family:Open Sans;font-size:20px;display:none;position:;z-index:9999999999999; background:#f0f0f0; border-radius:6px; width: 300px; height:220px" id="bo">PHONE VERIFICATION<br><font style='font-family:Open Sans;font-size:18px;color:#333'>To verify your account, please enter below the 4 digit pin we sent as a text to your phone<br>
 						<table style="background:#f0f0f0" align=center style='margin-top:10px;height:50px;width:150px' cellspacing=10>
 							<tr>
 								<td>
@@ -126,26 +123,23 @@
 										<div id="location_err_txt" style="color:skyblue;text-align:left"></div>				
 									</div>
 								</div>
-							</div>		
-							<div class="row">			
+			
 								<div style="width:100%" class="form-group">
-									<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
+									<div class="col-md-12" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
 										<label class="block">E-mail Address</label>						
 										<input type="text" name="email" id="email" value="" placeholder="Your Email Address" class="form-control input-box" onclick="clear_error(this)" onblur="validate_field_register(this)" style="color:grey;font-size:18px">						
 										<div id="email_err_txt" style="color:skyblue;text-align:left"></div>				
 									</div>
 								</div>
-							</div>		
-							<div class="row">			
+	
 								<div style="width:100%" class="form-group">				
-									<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
+									<div class="col-md-12" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
 										<label class="block">Create a Login Name</label>						
 										<input style="width:100%;font-size:18px" type="user" name="login" id="login" value="" placeholder="Your Login Name" class="form-control input-box" onclick="clear_error(this)" onblur="validate_field_register(this)" style="color:grey;font-size:18px">						
 										<div id="login_err_txt" style="color:skyblue;text-align:left"></div>
 									</div>
 								</div>
-							</div>	
-							<div class="row">			
+		
 								<div style="width:100%" class="form-group">				
 									<div class="col-md-12" style="text-align:left;font-weight:300">					
 										<label class="block">Create a Password</label>						
@@ -230,11 +224,12 @@
 		<script type="text/javascript" src="js/jquery.js"></script>
 		<script type="text/javascript" src="https://lushmatch.com/custom_js/cookie.js"></script>
 		<script type="text/javascript" src="https://lushmatch.com/custom_js/wait.js"></script>
-		<link rel="stylesheet" href="https://lushmatch.com/css/jquery-confirm.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 		<script src="https://lushmatch.com/assets/js/jquery-ui.js"></script>
-		<script type="text/javascript" src="https://lushmatch.com/register.js"></script>
+		<script type="text/javascript" src="https://sugardaddylocal.com/register.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 	</body>
 	<script>
 		var city,state,country,zip,lat,lng,zip
@@ -266,8 +261,29 @@ setTimeout(function(){
 		});
 
 },1)
+
+	function locate() {
+		$.ajax({
+			url: "https://lushmatch.com/x_location.php",
+			type: "GET",
+			dataType: "html",
+			success: function(msg){
+				if (msg) {
+					var data=JSON.parse(msg)[0]
+					console.log(data)
+					setCookie('lat', data.lat)
+					setCookie('lng', data.lng)
+					setCookie('city', data.city)
+					setCookie('state', data.state)
+					setCookie('zip', data.zip)
+					setCookie('location', data.city + ' ' + data.state + ' ' + data.zip)
+					document.getElementById('location').value=getCookie('location')
+				}
+			}
+		})
+	}
+	setTimeout("locate()",10)	
 	</script>
-	<script type="text/javascript" src="https://lushmatch.com/custom_js/locate.js"></script>
 	
 </html>
 				

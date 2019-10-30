@@ -251,6 +251,10 @@ h1,h2,h3,h4 {
 		searchLocation()
 	}
 	
+	function show_wait() {
+		wait3()
+	}
+	
 	function getNext2() {
 		x_start=x_start+no
 		searchCityStateZip()
@@ -1041,9 +1045,9 @@ h1,h2,h3,h4 {
 	str+='					<tr>'
 	str+='						<td style="width:20%;text-align:center;padding:10px"><a href="javascript:history.go(-1)"><img style="width:25px;text-align:center;margin:0!Important;padding:0!Important;cursor:hand;cursor:pointer" src="images/backx.png"></a></td>'
 	str+='						<td style="width:20%;text-align:center;padding:10px"><a href="home.html"><img style="width:30px;text-align:center;margin:0!Important;padding:0!Important;cursor:hand;cursor:pointer" src="img/home2.png"></a></td>'
-	str+='						<td style="width:20%;text-align:center;padding:10px"><a href="javascript:show_wait();search()"><img style="width:30px;text-align:center;margin:0!Important;padding:0!Important" src="img/search2.png"></a></td>'
-	str+='						<td style="width:20%;text-align:center;padding:10px"><a href="javascript:show_wait();killCookie();settings()"><img style="width:30px;text-align:center;margin:0!Important;padding:0!Important" src="img/settings2.png" onclick="javascript:xback()"></td>'
-	str+='						<td style="width:20%;text-align:center;padding:10px"><a href="javascript:show_wait();inbox()"><img style="width:30px;text-align:center;margin:0!Important;padding:0!Important" src="img/messages2.png"></a></td>'
+	str+='						<td style="width:20%;text-align:center;padding:10px"><a href="javascript:wait3();search()"><img style="width:30px;text-align:center;margin:0!Important;padding:0!Important" src="img/search2.png"></a></td>'
+	str+='						<td style="width:20%;text-align:center;padding:10px"><a href="javascript:wait3();killCookie();settings()"><img style="width:30px;text-align:center;margin:0!Important;padding:0!Important" src="img/settings2.png" onclick="javascript:xback()"></td>'
+	str+='						<td style="width:20%;text-align:center;padding:10px"><a href="javascript:wait3();inbox()"><img style="width:30px;text-align:center;margin:0!Important;padding:0!Important" src="img/messages2.png"></a></td>'
 	str+='					</tr>'
 	str+='				</tbody>'
 	str+='			</table>'
@@ -1056,7 +1060,11 @@ h1,h2,h3,h4 {
 	var top_header=document.createElement('div')
 	top_header.id='top_header'
 	top_header.style.cssText='position:fixed;width:100%;height:70px;max-height:40px!Important;top:0;z-index:99999'
-
+	
+	function inbox() {
+		location.href='inbox.html'
+	}
+	
 	function killCookie() {
 		setTimeout(function(){
 			setCookie('frameSrc','')

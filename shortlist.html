@@ -6,8 +6,8 @@
 		<meta name="description" content="A sugar daddy dating site that connects handsome wealthy and caring men to hot young women. Worlds first sugar daddy site to use disruptive SMS messaging. Find a Sugar Daddy today!" />		
 		<meta name="Author" content="Gautam Sharma" />		
 		<meta name="format-detection" content="telephone=no"/>
-		<title>SpoiledByMen.com</title>
-		<link rel="canonical" href="https://SpoiledByMen.com"
+		<title>SugarDaddyOne.com</title>
+		<link rel="canonical" href="https://SugarDaddyOne.com"
 		<link rel="icon" href="favicon.png">
 		<link href="https://lushmatch.com/assets/css/font-awesome.css" rel="stylesheet" >
 		<link href="https://lushmatch.com/assets/css/jquery-confirm.css" rel="stylesheet" />
@@ -213,7 +213,7 @@
 							</table>
 						</span>
 
-							<table style="width:100%;margin:auto;left:0;right:0;margin-top:0px;font-family:Open Sans Condensed;font-size:14px!Important;">
+							<table style="width:100%;margin:auto;left:0;right:0;margin-top:0px;font-family:Open Sans Condensed;font-size:14px!Important;background:#f0f0f0">
 								<tr>
 									<td colspan=2 style="text-align:left;width:90%;padding:5px;height:30px;max-height:40px!Important">
 
@@ -224,7 +224,7 @@
 								</tr>
 								<tr style="display:">
 									<td colspan=3>
-										<div style="display:none" id="ne"><img style="height:60px;display:none" src="https://lushmatch.com/assets/img/l4.gif"></div>
+										<br><br><div style="display:none;background:#f0f0f0!Important;padding-top:30px" id="ne"><img style="height:60px;display:none" src="https://lushmatch.com/assets/img/l4.gif"></div>
 									</td>
 								</tr>
 								<tr style="display:none">
@@ -363,15 +363,29 @@
 				}
 			}
 			var view 
+			var ids
+			
+					function getfile() {
+				var ii='img/bg/fav_bg_0' + (Math.floor(Math.random() * 7) + 1)
+				ii = ii + '.jpg'
+				return ii
+			}
+
+			
 			function getShortlist() {
+				setCookie('view_result','gallery')
+				$$('img_gallery').src='images/gallery_selected.png'
+				$$('img_list').src='img/view_list.png'
+				$$('img_gallery').style.width='30px'
+				$$('img_list').style.width='20px'
 				max_img_width=(window_width()/2)
 				max_img_height=max_img_width
 				hy=max_img_width
 				hy=hy-100
 				no=(screen.height/max_img_height)*2
-				no=20
+				no=10
 				var x_start=0,cStr=''
-				var url = 'https://sugardaddylocal.com/x_shortlist.php?list='+getCookie('shortlist')
+				var url = 'https://sugardaddylocal.com/x_shortlist.php?list='+getCookie('shortlist')+'&lat='+getCookie('lat')+'&lng='+getCookie('lng')
 				var request = $.ajax({
 					url: url,
 					type: "GET",
@@ -394,57 +408,59 @@
 							});						
 						}
 						$$('ne').innerHTML=''
-						var pad=document.createElement("div")
-						pad.className='col-md-6'
-						pad.style.margin='0px'
-						pad.style.height='40px'
-						pad.style.width='100%'
-						pad.style.fontSize='18px'
-						pad.style.background='lightyellow'
-						pad.style.fontFamily='Open Sans'
-						pad.style.padding='10px'
-						pad.style.paddingLeft='5px'
-						pad.innerHTML='<b>Here are your shortlisted profiles...</b>'
-						$$('ne').appendChild(pad)
 						var data=JSON.parse(msg)
 						data.reverse()
 						var lx=data.length
 						var lt=-700
-						for (var i=0;i<data.length;i++) {
+							for (var i=0;i<data.length;i++) {
 							hide()
 							if (data[i]) {
 								id=data[i].id
+								ids += data[i].id + ','
+								imgB=document.createElement('img')
+								imgB.src=getfile()  
+								imgB.style='width:100%;height:40%;border-radius:5px 5px 0 0 ;position:absolute;padding:0;margin:0px;top:0'
 								imgG=makeImg('https://lushmatch.com/sb/'+data[i].filename_1, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, 'col-md-3')
-								imgG.style='width:100%;padding:0;margin:0px'
-								imgG.id='img_newest_'+id
+								imgG.style='width:60%;border-radius:60%;position:absolute;padding:0;margin:0px;border:5px solid white;left:0;right:0'
+								imgG.id='img_newest_'+id+'|'+x_start_new_local
+								imgG.style.position='absolute'
+								imgG.style.margin='auto'
+								imgG.style.left='0'
+								imgG.style.right='0'
+								imgG.style.marginTop='20%'
 								var cr=''
 								var corner=document.createElement('img')
 								var dpg=document.createElement("div")
 								var cStr=document.createElement('div')
 								dpg.className='col-md-3 col-xs-1'
 								dpg.style.margin='0px'
-								dpg.style.width='100%'
-								dpg.style.background='#f0f0f0'
-								dpg.style.border='5px solid #fff'
+								dpg.style.background='#fff'
+								dpg.style.border='none'
 								if (getCookie('isMobile')) {
 									dpg.style.maxWidth=max_img_width+'px'
-									dpg.style.height=max_img_height+40+'px'
+									dpg.style.width =((window_width()*0.45)) + 'px'
+									dpg.style.height=((window_width()*0.45)+40) + 'px'
+									imgG.style.width=((window_width()*0.45)-60) + 'px'
+									imgG.style.height=((window_width()*0.45)-60) + 'px'
+									dpg.style.margin='2%'
+									dpg.style.boxShadow='1px 1px 2px #fff'
+									dpg.style.borderRadius='5px'
 								} else {
 									dpg.style.maxWidth=(500/5-5)+'px'
 									dpg.style.height=(500/5-5)+'px'
 								}
 								dpg.style.padding='0'
 								dpg.style.cursor='pointer'
-								cr='<table style="max-height:30px;width:100%;background:#000;opacity:0.5;margin-top:-30px"><tr>'
-								cr+='<td style="text-align:center;width:25%;padding:5px;color:white;font-size:16px">'+data[i].age+' F '+' '+data[i].location.toUpperCase()+'</td>'
-								cr+='</tr></table>'
-								cr+='<table style="max-height:30px;width:100%;margin-top:7px"><tr>'
-								cr+='<td style="text-align:center;width:25%;padding:5px"><img style="width:20px;margin-bottom:5px" src="img/text.png"></td>'
-								cr+='<td style="text-align:center;width:25%;padding:5px"><img style="width:20px;margin-bottom:5px" src="img/gift.png"></td>'
-								cr+='<td style="text-align:center;width:25%;padding:5px"><img style="width:20px;margin-bottom:5px" src="img/video.png"></td>'
-								cr+='<td style="text-align:center;width:25%;padding:5px"><img style="width:20px;margin-bottom:5px" src="img/info.png"></td>'
+								dpg.style.position='relative'
+								cr+='<table style="position:absolute;bottom:40px;max-height:30px;width:100%;margin-top:-10;border-radius:0 0 5px 5px;background:none"><tr>'
+								cr+='<tr><td colspan=4 style="text-align:center;width:100%;padding:5px;color:#000;font-size:16px">'+data[i].login.substr(0,10).toUpperCase()+' ' + data[i].age + ' ' + (data[i].gender=='sugar baby'?'M':'F')+' <span style="margin:auto;color:maroon"><b>'+data[i].distance+' MLS</b></span></td></tr><tr>'
+								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:-10px"><img onclick="send_mail('+id+')" style="width:20px;margin-bottom:5px" src="img/new_chat.png"></td>'
+								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:-10px"><img onclick="videocall(\''+data[i].login+'\')" style="width:20px;margin-bottom:5px" src="img/new_video_chat.png"></td>'
+								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:-10px"><img onclick="view_wish('+id+')" style="width:20px;margin-bottom:5px" src="img/new_wish.png"></td>'
+								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:-10px"><img onclick="view_offers('+id+')" style="width:25px;margin-bottom:5px" src="images/bid.png"></td>'
 								cr+='</tr></table>'
 								cStr.innerHTML=cr
+								dpg.appendChild(imgB)
 								dpg.appendChild(imgG)
 								dpg.appendChild(corner)
 								dpg.appendChild(cStr)
@@ -452,19 +468,13 @@
 								$$('ne').appendChild(dpg)
 							}
 						}
-						var pad=document.createElement("div")
-						pad.className='col-md-6 col-xs-2'
-						pad.style.margin='0px'
-						pad.style.height='100px'
-						pad.style.width='100%'
-						pad.style.background='#fff'
-						$$('ne').appendChild(pad)
 						setTimeout('update_shortlist()',10)
 					}
-				})	
+				})				
 			}
+
 			function getShortlist_list() {
-				max_img_width=(window_width())
+				max_img_width=(window_width()-10)
 				max_img_height=max_img_width
 				hy=40
 				no=(screen.height/max_img_height)*2
@@ -631,7 +641,8 @@
 	
 			function fix(e) {
 				e.target.src='https://lushmatch.com/assets/img/no_img.png'
-				e.target.style.margin='0px'
+				e.target.style.margin='auto'
+				e.target.style.marginTop='20px'
 			}
 	
 

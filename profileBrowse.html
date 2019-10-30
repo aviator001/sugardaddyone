@@ -435,15 +435,14 @@
 	<div id="con" class="container">
 		<div id="profiles" class="" style="text-align:center;margin-top:25px;">
 		</div>
-		<div style="width:60%;border:none;margin:auto;left:0;right:0;position:fixed;top:50px;z-index:99999999999999;display:;height:75px">
-			<img id="s1" src="images/star_off.png">
-			<img id="s1" src="images/star_off.png">
-			<img id="s1" src="images/star_off.png">
-			<img id="s1" src="images/star_off.png">
-			<img id="s1" src="images/star_off.png">
+		<div style="text-align:center;width:500px;display:none;margin:auto;left:0;right:0;height:75px;margin-top:110px;position:absolute;z-index:99999999999999">
+			<img id="s1" style="margin:10px;width:25px" src="images/star_off.png">
+			<img id="s2" style="margin:10px;width:25px" src="images/star_off.png">
+			<img id="s3" style="margin:10px;width:25px" src="images/star_off.png">
+			<img id="s4" style="margin:10px;width:25px" src="images/star_off.png">
+			<img id="s5" style="margin:10px;width:25px" src="images/star_off.png">
 		</div>
 	</div>
-	
 	<script>
 		function $$(obj) {
 			return document.getElementById(obj)
@@ -470,8 +469,7 @@
 	<script src="https://sugardaddylocal.com/js/wait.js"></script>
 
 <script>
-		setTimeout('wait3()',1)
-
+	setTimeout('wait3()',1)
 	var no_search=qs('count')
 	var no=qs('count')
 	if (!no) no=10
@@ -582,6 +580,9 @@
 		setTimeout('loadProfiles('+no+')',100)
 	}
 	
+	var shown=[]
+	var shown_id=qs('id')
+	
 	function loadProfiles(no) {
 		hide()
 		wait3()
@@ -602,14 +603,13 @@
 			} else if ((qs('browse')=='new') || (qs('browse')=='latest')) {
 				url='https://sugardaddylocal.com/x_browse_new.php?start='+start_new+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')
 			} else if (qs('browse')=='new_local') {
-				url='https://sugardaddylocal.com/x_browse_new_local.php?start='+start_new_local+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')
+				url='https://sugardaddylocal.com/x_browse_new_local.php?start='+start_new_local+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+shown_id
 			} else if (qs('browse')=='popular') {
 				url='https://sugardaddylocal.com/x_browse_popular.php?start='+start_popular+'&user_rights='+currUR+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')
 			}
 		}
 		var imt,br,bkg='background: #fff',yes_pd=0
 		console.log(url)
-		if (window_width()<=500) {
 			var mw=window_width()+'px'
 			var mh=mw
 			var pt='0px'
@@ -620,24 +620,12 @@
 			var gip=cph+40
 			var hh=window_height() * 0.15
 			var btm=200
-		} else {
-			var mh='500px'
-			var mw='500px'
-			var pt='5px'
-			var mtop=610
-			var mt=80
-			var tb='top'
-			var cph=200
-			var hh=800
-			var btm=window_height()*0.7 - 610
-		}
-		if (window_height()<=500) {
+	
 			mh='150px'
 			br=150
 			imt=30
 			bkg='background:url(https://sugardaddylocal.com/b3.jpg) center; background-size:cover'
 			yes_pd=10
-		}
 		var mgt=window_height()/20-15
 		var tt='400px'
 		if (window.screen.height<window.screen.width) {
@@ -650,6 +638,7 @@
 			dataType: "html",
 			cache: false,
 			success: function(msg) {
+				shown_id=''
 				hide()
 				<!-- window.top.frames[0].setMin(0) -->
 				<!-- window.top.frames[0].setMax(data.length) -->
@@ -658,8 +647,6 @@
 				$('#no').show()
 				$$('profiles').innerHTML=''
 				var data1=msg.split('|')[0]
-				var sql=msg.split('|')[1]
-				console.log(sql)
 				data=JSON.parse(data1)
 				var bg=Math.floor(Math.random()*10)
 				if (bg>10) bg=0
@@ -680,7 +667,7 @@
 							var currEl=$$('p'+data[i].id)
 				general_info='No Profile Text'
 				if (data[i].gender=='Sugar Baby') factx='PRINCESS SCORE'
-					else factx='mMY REPUTITION'
+					else factx='MY REPUTITION'
 				if (data[i].general_info) {
 					general_info=data[i].general_info
 					if (general_info) {
@@ -697,12 +684,12 @@
 					var disp='block'
 				}
 					currLogin=data[i].login
-							str+=	'		<div class="col-md-4 col-sm-4 col-xs-12" style="max-height:500px!Important;width:100%;max-width:500px;position:absolute;left:0;right:0;margin:auto;padding:0px;margin-top:0px;border-radius:12px">'
-							str+=	'			<div class="team-card-style-1" style="box-shadow:none!Important;max-height:500px!Important;left:0;right:0;position:;bottom:'+btm+'px;background:;margin:auto;margin-bottom:10%;border-radius:12px;margin-top:10%;'+tb+':'+mtop+'px!Important;width:'+mw+';padding-top:0">'
+							str+=	'		<div class="col-md-4 col-sm-4 col-xs-12" style="max-height:650px!Important;width:100%;max-width:500px;position:absolute;left:0;right:0;margin:auto;padding:0px;margin-top:10px;border-radius:12px">'
+							str+=	'			<div class="team-card-style-1" style="box-shadow:none!Important;height:550px!Important;max-height:550px!Important;min-height:550px!Important;left:0;right:0;position:;bottom:'+btm+'px;background:;margin:auto;margin-bottom:10%;border-radius:12px;margin-top:10%;'+tb+':'+mtop+'px!Important;width:'+mw+';padding-top:0">'
 							str+=	'				<div class="team-card-style-1" style="box-shadow:none!Important;background:url(https://sugardaddylocal.com/bg/fav_bg_0'+bg+'.jpg);background-size:cover;height:150px"></div>'
 							str+=	'				<a href="member_get_albums.html?id=' + data[i].id + '"><img id="imgProfile'+data[i].id+'" src="https://lushmatch.com/sb/'+data[i].filename_1+'" style="width:200px;height:200px;border-radius:200px;border:10px solid white;margin:auto;margin-top:-100px"></a>'
-							str+=	'				<a href="javascript:load_next()"><img src="images/nav4.png" style="width:70px;height:70px;position:absolute;margin-top:-30px;"></a>'
-							str+=	'				<a href="javascript:load_next()"><img src="images/nav9.png" style="margin-left:-' + 0.72*screen.width+'px;margin-top:-30px;width:70px;height:70px;position:absolute;"></a>'
+							str+=	'				<img id="yes" src="images/nav4.png" style="width:70px;height:70px;position:absolute;margin-top:-30px;">'
+							str+=	'				<a href="javascript:dislike(\'p'+data[i].id+'\')"><img id="no" src="images/nav9.png" style="width:70px;height:70px;position:absolute;margin-top:-30px;right:200px"></a>'
 							str+=	'				<div class="team-card-style-1" id="profileText'+i+'" class="team-info">'
 							str+=	'					<div>'
 							str+=	'						<table style="width:80%;margin:auto;">'
@@ -739,23 +726,19 @@
 							str+=	'					<br><br><br>'
 							var gen=data[i].gender.toUpperCase()
 							var gg=gen
-							str+=	'					<div style="font-size:15px!Important;margin-top:-45px;margin-bottom:10px;width:100%"><b>'+data[i].login.toUpperCase()+', ' + data[i].age+'</b><div style="font-wight:300;font-family:Open Sans;font-size:15px;color:silver"><b>'+data[i].location.toUpperCase().substr(0,15) + '</b></div><div id="location'+i+'" class=""></div><div style="font-size:12px!Important;padding-left:30px;padding-right:30px">'+general_info+'</div></div>'
-							str+=	'						<table style="width:100%;text-align:center;margin:auto;margin-top:'+(mgt)+'px;margin-bottom:'+mgt+'px;padding-bottom:25px;width:70%;">'
+							str+=	'					<div style="font-size:18px!Important;margin-top:-45px;margin-bottom:10px;width:100%"><b>'+data[i].login.toUpperCase()+', ' + data[i].age+'</b><div style="font-wight:300;font-family:Open Sans;font-size:15px;color:silver"><b>'+data[i].location.toUpperCase().substr(0,15) + '</b></div><div id="location'+i+'" class=""></div><div style="height:70px;font-size:12px!Important;padding-left:30px;padding-right:30px">'+general_info+'</div></div>'
+							str+=	'						<table style="width:100%;text-align:center;margin:auto;margin-top:30px;width:70%;">'
 							str+=	'							<tr>'
-							str+=	'									<td style="width:20%;text-align:center"><a href="javascript:wishlist('+data[i].id+')" style="text-decoration:none"><img src="images/wlist.png" style="display:none;width:25px"></a></td>'
 							str+=	'									<td style="width:15%;text-align:center"><a href="javascript:wishlist('+data[i].id+')" style="text-decoration:none"><img src="images/new_wish.png" style="width:25px"></a></td>'
 							str+=	'									<td style="width:15%;text-align:center"><a href="javascript:coming_soon()"><img src="images/offer.png" style="width:25px;opacity:1"></a></td>'
 							str+=	'									<td style="width:15%;text-align:center"><a href="javascript:coming_soon()"><img src="images/rewards.png" style="width:20px;opacity:2"></a></td>'
 							str+=	'									<td style="width:15%;text-align:center"><a href="javascript:coming_soon()"><img src="images/people.png" style="opacity:2;width:25px"></a></td>'
-							str+=	'									<td style="width:20%;text-align:center"><a href="javascript:coming_soon()"><img src="images/people.png" style="display:none;opacity:2;width:25px"></a></td>'
 							str+=	'							</tr>'
 							str+=	'							<tr>'
-							str+=	'									<td style="width:20%;text-align:center;vertical-align:top"><a href="javascript:wishlist('+data[i].id+')" style="display:none;text-decoration:none;font-size:10px"><b>WISHLIST</b></a></td>'
 							str+=	'									<td style="width:15%;text-align:center;vertical-align:top"><a href="javascript:wishlist('+data[i].id+')" style="text-decoration:none;font-size:10px;color:orange"><b>WISHLIST</b></a></td>'
 							str+=	'									<td style="width:15%;text-align:center;font-size:10px;opacity:1"><a href="javascript:coming_soon()"><b style="color:grey">OFFERS</b></a></td>'
 							str+=	'									<td style="width:15%;text-align:center;font-size:10px;opacity:1"><a href="member_rewards.html"><b style="color:orange">REWARDS</b></a></td>'
 							str+=	'									<td style="width:15%;text-align:center;font-size:10px;opacity:1"><a href="javascript:coming_soon()"><b style="color:grey">REVIEWS</b></a></td>'
-							str+=	'									<td style="width:20%;text-align:center;font-size:10px;opacity:1"><a href="javascript:coming_soon()"><b></b></a></td>'
 							str+=	'							</tr>'
 							str+=	'						</table>'
 							str+=	'					</div>'
@@ -765,17 +748,17 @@
 							
 							id=data[i].id
 							ur=data[i].user_rights
-							//if (mids.indexOf(id)<0) {
+						//	if (!mids || mids.indexOf(id)<0) {
 								var div=document.createElement('div')
 								div.id='p'+id
 								div.innerHTML=str
 								if (i==0) saved=div 
 								$$('profiles').appendChild(div)
-								mids[i]=id
+								mids.push(id)
 								urs[i]=ur
 								currMID=id
 								currUR=ur
-								
+								console.log(div)
 								if (data[i].filename_1=='') fn = 'https://lushmatch.com/assets/img/no_photo.png'
 									else fn='https://lushmatch.com/sb/'+data[i].filename_1
 								currPhoto=fn
@@ -786,7 +769,7 @@
 									}
 								}
 								prevEl=data[i].id+''
-							//}
+						//	}
 							
 							if (data[i].general_info) {
 								general_info=data[i].general_info
@@ -991,7 +974,6 @@
 			recoverYesb()
 		},250)
 		
-		if ($$('yes')) $$('yes').style.transform='scale('+scale+')'
 		setTimeout(function(){
 			recoverYes()
 		},250)
@@ -1030,11 +1012,6 @@
 			recoverNob()
 		},250)
 		
-		if ($$('no')) $$('no').style.transform='scale('+scale+')'
-		setTimeout(function(){
-			recoverNo()
-		},250)
-		
 		prevMID=currMID
 		currMID=mids[mids.indexOf(currMID)-1]
 		currUR=urs[urs.indexOf(currUR)-1]
@@ -1050,14 +1027,7 @@
 	}
 	var tmrYb, tmrNb, op=1
 	function recoverYes() {
-		if (scale>=1) {
-			scale=scale-0.1
-			if ($$('yes')) $$('yes').style.transform='scale('+scale+')'
-			tmrY=setTimeout('recoverYes()',10)
-		} else {
-			scale=1
-			clearTimeout(tmrY)
-		}
+
 	}	
 	function recoverYesb() {
 		if (op>=0) {
@@ -1074,14 +1044,7 @@
 		}
 	}
 	function recoverNo(obj) {
-		if (scale>=1) {
-			scale=scale-0.1
-			$$('no').style.transform='scale('+scale+')'
-			tmrN=setTimeout('recoverNo()',10)
-		} else {
-			scale=1
-			clearTimeout(tmrN)
-		}
+
 	}
 	function recoverNob() {
 		if (op>=0) {

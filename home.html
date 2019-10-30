@@ -240,7 +240,6 @@
 
 <span id="main_table"></span>
 <script src="js/jquery.js"></script>
-<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <script src="https://lushmatch.com/assets/js/common.js"></script>
 <script src="https://sugardaddylocal.com/js/wait.js"></script>
 <script src="https://lushmatch.com/assets/js/events.js"></script>
@@ -249,6 +248,8 @@
 <link href="https://lushmatch.com/assets/css/bootstrap.css" rel="stylesheet">
 <link href="https://lushmatch.com/assets/css/jquery-ui.css" rel="stylesheet">
 <link href="https://lushmatch.com/css/shadows.css" rel="stylesheet">
+<script src="https://sugardaddylocal.com/custom_menu_updated.js"></script>
+
 <style>
 	.genActive{background: gold;border:none;opacity:1!Important}
 </style>
@@ -453,7 +454,7 @@
 								cr+='<table style="position:absolute;bottom:40px;max-height:30px;width:100%;margin-top:-10;border-radius:0 0 5px 5px;background:none"><tr>'
 								cr+='<tr><td colspan=4 style="text-align:center;width:100%;padding:5px;color:#000;font-size:16px">'+data[i].login.substr(0,10).toUpperCase()+' ' + data[i].age + ' ' + (data[i].gender=='sugar baby'?'M':'F')+' <span style="margin:auto;color:maroon"><b>'+data[i].distance+' MLS</b></span></td></tr><tr>'
 								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:-10px"><img onclick="send_mail('+id+')" style="width:20px;margin-bottom:5px" src="img/new_chat.png"></td>'
-								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:-10px"><img onclick="videocall(\''+data[i].login+'\')" style="width:20px;margin-bottom:5px" src="img/new_video_chat.png"></td>'
+								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:-10px"><img onclick="videoCall(\''+data[i].login+'\')" style="width:20px;margin-bottom:5px" src="img/new_video_chat.png"></td>'
 								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:-10px"><img onclick="view_wish('+id+')" style="width:20px;margin-bottom:5px" src="img/new_wish.png"></td>'
 								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:-10px"><img onclick="view_offers('+id+')" style="width:25px;margin-bottom:5px" src="images/bid.png"></td>'
 								cr+='</tr></table>'
@@ -552,7 +553,7 @@
 								dpg.style.position='relative'
 								cr+='<table style="width:100%;border-bottom:1px solid skyblue"><tr><td style="width:20%;text-align:center"><img src="https://lushmatch.com/sb/'+data[i].filename_1+'" style="border-radius:45px;max-height:45px;width:45px;border:5px solid #f0f0f0"></td>'
 								cr+='<td style="width:40%"><table style="width:100%;background:;"><tr><td style="text-align:left;width:100%;padding:2px;color:#000;font-size:14px;font-family:Open Sans;font-weight:"><b><strong>'+ data[i].login.toUpperCase() + '</b><br>' + data[i].gender + ', ' + data[i].age + '<br>' + data[i].location+'</td></tr></table></td>'
-								cr+='<td style="width:40%"><table><tr><td><img onclick="send_mail('+id+')" src="images/bubble23.png" style="width:20px;margin:5px;margin-right:10px"></td><td><img onclick="videocall(\''+data[i].login+'\')" src="images/video_cam.png" style="width:20px;margin:5px"></td><td><a href="member_wishlist.html?mid='+data[i].id+'"><img src="img/gift.png" style="width:20px;margin-left:10px;margin-right:5px;"></a></td><td><img src="images/addw.png" onclick="shortlist('+id+')" style="width:20px;margin:5px;margin-left:10px;margin-right:10px"></td></tr></table></td>'
+								cr+='<td style="width:40%"><table><tr><td><img onclick="send_mail('+id+')" src="images/bubble23.png" style="width:20px;margin:5px;margin-right:10px"></td><td><img onclick="videoCall(\''+data[i].login+'\')" src="images/video_cam.png" style="width:20px;margin:5px"></td><td><a href="member_wishlist.html?mid='+data[i].id+'"><img src="img/gift.png" style="width:20px;margin-left:10px;margin-right:5px;"></a></td><td><img src="images/addw.png" onclick="shortlist('+id+')" style="width:20px;margin:5px;margin-left:10px;margin-right:10px"></td></tr></table></td>'
 								cr+='</tr></table>'
 								cStr.innerHTML=cr
 								dpg.appendChild(cStr)
@@ -687,6 +688,5 @@ setTimeout('init()',1000)
 
 </script>
 
-<script src="https://sugardaddylocal.com/custom_menu_updated.js"></script>
 <script src="https://lushmatch.com/jsSocketNode.js"></script>
 </html>
