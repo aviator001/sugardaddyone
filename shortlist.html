@@ -455,8 +455,8 @@
 								cr+='<table style="position:absolute;bottom:40px;max-height:30px;width:100%;margin-top:-10;border-radius:0 0 5px 5px;background:none"><tr>'
 								cr+='<tr><td colspan=4 style="text-align:center;width:100%;padding:5px;color:#000;font-size:16px">'+data[i].login.substr(0,10).toUpperCase()+' ' + data[i].age + ' ' + (data[i].gender=='sugar baby'?'M':'F')+' <span style="margin:auto;color:maroon"><b>'+data[i].distance+' MLS</b></span></td></tr><tr>'
 								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:-10px"><img onclick="send_mail('+id+')" style="width:20px;margin-bottom:5px" src="img/new_chat.png"></td>'
-								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:-10px"><img onclick="videocall(\''+data[i].login+'\')" style="width:20px;margin-bottom:5px" src="img/new_video_chat.png"></td>'
-								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:-10px"><img onclick="view_wish('+id+')" style="width:20px;margin-bottom:5px" src="img/new_wish.png"></td>'
+								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:-10px"><img onclick="videoCall(\''+data[i].login+'\')" style="width:20px;margin-bottom:5px" src="img/new_video_chat.png"></td>'
+								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:-10px"><img onclick="wishlist('+id+')" style="width:20px;margin-bottom:5px" src="img/new_wish.png"></td>'
 								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:-10px"><img onclick="view_offers('+id+')" style="width:25px;margin-bottom:5px" src="images/bid.png"></td>'
 								cr+='</tr></table>'
 								cStr.innerHTML=cr
@@ -472,6 +472,20 @@
 					}
 				})				
 			}
+	
+	function send_mail(id) {
+		setCookie('chatting_with',id)
+		location.href='sendMail.html?to_member_id='+id
+	}
+	
+	function send_sms() {
+		location.href='sendSMS.php?to_member_id='+qs('id')
+	}
+	function view_img(io){
+		var pid=io.id.replace('imgProfile','')
+		currMID=pid
+		location.href='viewAlbum.html?member_id='+pid
+	}
 
 			function getShortlist_list() {
 				max_img_width=(window_width()-10)
@@ -546,7 +560,7 @@
 								var gender=(data[i].gender=='Sugar Baby')?'F':'M';
 								cr='<table><tr><td ><img src="https://lushmatch.com/sb/'+data[i].filename_1+'" style="width:45px;border:5px solid #f0f0f0"></td>'
 								cr+='<td style="width:60%"><table><tr><td style="text-align:left;width:100%;padding:2px;color:#000;font-size:14px;font-family:Open Sans;font-weight:"><b><strong>'+ data[i].login.toUpperCase() + '</b>, ' + data[i].age + gender + '</td></tr><tr><td style="color:silver;font-size:14px;font-family:Open Sans;font-weight:900">' + data[i].location+'</td></tr></table></td>'
-								cr+='<td><table><tr rowspan=2><td><img src="img/mobile.png" style="width:20px;margin:5px;margin-right:10px"></td><td><img src="img/video.png" style="width:20px;margin:5px"></td><td><img src="img/gift.png" style="width:20px;margin:5px;margin-left:10px"></td></tr></table></td>'
+								cr+='<td><table><tr rowspan=2><td><img onclick="send_mail('+id+')" src="img/mobile.png" style="width:20px;margin:5px;margin-right:10px"></td><td><img onclick="videoCall(\''+data[i].login+'\')" src="img/video.png" style="width:20px;margin:5px"></td><td><img onclick="wishlist('+id+')" src="img/gift.png" style="width:20px;margin:5px;margin-left:10px"></td></tr></table></td>'
 								cr+='</tr></table>'
 								<!-- cStr.innerHTML=cr -->
 								dpg.innerHTML=cr
@@ -601,7 +615,11 @@
 					return
 				}
 			}
-			function shortlist(id) {
+	function wishlist(mid) {
+		location.href='member_wishlist.html?mid='+mid
+	}
+
+	function shortlist(id) {
 				if (getCookie('shortlist')) {
 					slist=JSON.parse(getCookie('shortlist'))
 				}

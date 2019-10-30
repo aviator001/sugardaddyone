@@ -698,10 +698,10 @@
 							str+=	'									<div id="sun1" style="text-align:center;width:60px;height:60px;background:url(images/sun5.png);background-size:cover"><a href="javascript:send_mail('+data[i].id+')"><img src="images/bubble_w.png" style="margin:20px;width:25px;"></a></div>'
 							str+=	'								</td>'
 							str+=	'								<td style="width:25%;text-align:center">'
-							str+=	'									<div id="sun2" style="text-align:center;width:60px;height:60px;background:url(images/sun5.png);background-size:cover"><a href="javascript:video_call(\''+data[i].login+'\')"><img src="images/video_w.png" style="margin:20px;width:25px;"></a></div>'
+							str+=	'									<div id="sun2" style="text-align:center;width:60px;height:60px;background:url(images/sun5.png);background-size:cover"><a href="javascript:videoCall(\''+data[i].login+'\')"><img src="images/video_w.png" style="margin:20px;width:25px;"></a></div>'
 							str+=	'								</td>'
 							str+=	'								<td style="width:25%;text-align:center">'
-							str+=	'									<div id="sun3" style=";opacity:1;text-align:center;width:60px;height:60px;background:url(images/sun5.png);background-size:cover"><a href="javascript:coming_soon()"><img src="images/ir.png" style="margin:18px;width:25px;"></a></div>'
+							str+=	'									<div id="sun3" style=";opacity:1;text-align:center;width:60px;height:60px;background:url(images/sun5.png);background-size:cover"><a href="javascript:buy_rose()"><img src="images/ir.png" style="margin:18px;width:25px;"></a></div>'
 							str+=	'								</td>'
 							str+=	'								<td style="width:25%;text-align:center">'
 							str+=	'									<div id="sun4" style="text-align:center;width:60px;height:60px;background:url(images/sun5.png);background-size:cover"><a href="javascript:toggle_favs()"><img src="images/heart_w.png" style="margin:20px;width:25px;"></a></div>'
@@ -803,6 +803,9 @@
 				
 			}
 		})
+	}
+	function buy_rose() {
+		location.href='checkout.html?item=Long Stemmed Red Rose&qty=1&price=2&type=product'
 	}
 	function coming_soon() {
 		$.alert('This feature will be avaialable on Nov 1st 2019')
