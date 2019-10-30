@@ -278,6 +278,12 @@ h1,h2,h3,h4 {
 		if (x_start<0) x_start=0
 		searchUserName()
 	}
+	function xback() {
+		history.go(-1)
+	}
+	function settings() {
+		location.href='settings.html'
+	}
 	
 	function login1() {
 		var m = $("#email").val(),
@@ -934,16 +940,17 @@ h1,h2,h3,h4 {
 						}
 						imgG=makeImg(src, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, 'searchImg',id)
 						imgG.id='img_' + id
+						imgG.style.borderRadius='200px'
 						var div=document.createElement("div")
-						div.className="searchElement www_box2 "
+						div.style.borderBottom="1px solid silver"
 						var dist=data[i].distance
-						div.innerHTML="<table id='search_"+id+"' style='width:100%;margin:0;padding:0;font-family:Open Sans;font-weight:300'><tr><td style='width:100px'>"+imgG.outerHTML+"</td><td style='margin:0;text-align:left;padding:10px'><div class='sTitleName' id='search_"+id+"'>"+xlogin+"</div><div style='margin-top:5px' class='sTitleGender'>"+data[i].gender.toUpperCase()+ " " + data[i].age + " Yrs Old</div><div class='sTitleLocation'>"+data[i].location.toUpperCase()+"</div><div style='font-size:16px'>"+dist+" Miles</div></td></tr></table>"
+						div.innerHTML="<a href='profileView.html?id="+data[i].id+"'><table id='search_"+id+"' style='width:100%;margin:0;padding:0;font-family:Open Sans;font-weight:300;font-size:15px'><tr><td style='width:100px'>"+imgG.outerHTML+"</td><td style='margin:0;text-align:left;padding:10px'><div class='sTitleName' id='search_"+id+"'>"+xlogin+"</div><div style='margin-top:5px' class='sTitleGender'>"+data[i].gender + " " + data[i].age + "</div><div>"+data[i].location.toUpperCase()+"</div><div style='font-size:15px'>"+dist+" Miles</div></td></tr></table></a>"
 						if (ct>bgx.length) {
 							ct=0
 						} else {
 							ct++
 						}
-						div.style.background=bgx[ct]
+						<!-- div.style.background=bgx[ct] -->
 						$$('xresults').appendChild(div)
 				}
 				$$('xresults').style.cssText='position:absolute;padding-bottom:100px;margin-bottom:100px;width:100%;margin-top:50px!Important;top:0'
@@ -989,7 +996,6 @@ h1,h2,h3,h4 {
 		img.id=currMID
 		if ( alt != null ) img.alt = alt;
 		if ( title != null ) img.title = title;
-		if ( className != null ) img.className = className;
 		img.onError=function(){
 			img.src='images/no_photo.png'
 		}

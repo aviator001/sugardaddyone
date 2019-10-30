@@ -231,10 +231,10 @@
 							str+=	'									<div id="sun1" style="text-align:center;width:60px;height:60px;background:url(images/sun5.png);background-size:cover"><a href="javascript:send_mail('+data.id+')"><img src="images/bubble_w.png" style="margin:20px;width:25px;"></a></div>'
 							str+=	'								</td>'
 							str+=	'								<td style="width:25%;text-align:center">'
-							str+=	'									<div id="sun2" style="text-align:center;width:60px;height:60px;background:url(images/sun5.png);background-size:cover"><a href="javascript:video_call(\''+data.login+'\')"><img src="images/video_w.png" style="margin:20px;width:25px;"></a></div>'
+							str+=	'									<div id="sun2" style="text-align:center;width:60px;height:60px;background:url(images/sun5.png);background-size:cover"><a href="javascript:videoCall(\''+data.login+'\')"><img src="images/video_w.png" style="margin:20px;width:25px;"></a></div>'
 							str+=	'								</td>'
 							str+=	'								<td style="width:25%;text-align:center">'
-							str+=	'									<div id="sun3" style=";opacity:1;text-align:center;width:60px;height:60px;background:url(images/sun5.png);background-size:cover"><a href="javascript:coming_soon()"><img src="images/ir.png" style="margin:18px;width:25px;"></a></div>'
+							str+=	'									<div id="sun3" style=";opacity:1;text-align:center;width:60px;height:60px;background:url(images/sun5.png);background-size:cover"><a href="javascript:buy_rose()"><img src="images/ir.png" style="margin:18px;width:25px;"></a></div>'
 							str+=	'								</td>'
 							str+=	'								<td style="width:25%;text-align:center">'
 							str+=	'									<div id="sun4" style="text-align:center;width:60px;height:60px;background:url(images/sun5.png);background-size:cover"><a href="javascript:toggle_favs()"><img src="images/heart_w.png" style="margin:20px;width:25px;"></a></div>'
@@ -312,6 +312,7 @@
 					}
 					img.style.cssText='left:0;right:0;width:210px;height:210px;min-width:210px!Important;border-radius:400px;border:10px solid white;margin:auto;object-fit:cover;position:fixed;padding:0;z-index:999999999999999999;margin-top:-110px'
 					$$('holder').appendChild(img)
+					img.onclick=function(){location.href='member_get_albums.html?id='+data.id}
 				} else {
 					video = document.createElement('video');
 					video.controls = false;
@@ -333,7 +334,12 @@
 		$('#aboutM').show()
 	}				
 }
-
+	function buy_rose() {
+		location.href='checkout.html?item=Long Stemmed Red Rose&qty=1&price=2&type=product'
+	}
+	function coming_soon() {
+		$.alert('This feature will be avaialable on Nov 1st 2019')
+	}
 	function toggle_f() {
 		$.alert('Since this is your profile, it would be fair to assume (for reasons beyond comprehension of little machines like me) that you were indeed trying to contact yourself through this app.<br><br>You know we are always here for you, right?')
 	}

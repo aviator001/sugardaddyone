@@ -591,12 +591,13 @@
 		var str=''
 		if (type=='search') {
 			if (qs('search_type')=='a') {
-				var url='https://lushmatch.com/x_browse_search_a.php?mid='+qs('id')+'&start='+start_search+'&count='+no_search+'&search_term='+qs('search_term')+'&gender='+getCookie('gender')+'&lat='+qs('lat')+'&lng='+qs('lng')
+				var url='https://sugardaddylocal.com/x_browse_search_a.php?mid='+qs('id')+'&start='+start_search+'&count='+no_search+'&search_term='+qs('search_term')+'&gender='+getCookie('gender')+'&lat='+qs('lat')+'&lng='+qs('lng')
 			} else if (qs('search_type')=='b') {
-				var url='https://lushmatch.com/x_browse_search_b.php?mid='+qs('id')+'&start='+start_search+'&count='+no_search+'&search_term='+qs('search_term')+'&gender='+getCookie('gender')+'&lat='+qs('lat')+'&lng='+qs('lng')
+				var url='https://sugardaddylocal.com/x_browse_search_b.php?mid='+qs('id')+'&start='+start_search+'&count='+no_search+'&search_term='+qs('search_term')+'&gender='+getCookie('gender')+'&lat='+qs('lat')+'&lng='+qs('lng')
 			} else if (qs('search_type')=='c') {
-				var url='https://lushmatch.com/x_browse_search_c.php?mid='+qs('id')+'&start='+start_search+'&count='+no_search+'&search_term='+qs('search_term')+'&gender='+getCookie('gender')+'&lat='+qs('lat')+'&lng='+qs('lng')
+				var url='https://sugardaddylocal.com/x_browse_search_c.php?mid='+qs('id')+'&start='+start_search+'&count='+no_search+'&search_term='+qs('search_term')+'&gender='+getCookie('gender')+'&lat='+qs('lat')+'&lng='+qs('lng')
 			}
+
 		} else {
 			if (qs('browse')=='local') {
 				var url='https://sugardaddylocal.com/x_browse_local.php?start='+start_local+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')
@@ -646,8 +647,8 @@
 				$('#yes').show()
 				$('#no').show()
 				$$('profiles').innerHTML=''
-				var data1=msg.split('|')[0]
-				data=JSON.parse(data1)
+				//var data1=msg.split('|')[0]
+				data=JSON.parse(msg)
 				var bg=Math.floor(Math.random()*10)
 				if (bg>10) bg=0
 				if (first===true) {

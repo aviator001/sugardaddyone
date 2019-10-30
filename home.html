@@ -573,7 +573,8 @@
 				}
 				$$('shortlist_count').innerHTML='<b>'+slist.length+'</b>'
 				$.each(slist, function(i, el){
-					$$('corner_'+el).src='images/added.png'					
+					if ($$('corner_'+el)) $$('corner_'+el).src='images/added.png'					
+					console.log(el)
 				});
 				
 			}
@@ -609,12 +610,12 @@
 				if (slist.indexOf(id)>=0) {
 					slist.splice(slist.indexOf(id),1)
 					if ($$('corner_'+id)) $$('corner_'+id).src='images/corner.png'
-					$$('tr_'+id).style.background='white'
+					if ($$('tr_'+id)) $$('tr_'+id).style.background='white'
 				} else {
 					slist.push(id*1)
 					slist=removeDuplicates(slist)
 					if ($$('corner_'+id)) $$('corner_'+id).src='images/added.png'
-					$$('tr_'+id).style.background='gainsboro'
+					if ($$('tr_'+id)) $$('tr_'+id).style.background='gainsboro'
 				}
 				setCookie('shortlist',JSON.stringify(slist))
 				if ($$('shortlist_count')) $$('shortlist_count').innerHTML='<b>'+slist.length+'</b>'

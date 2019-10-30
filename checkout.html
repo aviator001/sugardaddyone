@@ -8,10 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <link href="https://netdna.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
-	<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic|Open+Sans:300' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
     <style type="text/css">
-    	body{
+body{
     background:#eee;    
+}
+* {
+	font-family:Open Sans
 }
 .widget-author {
   margin-bottom: 58px;
@@ -388,24 +391,24 @@ h3 {
 						<a id="albums" class="list-group-item">
 							<div class="d-flex justify-content-between align-items-center">
 								<i class="fe-icon-tag mr-1 text-muted"></i>
-									<table style="width:100%;font-size:18px">
-										<tr style="border-bottom:5px solid silver;padding:10px">
-											<td style="width:70%;padding:10px"><b>Item</b></td>
-											<td style="width:10%;padding:10px"><b>Qty</b></td>
-											<td style="width:20%;padding:10px"><b>Cost</b></td>
-										</tr>
-										<tr style="border-bottom:5px solid #f0f0f0;padding:10px">
-											<td style="width:70%;padding:10px" id="item"></td>
-											<td style="width:10%;padding:10px" id="qty"></td>
-											<td style="width:20%;padding:10px" id="price"></td>
-										</tr>
-										<tr>
-											<td colspan=3 style="text-align:right;padding:10px">
-												<button id="pay" class="btn btn-info">Buy Now</button>
-											</td>
-										</tr>
-									</table>
-								</div>
+								<table style="width:100%;font-size:18px">
+									<tr style="border-bottom:5px solid silver;padding:10px">
+										<td style="width:70%;padding:10px"><b>Item</b></td>
+										<td style="width:10%;padding:10px"><b>Qty</b></td>
+										<td style="width:20%;padding:10px"><b>Cost</b></td>
+									</tr>
+									<tr style="border-bottom:5px solid #f0f0f0;padding:10px;font-size:15px">
+										<td style="width:70%;padding:10px" id="item"></td>
+										<td style="width:10%;padding:10px" id="qty"></td>
+										<td style="width:20%;padding:10px" id="price"></td>
+									</tr>
+									<tr>
+										<td colspan=3 style="text-align:right;padding:10px">
+											<button id="pay" class="btn btn-info">Buy Now</button>
+										</td>
+									</tr>
+								</table>
+							</div>
 						</a>
 					</span>
 				</nav>
@@ -550,7 +553,7 @@ h3 {
 	var test_mode=true
 
 	var handler = StripeCheckout.configure({
-	  key: 'pk_test_qtprDcPj4ouEvG9O2CaP7EJV',
+	  key: 'pk_live_usFpglAicQ086PYo5g0n4Jiz',
 	  image: 'https://sugardaddylocal.com/images/logoSmall.png',
 	  locale: 'auto',
 	  token: function(token) {
