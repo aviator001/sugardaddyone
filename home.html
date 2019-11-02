@@ -11,7 +11,7 @@
 		<link rel="icon" href="favicon.png">
 		<link href="https://lushmatch.com/assets/css/font-awesome.css" rel="stylesheet" >
 		<link href="https://lushmatch.com/assets/css/jquery-confirm.css" rel="stylesheet" />
-		<link href="https://lushmatch.com/assets/css/shadows.css" rel="stylesheet" />
+		<link href="css/shadows.css" rel="stylesheet" />
 		<link href="https://lushmatch.com/assets/css/bootstrap.css" rel="stylesheet">
 		<link href="https://lushmatch.com/assets/css/menu.css" rel="stylesheet">
 		<link href="https://lushmatch.com/assets/css/font-awesome.css" rel="stylesheet">
@@ -19,14 +19,60 @@
 		<link href="https://lushmatch.com/assets/css/bootstrap.css" rel="stylesheet">
 		<link href="style.css" rel="stylesheet"> 
 		<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic|Open+Sans:300|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+		<script src="js/jquery.js"></script>
+		<script src="js/wait.js"></script>
+		<script src="js/base.js"></script>
+	
+	
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 		<script>
+			var currPage='home'
+			var type=1
+			var x_gender
+			var min_age
+			var max_age
+			var x_photos
+			var x_miles
+			var x_zip
+			setTimeout(function(){
+				if (getCookie('mid')=='5000830') $('#fil').show()
+				if (getCookie('currPage')) {
+					setCookie('prevPage',getCookie('currPage'))
+				}
+				setCookie('currPage',currPage)
+				setCookie('x_photos','1')
+				update_parameters()
+			},10)
+
+			function update_parameters() {
+				wait3()
+				/**
+					Browse Types: ACTIVITY, MOST POPULAR, NEW, LOCAL, NEW_LOCAL, ONLINE_NOW
+				 	Filter By: Age, Gender, Distance, Photos
+				**/
+
+				if (getCookie('x_gender')=='') {
+					x_gender=getCookie('gender')
+				} else {
+					x_gender=getCookie('x_gender')
+				}
+				x_photos=getCookie('x_photos')
+				x_zip=getCookie('x_zip')
+				x_miles=getCookie('x_miles')
+				max_age=getCookie('x_max_age')
+				min_age=getCookie('x_min_age')
+			}
+				var mega_new_local=0
+				var mega_local=0
+				var mega_new=0
+
 			var wl = window.location.href;
 			var mob = (window.location.href.indexOf('file://')>=0);
+
 			function getCookie(cname)	{ 
 				if (mob===true) {
 					var cvalue = window.localStorage.getItem(cname);
@@ -166,6 +212,9 @@
 	margin-left:-40px;
 	width:100px;
 }
+#standardFilter {
+	font-family:Open Sans
+}
 </style>
 						<span style="display:none">
 							<table style="background:lightyellow;display:;height:200px;width:100%;margin:auto;left:0;right:0;margin-top:0px;font-family:Open Sans Condensed;font-size:14px!Important;text-align:center!Important">
@@ -224,7 +273,6 @@
 								</tr>
 								<tr style="display:">
 									<td colspan=3>
-										<div style="display:none" id="ne"><img style="height:60px;display:none" src="https://lushmatch.com/assets/img/l4.gif"></div>
 									</td>
 								</tr>
 								<tr style="display:none">
@@ -237,6 +285,7 @@
 			<div id="tr2" style="background:#000;display:none;position:fixed;bottom:54px">
 
 			</div>	
+<div style="display:none;width:100%;margin:auto;margin-top:100px" id="ne"><img style="height:60px;display:none" src="https://lushmatch.com/assets/img/l4.gif"></div>
 
 <span id="main_table"></span>
 <script src="js/jquery.js"></script>
@@ -247,24 +296,15 @@
 <script src="https://lushmatch.com/assets/js/scripts.js"></script>
 <link href="https://lushmatch.com/assets/css/bootstrap.css" rel="stylesheet">
 <link href="https://lushmatch.com/assets/css/jquery-ui.css" rel="stylesheet">
-<link href="https://lushmatch.com/css/shadows.css" rel="stylesheet">
-<script src="https://sugardaddylocal.com/custom_menu_updated.js"></script>
-
+<link href="https://sugardaddylocal.com/css/animate.css" rel="stylesheet">
 <style>
 	.genActive{background: gold;border:none;opacity:1!Important}
 </style>
  		<script>
-			wait3()
-			var currPage='home'
-			if (getCookie('currPage')) {
-				setCookie('prevPage',getCookie('currPage'))
-			}
-			setCookie('currPage',currPage)
+			
 
 			var winH, winW
-			function video_call() {
-				location.href='https://lushmatch.com/v.html?login='+getCookie('login')
-			}
+
 			function window_height() {
 				if (document.body) {
 				 winH = document.body.offsetHeight;
@@ -350,55 +390,67 @@
 					}
 				}
 			},1000)
-			
+			var view_type
 			function list_view(){
 				wait3('Generating List View')
 				$$('ne').innerHTML=''
+				view_type='list'
 				getProfilesNewLocal_list()
+				
 			}
 			
 			function gallery_view() {
 				wait3('Generating Gallery View')
 				$$('ne').innerHTML=''
+				view_type='gallery'
 				getProfilesNewLocal()
 			}
 			
 			window.onclick=view_profile
 			function view_profile(e) {
 				if (e.target.id) {
-					if (e.target.id.indexOf('img_popular_')>-1) {
-						location.href='profileBrowse.html?id='+e.target.id.split('_')[2]+'&type=browse&browse='+e.target.id.split('_')[1]+'&start='+x_start_popular
-					}
+
+					var data_id=e.target.getAttribute('data-id')
+					var data_start=e.target.getAttribute('data-start')
+					var data_count=e.target.getAttribute('data-count')
+					var data_x_gender=e.target.getAttribute('data-x-gender')
+					var data_max_age=e.target.getAttribute('data-max-age')
+					var data_min_age=e.target.getAttribute('data-min-age')
+					var data_x_photos=e.target.getAttribute('data-x-photos')
+					var data_x_zip=e.target.getAttribute('data-x-zip')
+					var data_x_miles=e.target.getAttribute('data-x-miles')
+
 					if (e.target.id.indexOf('img_local_')>-1) {
-						location.href='profileBrowse.html?id='+e.target.id.split('_')[2]+'&type=browse&browse='+e.target.id.split('_')[1]+'&start='+x_start_local
+						location.href='profileBrowse.html?id='+data_id+'&type=local&start='+x_start_local+'&gender='+x_gender+'&max_age='+max_age+'&min_age='+min_age+'&photos='+x_photos+'&zip='+x_zip+'&miles='+x_miles+'&type=local'
 					}
 					if (e.target.id.indexOf('img_latest_')>-1) {
-						location.href='profileBrowse.html?id='+e.target.id.split('_')[2]+'&type=browse&browse='+e.target.id.split('_')[1]+'&start='+x_start_new
+						location.href='profileBrowse.html?id='+data_id+'&type=new&start='+x_start_new+'&gender='+x_gender+'&max_age='+max_age+'&min_age='+min_age+'&photos='+x_photos+'&zip='+x_zip+'&miles='+x_miles+'&type=new'
 					}
-					if (e.target.id.indexOf('img_newest_')>-1) {
-						url='profileBrowse.html?id='+e.target.id.split('_')[2].split('|')[0]+'&type=browse&browse=new_local'+'&start='+e.target.id.split('_')[2].split('|')[1]
+					if (e.target.getAttribute('data-type')=='new_local') {
+						url='profileBrowse.html?id='+data_id+'&type=new_local&start='+data_start+'&gender='+data_x_gender+'&max_age='+data_max_age+'&min_age='+data_min_age+'&photos='+data_x_photos+'&zip='+data_x_zip+'&miles='+data_x_miles+'&count='+data_count
 						location.href=url
 					}
 				}
 			}
 			$$('ne').innerHTML=''
 			var padH=100
-			var mega=0
+			var mega_new_local=0
 			var ids=''
+
+
 			function getProfilesNewLocal() {
+				var newidth
+				newidth='100%'
+				$$('ne').style.cssText='width:'+newidth+'px!Important;;margin:auto;background:#f0f0f0!Important'
 				setCookie('view_result','gallery')
-				$$('img_gallery').src='images/gallery_selected.png'
-				$$('img_list').src='img/view_list.png'
-				$$('img_gallery').style.width='30px'
-				$$('img_list').style.width='20px'
-				max_img_width=(window_width()/2)
-				max_img_height=max_img_width
+				max_img_width=(newidth/2)-10
+				max_img_height=320
 				hy=max_img_width
 				hy=hy-100
-				no=(screen.height/max_img_height)*2
-				no=10
+				no=20
 				var x_start=0,cStr=''
-				var url = 'https://sugardaddylocal.com/x_browse_new_local.php?start='+mega+'&gender='+getCookie('gender')+'&type=new_local&count='+no
+				var url = 'https://sugardaddylocal.com/x_browse_new_local.php?start='+mega_new_local+'&count='+no+'&gender='+x_gender+'&max_age='+max_age+'&min_age='+min_age+'&photos='+x_photos+'&zip='+x_zip+'&miles='+x_miles+'&type=new_local'
+				console.log(url)
 				var request = $.ajax({
 					url: url,
 					type: "GET",
@@ -419,44 +471,51 @@
 								imgB=document.createElement('img')
 								imgB.src=getfile()  
 								imgB.style='width:100%;height:40%;border-radius:5px 5px 0 0 ;position:absolute;padding:0;margin:0px;top:0'
-								imgG=makeImg('https://lushmatch.com/sb/'+data[i].filename_1, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, 'col-md-3')
-								imgG.style='width:60%;border-radius:60%;position:absolute;padding:0;margin:0px;border:5px solid white'
+								imgG=makeImgM('https://lushmatch.com/sb/'+data[i].filename_1, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, 'col-md-3')
+								imgG.style='width:110px!Important;border-radius:60%;position:absolute;padding:0;margin:0px;border:5px solid white'
 								imgG.id='img_newest_'+id+'|'+x_start_new_local
 								imgG.style.position='absolute'
 								imgG.style.margin='auto'
 								imgG.style.left='0'
 								imgG.style.right='0'
 								imgG.style.marginTop='20%'
+								imgG.setAttribute('data-id',data[i].id)
+								imgG.setAttribute('data-start',mega_new_local)
+								imgG.setAttribute('data-count',no)
+								imgG.setAttribute('data-x-gender',x_gender)
+								imgG.setAttribute('data-max-age',max_age)
+								imgG.setAttribute('data-min-age',min_age)
+								imgG.setAttribute('data-x-photos',x_photos)
+								imgG.setAttribute('data-x-zip',x_zip)
+								imgG.setAttribute('data-x-miles',x_miles)
+								imgG.setAttribute('data-type','new_local')
 								var cr=''
 								var corner=document.createElement('img')
 								var dpg=document.createElement("div")
 								var cStr=document.createElement('div')
-								dpg.className='col-md-3 col-xs-1'
+								dpg.className=' col-md-3 col-xs-1'
 								dpg.style.margin='0px'
 								dpg.style.background='#fff'
 								dpg.style.border='none'
-								if (getCookie('isMobile')) {
-									dpg.style.maxWidth=max_img_width+'px'
-									dpg.style.width =((window_width()*0.45)) + 'px'
-									dpg.style.height=((window_width()*0.45)+40) + 'px'
-									imgG.style.width=((window_width()*0.45)-60) + 'px'
-									imgG.style.height=((window_width()*0.45)-60) + 'px'
-									dpg.style.margin='2%'
-									dpg.style.boxShadow='1px 1px 2px #fff'
-									dpg.style.borderRadius='5px'
-								} else {
-									dpg.style.maxWidth=(500/5-5)+'px'
-									dpg.style.height=(500/5-5)+'px'
-								}
+								dpg.style.maxWidth=max_img_width+'px'
+								dpg.style.width =((window_width()*0.5)-10) + 'px'
+								dpg.style.height=((window_width()*0.45)+100) + 'px'
+								imgG.style.width=((window_width()*0.45)-60) + 'px'
+								imgG.style.height=((window_width()*0.45)-60) + 'px'
+								dpg.style.margin='5px'
+								dpg.style.boxShadow='1px 1px 2px #fff'
+								dpg.style.borderRadius='5px'
 								dpg.style.padding='0'
 								dpg.style.cursor='pointer'
 								dpg.style.position='relative'
-								cr+='<table style="position:absolute;bottom:40px;max-height:30px;width:100%;margin-top:-10;border-radius:0 0 5px 5px;background:none"><tr>'
-								cr+='<tr><td colspan=4 style="text-align:center;width:100%;padding:5px;color:#000;font-size:16px">'+data[i].login.substr(0,10).toUpperCase()+' ' + data[i].age + ' ' + (data[i].gender=='sugar baby'?'M':'F')+' <span style="margin:auto;color:maroon"><b>'+data[i].distance+' MLS</b></span></td></tr><tr>'
-								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:-10px"><img onclick="send_mail('+id+')" style="width:20px;margin-bottom:5px" src="img/new_chat.png"></td>'
-								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:-10px"><img onclick="videoCall(\''+data[i].login+'\')" style="width:20px;margin-bottom:5px" src="img/new_video_chat.png"></td>'
-								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:-10px"><img onclick="view_wish('+id+')" style="width:20px;margin-bottom:5px" src="img/new_wish.png"></td>'
-								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:-10px"><img onclick="view_offers('+id+')" style="width:25px;margin-bottom:5px" src="images/bid.png"></td>'
+								cr+='<table style="font-family:Open Sans;position:absolute;bottom:100px;max-height:30px;width:100%;margin-top:-10;border-radius:0 0 5px 5px;background:none"><tr>'
+								cr+='<tr><td colspan=4 style="text-align:center;width:100%;padding:5px;color:#000;font-size:18px">'+data[i].login.substr(0,15).toUpperCase()+' ' + data[i].age + '<div style="font-size:14px;color:silver">' + data[i].location +'</div><div style="font-size:12px;color:orange"><b>'+data[i].distance+'</b> MILES</div></span></div></td></tr>'
+								cr+='<tr><td colspan=4 style="font-size:12px;text-align:center">'+data[i].general_info.substr(0,35)+'</td></tr></table>'
+								cr+='<table style="position:absolute;bottom:-5px;margin:auto;left:0;right:0;width:100%"><tr>'
+								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:0px"><img onclick="send_mail('+id+')" style="width:20px;margin-bottom:5px" src="img/new_chat.png"></td>'
+								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:0px"><img onclick="videocall(\''+data[i].login+'\')" style="width:20px;margin-bottom:5px" src="img/new_video_chat.png"></td>'
+								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:0px"><img onclick="view_wish('+id+')" style="width:20px;margin-bottom:5px" src="img/new_wish.png"></td>'
+								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:0px"><img onclick="view_offers('+id+')" style="width:25px;margin-bottom:5px" src="images/bid.png"></td>'
 								cr+='</tr></table>'
 								cStr.innerHTML=cr
 								dpg.appendChild(imgB)
@@ -467,15 +526,205 @@
 								$$('ne').appendChild(dpg)
 							}
 						}
-						mega=mega+10
+						mega_new_local=mega_new_local+no
 						setTimeout('update_shortlist()',10)
-						setTimeout('update_browse_logs()',10)
+						setTimeout('update_browse_new_local_logs()',10)
+					}
+				})				
+			}
+			function getProfilesLocalDesktop() {
+				var newidth=screen.width*0.4+100
+				newidth=800
+				$$('ne').style.cssText='width:'+newidth+'px!Important;;margin:auto;background:#f0f0f0!Important'
+				setCookie('view_result','gallery')
+				max_img_width=newidth/4-10
+				max_img_height=320
+				hy=max_img_width
+				hy=hy-100
+				no=20
+				var x_start=0,cStr=''
+				var url = 'https://sugardaddylocal.com/x_browse_local.php?start='+mega_local+'&count='+no+'&gender='+x_gender+'&max_age='+max_age+'&min_age='+min_age+'&photos='+x_photos+'&zip='+x_zip+'&miles='+x_miles+'&type=local'
+				console.log(url)
+				var request = $.ajax({
+					url: url,
+					type: "GET",
+					dataType: "html", 
+					cache: false,
+					success: function(msg) {
+						hide()
+						var pad=document.createElement("div")
+						var data=JSON.parse(msg)
+						data.reverse()
+						var lx=data.length
+						var lt=-700
+						for (var i=0;i<data.length;i++) {
+							hide()
+							if (data[i]) {
+								id=data[i].id
+								ids += data[i].id + ','
+								imgB=document.createElement('img')
+								imgB.src=getfile()  
+								imgB.style='width:100%;height:40%;border-radius:5px 5px 0 0 ;position:absolute;padding:0;margin:0px;top:0'
+								imgG=makeImgM('https://lushmatch.com/sb/'+data[i].filename_1, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, 'col-md-3')
+								imgG.style='width:110px!Important;border-radius:60%;position:absolute;padding:0;margin:0px;border:5px solid white'
+								imgG.id='img_newest_'+id+'|'+x_start_new_local
+								imgG.style.position='absolute'
+								imgG.style.margin='auto'
+								imgG.style.left='0'
+								imgG.style.right='0'
+								imgG.style.marginTop='20%'
+								imgG.setAttribute('data-id',data[i].id)
+								imgG.setAttribute('data-start',mega_new_local)
+								imgG.setAttribute('data-count',no)
+								imgG.setAttribute('data-x-gender',x_gender)
+								imgG.setAttribute('data-max-age',max_age)
+								imgG.setAttribute('data-min-age',min_age)
+								imgG.setAttribute('data-x-photos',x_photos)
+								imgG.setAttribute('data-x-zip',x_zip)
+								imgG.setAttribute('data-x-miles',x_miles)
+								imgG.setAttribute('data-type','local')
+								var cr=''
+								var corner=document.createElement('img')
+								var dpg=document.createElement("div")
+								var cStr=document.createElement('div')
+								dpg.className=' col-md-3 col-xs-1'
+								dpg.style.margin='0px'
+								dpg.style.background='#fff'
+								dpg.style.border='none'
+								dpg.style.maxWidth=max_img_width+'px'
+								dpg.style.width =((window_width()*0.5)-10) + 'px'
+								dpg.style.height=((window_width()*0.45)+100) + 'px'
+								imgG.style.width=((window_width()*0.45)-60) + 'px'
+								imgG.style.height=((window_width()*0.45)-60) + 'px'
+								dpg.style.margin='5px'
+								dpg.style.boxShadow='1px 1px 2px #fff'
+								dpg.style.borderRadius='5px'
+								dpg.style.padding='0'
+								dpg.style.cursor='pointer'
+								dpg.style.position='relative'
+								cr+='<table style="font-family:Open Sans;position:absolute;bottom:100px;max-height:30px;width:100%;margin-top:-10;border-radius:0 0 5px 5px;background:none"><tr>'
+								cr+='<tr><td colspan=4 style="text-align:center;width:100%;padding:5px;color:#000;font-size:18px">'+data[i].login.substr(0,15).toUpperCase()+' ' + data[i].age + '<div style="font-size:14px;color:silver">' + data[i].location +'</div><div style="font-size:12px;color:orange"><b>'+data[i].distance+'</b> MILES</div></span></div></td></tr>'
+								cr+='<tr><td colspan=4 style="font-size:12px;text-align:center">'+data[i].general_info.substr(0,35)+'</td></tr></table>'
+								cr+='<table style="position:absolute;bottom:-5px;margin:auto;left:0;right:0;width:100%"><tr>'
+								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:0px"><img onclick="send_mail('+id+')" style="width:20px;margin-bottom:5px" src="img/new_chat.png"></td>'
+								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:0px"><img onclick="videocall(\''+data[i].login+'\')" style="width:20px;margin-bottom:5px" src="img/new_video_chat.png"></td>'
+								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:0px"><img onclick="view_wish('+id+')" style="width:20px;margin-bottom:5px" src="img/new_wish.png"></td>'
+								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:0px"><img onclick="view_offers('+id+')" style="width:25px;margin-bottom:5px" src="images/bid.png"></td>'
+								cr+='</tr></table>'
+								cStr.innerHTML=cr
+								dpg.appendChild(imgB)
+								dpg.appendChild(imgG)
+								dpg.appendChild(corner)
+								dpg.appendChild(cStr)
+								corner.outerHTML='<a onclick="shortlist('+id+')"><img src="images/corner.png" id="corner_'+id+'" style="position: absolute; top: 0px; right: 0px; width: 75px; height: 75px; z-index: 99;"></a>'
+								$$('ne').appendChild(dpg)
+							}
+						}
+						mega_local=mega_local+no
+						setTimeout('update_shortlist()',10)
+						setTimeout('update_browse_local_logs()',10)
+					}
+				})				
+			}
+
+			function getProfilesNewDesktop() {
+				$$('ne').innerHTML=''
+				var newidth='100%'
+				$$('ne').style.cssText='width:'+newidth+'px!Important;;margin:auto;background:#f0f0f0!Important'
+				setCookie('view_result','gallery')
+				max_img_width=(newidth/2)-10
+				max_img_height=320
+				hy=max_img_width
+				hy=hy-100
+				no=20
+				var x_start=0,cStr=''
+				var url = 'https://sugardaddylocal.com/x_browse_new.php?start='+mega_new+'&count='+no+'&gender='+x_gender+'&max_age='+max_age+'&min_age='+min_age+'&photos='+x_photos+'&zip='+x_zip+'&miles='+x_miles+'&type=new'
+				console.log(url)
+				var request = $.ajax({
+					url: url,
+					type: "GET",
+					dataType: "html", 
+					cache: false,
+					success: function(msg) {
+						hide()
+						var pad=document.createElement("div")
+						var data=JSON.parse(msg)
+						data.reverse()
+						var lx=data.length
+						var lt=-700
+						for (var i=0;i<data.length;i++) {
+							hide()
+							if (data[i]) {
+								id=data[i].id
+								ids += data[i].id + ','
+								imgB=document.createElement('img')
+								imgB.src=getfile()  
+								imgB.style='width:100%;height:40%;border-radius:5px 5px 0 0 ;position:absolute;padding:0;margin:0px;top:0'
+								imgG=makeImgM('https://lushmatch.com/sb/'+data[i].filename_1, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, 'col-md-3')
+								imgG.style='width:110px!Important;border-radius:60%;position:absolute;padding:0;margin:0px;border:5px solid white'
+								imgG.id='img_newest_'+id+'|'+x_start_new_local
+								imgG.style.position='absolute'
+								imgG.style.margin='auto'
+								imgG.style.left='0'
+								imgG.style.right='0'
+								imgG.style.marginTop='20%'
+								imgG.setAttribute('data-id',data[i].id)
+								imgG.setAttribute('data-start',mega_new_local)
+								imgG.setAttribute('data-count',no)
+								imgG.setAttribute('data-x-gender',x_gender)
+								imgG.setAttribute('data-max-age',max_age)
+								imgG.setAttribute('data-min-age',min_age)
+								imgG.setAttribute('data-x-photos',x_photos)
+								imgG.setAttribute('data-x-zip',x_zip)
+								imgG.setAttribute('data-x-miles',x_miles)
+								imgG.setAttribute('data-type','new')
+								var cr=''
+								var corner=document.createElement('img')
+								var dpg=document.createElement("div")
+								var cStr=document.createElement('div')
+								dpg.className=' col-md-3 col-xs-1'
+								dpg.style.margin='0px'
+								dpg.style.background='#fff'
+								dpg.style.border='none'
+								dpg.style.maxWidth=max_img_width+'px'
+								dpg.style.width =((window_width()*0.5)-10) + 'px'
+								dpg.style.height=((window_width()*0.45)+100) + 'px'
+								imgG.style.width=((window_width()*0.45)-60) + 'px'
+								imgG.style.height=((window_width()*0.45)-60) + 'px'
+								dpg.style.margin='5px'
+								dpg.style.boxShadow='1px 1px 2px #fff'
+								dpg.style.borderRadius='5px'
+								dpg.style.padding='0'
+								dpg.style.cursor='pointer'
+								dpg.style.position='relative'
+								cr+='<table style="font-family:Open Sans;position:absolute;bottom:100px;max-height:30px;width:100%;margin-top:-10;border-radius:0 0 5px 5px;background:none"><tr>'
+								cr+='<tr><td colspan=4 style="text-align:center;width:100%;padding:5px;color:#000;font-size:18px">'+data[i].login.substr(0,15).toUpperCase()+' ' + data[i].age + '<div style="font-size:14px;color:silver">' + data[i].location +'</div><div style="font-size:12px;color:orange"><b>'+data[i].distance+'</b> MILES</div></span></div></td></tr>'
+								cr+='<tr><td colspan=4 style="font-size:12px;text-align:center">'+data[i].general_info.substr(0,35)+'</td></tr></table>'
+								cr+='<table style="position:absolute;bottom:-5px;margin:auto;left:0;right:0;width:100%"><tr>'
+								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:0px"><img onclick="send_mail('+id+')" style="width:20px;margin-bottom:5px" src="img/new_chat.png"></td>'
+								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:0px"><img onclick="videocall(\''+data[i].login+'\')" style="width:20px;margin-bottom:5px" src="img/new_video_chat.png"></td>'
+								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:0px"><img onclick="view_wish('+id+')" style="width:20px;margin-bottom:5px" src="img/new_wish.png"></td>'
+								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:0px"><img onclick="view_offers('+id+')" style="width:25px;margin-bottom:5px" src="images/bid.png"></td>'
+								cr+='</tr></table>'
+								cStr.innerHTML=cr
+								dpg.appendChild(imgB)
+								dpg.appendChild(imgG)
+								dpg.appendChild(corner)
+								dpg.appendChild(cStr)
+								corner.outerHTML='<a onclick="shortlist('+id+')"><img src="images/corner.png" id="corner_'+id+'" style="position: absolute; top: 0px; right: 0px; width: 75px; height: 75px; z-index: 99;"></a>'
+								$$('ne').appendChild(dpg)
+							}
+						}
+						mega_new=mega_new+no
+						setTimeout('update_shortlist()',10)
+						setTimeout('update_browse_new_logs()',10)
 					}
 				})				
 			}
 
 			function view_offers(id) {
-				location.href='member_view_offers.html?mid='+id
+				$.alert('Coming Soon')
+				//location.href='member_view_offers.html?mid='+id
 			}
 			
 			function view_wish(id) {
@@ -499,9 +748,9 @@
 				hy=max_img_width
 				hy=hy-100
 				no=(screen.height/max_img_height)*2
-				no=10
+				no=20
 				var x_start=0,cStr=''
-				var url = 'https://sugardaddylocal.com/x_browse_new_local.php?start='+mega+'&gender='+getCookie('gender')+'&type=new_local&count='+no
+				var url = 'https://sugardaddylocal.com/x_browse_new_local.php?start='+mega_new_local+'&count='+no+'&gender='+x_gender+'&max_age='+max_age+'&min_age='+min_age+'&photos='+x_photos+'&zip='+x_zip+'&miles='+x_miles+'&type=new_local'
 				var request = $.ajax({
 					url: url,
 					type: "GET",
@@ -529,6 +778,16 @@
 								imgG.style.left='0'
 								imgG.style.right='0'
 								imgG.style.margin='20px'
+								imgG.setAttribute('data-id',data[i].id)
+								imgG.setAttribute('data-start',mega_new_local)
+								imgG.setAttribute('data-count',no)
+								imgG.setAttribute('data-x-gender',x_gender)
+								imgG.setAttribute('data-max-age',max_age)
+								imgG.setAttribute('data-min-age',min_age)
+								imgG.setAttribute('data-x-photos',x_photos)
+								imgG.setAttribute('data-x-zip',x_zip)
+								imgG.setAttribute('data-x-miles',x_miles)
+								imgG.setAttribute('data-type','new_local')
 								var cr=''
 								var corner=document.createElement('img')
 								var dpg=document.createElement("div")
@@ -560,12 +819,12 @@
 								$$('ne').appendChild(dpg)
 							}
 						}
-						mega=mega+10
+						mega_new_local=mega_new_local+no
 						setTimeout('update_shortlist()',10)
-						setTimeout('update_browse_logs()',10)
+						setTimeout('update_browse_new_local_logs()',10)
 					}
 				})					
-			}			
+			}				
 			var slist=[ ]
 			function update_shortlist(id) {
 				if (getCookie('shortlist')) {
@@ -573,8 +832,7 @@
 				}
 				$$('shortlist_count').innerHTML='<b>'+slist.length+'</b>'
 				$.each(slist, function(i, el){
-					if ($$('corner_'+el)) $$('corner_'+el).src='images/added.png'					
-					console.log(el)
+					$$('corner_'+el).src='images/added.png'					
 				});
 				
 			}
@@ -610,7 +868,7 @@
 				if (slist.indexOf(id)>=0) {
 					slist.splice(slist.indexOf(id),1)
 					if ($$('corner_'+id)) $$('corner_'+id).src='images/corner.png'
-					if ($$('tr_'+id)) $$('tr_'+id).style.background='white'
+					$$('tr_'+id).style.background='white'
 				} else {
 					slist.push(id*1)
 					slist=removeDuplicates(slist)
@@ -630,7 +888,19 @@
 				return uniqueNames
 			}
 			
-			var ctr=0
+			var ctr=0,pg
+			function makeImgM(src, alt, title, className) {
+				var img =  document.createElement('img');
+				img.src = src;
+				if ( alt != null ) img.alt = alt;
+				if ( title != null ) img.title = title;
+				if ( className != null ) img.className = className;
+				ctr++
+				img.onerror = fixM
+				pg=alt.split(' ')[0]+' '+alt.split(' ')[1]
+				return img;
+			}
+	
 			function makeImg(src, alt, title, className) {
 				var img =  document.createElement('img');
 				img.src = src;
@@ -639,12 +909,30 @@
 				if ( className != null ) img.className = className;
 				ctr++
 				img.onerror = fix
+				pg=alt.split(' ')[0]+' '+alt.split(' ')[1]
 				return img;
 			}
 	
 			function fix(e) {
-				e.target.src='https://lushmatch.com/assets/img/no_img.png'
-				e.target.style.margin='0px'
+				if (pg=='Sugar Baby') 
+					e.target.src='https://lushmatch.com/sb/no_photo_f.png'
+				else
+					e.target.src='https://lushmatch.com/sb/no_photo_m.png'
+				e.target.style.width='130px'
+				e.target.style.height='130px'
+				e.target.style.borderRadius='200px'
+				e.target.style.border='none'
+			}
+
+			function fixM(e) {
+				if (pg=='Sugar Baby') 
+					e.target.src='https://lushmatch.com/sb/no_photo_f.png'
+				else
+					e.target.src='https://lushmatch.com/sb/no_photo_m.png'
+				e.target.style.width='100px'
+				e.target.style.height='100px'
+				e.target.style.borderRadius='200px'
+				e.target.style.border='none'
 			}
 var tmr	
 setTimeout('init()',1000)
@@ -674,7 +962,7 @@ setTimeout('init()',1000)
 	}
 
 
-	function update_browse_logs() {
+	function update_browse_new_local_logs() {
 		var url='https://sugardaddylocal.com/x_log_browse.php?browse_type=new_local&mid='+getCookie('mid')+'&ids='+ids.substr(0,ids.length-1)+'&start='+x_start_new_local+'&per_page='+no
 		console.log(url)
 		var request = $.ajax({
@@ -686,8 +974,159 @@ setTimeout('init()',1000)
 			}
 		})
 	}
+	function update_browse_local_logs() {
+		var url='https://sugardaddylocal.com/x_log_browse.php?browse_type=local&mid='+getCookie('mid')+'&ids='+ids.substr(0,ids.length-1)+'&start='+x_start_new_local+'&per_page='+no
+		console.log(url)
+		var request = $.ajax({
+			url: url,
+			type: "GET",
+			dataType: "html", 
+			cache: false,
+			success: function(msg) {
+			}
+		})
+	}
+	function update_browse_new_logs() {
+		var url='https://sugardaddylocal.com/x_log_browse.php?browse_type=new&mid='+getCookie('mid')+'&ids='+ids.substr(0,ids.length-1)+'&start='+x_start_new_local+'&per_page='+no
+		console.log(url)
+		var request = $.ajax({
+			url: url,
+			type: "GET",
+			dataType: "html", 
+			cache: false,
+			success: function(msg) {
+			}
+		})
+	}
+	$('#span_list').show()
+	$('#span_gallery').show()
+	//$('#span_filter').show()
+	
+			setTimeout(function(){
+				$('#fil').show()
+				if (getCookie('currPage')) {
+					setCookie('prevPage',getCookie('currPage'))
+				}
+				setCookie('currPage',currPage)
+				setCookie('x_photos','1')
+				update_parameters()
+			},10)
 
+			function update_parameters() {
+				wait3()
+				/**
+					Browse Types: ACTIVITY, MOST POPULAR, NEW, LOCAL, NEW_LOCAL, ONLINE_NOW
+				 	Filter By: Age, Gender, Distance, Photos
+				**/
+
+				if (getCookie('x_gender')=='') {
+					x_gender=getCookie('gender')
+				} else {
+					x_gender=getCookie('x_gender')
+				}
+				x_photos=getCookie('x_photos')
+				x_zip=getCookie('x_zip')
+				x_miles=getCookie('x_miles')
+				max_age=getCookie('x_max_age')
+				min_age=getCookie('x_min_age')
+			}
+				var mega_new_local=0
+				var mega_local=0
+				var mega_new=0
+			
+			function switch_gender(gv) {
+				setTimeout(function(){
+					setCookie('x_gender',gv)
+					update_parameters()
+					switchBrowse(type)
+				},10)
+			}
+			
+			function switch_min_age(av) {
+				setTimeout(function(){
+					setCookie('x_min_age',av)
+					update_parameters()
+					switchBrowse(type)
+				},10)
+			}
+			
+			function switch_max_age(av) {
+				setTimeout(function(){
+					setCookie('x_max_age',av)
+					update_parameters()
+					switchBrowse(type)
+				},10)
+			}
+			
+			function switch_photo() {
+				if (getCookie('x_photos')=='') setCookie('x_photos','1')
+					else setCookie('x_photos','')
+				setTimeout(function(){
+					update_parameters()
+					switchBrowse(type)
+				},10)
+			}
+			
+			function switch_zip() {
+				setTimeout(function(){
+					setCookie('x_zip',$$('x_txt_zip').value)
+					setCookie('x_miles',$$('x_txt_miles').value)
+					update_parameters()
+					switchBrowse(type)
+				},10)
+			}
+			
+			function reset_all() {
+				setCookie('x_gender','')
+				setCookie('x_zip','')
+				setCookie('x_miles','')
+				setCookie('x_photos','')
+				setCookie('x_min_age','')
+				setCookie('x_max_age','')
+				history.go(0)
+			}
+			
+			function switchBrowse(x) {
+				$$('btn1').style.background='white'
+				$$('btn2').style.background='white'
+				$$('btn3').style.background='white'
+				$$('btn4').style.background='white'
+				$$('btn1').style.border='1px solid silver'
+				$$('btn2').style.border='1px solid silver'
+				$$('btn3').style.border='1px solid silver'
+				$$('btn4').style.border='1px solid silver'
+				$$('btn'+x).style.background='#45F8BD'
+				$$('btn'+x).style.border='none'
+
+				$$('ne').innerHTML=''
+				if (x==1) {
+					mega_new_local=0
+					type=1
+					getProfilesNewLocal()
+				}
+				if (x==2) {
+					mega_local=0
+					type=2
+					getProfilesLocalDesktop()
+				}
+				if (x==3) {
+					mega_new=0
+					type=3
+					getProfilesNewDesktop()
+				}
+				if (x==4) {
+					mega_online=0
+					type=4
+					getProfilesOnlineNowDesktop()
+				}
+				if (x==5) {
+					mega_recently=0
+					type=5
+					getProfilesActiveRecentlyDesktop()
+				}
+			}	
 </script>
 
+<script src="https://m.sugardaddylocal.com/custom_menu_updated.js"></script>
 <script src="https://lushmatch.com/jsSocketNode.js"></script>
 </html>

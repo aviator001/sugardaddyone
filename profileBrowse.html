@@ -599,14 +599,12 @@
 			}
 
 		} else {
-			if (qs('browse')=='local') {
-				var url='https://sugardaddylocal.com/x_browse_local.php?start='+start_local+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')
-			} else if ((qs('browse')=='new') || (qs('browse')=='latest')) {
-				url='https://sugardaddylocal.com/x_browse_new.php?start='+start_new+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')
-			} else if (qs('browse')=='new_local') {
-				url='https://sugardaddylocal.com/x_browse_new_local.php?start='+start_new_local+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+shown_id
-			} else if (qs('browse')=='popular') {
-				url='https://sugardaddylocal.com/x_browse_popular.php?start='+start_popular+'&user_rights='+currUR+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')
+			if (qs('type')=='local') {
+				var url='https://sugardaddylocal.com/x_browse_local.php?start='+start_local+'&type='+qs('type')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')+'&max_age='+getCookie('max_age')+'&min_age='+getCookie('min_age')+'&photos='+getCookie('x_photos')+'&zip='+getCookie('x_zip')+'&miles='+getCookie('x_miles')
+			} else if ((qs('type')=='new') || (qs('type')=='latest')) {
+				url='https://sugardaddylocal.com/x_browse_new.php?start='+start_new+'&type='+qs('type')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')+'&max_age='+getCookie('max_age')+'&min_age='+getCookie('min_age')+'&photos='+getCookie('x_photos')+'&zip='+getCookie('x_zip')+'&miles='+getCookie('x_miles')
+			} else if (qs('type')=='new_local') {
+				url='https://sugardaddylocal.com/x_browse_new_local.php?start='+start_new_local+'&type='+qs('type')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+shown_id+'&max_age='+getCookie('x_max_age')+'&min_age='+getCookie('x_min_age')+'&photos='+getCookie('x_photos')+'&zip='+getCookie('x_zip')+'&miles='+getCookie('x_miles')
 			}
 		}
 		var imt,br,bkg='background: #fff',yes_pd=0
@@ -787,13 +785,13 @@
 				if (qs('type')=='search') {
 					start_search=start_search*1+no_search*1
 				} 
-				if (qs('browse')=='local') {
+				if (qs('type')=='local') {
 					start_local=start_local+no
-				} else if (qs('browse')=='latest') {
+				} else if (qs('type')=='latest') {
 					start_new=start_new+no
-				} else if (qs('browse')=='new_local') {
+				} else if (qs('type')=='new_local') {
 					start_new_local=start_new_local+no
-				} else if (qs('browse')=='popular') {
+				} else if (qs('type')=='popular') {
 					start_popular=start_popular+no
 				}
 				
