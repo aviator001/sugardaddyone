@@ -375,6 +375,7 @@ h3 {
 		</script>	
 </head>
 <body>
+<div id="rose_div" style="display:none;z-index:999;position:fixed;left:0;top:0;width:100%;height:100%;background:url(https://sugardaddylocal.com/images/bl_bg.png);background-size:cover"><div style="opacity:1;background:white;width:250px;height:250px;border-radius:500px;margin:auto;margin-top:200px;border:20px dashed #555;border-spacing:border-box"><img src="https://terrawire.com/fx/output/960951140782.png" style="position:absolute;left:0;right:0;top:0;bottom:0;width:35%;margin:auto"></div><button class="btn btn-danger" style="position:absolute;left:0;right:0;width:200px;color:white;margin:auto;margin-top:50px" onclick="send_rose()"> Send Rose Now! </button></div>
 <div class="container mt-5"> 
     <div class="row">
 
@@ -550,10 +551,16 @@ h3 {
 	var price = qs('price')*100
 	var desc = item + ' - $' + price/100
 	var type = qs('type')
-	var test_mode=true
-
+	var test_mode=false
+	if (test_mode===false) {
+		var sk="sk_live_Ll8NQDRLHgoF3Fs4TfYgkUZY";
+		var pk="pk_live_usFpglAicQ086PYo5g0n4Jiz";
+	} else {
+		var sk="sk_test_JtJdmBlalLHVHZbPQoy6FugX";
+		var pk="pk_test_qtprDcPj4ouEvG9O2CaP7EJV";
+	}
 	var handler = StripeCheckout.configure({
-	  key: 'pk_live_usFpglAicQ086PYo5g0n4Jiz',
+	  key: 'pk_test_qtprDcPj4ouEvG9O2CaP7EJV',
 	  image: 'https://sugardaddylocal.com/images/logoSmall.png',
 	  locale: 'auto',
 	  token: function(token) {
@@ -567,23 +574,39 @@ h3 {
 				hide()
 				var data=JSON.parse(msg)
 				if (data.status=='pass') {
-				tc=$.confirm({
-						useBootstrap: false,
+				show_rose()
+				$.confirm({
+						type: 'green',
 						title: 'Payment Success',
 						lazyOpen: true,
 						bgOpacity: 0.9,
-						content: 'Payment Successful. Your transactionID is ' + data.desc,
+						content: 'Payment Successful. Your Order Number is ' + data.desc,
 						buttons: {
 							ok: {
-								text: '<span style="font-size:14px!Important">CLOSE</span>',
+								text: '<span style="font-size:14px!Important">NEXT</span>',
+								btnClass: 'btn-info',
+								action: function(){
+									send_rose()
+								}
+							}					
+						}					
+					});
+				} else {
+					$.confirm({
+						type: 'red',
+						title: 'Payment Failure',
+						lazyOpen: true,
+						bgOpacity: 0.9,
+						content: 'Detailed Message:<br><br>' + data.desc,
+						buttons: {
+							ok: {
+								text: '<span style="font-size:14px!Important">OK</span>',
 								btnClass: 'btn-info',
 								action: function(){
 								}
 							}					
 						}					
 					});
-				} else {
-					$.dialog('Payment Failure' + data.desc)
 				}
 			}
 		})
@@ -599,8 +622,52 @@ h3 {
 		e.preventDefault();
 	});
 
+	function show_rose() {
+		$('#div_rose').show()
+	}
 
-		</script>
+	function hide_rose() {
+		$('#div_rose').hide()
+	}
+
+	function send_rose() {
+		var request = $.ajax({
+			url: 'https://sugardaddylocal.com/x_send_rose.php?from_mid='+getCookie('mid')+'&to_mid='+qs('to_mid'), 
+			type: "GET",
+			cache: false,
+			success: function(msg) {
+				if(msg=='') {
+					objData={
+								msg					: 	'You have a Newwww Rose!',
+								toUser				: 	to_login,
+								type				: 	'NEW_ROSE',
+								fromUser			: 	getCookie('login'),
+								fromLongCode		: 	getCookie('long_code')
+					}
+					socket.send(JSON.stringify({type:'NEW_ROSE', data: objData}))
+					$.confirm({
+						type: 'green',
+						title: 'Rosy Success',
+						lazyOpen: true,
+						bgOpacity: 0.9,
+						content: 'Your rose was delivered!',
+						buttons: {
+							ok: {
+								text: '<span style="font-size:14px!Important">Ok</span>',
+								btnClass: 'btn-info',
+								action: function(){
+									hide_rose()
+								}
+							}					
+						}					
+					})
+				}
+			}
+		})
+	}
+	
+
+	</script>
 	<script src="https://sugardaddylocal.com/custom_menu_updated.js"></script>
 	<script src="js/jquery.js"></script>
 	<script src="https://sugardaddylocal.com/js/wait.js"></script>

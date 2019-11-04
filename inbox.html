@@ -165,31 +165,12 @@ ul.ui-autocomplete li.ui-menu-item {
 			})	
 		}
 	function getCookie(cname)	{ 
-		if (window.location.href.indexOf('file://')>=0) {
 			var cvalue = window.localStorage.getItem(cname);
 			return cvalue
-		} else {
-			var name = cname + "="; 
-			var ca = document.cookie.split(';'); 
-			for(var i=0; i<ca.length; i++) { 
-			  var c = ca[i].trim(); 
-			  if (c.indexOf(name)==0) return c.substring(name.length,c.length); 
-			} 
-			return ""; 
-		}
 	} 
-	var wl = window.location.href;
-	var mob = (window.location.href.indexOf('file://')>=0);
 
 	function setCookie(cname,cvalue)	{
-		if (window.location.href.indexOf('file://')>=0) {
-			window.localStorage.setItem(cname, cvalue);
-		} else {
-			var d = new Date(); 
-			d.setTime(d.getTime()+(1*24*60*60*1000)); 
-			var expires = "expires="+d.toGMTString(); 
-			document.cookie = cname + "=" + cvalue + "; " + expires; 
-		}
+		window.localStorage.setItem(cname, cvalue);
 	} 
 
 	var winH, winW
