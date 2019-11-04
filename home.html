@@ -496,7 +496,7 @@
 								ids += data[i].id + ','
 								imgB=document.createElement('img')
 								imgB.src=getfile()  
-								imgB.style='width:100%;height:40%;border-radius:5px 5px 0 0 ;position:absolute;padding:0;margin:0px;top:0'
+								imgB.style='width:100%;height:30%;border-radius:5px 5px 0 0 ;position:absolute;padding:0;margin:0px;top:0'
 								imgG=makeImgM('https://lushmatch.com/sb/'+data[i].filename_1, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, 'col-md-3')
 								imgG.style='width:110px!Important;border-radius:60%;position:absolute;padding:0;margin:0px;border:5px solid white'
 								imgG.id='img_newest_'+id+'|'+x_start_new_local
@@ -525,7 +525,7 @@
 								dpg.style.border='none'
 								dpg.style.maxWidth=max_img_width+'px'
 								dpg.style.width =((window_width()*0.5)-10) + 'px'
-								dpg.style.height=((window_width()*0.45)+100) + 'px'
+								dpg.style.height=((window_width()*0.45)+140) + 'px'
 								imgG.style.width=((window_width()*0.45)-60) + 'px'
 								imgG.style.height=((window_width()*0.45)-60) + 'px'
 								dpg.style.margin='5px'
@@ -534,14 +534,21 @@
 								dpg.style.padding='0'
 								dpg.style.cursor='pointer'
 								dpg.style.position='relative'
-								cr+='<table style="font-family:Open Sans;position:absolute;bottom:100px;max-height:30px;width:100%;margin-top:-10;border-radius:0 0 5px 5px;background:none"><tr>'
-								cr+='<tr><td colspan=4 style="text-align:center;width:100%;padding:5px;color:#000;font-size:18px">'+data[i].login.substr(0,15).toUpperCase()+' ' + data[i].age + '<div style="font-size:14px;color:silver">' + data[i].location +'</div><div style="font-size:12px;color:orange"><b>'+data[i].distance+'</b> MILES</div></span></div></td></tr>'
-								cr+='<tr><td colspan=4 style="font-size:12px;text-align:center">'+data[i].general_info.substr(0,35)+'</td></tr></table>'
-								cr+='<table style="position:absolute;bottom:-5px;margin:auto;left:0;right:0;width:100%"><tr>'
-								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:0px"><img onclick="send_mail('+id+')" style="width:20px;margin-bottom:5px" src="img/new_chat.png"></td>'
-								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:0px"><img onclick="videoCall(\''+data[i].login+'\')" style="width:20px;margin-bottom:5px" src="img/new_video_chat.png"></td>'
-								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:0px"><img onclick="view_wish('+id+')" style="width:20px;margin-bottom:5px" src="img/new_wish.png"></td>'
-								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:0px"><img onclick="view_offers('+id+')" style="width:25px;margin-bottom:5px" src="images/bid.png"></td>'
+								var gi='',sub='',gx=[ ]
+								if (data[i].general_info) {
+									if (data[i].general_info.length > 50) {
+										gi=data[i].general_info.trim().substr(0,50)
+										gx=gi.split(' ')
+										sub=gi.replace(gx[gx.length-2] + ' ' + gx[gx.length-1], '')
+										gi=sub.trim() + ''
+									} else {
+										gi=data[i].general_info
+									}
+								}
+								cr+='<table style="position:absolute;bottom:10px;margin:auto;left:0;right:0;width:100%">'
+								cr+='<tr><td colspan=4 style="text-align:center;width:100%;padding:5px;color:#000;font-size:16px">'+data[i].login.substr(0,15).toUpperCase()+' ' + data[i].age + '<div style="font-size:14px;color:silver">' + data[i].location +'</div><div style="font-size:12px;color:orange"><b>'+data[i].distance+'</b> MILES</div></span></div></td></tr>'
+								cr+='<tr><td colspan=4><div style="margin-top:-10px;padding:5px;line-height:0.9em;font-size:14px;text-align:center">'+gi+'</div><button style="position:absolute;left:0;right:0;padding:2px;font-size:10px;margin-top:5px;margin:auto;width:40px" class="btn btn-xx" style="">MORE</button></td></tr>'
+								cr+='<tr><td style="text-align:center;width:100%;padding:5px;padding-top:10px"><button onclick="videoCall(\''+data[i].login+'\')" class="btn" style="padding:5px;background:orange;width:20%;margin-bottom:-10px"><img style="width:60px" src="images/video_cam.png"></button> <button onclick="send_mail('+id+')" class="btn" style="background:turquoise;width:75%;margin-bottom:-10px">CONTACT</button></td>'
 								cr+='</tr></table>'
 								cStr.innerHTML=cr
 								dpg.appendChild(imgB)
@@ -1032,16 +1039,11 @@
 								dpg.style.background='#fff'
 								dpg.style.border='none'
 								dpg.id='tr_'+data[i].id
-								if (getCookie('isMobile')) {
-									dpg.style.maxWidth='100%'
-									dpg.style.width ='100%'
-									dpg.style.height='65px'
-									imgG.style.width='30px'
-									imgG.style.height='30px'
-								} else {
-									dpg.style.maxWidth=(500/5-5)+'px'
-									dpg.style.height=(500/5-5)+'px'
-								}
+								dpg.style.maxWidth='100%'
+								dpg.style.width ='100%'
+								dpg.style.height='65px'
+								imgG.style.width='30px'
+								imgG.style.height='30px'
 								dpg.style.padding='0'
 								dpg.style.cursor='pointer'
 								dpg.style.position='relative'

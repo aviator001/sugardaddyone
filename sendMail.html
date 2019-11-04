@@ -121,7 +121,7 @@
 					setCookie('chatting_with_login',data[0].login)
 					setCookie('chatting_with',data[0].id)
 					var qimg=data[0].filename_1
-					if (data[0].filename_1=='') {
+					if ((data[0].filename_1=='') || (data[0].filename_1.indexOf('.mov')>=0) || (data[0].filename_1.indexOf('.mp4')>=0)){
 						if (data[0].gender=='sugar baby') {
 							qimg='no_photo.png'
 						} else {
@@ -683,12 +683,8 @@
 								</div>
 							</a>
 						</td>
-						<td style="padding-top:10px">
-							<a href="javascript:view_profile()">
-								<div style="margin-left:5px;border-radius:4px;padding:10px;margin-top:5px;background:#f0f0f0;color:#fff;height:50px!Important;width:50px!Important">
-									<i style="font-size:2em" class="fa fa-user"></i>
-								</div>
-							</a>
+						<td style="padding:10px">
+									<button onclick="vc()" class="btn" style="padding:5px;background:turquoise;width:100px;height:50px;margin-top:10px;BORDER-RADIUS:4px">VIDEO CALL</button>
 						</td>
 					</tr>
 				</table>
@@ -975,13 +971,28 @@ function $$(ox) {
 			dataType: "html",
 			cache: false,
 			success: function(msg) {
-				new_mail_notification(getCookie('chatting_with_login'))
+				mt(getCookie('chatting_with_login'))
 				location.href='viewMessage.html?xid=' + getCookie('chatting_with')
 			}
 			
 		})
 	}
+	var objData=[]
+	function mt(to_login) {
+		objData={
+					msg					: 	'<span id="toaster"><img style="height:25px;position:fixed;left:5px;padding-bottom:5px" src="https://gaysugardaddyfinder.com/assets/images/new_video_msg.png"><span style="margin-left:40px;font-family:Open Sans; font-weight:300">NEW VIDEO CALL FROM '+ to_login + '</span><a href="inbox#'+getCookie('mid')+'"><img onclick="START VIEDEO IM" style="cursor:hand;cursor:pointer;height:27px;position:fixed;right:35px;padding-bottom:5px" src="https://gaysugardaddyfinder.com/assets/images/open_email.png"></a><img onclick="closeToaster()" src="https://gaysugardaddyfinder.com/assets/images/close_email.png" style="cursor:hand;cursor:pointer;height:27px;position:fixed;right:5px;padding-bottom:5px"><span>',
+					toUser				: 	to_login,
+					type				: 	'NEW_MAIL',
+					fromUser			: 	getCookie('login'),
+					fromLongCode		: 	getCookie('long_code')
+		}
+		socket.send(JSON.stringify({type:'NEW_MAIL', data: objData}))
+	}
 
+	
+	function vc() {
+		videoCall(getCookie('chatting_wwith_login'))
+	}
 	function fs(el) {
 		if (!el) el = document.documentElement, rfs = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen	|| el.msRequestFullScreen;
 		if(typeof rfs!="undefined" && rfs){
