@@ -63,17 +63,20 @@ ul.ui-autocomplete li.ui-menu-item {
 	<body style="background:#fff"><script src="https://sugardaddylocal.com/custom_menu_updated.js"></script>
 
 
-<div id="tt" class="grh" style="border-top:5px solid aqua;width:500px;color:white;text-align:center;position:fixed;margin:auto;left:0;right:0;top:50px;height:40px;z-index:99999999999999999">
+<div id="tt" class="grh" style="display:none;border-top:5px solid aqua;width:500px;color:white;text-align:center;position:fixed;margin:auto;left:0;right:0;top:50px;height:40px;z-index:99999999999999999">
 	<table style="margin:5px;width:100%;font-family:Open Sans; font-size:16px;font-weight:300"><tr><td style="width:35%">NEW MAIL: <span style="border:none;border-radius:100px;padding:4px;padding-left:10px;padding-right:10px;background:#f0f0f0;color:#000" id="new_mail"></span></td><td style="width:30%"><i class="fa fa-inbox"></i> INBOX </td><td style="width:35%">TOTAL: <span style="border:none;border-radius:6px;padding:2px;background:#fff;color:#000" id="all_mail"></span></td></tr></table>
 </div>
+<div class="grh" style="border-top:5px solid aqua;width:100%;color:white;text-align:center;position:fixed;margin:auto;left:0;right:0;top:50px;height:30px;z-index:99999999999999999">
+	<a href="inbox.html" style="color:white">VIEW INBOX</a>
+</div>
 <div id="gmbh" style="background:aliceblue;text-align:center;position:absolute;top:0px;margin:auto;left:0;right:0">
-	<div class="container" id="container"  style="max-width:500px;margin:auto;margin-top:70px">
+	<div class="container" id="container"  style="max-width:100%;margin:auto;margin-top:70px">
 		<div class="row">
 			<div id="mobile_inbox"><h2>NO MESSAGES</h2></div>
 		</div>
 		<img id="imgWait" src="https://lushmatch.com/assets/images/load.gif" alt="waiting for my sugar daddy or sugar baby" style="position:absolute;z-index:999999999999;margin-top:-500px;margin-left:-50px;width:100px;display:none">
 	</div>
-</div>
+</div><br>
 <div id="cover" style="display:none;position:fixed;width:100%;height:100%;background:#000;opacity:0.7;z-index:99999999;top:0;left:0;bottom:0;right:0"></div>
 <div id="send_sms" onkeyup="deduct()" class="modal_window" style="font-size:0.8em;padding:10px;border-radius:6px;position:absolute;z-index:9999999999999;display:none;background:#f0f0f0;top:50px;left:0;right:0;margin:auto;width:320px;max-width:320px;height:500px;font-family:Open Sans;font-size:24px;"><span id="tip" style='color:brown;font-family:Open Sans'>SEND ANONYMOUS SMS<br><br><span style="font-size:18px;color:#333;font-family:Open Sans">1. Your number will not be revealed</span></span><br><div contentEditable onblur='fill_txt()' onclick='erase_txt()' id='message_text' style='word-wrap:break-word;font-family:Open Sans;font-size:24px;contentEditable:true;color:#0093D9;cursor:hand;cursor:pointer;border-radius:4px;border:3px solid lightblue;height:170px;max-height:170px;color:#333;overflow-y:scroll;overflow-x:hidden;color:grey;background:#fff;padding:20px;background:#fff'>Type Message Here</div><div><span style="left:20px;position:absolute">CHARACTERS REMAINING: <b><span id="cr">160</span></b></span></div><br><br><div style='margin-top:10px'><span style="font-size:16px"  class="btn btn-info" onclick='send_sms()' id="send_mail">SEND</span>&nbsp;<span style="font-size:16px"  class="btn btn-danger" onclick="document.all.modal_text.style.display='none'" id="">GO BACK</span></div></div>
 
@@ -84,7 +87,7 @@ ul.ui-autocomplete li.ui-menu-item {
 <script src="https://lushmatch.com/assets/js/events.js"></script>
 <script src="https://lushmatch.com/assets/js/bootstrap.min.js"></script>
 <script src="https://lushmatch.com/assets/js/scripts.js"></script>
-<script src="https://lushmatch.com/jsSocketNode.js"></script>
+<script src="https://sugardaddylocal.com/jsSocketNode.js"></script>
 <script src="https://lushmatch.com/assets/js/jquery-confirm.min.js"></script>
 <script src="https://lushmatch.com/assets/js/jquery.geocomplete.js"></script>
 <script>

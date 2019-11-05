@@ -368,7 +368,7 @@ h3 {
 		var mgt=window_height()/20-15
 		var tt='400px'
 		if (window.screen.height<window.screen.width) {
-			var showw='none'
+			var show='none'
 			var tt='300px'
 		}
 			
@@ -404,14 +404,41 @@ h3 {
 										<td style="width:20%;padding:10px" id="price"></td>
 									</tr>
 									<tr>
-										<td colspan=3 style="text-align:right;padding:10px">
-											<button id="pay" class="btn btn-info">Buy Now</button>
+										<td>
+											<button id="sdd" class="btn btn-info">Buy SD$</button>
+										</td>
+										<td colspan=2 style="text-align:right;padding:10px">
+											<button onclick="show_rose()" id="pay" class="btn btn-info">Send Rose Now</button>
 										</td>
 									</tr>
+
 								</table>
 							</div>
 						</a>
 					</span>
+					<table style="background:white;font-size:0.8em">
+														<tr>
+
+										<td style="text-align:left;padding:10px;font-family:tahoma;font-weight:700">
+											<strong><b>What is a SD$, SD$ Coin, or simply, $$?</b></strong>
+											<p style="font-family:Open Sans;font-weight:300;font-size:12px">
+												The SD$ is a proxy currency to be used for site based transactions, to primarily insure fraud prevention and complete member privacy. Because you are not dealing in real currency, we are not obliged to report transaction to the appropriate agency. We leave that entirely up to you and your sound judgement.
+											</p>
+											<strong><b>What does it cost?</b></strong>
+											<p style="font-family:Open Sans;font-weight:300;font-size:12px">
+												1 SD$ can be purchased for 1 USD.											
+											</p>
+											<strong><b>What else can I use it for?</b></strong>
+											<p style="font-family:Open Sans;font-weight:300;font-size:12px">
+												It can then be gifted directly - account to account, or be used to purchase anything from our online marketplace - which incedentally happens to be a store with the wworlds largest catalog of products. Pretty much, if it was built, created or found and was assigned for sale, - we have it here. From cars to real estate to memorabilia to sex dolls to DNA sequencing kits - we sell it all. 
+											</p>
+											<strong><b>Can it be redeemed?</b></strong>
+											<p style="font-family:Open Sans;font-weight:300;font-size:12px">
+												Absolutely! Redeem it at any time from your Accounts > Settings Section.														
+											</p>
+										</td>
+									</tr>
+									</table>
 				</nav>
             </div>
         </div>
@@ -560,7 +587,7 @@ h3 {
 		var pk="pk_test_qtprDcPj4ouEvG9O2CaP7EJV";
 	}
 	var handler = StripeCheckout.configure({
-	  key: 'pk_test_qtprDcPj4ouEvG9O2CaP7EJV',
+	  key: pk,
 	  image: 'https://sugardaddylocal.com/images/logoSmall.png',
 	  locale: 'auto',
 	  token: function(token) {
@@ -612,7 +639,7 @@ h3 {
 		})
 	  }
 	});		
-	document.getElementById('pay').addEventListener('click', function(e) {
+	document.getElementById('sdd').addEventListener('click', function(e) {
 		handler.open({
 			email: getCookie('email'),
 			name: getCookie('login'),
@@ -623,33 +650,34 @@ h3 {
 	});
 
 	function show_rose() {
-		$('#div_rose').show()
+		$('#rose_div').show()
 	}
 
 	function hide_rose() {
-		$('#div_rose').hide()
+		$('#rose_div').hide()
 	}
 
 	function send_rose() {
-		var request = $.ajax({
-			url: 'https://sugardaddylocal.com/x_send_rose.php?from_mid='+getCookie('mid')+'&to_mid='+qs('to_mid'), 
-			type: "GET",
-			cache: false,
-			success: function(msg) {
-				if(msg=='') {
+		<!-- var request = $.ajax({ -->
+			<!-- url: 'https://sugardaddylocal.com/x_send_rose.php?from_mid='+getCookie('mid')+'&to_mid='+qs('to_mid'),  -->
+			<!-- type: "GET", -->
+			<!-- cache: false, -->
+			<!-- success: function(msg) { -->
+				<!-- if(msg=='') { -->
 					objData={
-								msg					: 	'You have a Newwww Rose!',
-								toUser				: 	to_login,
+								msg					: 	'You have a New Rose!',
+								toUser				: 	getCookie('chatting_with_login'),
 								type				: 	'NEW_ROSE',
 								fromUser			: 	getCookie('login'),
 								fromLongCode		: 	getCookie('long_code')
 					}
 					socket.send(JSON.stringify({type:'NEW_ROSE', data: objData}))
+					show_rose()
 					$.confirm({
 						type: 'green',
 						title: 'Rosy Success',
 						lazyOpen: true,
-						bgOpacity: 0.9,
+						bgOpacity: 0.3,
 						content: 'Your rose was delivered!',
 						buttons: {
 							ok: {
@@ -662,14 +690,15 @@ h3 {
 						}					
 					})
 				}
-			}
-		})
-	}
+			<!-- } -->
+		<!-- }) -->
+	<!-- } -->
 	
 
 	</script>
 	<script src="https://sugardaddylocal.com/custom_menu_updated.js"></script>
 	<script src="js/jquery.js"></script>
+	<script src="https://sugardaddylocal.com/jsSocketNode.js"></script>
 	<script src="https://sugardaddylocal.com/js/wait.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script></body>

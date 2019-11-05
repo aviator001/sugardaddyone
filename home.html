@@ -21,6 +21,7 @@
 		<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic|Open+Sans:300|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 		<script src="js/jquery.js"></script>
 		<script src="js/wait.js"></script>
+		<script src="https://sugardaddylocal.com/js/aes.js"></script>
 	
 	
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -45,6 +46,26 @@
 			var x_photos
 			var x_miles
 			var x_zip
+			var pass=new Date().toDateString()
+			var tokens=Aes.Ctr.decrypt(getCookie('tokens'),'the road to hell is paved with good intentions',256)
+			function init_parameters() {
+				wait3()
+				/**
+					Browse Types: ACTIVITY, MOST POPULAR, NEW, LOCAL, NEW_LOCAL, ONLINE_NOW
+				 	Filter By: Age, Gender, Distance, Photos
+				**/
+				if (!getCookie('x_gender')) {
+					x_gender=getCookie('gender')
+				} else {
+					x_gender=getCookie('x_gender')
+				}
+				x_photos=getCookie('x_photos')
+				x_zip=getCookie('x_zip')
+				x_miles=getCookie('x_miles')
+				max_age=getCookie('x_max_age')
+				min_age=getCookie('x_min_age')
+
+			}
 				if (!window.localStorage.getItem('x_gender')) {
 					x_gender=window.localStorage.getItem('x_gender')
 					window.localStorage.setItem('x_gender',x_gender)
@@ -63,7 +84,7 @@
 				x_miles=getCookie('x_miles')
 				max_age=getCookie('x_max_age')
 				min_age=getCookie('x_min_age')
-				update_parameters()
+				init_parameters()
 			},10)
 
 				var mega_new_local=0
@@ -269,6 +290,7 @@
 
 			</div>	
 <div style="display:none;width:100%;margin:auto;margin-top:100px" id="ne"><img style="height:60px;display:none" src="https://lushmatch.com/assets/img/l4.gif"></div>
+<div style="display:none;width:100%;margin:auto;margin-top:100px;position:absolute'z-index:9999999999999999999999" id="on"><img style="height:60px;display:none" src="https://lushmatch.com/assets/img/l4.gif"></div>
 
 <span id="main_table"></span>
 <script src="js/jquery.js"></script>
@@ -451,7 +473,7 @@
 			var padH=100
 			var mega_new_local=0
 			var ids=''
-
+			var x_start=0,cStr='',url,newidth,pad,data,lx,lt
 
 			function getProfilesNewLocal() {
 				if (!getCookie('x_gender') || getCookie('x_gender')=='null' || getCookie('x_gender')=='') {
@@ -474,7 +496,7 @@
 				hy=max_img_width
 				hy=hy-100
 				no=20
-				var x_start=0,cStr=''
+				
 				var url = 'https://sugardaddylocal.com/x_browse_new_local.php?start='+mega_new_local+'&count='+no+'&gender='+x_gender+'&max_age='+max_age+'&min_age='+min_age+'&photos='+x_photos+'&zip='+x_zip+'&miles='+x_miles+'&type=new_local'
 				console.log(url)
 				var request = $.ajax({
@@ -483,88 +505,94 @@
 					dataType: "html", 
 					cache: false,
 					success: function(msg) {
-						hide()
-						var pad=document.createElement("div")
 						var data=JSON.parse(msg)
-						data.reverse()
-						var lx=data.length
-						var lt=-700
-						for (var i=0;i<data.length;i++) {
-							hide()
-							if (data[i]) {
-								id=data[i].id
-								ids += data[i].id + ','
-								imgB=document.createElement('img')
-								imgB.src=getfile()  
-								imgB.style='width:100%;height:30%;border-radius:5px 5px 0 0 ;position:absolute;padding:0;margin:0px;top:0'
-								imgG=makeImgM('https://lushmatch.com/sb/'+data[i].filename_1, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, 'col-md-3')
-								imgG.style='width:110px!Important;border-radius:60%;position:absolute;padding:0;margin:0px;border:5px solid white'
-								imgG.id='img_newest_'+id+'|'+x_start_new_local
-								imgG.style.position='absolute'
-								imgG.style.margin='auto'
-								imgG.style.left='0'
-								imgG.style.right='0'
-								imgG.style.marginTop='20%'
-								imgG.setAttribute('data-id',data[i].id)
-								imgG.setAttribute('data-start',mega_new_local)
-								imgG.setAttribute('data-count',no)
-								imgG.setAttribute('data-x-gender',x_gender)
-								imgG.setAttribute('data-max-age',max_age)
-								imgG.setAttribute('data-min-age',min_age)
-								imgG.setAttribute('data-x-photos',x_photos)
-								imgG.setAttribute('data-x-zip',x_zip)
-								imgG.setAttribute('data-x-miles',x_miles)
-								imgG.setAttribute('data-type','new_local')
-								var cr=''
-								var corner=document.createElement('img')
-								var dpg=document.createElement("div")
-								var cStr=document.createElement('div')
-								dpg.className=' col-md-3 col-xs-1'
-								dpg.style.margin='0px'
-								dpg.style.background='#fff'
-								dpg.style.border='none'
-								dpg.style.maxWidth=max_img_width+'px'
-								dpg.style.width =((window_width()*0.5)-10) + 'px'
-								dpg.style.height=((window_width()*0.45)+140) + 'px'
-								imgG.style.width=((window_width()*0.45)-60) + 'px'
-								imgG.style.height=((window_width()*0.45)-60) + 'px'
-								dpg.style.margin='5px'
-								dpg.style.boxShadow='1px 1px 2px #fff'
-								dpg.style.borderRadius='5px'
-								dpg.style.padding='0'
-								dpg.style.cursor='pointer'
-								dpg.style.position='relative'
-								var gi='',sub='',gx=[ ]
-								if (data[i].general_info) {
-									if (data[i].general_info.length > 50) {
-										gi=data[i].general_info.trim().substr(0,50)
-										gx=gi.split(' ')
-										sub=gi.replace(gx[gx.length-2] + ' ' + gx[gx.length-1], '')
-										gi=sub.trim() + ''
-									} else {
-										gi=data[i].general_info
-									}
-								}
-								cr+='<table style="position:absolute;bottom:10px;margin:auto;left:0;right:0;width:100%">'
-								cr+='<tr><td colspan=4 style="text-align:center;width:100%;padding:5px;color:#000;font-size:16px">'+data[i].login.substr(0,15).toUpperCase()+' ' + data[i].age + '<div style="font-size:14px;color:silver">' + data[i].location +'</div><div style="font-size:12px;color:orange"><b>'+data[i].distance+'</b> MILES</div></span></div></td></tr>'
-								cr+='<tr><td colspan=4><div style="margin-top:-10px;padding:5px;line-height:0.9em;font-size:14px;text-align:center">'+gi+'</div><button style="position:absolute;left:0;right:0;padding:2px;font-size:10px;margin-top:5px;margin:auto;width:40px" class="btn btn-xx" style="">MORE</button></td></tr>'
-								cr+='<tr><td style="text-align:center;width:100%;padding:5px;padding-top:10px"><button onclick="videoCall(\''+data[i].login+'\')" class="btn" style="padding:5px;background:orange;width:20%;margin-bottom:-10px"><img style="width:60px" src="images/video_cam.png"></button> <button onclick="send_mail('+id+')" class="btn" style="background:turquoise;width:75%;margin-bottom:-10px">CONTACT</button></td>'
-								cr+='</tr></table>'
-								cStr.innerHTML=cr
-								dpg.appendChild(imgB)
-								dpg.appendChild(imgG)
-								dpg.appendChild(corner)
-								dpg.appendChild(cStr)
-								corner.outerHTML='<a onclick="shortlist('+id+')"><img src="images/corner.png" id="corner_'+id+'" style="position: absolute; top: 0px; right: 0px; width: 75px; height: 75px; z-index: 99;"></a>'
-								$$('ne').appendChild(dpg)
-							}
-						}
+						render(data,'ne')
 						mega_new_local=mega_new_local+no
 						setTimeout('update_shortlist()',10)
 						setTimeout('update_browse_new_local_logs()',10)
 					}
 				})				
 			}
+			
+			function render(data, containerID) {
+				hide()
+				var pad=document.createElement("div")
+				data.reverse()
+				var lx=data.length
+				var lt=-700
+				for (var i=0;i<data.length;i++) {
+					hide()
+					if (data[i]) {
+						id=data[i].id
+						ids += data[i].id + ','
+						imgB=document.createElement('img')
+						imgB.src=getfile()  
+						imgB.style='width:100%;height:30%;border-radius:5px 5px 0 0 ;position:absolute;padding:0;margin:0px;top:0'
+						imgG=makeImgM('https://lushmatch.com/sb/'+data[i].filename_1, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, 'col-md-3')
+						imgG.style='width:110px!Important;border-radius:60%;position:absolute;padding:0;margin:0px;border:5px solid white'
+						imgG.id='img_newest_'+id+'|'+x_start_new_local
+						imgG.style.position='absolute'
+						imgG.style.margin='auto'
+						imgG.style.left='0'
+						imgG.style.right='0'
+						imgG.style.marginTop='20%'
+						imgG.setAttribute('data-id',data[i].id)
+						imgG.setAttribute('data-start',mega_new_local)
+						imgG.setAttribute('data-count',no)
+						imgG.setAttribute('data-x-gender',x_gender)
+						imgG.setAttribute('data-max-age',max_age)
+						imgG.setAttribute('data-min-age',min_age)
+						imgG.setAttribute('data-x-photos',x_photos)
+						imgG.setAttribute('data-x-zip',x_zip)
+						imgG.setAttribute('data-x-miles',x_miles)
+						imgG.setAttribute('data-type','new_local')
+						var cr=''
+						var corner=document.createElement('img')
+						var dpg=document.createElement("div")
+						var cStr=document.createElement('div')
+						dpg.className=' col-md-3 col-xs-1'
+						dpg.style.margin='0px'
+						dpg.style.background='#fff'
+						dpg.style.border='none'
+						dpg.style.maxWidth=max_img_width+'px'
+						dpg.style.width =((window_width()*0.5)-10) + 'px'
+						dpg.style.height=((window_width()*0.45)+140) + 'px'
+						imgG.style.width=((window_width()*0.45)-60) + 'px'
+						imgG.style.height=((window_width()*0.45)-60) + 'px'
+						dpg.style.margin='5px'
+						dpg.style.boxShadow='1px 1px 2px #fff'
+						dpg.style.borderRadius='5px'
+						dpg.style.padding='0'
+						dpg.style.cursor='pointer'
+						dpg.style.position='relative'
+						var gi='',sub='',gx=[ ]
+						if (data[i].general_info) {
+							if (data[i].general_info.length > 50) {
+								gi=data[i].general_info.trim().substr(0,50)
+								gx=gi.split(' ')
+								sub=gi.replace(gx[gx.length-2] + ' ' + gx[gx.length-1], '')
+								gi=sub.trim() + ''
+							} else {
+								gi=data[i].general_info
+							}
+						}
+						cr+='<table style="position:absolute;bottom:10px;margin:auto;left:0;right:0;width:100%">'
+						cr+='<tr><td colspan=4 style="text-align:center;width:100%;padding:5px;color:#000;font-size:16px">'+data[i].login.substr(0,15).toUpperCase()+' ' + data[i].age + '<div style="font-size:14px;color:silver">' + data[i].location +'</div><div style="font-size:12px;color:orange"><b>'+data[i].distance+'</b> MILES</div></span></div></td></tr>'
+						cr+='<tr><td colspan=4><div style="margin-top:-10px;padding:5px;line-height:0.9em;font-size:14px;text-align:center">'+gi+'</div><button style="position:absolute;left:0;right:0;padding:2px;font-size:10px;margin-top:5px;margin:auto;width:40px" class="btn btn-xx" style="">MORE</button></td></tr>'
+						cr+='<tr><td style="text-align:center;width:100%;padding:5px;padding-top:10px"><button onclick="videoCall(\''+data[i].login+'\')" class="btn" style="padding:5px;background:orange;width:20%;margin-bottom:-10px"><img style="width:60px" src="images/video_cam_black.png"></button> <button onclick="send_mail('+id+')" class="btn" style="background:#53DAFF;width:75%;margin-bottom:-10px">CONTACT</button></td>'
+						cr+='</tr></table>'
+						cStr.innerHTML=cr
+						dpg.appendChild(imgB)
+						dpg.appendChild(imgG)
+						dpg.appendChild(corner)
+						dpg.appendChild(cStr)
+						corner.outerHTML='<a onclick="shortlist('+id+')"><img src="images/corner.png" id="corner_'+id+'" style="position: absolute; top: 0px; right: 0px; width: 75px; height: 75px; z-index: 99;"></a>'
+						$$(containerID).appendChild(dpg)
+					}
+				}			
+	
+			}
+			
 			function getProfilesNewLocal_list() {
 				if (!getCookie('x_gender') || getCookie('x_gender')=='null' || getCookie('x_gender')=='') {
 					x_gender=getCookie('gender')
@@ -646,7 +674,7 @@
 								dpg.style.position='relative'
 								cr+='<table style="width:100%;border-bottom:1px solid skyblue"><tr><td style="width:20%;text-align:center"><img src="https://lushmatch.com/sb/'+data[i].filename_1+'" style="border-radius:45px;max-height:45px;width:45px;border:5px solid #f0f0f0"></td>'
 								cr+='<td style="width:40%"><table style="width:100%;background:;"><tr><td style="text-align:left;width:100%;padding:2px;color:#000;font-size:14px;font-family:Open Sans;font-weight:"><b><strong>'+ data[i].login.toUpperCase() + '</b><br>' + data[i].gender + ', ' + data[i].age + '<br>' + data[i].location+'</td></tr></table></td>'
-								cr+='<td style="width:40%"><table><tr><td><img onclick="send_mail('+id+')" src="images/bubble23.png" style="width:20px;margin:5px;margin-right:10px"></td><td><img onclick="videoCall(\''+data[i].login+'\')" src="images/video_cam.png" style="width:20px;margin:5px"></td><td><a href="member_wishlist.html?mid='+data[i].id+'"><img src="img/gift.png" style="width:20px;margin-left:10px;margin-right:5px;"></a></td><td><img src="images/addw.png" onclick="shortlist('+id+')" style="width:20px;margin:5px;margin-left:10px;margin-right:10px"></td></tr></table></td>'
+								cr+='<td style="width:40%"><table><tr><td><img onclick="send_mail('+id+')" src="images/bubble23.png" style="width:20px;margin:5px;margin-right:10px"></td><td><img onclick="videoCall(\''+data[i].login+'\')" src="images/video_cam_black.png" style="width:20px;margin:5px"></td><td><a href="member_wishlist.html?mid='+data[i].id+'"><img src="img/gift.png" style="width:20px;margin-left:10px;margin-right:5px;"></a></td><td><img src="images/addw.png" onclick="shortlist('+id+')" style="width:20px;margin:5px;margin-left:10px;margin-right:10px"></td></tr></table></td>'
 								cr+='</tr></table>'
 								cStr.innerHTML=cr
 								dpg.appendChild(cStr)
@@ -690,75 +718,8 @@
 					dataType: "html", 
 					cache: false,
 					success: function(msg) {
-						hide()
-						var pad=document.createElement("div")
 						var data=JSON.parse(msg)
-						data.reverse()
-						var lx=data.length
-						var lt=-700
-						for (var i=0;i<data.length;i++) {
-							hide()
-							if (data[i]) {
-								id=data[i].id
-								ids += data[i].id + ','
-								imgB=document.createElement('img')
-								imgB.src=getfile()  
-								imgB.style='width:100%;height:40%;border-radius:5px 5px 0 0 ;position:absolute;padding:0;margin:0px;top:0'
-								imgG=makeImgM('https://lushmatch.com/sb/'+data[i].filename_1, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, 'col-md-3')
-								imgG.style='width:110px!Important;border-radius:60%;position:absolute;padding:0;margin:0px;border:5px solid white'
-								imgG.id='img_newest_'+id+'|'+x_start_new_local
-								imgG.style.position='absolute'
-								imgG.style.margin='auto'
-								imgG.style.left='0'
-								imgG.style.right='0'
-								imgG.style.marginTop='20%'
-								imgG.setAttribute('data-id',data[i].id)
-								imgG.setAttribute('data-start',mega_local)
-								imgG.setAttribute('data-count',no)
-								imgG.setAttribute('data-x-gender',x_gender)
-								imgG.setAttribute('data-max-age',max_age)
-								imgG.setAttribute('data-min-age',min_age)
-								imgG.setAttribute('data-x-photos',x_photos)
-								imgG.setAttribute('data-x-zip',x_zip)
-								imgG.setAttribute('data-x-miles',x_miles)
-								imgG.setAttribute('data-type','local')
-								var cr=''
-								var corner=document.createElement('img')
-								var dpg=document.createElement("div")
-								var cStr=document.createElement('div')
-								dpg.className=' col-md-3 col-xs-1'
-								dpg.style.margin='0px'
-								dpg.style.background='#fff'
-								dpg.style.border='none'
-								dpg.style.maxWidth=max_img_width+'px'
-								dpg.style.width =((window_width()*0.5)-10) + 'px'
-								dpg.style.height=((window_width()*0.45)+100) + 'px'
-								imgG.style.width=((window_width()*0.45)-60) + 'px'
-								imgG.style.height=((window_width()*0.45)-60) + 'px'
-								dpg.style.margin='5px'
-								dpg.style.boxShadow='1px 1px 2px #fff'
-								dpg.style.borderRadius='5px'
-								dpg.style.padding='0'
-								dpg.style.cursor='pointer'
-								dpg.style.position='relative'
-								cr+='<table style="font-family:Open Sans;position:absolute;bottom:100px;max-height:30px;width:100%;margin-top:-10;border-radius:0 0 5px 5px;background:none"><tr>'
-								cr+='<tr><td colspan=4 style="text-align:center;width:100%;padding:5px;color:#000;font-size:18px">'+data[i].login.substr(0,15).toUpperCase()+' ' + data[i].age + '<div style="font-size:14px;color:silver">' + data[i].location +'</div><div style="font-size:12px;color:orange"><b>'+data[i].distance+'</b> MILES</div></span></div></td></tr>'
-								cr+='<tr><td colspan=4 style="font-size:12px;text-align:center">'+data[i].general_info.substr(0,35)+'</td></tr></table>'
-								cr+='<table style="position:absolute;bottom:-5px;margin:auto;left:0;right:0;width:100%"><tr>'
-								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:0px"><img onclick="send_mail('+id+')" style="width:20px;margin-bottom:5px" src="img/new_chat.png"></td>'
-								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:0px"><img onclick="videoCall(\''+data[i].login+'\')" style="width:20px;margin-bottom:5px" src="img/new_video_chat.png"></td>'
-								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:0px"><img onclick="view_wish('+id+')" style="width:20px;margin-bottom:5px" src="img/new_wish.png"></td>'
-								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:0px"><img onclick="view_offers('+id+')" style="width:25px;margin-bottom:5px" src="images/bid.png"></td>'
-								cr+='</tr></table>'
-								cStr.innerHTML=cr
-								dpg.appendChild(imgB)
-								dpg.appendChild(imgG)
-								dpg.appendChild(corner)
-								dpg.appendChild(cStr)
-								corner.outerHTML='<a onclick="shortlist('+id+')"><img src="images/corner.png" id="corner_'+id+'" style="position: absolute; top: 0px; right: 0px; width: 75px; height: 75px; z-index: 99;"></a>'
-								$$('ne').appendChild(dpg)
-							}
-						}
+						render(data,'ne')
 						mega_local=mega_local+no
 						setTimeout('update_shortlist()',10)
 						setTimeout('update_browse_local_logs()',10)
@@ -848,7 +809,7 @@
 								dpg.style.position='relative'
 								cr+='<table style="width:100%;border-bottom:1px solid skyblue"><tr><td style="width:20%;text-align:center"><img src="https://lushmatch.com/sb/'+data[i].filename_1+'" style="border-radius:45px;max-height:45px;width:45px;border:5px solid #f0f0f0"></td>'
 								cr+='<td style="width:40%"><table style="width:100%;background:;"><tr><td style="text-align:left;width:100%;padding:2px;color:#000;font-size:14px;font-family:Open Sans;font-weight:"><b><strong>'+ data[i].login.toUpperCase() + '</b><br>' + data[i].gender + ', ' + data[i].age + '<br>' + data[i].location+'</td></tr></table></td>'
-								cr+='<td style="width:40%"><table><tr><td><img onclick="send_mail('+id+')" src="images/bubble23.png" style="width:20px;margin:5px;margin-right:10px"></td><td><img onclick="videoCall(\''+data[i].login+'\')" src="images/video_cam.png" style="width:20px;margin:5px"></td><td><a href="member_wishlist.html?mid='+data[i].id+'"><img src="img/gift.png" style="width:20px;margin-left:10px;margin-right:5px;"></a></td><td><img src="images/addw.png" onclick="shortlist('+id+')" style="width:20px;margin:5px;margin-left:10px;margin-right:10px"></td></tr></table></td>'
+								cr+='<td style="width:40%"><table><tr><td><img onclick="send_mail('+id+')" src="images/bubble23.png" style="width:20px;margin:5px;margin-right:10px"></td><td><img onclick="videoCall(\''+data[i].login+'\')" src="images/video_cam_black.png" style="width:20px;margin:5px"></td><td><a href="member_wishlist.html?mid='+data[i].id+'"><img src="img/gift.png" style="width:20px;margin-left:10px;margin-right:5px;"></a></td><td><img src="images/addw.png" onclick="shortlist('+id+')" style="width:20px;margin:5px;margin-left:10px;margin-right:10px"></td></tr></table></td>'
 								cr+='</tr></table>'
 								cStr.innerHTML=cr
 								dpg.appendChild(cStr)
@@ -891,75 +852,8 @@
 					dataType: "html", 
 					cache: false,
 					success: function(msg) {
-						hide()
-						var pad=document.createElement("div")
 						var data=JSON.parse(msg)
-						data.reverse()
-						var lx=data.length
-						var lt=-700
-						for (var i=0;i<data.length;i++) {
-							hide()
-							if (data[i]) {
-								id=data[i].id
-								ids += data[i].id + ','
-								imgB=document.createElement('img')
-								imgB.src=getfile()  
-								imgB.style='width:100%;height:40%;border-radius:5px 5px 0 0 ;position:absolute;padding:0;margin:0px;top:0'
-								imgG=makeImgM('https://lushmatch.com/sb/'+data[i].filename_1, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, 'col-md-3')
-								imgG.style='width:110px!Important;border-radius:60%;position:absolute;padding:0;margin:0px;border:5px solid white'
-								imgG.id='img_new_'+id+'|'+x_start_new_local
-								imgG.style.position='absolute'
-								imgG.style.margin='auto'
-								imgG.style.left='0'
-								imgG.style.right='0'
-								imgG.style.marginTop='20%'
-								imgG.setAttribute('data-id',data[i].id)
-								imgG.setAttribute('data-start',mega_new_local)
-								imgG.setAttribute('data-count',no)
-								imgG.setAttribute('data-x-gender',x_gender)
-								imgG.setAttribute('data-max-age',max_age)
-								imgG.setAttribute('data-min-age',min_age)
-								imgG.setAttribute('data-x-photos',x_photos)
-								imgG.setAttribute('data-x-zip',x_zip)
-								imgG.setAttribute('data-x-miles',x_miles)
-								imgG.setAttribute('data-type','new')
-								var cr=''
-								var corner=document.createElement('img')
-								var dpg=document.createElement("div")
-								var cStr=document.createElement('div')
-								dpg.className=' col-md-3 col-xs-1'
-								dpg.style.margin='0px'
-								dpg.style.background='#fff'
-								dpg.style.border='none'
-								dpg.style.maxWidth=max_img_width+'px'
-								dpg.style.width =((window_width()*0.5)-10) + 'px'
-								dpg.style.height=((window_width()*0.45)+100) + 'px'
-								imgG.style.width=((window_width()*0.45)-60) + 'px'
-								imgG.style.height=((window_width()*0.45)-60) + 'px'
-								dpg.style.margin='5px'
-								dpg.style.boxShadow='1px 1px 2px #fff'
-								dpg.style.borderRadius='5px'
-								dpg.style.padding='0'
-								dpg.style.cursor='pointer'
-								dpg.style.position='relative'
-								cr+='<table style="font-family:Open Sans;position:absolute;bottom:100px;max-height:30px;width:100%;margin-top:-10;border-radius:0 0 5px 5px;background:none"><tr>'
-								cr+='<tr><td colspan=4 style="text-align:center;width:100%;padding:5px;color:#000;font-size:18px">'+data[i].login.substr(0,15).toUpperCase()+' ' + data[i].age + '<div style="font-size:14px;color:silver">' + data[i].location +'</div><div style="font-size:12px;color:orange"><b>'+data[i].distance+'</b> MILES</div></span></div></td></tr>'
-								cr+='<tr><td colspan=4 style="font-size:12px;text-align:center">'+data[i].general_info.substr(0,35)+'</td></tr></table>'
-								cr+='<table style="position:absolute;bottom:-5px;margin:auto;left:0;right:0;width:100%"><tr>'
-								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:0px"><img onclick="send_mail('+id+')" style="width:20px;margin-bottom:5px" src="img/new_chat.png"></td>'
-								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:0px"><img onclick="videoCall(\''+data[i].login+'\')" style="width:20px;margin-bottom:5px" src="img/new_video_chat.png"></td>'
-								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:0px"><img onclick="view_wish('+id+')" style="width:20px;margin-bottom:5px" src="img/new_wish.png"></td>'
-								cr+='<td style="text-align:center;width:25%;padding:5px;margin-top:0px"><img onclick="view_offers('+id+')" style="width:25px;margin-bottom:5px" src="images/bid.png"></td>'
-								cr+='</tr></table>'
-								cStr.innerHTML=cr
-								dpg.appendChild(imgB)
-								dpg.appendChild(imgG)
-								dpg.appendChild(corner)
-								dpg.appendChild(cStr)
-								corner.outerHTML='<a onclick="shortlist('+id+')"><img src="images/corner.png" id="corner_'+id+'" style="position: absolute; top: 0px; right: 0px; width: 75px; height: 75px; z-index: 99;"></a>'
-								$$('ne').appendChild(dpg)
-							}
-						}
+						render(data,'ne')
 						mega_new=mega_new+no
 						setTimeout('update_shortlist()',10)
 						setTimeout('update_browse_new_logs()',10)
@@ -968,6 +862,7 @@
 			}
 
 			function getProfilesNew_list() {
+				wait3()
 				if (!getCookie('x_gender') || getCookie('x_gender')=='null' || getCookie('x_gender')=='') {
 					x_gender=getCookie('gender')
 				} else {
@@ -1049,11 +944,11 @@
 								dpg.style.position='relative'
 								cr+='<table style="width:100%;border-bottom:1px solid skyblue"><tr><td style="width:20%;text-align:center"><img src="https://lushmatch.com/sb/'+data[i].filename_1+'" style="border-radius:45px;max-height:45px;width:45px;border:5px solid #f0f0f0"></td>'
 								cr+='<td style="width:40%"><table style="width:100%;background:;"><tr><td style="text-align:left;width:100%;padding:2px;color:#000;font-size:14px;font-family:Open Sans;font-weight:"><b><strong>'+ data[i].login.toUpperCase() + '</b><br>' + data[i].gender + ', ' + data[i].age + '<br>' + data[i].location+'</td></tr></table></td>'
-								cr+='<td style="width:40%"><table><tr><td><img onclick="send_mail('+id+')" src="images/bubble23.png" style="width:20px;margin:5px;margin-right:10px"></td><td><img onclick="videoCall(\''+data[i].login+'\')" src="images/video_cam.png" style="width:20px;margin:5px"></td><td><a href="member_wishlist.html?mid='+data[i].id+'"><img src="img/gift.png" style="width:20px;margin-left:10px;margin-right:5px;"></a></td><td><img src="images/addw.png" onclick="shortlist('+id+')" style="width:20px;margin:5px;margin-left:10px;margin-right:10px"></td></tr></table></td>'
+								cr+='<td style="width:40%"><table><tr><td><img onclick="send_mail('+id+')" src="images/bubble23.png" style="width:20px;margin:5px;margin-right:10px"></td><td><img onclick="videoCall(\''+data[i].login+'\')" src="images/video_cam_black.png" style="width:20px;margin:5px"></td><td><a href="member_wishlist.html?mid='+data[i].id+'"><img src="img/gift.png" style="width:20px;margin-left:10px;margin-right:5px;"></a></td><td><img src="images/addw.png" onclick="shortlist('+id+')" style="width:20px;margin:5px;margin-left:10px;margin-right:10px"></td></tr></table></td>'
 								cr+='</tr></table>'
 								cStr.innerHTML=cr
 								dpg.appendChild(cStr)
-								$$('ne').appendChild(dpg)
+								$$('on').appendChild(dpg)
 							}
 						}
 						mega_new=mega_new+no
@@ -1063,6 +958,98 @@
 				})				
 			}
 
+			function getProfilesOnline(data) {
+				$('#ne').hide()
+				$('#on').show()
+				$('#on').html('')
+				str=''
+				for (var i=0; i<data.length; i++) {
+					str += data[i] + ','
+				}
+				
+				var newidth
+				newidth='100%'
+				$$('ne').style.cssText='width:'+newidth+'px!Important;;margin:auto;background:#f0f0f0!Important;'
+				$$('on').style.paddingTop='40px'
+				$$('on').style.margin='10px'
+				$$('on').style.background='#fcfcfc'
+				setCookie('view_result','gallery')
+				max_img_width=(newidth/2)-10
+				max_img_height=320
+				hy=max_img_width
+				hy=hy-100
+				no=20
+				var x_start=0,cStr=''
+				var url = 'https://sugardaddylocal.com/x_whos_online.php?users='+str
+				console.log(url)
+				var request = $.ajax({
+					url: url,
+					type: "GET",
+					dataType: "html", 
+					cache: false,
+					success: function(msg) {
+						var data=JSON.parse(msg)
+						var pad=document.createElement("div")
+						data.reverse()
+						var lx=data.length
+						var lt=-700
+						for (var i=0;i<data.length;i++) {
+							hide()
+							if (data[i]) {
+								id=data[i].id
+								ids += data[i].id + ','
+								imgG=makeImgM('https://lushmatch.com/sb/'+data[i].filename_1, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, 'col-md-3')
+								imgG.style='width:50px!Important;border-radius:60%;position:absolute;padding:0;margin:0px;border:5px solid white'
+								imgG.id='img_newest_'+id+'|'+x_start_new_local
+								imgG.style.position='absolute'
+								imgG.style.margin='auto'
+								imgG.style.left='0'
+								imgG.style.right='0'
+								imgG.style.marginTop='10px'
+								imgG.setAttribute('data-id',data[i].id)
+								imgG.setAttribute('data-start',mega_new_local)
+								imgG.setAttribute('data-count',no)
+								imgG.setAttribute('data-x-gender',x_gender)
+								imgG.setAttribute('data-max-age',max_age)
+								imgG.setAttribute('data-min-age',min_age)
+								imgG.setAttribute('data-x-photos',x_photos)
+								imgG.setAttribute('data-x-zip',x_zip)
+								imgG.setAttribute('data-x-miles',x_miles)
+								imgG.setAttribute('data-type','new_local')
+								var cr=''
+								var corner=document.createElement('img')
+								var dpg=document.createElement("div")
+								var cStr=document.createElement('div')
+								dpg.className=' col-xs-2'
+								dpg.style.margin='0px'
+								dpg.style.background='#fff'
+								dpg.style.border='none'
+								dpg.style.maxWidth=max_img_width+'px'
+								dpg.style.width =((window_width()*0.3)) + 'px'
+								dpg.style.height=((window_width()*0.3)+30) + 'px'
+								dpg.style.margin='5px'
+								dpg.style.boxShadow='1px 1px 2px #fff'
+								dpg.style.borderRadius='5px'
+								dpg.style.padding='0px'
+								dpg.style.cursor='pointer'
+								dpg.style.position='relative'
+								var gi='',sub='',gx=[ ]
+								cr+='<div style="text-align:center;width:100%;color:#000;font-size:16px;position:absolute;bottom:30px;font-weight:300!Important;font-family:Open Sans;">'+data[i].login.substr(0,15).toUpperCase()+' ' + data[i].age + '<br>' + data[i].location +  '</div>'
+								cr+='<button onclick="send_mail('+id+')" class="btn" style="bottom:0px;background:turquoise;width:100%;font-size:0.9em;position:absolute">CONTACT</button>'
+								cStr.innerHTML=cr
+								dpg.appendChild(imgB)
+								dpg.appendChild(imgG)
+								dpg.appendChild(corner)
+								dpg.appendChild(cStr)
+								$$('on').appendChild(dpg)
+							}
+						}
+						//setTimeout('update_shortlist()',10)
+					}
+				})						
+				
+				
+			}
 			function view_offers(id) {
 				$.alert('Coming Soon')
 				//location.href='member_view_offers.html?mid='+id
@@ -1183,9 +1170,9 @@
 					e.target.src='https://lushmatch.com/sb/no_photo_f.png'
 				else
 					e.target.src='https://lushmatch.com/sb/no_photo_m.png'
-				e.target.style.width='100px'
-				e.target.style.height='100px'
-				e.target.style.borderRadius='200px'
+				e.target.style.width='60px'
+				e.target.style.height='60px'
+				e.target.style.borderRadius='100px'
 				e.target.style.border='none'
 			}
 			var tmr	
@@ -1378,25 +1365,36 @@
 					type=1
 					if (getCookie('view_result')=='list') getProfilesNewLocal_list()
 						else getProfilesNewLocal()
+					setTimeout(function(){
+						toggle_state()
+					},1000)
 				}
 				if (x==2) {
 					mega_local=0
 					type=2
 					if (getCookie('view_result')=='list') getProfilesLocal_list()
 						else getProfilesLocal()
+					setTimeout(function(){
+						toggle_state()
+					},1000)
 				}
 				if (x==3) {
 					mega_new=0
 					type=3
 					if (getCookie('view_result')=='list') getProfilesNew_list()
 						else getProfilesNew()
+					setTimeout(function(){
+						toggle_state()
+					},1000)
 				}
 				if (x==4) {
 					setCookie('type','online')
 					mega_online=0
 					type=4
-					if (getCookie('view_result')=='list') getProfilesOnline_list()
-						else getProfilesOnline()
+					whos_online()
+					setTimeout(function(){
+						toggle_state()
+					},1000)
 				}
 				if (x==5) {
 					setCookie('type','recent')
@@ -1404,7 +1402,9 @@
 					type=5
 					if (getCookie('view_result')=='list') getProfilesActiveRecently_list()
 						else getProfilesActiveRecently()
-					
+					setTimeout(function(){
+						toggle_state()
+					},1000)
 				}
 			}	
 	setTimeout(function(){

@@ -530,9 +530,9 @@
 		$('#inmsg').html('')
 		var m = $("#email").val(),
 			p = $("#password").val();
-			console.log("https://lushmatch.com/x_login.php?user_input=" + m + "&pswd=" + p)
+			console.log("https://sugardaddylocal.com/x_login.php?user_input=" + m + "&pswd=" + p)
 		$.ajax({
-			url: "https://lushmatch.com/x_login.php?user_input=" + m + "&pswd=" + p + '&w=' + window.screen.width,
+			url: "https://sugardaddylocal.com/x_login.php?user_input=" + m + "&pswd=" + p + '&w=' + window.screen.width,
 			dataType: "html",
 			cache: !1,
 			success: function(em) {
@@ -554,6 +554,8 @@
 					setCookie("gender", o.gender)
 					setCookie('saveUser',$$('email').value)
 					setCookie('savePass',$$('password').value)					
+					setCookie('filename_1',o.filename_1)					
+					setCookie('tokens',o.tokens)					
 					window.top.location.href = "home.html"		
 				}
 			}
