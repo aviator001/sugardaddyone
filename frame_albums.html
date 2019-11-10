@@ -209,8 +209,6 @@ h2 {
 				success: function(msg) {
 					console.log(msg)
 					msg=JSON.parse(msg)
-					window.top.document.getElementById('full_name').innerHTML=msg.login
-					window.top.document.getElementById('joined').innerHTML=msg.xReg_Date
 					window.top.document.getElementById('user_photo').src='https://lushmatch.com/sb/'+msg.filename_1
 					window.top.document.getElementById('user_photo').style.width='100px'
 					window.top.document.getElementById('user_photo').style.height='100px'
@@ -464,7 +462,7 @@ h2 {
 
 	</script>
 	<script src="https://sugardaddylocal.com/custom_menu_updated.js"></script>
-	<script src="js/jquery.js"></script>
+	<script src="https://sugardaddylocal.com/js/jquery.js"></script>
 	<script src="https://sugardaddylocal.com/js/wait.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 </body>

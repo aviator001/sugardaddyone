@@ -19,7 +19,7 @@
 		<link href="https://lushmatch.com/assets/css/bootstrap.css" rel="stylesheet">
 		<link href="style.css" rel="stylesheet"> 
 		<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic|Open+Sans:300|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-		<script src="js/jquery.js"></script>
+		<script src="https://sugardaddylocal.com/js/jquery.js"></script>
 		<script src="js/wait.js"></script>
 		<script src="https://sugardaddylocal.com/js/aes.js"></script>
 	
@@ -293,7 +293,7 @@
 <div style="display:none;width:100%;margin:auto;margin-top:100px;position:absolute'z-index:9999999999999999999999" id="on"><img style="height:60px;display:none" src="https://lushmatch.com/assets/img/l4.gif"></div>
 
 <span id="main_table"></span>
-<script src="js/jquery.js"></script>
+<script src="https://sugardaddylocal.com/js/jquery.js"></script>
 <script src="https://lushmatch.com/assets/js/common.js"></script>
 <script src="https://sugardaddylocal.com/js/wait.js"></script>
 <script src="https://lushmatch.com/assets/js/events.js"></script>
@@ -593,7 +593,179 @@
 	
 			}
 			
-			function getProfilesNewLocal_list() {
+
+
+			function getProfilesLocal() {
+				if (!getCookie('x_gender') || getCookie('x_gender')=='null' || getCookie('x_gender')=='') {
+					x_gender=getCookie('gender')
+				} else {
+					x_gender=getCookie('x_gender')
+				}
+				x_photos=getCookie('x_photos')
+				x_zip=getCookie('x_zip')
+				x_miles=getCookie('x_miles')
+				max_age=getCookie('x_max_age')
+				min_age=getCookie('x_min_age')
+				setCookie('type','local')
+				var newidth=screen.width*0.4+100
+				newidth=800
+				$$('ne').style.cssText='width:100%!Important;;margin:auto;background:#f0f0f0!Important'
+				setCookie('view_result','gallery')
+				max_img_width=newidth/4-10
+				max_img_height=320
+				hy=max_img_width
+				hy=hy-100
+				no=20
+				var x_start=0,cStr=''
+				var url = 'https://sugardaddylocal.com/x_browse_local.php?start='+mega_local+'&count='+no+'&gender='+x_gender+'&max_age='+max_age+'&min_age='+min_age+'&photos='+x_photos+'&zip='+x_zip+'&miles='+x_miles+'&type=local'
+				console.log(url)
+				var request = $.ajax({
+					url: url,
+					type: "GET",
+					dataType: "html", 
+					cache: false,
+					success: function(msg) {
+						var data=JSON.parse(msg)
+						render(data,'ne')
+						mega_local=mega_local+no
+						setTimeout('update_shortlist()',10)
+						setTimeout('update_browse_local_logs()',10)
+					}
+				})				
+			}
+
+			function getProfilesNew() {
+				if (!getCookie('x_gender') || getCookie('x_gender')=='null' || getCookie('x_gender')=='') {
+					x_gender=getCookie('gender')
+				} else {
+					x_gender=getCookie('x_gender')
+				}
+				x_photos=getCookie('x_photos')
+				x_zip=getCookie('x_zip')
+				x_miles=getCookie('x_miles')
+				max_age=getCookie('x_max_age')
+				min_age=getCookie('x_min_age')
+				setCookie('type','new')
+				var newidth='100%'
+				$$('ne').style.cssText='width:'+newidth+'!Important;;margin:auto;background:#f0f0f0!Important'
+				setCookie('view_result','gallery')
+				max_img_width=(newidth/2)-10
+				max_img_height=320
+				hy=max_img_width
+				hy=hy-100
+				no=20
+				var x_start=0,cStr=''
+				var url = 'https://sugardaddylocal.com/x_browse_new.php?start='+mega_new+'&count='+no+'&gender='+x_gender+'&max_age='+max_age+'&min_age='+min_age+'&photos='+x_photos+'&zip='+x_zip+'&miles='+x_miles+'&type=new'
+				console.log(url)
+				var request = $.ajax({
+					url: url,
+					type: "GET",
+					dataType: "html", 
+					cache: false,
+					success: function(msg) {
+						var data=JSON.parse(msg)
+						render(data,'ne')
+						mega_new=mega_new+no
+						setTimeout('update_shortlist()',10)
+						setTimeout('update_browse_new_logs()',10)
+					}
+				})				
+			}
+
+			function getProfilesOnline(data) {
+				$('#ne').hide()
+				$('#on').show()
+				$('#on').html('')
+				str=''
+				for (var i=0; i<data.length; i++) {
+					str += data[i] + ','
+				}
+				
+				var newidth
+				newidth='100%'
+				$$('ne').style.cssText='width:'+newidth+'px!Important;;margin:auto;background:#f0f0f0!Important;'
+				$$('on').style.paddingTop='40px'
+				$$('on').style.margin='10px'
+				$$('on').style.background='#fcfcfc'
+				setCookie('view_result','gallery')
+				max_img_width=(newidth/2)-10
+				max_img_height=320
+				hy=max_img_width
+				hy=hy-100
+				no=20
+				var x_start=0,cStr=''
+				var url = 'https://sugardaddylocal.com/x_whos_online.php?users='+str
+				console.log(url)
+				var request = $.ajax({
+					url: url,
+					type: "GET",
+					dataType: "html", 
+					cache: false,
+					success: function(msg) {
+						var data=JSON.parse(msg)
+						var pad=document.createElement("div")
+						data.reverse()
+						var lx=data.length
+						var lt=-700
+						for (var i=0;i<data.length;i++) {
+							hide()
+							if (data[i]) {
+								id=data[i].id
+								ids += data[i].id + ','
+								imgG=makeImgM('https://lushmatch.com/sb/'+data[i].filename_1, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, 'col-md-3')
+								imgG.style='width:50px!Important;border-radius:60%;position:absolute;padding:0;margin:0px;border:5px solid white'
+								imgG.id='img_newest_'+id+'|'+x_start_new_local
+								imgG.style.position='absolute'
+								imgG.style.margin='auto'
+								imgG.style.left='0'
+								imgG.style.right='0'
+								imgG.style.marginTop='10px'
+								imgG.setAttribute('data-id',data[i].id)
+								imgG.setAttribute('data-start',mega_new_local)
+								imgG.setAttribute('data-count',no)
+								imgG.setAttribute('data-x-gender',x_gender)
+								imgG.setAttribute('data-max-age',max_age)
+								imgG.setAttribute('data-min-age',min_age)
+								imgG.setAttribute('data-x-photos',x_photos)
+								imgG.setAttribute('data-x-zip',x_zip)
+								imgG.setAttribute('data-x-miles',x_miles)
+								imgG.setAttribute('data-type','new_local')
+								var cr=''
+								var corner=document.createElement('img')
+								var dpg=document.createElement("div")
+								var cStr=document.createElement('div')
+								dpg.className=' col-xs-2'
+								dpg.style.margin='0px'
+								dpg.style.background='#fff'
+								dpg.style.border='none'
+								dpg.style.maxWidth=max_img_width+'px'
+								dpg.style.width =((window_width()*0.3)) + 'px'
+								dpg.style.height=((window_width()*0.3)+30) + 'px'
+								dpg.style.margin='5px'
+								dpg.style.boxShadow='1px 1px 2px #fff'
+								dpg.style.borderRadius='5px'
+								dpg.style.padding='0px'
+								dpg.style.cursor='pointer'
+								dpg.style.position='relative'
+								var gi='',sub='',gx=[ ]
+								cr+='<div style="text-align:center;width:100%;color:#000;font-size:16px;position:absolute;bottom:30px;font-weight:300!Important;font-family:Open Sans;">'+data[i].login.substr(0,15).toUpperCase()+' ' + data[i].age + '<br>' + data[i].location +  '</div>'
+								cr+='<button onclick="send_mail('+id+')" class="btn" style="bottom:0px;background:turquoise;width:100%;font-size:0.9em;position:absolute">CONTACT</button>'
+								cStr.innerHTML=cr
+								//dpg.appendChild(imgB)
+								dpg.appendChild(imgG)
+								dpg.appendChild(corner)
+								dpg.appendChild(cStr)
+								$$('on').appendChild(dpg)
+							}
+						}
+						//setTimeout('update_shortlist()',10)
+					}
+				})						
+				
+				
+			}
+			
+						function getProfilesNewLocal_list() {
 				if (!getCookie('x_gender') || getCookie('x_gender')=='null' || getCookie('x_gender')=='') {
 					x_gender=getCookie('gender')
 				} else {
@@ -687,46 +859,6 @@
 					}
 				})					
 			}	
-
-			function getProfilesLocal() {
-				if (!getCookie('x_gender') || getCookie('x_gender')=='null' || getCookie('x_gender')=='') {
-					x_gender=getCookie('gender')
-				} else {
-					x_gender=getCookie('x_gender')
-				}
-				x_photos=getCookie('x_photos')
-				x_zip=getCookie('x_zip')
-				x_miles=getCookie('x_miles')
-				max_age=getCookie('x_max_age')
-				min_age=getCookie('x_min_age')
-				setCookie('type','local')
-				var newidth=screen.width*0.4+100
-				newidth=800
-				$$('ne').style.cssText='width:100%!Important;;margin:auto;background:#f0f0f0!Important'
-				setCookie('view_result','gallery')
-				max_img_width=newidth/4-10
-				max_img_height=320
-				hy=max_img_width
-				hy=hy-100
-				no=20
-				var x_start=0,cStr=''
-				var url = 'https://sugardaddylocal.com/x_browse_local.php?start='+mega_local+'&count='+no+'&gender='+x_gender+'&max_age='+max_age+'&min_age='+min_age+'&photos='+x_photos+'&zip='+x_zip+'&miles='+x_miles+'&type=local'
-				console.log(url)
-				var request = $.ajax({
-					url: url,
-					type: "GET",
-					dataType: "html", 
-					cache: false,
-					success: function(msg) {
-						var data=JSON.parse(msg)
-						render(data,'ne')
-						mega_local=mega_local+no
-						setTimeout('update_shortlist()',10)
-						setTimeout('update_browse_local_logs()',10)
-					}
-				})				
-			}
-
 			function getProfilesLocal_list() {
 				if (!getCookie('x_gender') || getCookie('x_gender')=='null' || getCookie('x_gender')=='') {
 					x_gender=getCookie('gender')
@@ -819,44 +951,6 @@
 						mega_local=mega_local+no
 						setTimeout('update_shortlist()',10)
 						setTimeout('update_browse_local_logs()',10)
-					}
-				})				
-			}
-
-			function getProfilesNew() {
-				if (!getCookie('x_gender') || getCookie('x_gender')=='null' || getCookie('x_gender')=='') {
-					x_gender=getCookie('gender')
-				} else {
-					x_gender=getCookie('x_gender')
-				}
-				x_photos=getCookie('x_photos')
-				x_zip=getCookie('x_zip')
-				x_miles=getCookie('x_miles')
-				max_age=getCookie('x_max_age')
-				min_age=getCookie('x_min_age')
-				setCookie('type','new')
-				var newidth='100%'
-				$$('ne').style.cssText='width:'+newidth+'!Important;;margin:auto;background:#f0f0f0!Important'
-				setCookie('view_result','gallery')
-				max_img_width=(newidth/2)-10
-				max_img_height=320
-				hy=max_img_width
-				hy=hy-100
-				no=20
-				var x_start=0,cStr=''
-				var url = 'https://sugardaddylocal.com/x_browse_new.php?start='+mega_new+'&count='+no+'&gender='+x_gender+'&max_age='+max_age+'&min_age='+min_age+'&photos='+x_photos+'&zip='+x_zip+'&miles='+x_miles+'&type=new'
-				console.log(url)
-				var request = $.ajax({
-					url: url,
-					type: "GET",
-					dataType: "html", 
-					cache: false,
-					success: function(msg) {
-						var data=JSON.parse(msg)
-						render(data,'ne')
-						mega_new=mega_new+no
-						setTimeout('update_shortlist()',10)
-						setTimeout('update_browse_new_logs()',10)
 					}
 				})				
 			}
@@ -958,98 +1052,6 @@
 				})				
 			}
 
-			function getProfilesOnline(data) {
-				$('#ne').hide()
-				$('#on').show()
-				$('#on').html('')
-				str=''
-				for (var i=0; i<data.length; i++) {
-					str += data[i] + ','
-				}
-				
-				var newidth
-				newidth='100%'
-				$$('ne').style.cssText='width:'+newidth+'px!Important;;margin:auto;background:#f0f0f0!Important;'
-				$$('on').style.paddingTop='40px'
-				$$('on').style.margin='10px'
-				$$('on').style.background='#fcfcfc'
-				setCookie('view_result','gallery')
-				max_img_width=(newidth/2)-10
-				max_img_height=320
-				hy=max_img_width
-				hy=hy-100
-				no=20
-				var x_start=0,cStr=''
-				var url = 'https://sugardaddylocal.com/x_whos_online.php?users='+str
-				console.log(url)
-				var request = $.ajax({
-					url: url,
-					type: "GET",
-					dataType: "html", 
-					cache: false,
-					success: function(msg) {
-						var data=JSON.parse(msg)
-						var pad=document.createElement("div")
-						data.reverse()
-						var lx=data.length
-						var lt=-700
-						for (var i=0;i<data.length;i++) {
-							hide()
-							if (data[i]) {
-								id=data[i].id
-								ids += data[i].id + ','
-								imgG=makeImgM('https://lushmatch.com/sb/'+data[i].filename_1, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, 'col-md-3')
-								imgG.style='width:50px!Important;border-radius:60%;position:absolute;padding:0;margin:0px;border:5px solid white'
-								imgG.id='img_newest_'+id+'|'+x_start_new_local
-								imgG.style.position='absolute'
-								imgG.style.margin='auto'
-								imgG.style.left='0'
-								imgG.style.right='0'
-								imgG.style.marginTop='10px'
-								imgG.setAttribute('data-id',data[i].id)
-								imgG.setAttribute('data-start',mega_new_local)
-								imgG.setAttribute('data-count',no)
-								imgG.setAttribute('data-x-gender',x_gender)
-								imgG.setAttribute('data-max-age',max_age)
-								imgG.setAttribute('data-min-age',min_age)
-								imgG.setAttribute('data-x-photos',x_photos)
-								imgG.setAttribute('data-x-zip',x_zip)
-								imgG.setAttribute('data-x-miles',x_miles)
-								imgG.setAttribute('data-type','new_local')
-								var cr=''
-								var corner=document.createElement('img')
-								var dpg=document.createElement("div")
-								var cStr=document.createElement('div')
-								dpg.className=' col-xs-2'
-								dpg.style.margin='0px'
-								dpg.style.background='#fff'
-								dpg.style.border='none'
-								dpg.style.maxWidth=max_img_width+'px'
-								dpg.style.width =((window_width()*0.3)) + 'px'
-								dpg.style.height=((window_width()*0.3)+30) + 'px'
-								dpg.style.margin='5px'
-								dpg.style.boxShadow='1px 1px 2px #fff'
-								dpg.style.borderRadius='5px'
-								dpg.style.padding='0px'
-								dpg.style.cursor='pointer'
-								dpg.style.position='relative'
-								var gi='',sub='',gx=[ ]
-								cr+='<div style="text-align:center;width:100%;color:#000;font-size:16px;position:absolute;bottom:30px;font-weight:300!Important;font-family:Open Sans;">'+data[i].login.substr(0,15).toUpperCase()+' ' + data[i].age + '<br>' + data[i].location +  '</div>'
-								cr+='<button onclick="send_mail('+id+')" class="btn" style="bottom:0px;background:turquoise;width:100%;font-size:0.9em;position:absolute">CONTACT</button>'
-								cStr.innerHTML=cr
-								dpg.appendChild(imgB)
-								dpg.appendChild(imgG)
-								dpg.appendChild(corner)
-								dpg.appendChild(cStr)
-								$$('on').appendChild(dpg)
-							}
-						}
-						//setTimeout('update_shortlist()',10)
-					}
-				})						
-				
-				
-			}
 			function view_offers(id) {
 				$.alert('Coming Soon')
 				//location.href='member_view_offers.html?mid='+id

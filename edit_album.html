@@ -511,9 +511,9 @@ h2 {
 							console.log('no')
 						}
 						if (qs('type')=='photo') {
-							str+='<a style="background:'+background+'" id="'+content[i].id+'" class="list-group-item d-flex justify-content-between align-items-center font-weight-medium text-uppercase font-bigger" href="javascript:add_to_album(' + content[i].id + ')"><img src="https://lushmatch.com/sb/' + content[i].filename_1 + '" style="width:35px;height:35px;border-radius:35px"><span style="">' + content[i].filename_1.substr(0,15) + '</span><img src="images/rem.png" style="display:' + displayDelete + ';margin-left:5px;margin-right:5px;width:30px"><button style="display:'+btnDisplay+'" class="btn btn-warning">+ Add</button></a>'
+							str+='<a style="background:'+background+'" id="'+content[i].id+'" class="list-group-item d-flex justify-content-between align-items-center font-weight-medium text-uppercase font-bigger" href="javascript:add_to_album(' + content[i].id + ')"><img src="https://lushmatch.com/sb/' + content[i].filename_1_initial + '" style="width:35px;height:35px;border-radius:35px"><span style="">' + content[i].filename_1_initial.substr(0,15) + '</span><img src="images/rem.png" style="display:' + displayDelete + ';margin-left:5px;margin-right:5px;width:30px"><button style="display:'+btnDisplay+'" class="btn btn-warning">+ Add</button></a>'
 						} else {
-							str+='<a style="background:'+background+'" id="'+content[i].id+'" class="list-group-item d-flex justify-content-between align-items-center font-weight-medium text-uppercase font-bigger" href="javascript:add_to_album(' + content[i].id + ')"><img src="images/video_file.png' + '" style="width:25px;position:absolute;left:5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#'+(i+1)+'<span style="color:silver">' + content[i].filename_1.substr(0,15) + ' </span><img src="images/rem.png" style="display:' + displayDelete + ';margin-left:5px;margin-right:5px;width:30px"><button style="display:'+btnDisplay+'" class="btn btn-warning">+ Add</button></a>'						
+							str+='<a style="background:'+background+'" id="'+content[i].id+'" class="list-group-item d-flex justify-content-between align-items-center font-weight-medium text-uppercase font-bigger" href="javascript:add_to_album(' + content[i].id + ')"><img src="images/video_file.png' + '" style="width:25px;position:absolute;left:5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#'+(i+1)+'<span style="color:silver">' + content[i].filename_1_initial.substr(0,15) + ' </span><img src="images/rem.png" style="display:' + displayDelete + ';margin-left:5px;margin-right:5px;width:30px"><button style="display:'+btnDisplay+'" class="btn btn-warning">+ Add</button></a>'						
 						}
 					}
 					if (qs('type')=='photo') {
@@ -714,7 +714,7 @@ h2 {
 	</script>
 
 	<script src="https://sugardaddylocal.com/custom_menu_updated.js"></script>
-	<script src="js/jquery.js"></script>
+	<script src="https://sugardaddylocal.com/js/jquery.js"></script>
 	<script src="https://sugardaddylocal.com/js/wait.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">

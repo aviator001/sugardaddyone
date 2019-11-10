@@ -423,10 +423,13 @@ h2 {
 						var data=JSON.parse(msg)
 						console.log(data)
 						var str=''
-						for (var i=0; i<data.length; i++) {
-							str+='<a id="album_' + data[i].album_id + '" style="justify-content:left!Important" class="list-group-item d-flex justify-content-between align-items-center font-weight-medium text-uppercase font-bigger" href="javascript:add_items('+data[i].album_id+')">'+ (i+1) + '. ' + data[i].album_name + '<span style="color:silver;margin-left:20px">[' + data[i].count + ' vids] </span><div onclick="edit_album('+data[i].album_id+',\''+ data[i].album_name +'\')"style="background:gainsboro;color:#000;text-shadow:1px 1px 1px #fff;width:55px;padding:10px;height:30px;padding-top:5px;position:absolute;right:30px;">EDIT</div><img onclick="del_album(' + data[i].album_id + ')" src="images/del.png" style="width:30px;position:absolute;right:5px"></a>'
+						if (data) {
+							for (var i=0; i<data.length; i++) {
+								str+='<a id="album_' + data[i].album_id + '" style="justify-content:left!Important" class="list-group-item d-flex justify-content-between align-items-center font-weight-medium text-uppercase font-bigger" href="javascript:add_items('+data[i].album_id+')">'+ (i+1) + '. ' + data[i].album_name + '<span style="color:silver;margin-left:20px">[' + data[i].count + ' vids] </span><div onclick="edit_album('+data[i].album_id+',\''+ data[i].album_name +'\')"style="background:gainsboro;color:#000;text-shadow:1px 1px 1px #fff;width:55px;padding:10px;height:30px;padding-top:5px;position:absolute;right:30px;">EDIT</div><img onclick="del_album(' + data[i].album_id + ')" src="images/del.png" style="width:30px;position:absolute;right:5px"></a>'
+							}
+						} else {
+							str += '<a style="background:aliceblue" id="wish3" class="list-group-item d-flex justify-content-between align-items-center  font-weight-medium text-uppercase font-bigger"><button onclick="add_album()" class="btn"> ADD VIDEO ALBUM </button> <button onclick="go_to_settings()"  class="btn"> SETTINGS </button></a>'
 						}
-						str += '<a style="background:aliceblue" id="wish3" class="list-group-item d-flex justify-content-between align-items-center  font-weight-medium text-uppercase font-bigger"><button onclick="add_album()" class="btn"> ADD VIDEO ALBUM </button> <button onclick="go_to_settings()"  class="btn"> SETTINGS </button></a>'
 						$('#albums').html(str)
 					}
 				})			
@@ -552,7 +555,7 @@ h2 {
 		var str=''
 
 	</script>
-	<script src="js/jquery.js"></script>
+	<script src="https://sugardaddylocal.com/js/jquery.js"></script>
 	<script src="https://sugardaddylocal.com/custom_menu_updated.js"></script>
 	<script src="https://sugardaddylocal.com/js/wait.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>

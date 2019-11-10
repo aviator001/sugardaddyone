@@ -191,7 +191,8 @@ a.list-group-item, .list-group-item-action {
 
     </style>
 	<script src="https://lushmatch.com/assets/js/jquery.js"></script>
-	<script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>	<script>
 	dinit()
 	function dinit() {
 
@@ -327,10 +328,17 @@ a.list-group-item, .list-group-item-action {
                 <div class="author-card-profile">
 					<div id="mv"></div><img src="https://bootdey.com/img/Content/avatar/avatar1.png" style="width:100px;height:100px;border-radius:100px;margin-top:-20px" id="user_photo">
                     <div class="author-card-details">
-						<div style="width:100%position:absolute;opacity:1;background:white!Important;z-index:9999;margin-top:-25px;margin-left:5px"><b>ALL MY UPLOADS</b></div>
-                    </div>
+						<div style="width:200px;position:absolute;opacity:1;background:white!Important;z-index:9999;margin-top:-40px;font-width:300!iMPORTANT;FONT-FAMILY:Open Sans"><H2>MY UPLOADS</H2></div>
+					</div>
                 </div>
             </div>
+									<div style="width:100%;background:aliceblue"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<B>LEGEND</B>
+										<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/auto.png" style="width:15px">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:0.8em">Set as Default Profile Image<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/dely.png" style="width:15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Delete Image<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/view.png" style="width:20px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Preview Image</span>
+								<br><br>	</div>
+
             <div class="wizard" style="background:#f4f4f4">
                 <nav id="media" class="list-group list-group-flush">
 				</nav>
@@ -339,7 +347,8 @@ a.list-group-item, .list-group-item-action {
     </div>
 </div>
 <span id="main_table"></span>
-<span id="shortlist_count"></span>
+
+
  	</body>
 	<script>
 		var album_private=false
@@ -370,6 +379,10 @@ a.list-group-item, .list-group-item-action {
 				dataType: "html", 
 				cache: false,
 				success: function(msg) {
+					if (msg=='null') {
+						$.alert('No media found. Please upload.')
+						return false
+					}
 					var data=JSON.parse(msg)
 					console.log(data)
 					str=''
@@ -384,22 +397,23 @@ a.list-group-item, .list-group-item-action {
 								<!-- video.id=data[i].id -->
 								<!-- video.src='https://lushmatch.com/sb/'+data[i].filename_1 -->
 								<!-- video.loop=true -->
-								str+='<a id="'+data[i].id+'" class="list-group-item d-flex justify-content-between align-items-center font-weight-medium text-uppercase font-bigger" style="height:60px;background:#fff"><table style="width:100%"><tr><td style="width:10%"><img style="height:35px" src="images/mp4_file.png"></td><td style="width:80%;text-align:left">' + data[i].filename_1.substr(0,18) + '</td><td style="width:10%"><img style="height:25px;margin-right:10px;" src="images/view.png"></td><td style="width:7.5%;text-align:center"><img onclick="create_default('+data[i].id+',\''+data[i].filename_1+'\',\''+data[i].type+'\')" src="images/auto.png" style="height:20px"></td><td style="width:7.5%;text-align:center"><img onclick="del_media('+data[i].id+',\'' + data[i].filename_1 + '\')" src="images/dely.png" style="height:25px;margin-left:10px"></td></tr></table></a>'
+								str+='<a id="'+data[i].id+'" class="list-group-item d-flex justify-content-between align-items-center font-weight-medium text-uppercase font-bigger" style="height:60px;background:#fff"><table style="width:100%"><tr><td style="width:10%"><img style="height:35px" src="images/mp4_file.png"></td><td style="width:80%;text-align:left">' + data[i].filename_1_initial.substr(0,18) + '</td><td style="width:10%"><img style="height:25px;margin-right:10px;" onclick="preview_media(\'' + data[i].filename_1_initial + '\')" src="images/view.png"></td><td style="width:7.5%;text-align:center"><img onclick="create_default('+data[i].id+',\''+data[i].filename_1_initial+'\',\''+data[i].type+'\')" src="images/auto.png" style="height:20px"></td><td style="width:7.5%;text-align:center"><img onclick="del_media('+data[i].id+',\'' + data[i].filename_1_initial + '\')" src="images/dely.png" style="height:25px;margin-left:10px"></td></tr></table></a>'
 								<!-- video.load() -->
 								<!-- video.play() -->
 							} else {
-								str+='<a id="'+data[i].id+'" class="list-group-item d-flex justify-content-between align-items-center font-weight-medium text-uppercase font-bigger" style="height:60px;background:#fff"><table style="width:100%"><tr><td style="width:10%"><img style="height:35px" src="images/image_file.png"></td><td style="width:80%;text-align:left">' + data[i].filename_1.substr(0,18) + '</td><td style="width:10%"><img style="height:25px;margin-right:10px;" src="images/view.png"></td><td style="width:7.5%;text-align:center"><img onclick="create_default('+data[i].id+',\''+data[i].filename_1+'\',\''+data[i].type+'\')" src="images/auto.png" style="height:20px"></td><td style="width:7.5%;text-align:center"><img onclick="del_media('+data[i].id+',\'' + data[i].filename_1 + '\')"  src="images/dely.png" style="height:25px;margin-left:10px"></td></tr></table></a>'
+								str+='<a id="'+data[i].id+'" class="list-group-item d-flex justify-content-between align-items-center font-weight-medium text-uppercase font-bigger" style="height:60px;background:#fff"><table style="width:100%"><tr><td style="width:10%"><img onclick="preview_media(\'' + data[i].filename_1_initial + '\')" style="height:35px" src="images/image_file.png"></td><td style="width:80%;text-align:left">' + data[i].filename_1_initial.substr(0,18) + '</td><td style="width:10%"><img onclick="preview_media(\'' + data[i].filename_1_initial + '\')" style="height:25px;margin-right:10px;" src="images/view.png"></td><td style="width:7.5%;text-align:center"><img onclick="create_default('+data[i].id+',\''+data[i].filename_1_initial+'\',\''+data[i].type+'\')" src="images/auto.png" style="height:20px"></td><td style="width:7.5%;text-align:center"><img onclick="del_media('+data[i].id+',\'' + data[i].filename_1_initial + '\')"  src="images/dely.png" style="height:25px;margin-left:10px"></td></tr></table></a>'
 							}
 						}
+								str += '<div style="background:white;padding:20px;text-align:center"> <button onclick="history.go(-1)" class="btn btn-default">BACK</button> <button onclick="choose_upload()" class="btn btn-default">UPLOAD</button></div><br><br>'
 						$('#media').html(str)
 						<!-- if (video) video.play() -->
 					}
 				})			
 			}
 		load_media()
-		function create_default(id,filename_1,type) {
-			console.log('https://sugardaddylocal.com/x_set_default.php?mid='+getCookie('mid')+'&media_id='+id+'&filename_1='+filename_1) 
-			var url='https://sugardaddylocal.com/x_create_default.php?mid='+getCookie('mid')+'&media_id='+id+'&filename_1='+filename_1
+		function create_default(id,filename_1_initial,type) {
+			console.log('https://sugardaddylocal.com/x_set_default.php?mid='+getCookie('mid')+'&media_id='+id+'&filename_1='+filename_1_initial) 
+			var url='https://sugardaddylocal.com/x_create_default.php?mid='+getCookie('mid')+'&media_id='+id+'&filename_1='+filename_1_initial
 			var request = $.ajax({
 				url: url,
 				type: "GET",
@@ -408,7 +422,7 @@ a.list-group-item, .list-group-item-action {
 				success: function(msg) {
 					if (type=='photo') {
 						$$('mv').innerHTML=''
-						$$('user_photo').src='https://lushmatch.com/sb/'+filename_1
+						$$('user_photo').src='https://lushmatch.com/sb/'+filename_1_initial
 						$$('user_photo').style.display='block'
 					} else {
 						$$('user_photo').style.display='none'
@@ -422,7 +436,7 @@ a.list-group-item, .list-group-item-action {
 						$$('mv').appendChild(video);
 						video.id=id
 						video.load()
-						video.src='https://lushmatch.com/sb/'+filename_1
+						video.src='https://lushmatch.com/sb/'+filename_1_initial
 						video.loop=true
 						video.play()
 					}
@@ -444,8 +458,8 @@ a.list-group-item, .list-group-item-action {
 			})			
 		}
 
-		function del_media(media_id, filename_1) {
-			var url='https://sugardaddylocal.com/x_del_file.php?mid='+getCookie('mid')+'&id='+media_id+'&filename_1='+filename_1
+		function del_media(media_id, filename_1_initial) {
+			var url='https://sugardaddylocal.com/x_del_file.php?mid='+getCookie('mid')+'&id='+media_id+'&filename_1='+filename_1_initial
 			var request = $.ajax({
 				url: url,
 				type: "GET",
@@ -453,8 +467,14 @@ a.list-group-item, .list-group-item-action {
 				cache: false,
 				success: function(msg) {
 					load_media()
+					history.go(0)
 				}
 			})			
+		}
+
+		function preview_media(filename_1_initial) {
+			$.alert({title:'',content: '<img src="https://lushmatch.com/sb/'+filename_1_initial+'">'})
+																															
 		}
 
 		function choose_upload() {
@@ -568,10 +588,9 @@ a.list-group-item, .list-group-item-action {
 			window.parent.frames['ebay'].style.display='none'
 		}
 
-		load_media()
 	</script>
 
-	<script src="js/jquery.js"></script>
+	<script src="https://sugardaddylocal.com/js/jquery.js"></script>
 	<script src="https://sugardaddylocal.com/custom_menu_updated.js"></script>
 	<script src="https://sugardaddylocal.com/js/wait.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>

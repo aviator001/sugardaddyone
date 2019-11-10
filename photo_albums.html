@@ -206,7 +206,7 @@ h2 {
 
 	
 	function dinit() {
-	
+		var data=[ ]
 		var url = 'https://lushmatch.com/x_get_user_info.php?member_id=' + getCookie('mid')
 		console.log(url)
 		var request = $.ajax({
@@ -215,17 +215,17 @@ h2 {
 				dataType: "html", 
 				cache: false,
 				success: function(msg) {
-					msg=JSON.parse(msg)
-										console.log(msg)
+					data=JSON.parse(msg)
+					console.log(data)
 
-					if ((msg.filename_1.indexOf('png')>=0) || (msg.filename_1.indexOf('jpg')>=0)) {
+					if ((data.filename_1.indexOf('png')>=0) || (data.filename_1.indexOf('jpg')>=0)) {
 						var type='photo'
 					} else {
 						var type='video'
 					}
 					if (type=='photo') {
 						$$('mv').innerHTML=''
-						$$('user_photo').src='https://lushmatch.com/sb/'+msg.filename_1
+						$$('user_photo').src='https://lushmatch.com/sb/'+data.filename_1
 						$$('user_photo').style.display='block'
 					} else {
 						$$('user_photo').style.display='none'
@@ -239,7 +239,7 @@ h2 {
 						$$('mv').appendChild(video);
 						video.id=id
 						video.load()
-						video.src='https://lushmatch.com/sb/'+msg.filename_1
+						video.src='https://lushmatch.com/sb/'+data.filename_1_initial
 						video.loop=true
 						video.play()
 					}
@@ -574,7 +574,7 @@ h2 {
 		var str=''
 
 	</script>
-	<script src="js/jquery.js"></script>
+	<script src="https://sugardaddylocal.com/js/jquery.js"></script>
 	<script src="https://sugardaddylocal.com/custom_menu_updated.js"></script>
 	<script src="https://sugardaddylocal.com/js/wait.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
