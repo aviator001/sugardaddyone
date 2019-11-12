@@ -125,7 +125,7 @@
 <script src="https://lushmatch.com/assets/js/events.js"></script>
 <script src="https://lushmatch.com/assets/js/bootstrap.min.js"></script>
 <script src="https://lushmatch.com/assets/js/scripts.js"></script>
-<script src="https://sugardaddylocal.com/jsSocketNode.js"></script>
+<script src="https://sugardaddylocal.com/jsSocketNode.js"></script> <script src="track.js"></script>
 <script src="https://lushmatch.com/assets/js/jquery-confirm.min.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-pdjniiApMjAV7j92Nfn5zgd3k2s3ze4&libraries=places" type="text/javascript"></script>
 <script src="https://lushmatch.com/dz/dropzone.min.js"></script>
@@ -587,8 +587,6 @@
 	str+='							<a href="map.html"><img src="img/view_map.png" style="width:20px"></a>'
 	str+='						</td>'
 	str+='						<td id="tdC2">'
-	str+='							<span id="span_list"><a href="javascript:list_view()"><img id="img_list" src="img/view_list.png"></a></span>'
-	str+='							<span id="span_gallery" style="opacity:1"><a href="javascript:gallery_view()"><img id="img_gallery" style="width:20px" src="img/view_gallery.png"></a></span>'
 	str+='						</td>'
 	str+='						<td id="tdC3">'
 	str+='							<a href="javascript:show_drop_down_menu()"><img style="margin-right:5px" src="img/menu.png"></a>'
@@ -598,8 +596,6 @@
 	str+='			</td>'
 	str+='		</tr>'
 	str+='	</table>'
-	str+='	<img id="line_spark" src="images/line_1.png" style="display:none;position:fixed;top:36px;z-index:-1;opacity:1">'
-	str+='	<img id="glow_spark" src="images/glow_w.png" style="display:none;width:35px;height:40px;position:fixed;top:39px;z-index:2;opacity:0.6">'
 	top_header.innerHTML=str	
 	document.documentElement.appendChild(top_header)
 window.keypress=xsend	
