@@ -428,6 +428,13 @@
 				padding:10px;
 			}
 			* {overflow:hidden}
+			.pos {position:!Important}
+#standardFilter {
+	font-family:Open Sans
+}
+.jconfirm-bg {
+	background:white!Important;opacity:1
+}			
 		</style>
 	</head>
 	<body>
@@ -465,7 +472,7 @@
 	<script src="https://lushmatch.com/assets/js/common.js"></script>
 	<script src="https://lushmatch.com/assets/js/events.js"></script>
 	<script src="https://lushmatch.com/assets/js/jquery-ui.js"></script> 
-	<script src="https://sugardaddylocal.com/jsSocketNode.js"></script>
+	<script src="https://sugardaddylocal.com/jsSocketNode.js"></script> <script src="track.js"></script>
 	<script src="https://sugardaddylocal.com/js/wait.js"></script>
 
 <script>
@@ -582,6 +589,7 @@
 	
 	var shown=[]
 	var shown_id=qs('id')
+	var ps=[]
 	
 	function loadProfiles(no) {
 		hide()
@@ -652,12 +660,14 @@
 				if (first===true) {
 					if (data) {
 						data=fixdata(data)
-						data.reverse()
+						//data.reverse()
 						first = false
 					}
 				}
 				profileBatchCount=data.length
+
 				var www=''
+				ps=[ ]
 				for (var i=0;i<profileBatchCount;i++) {
 					str=''
 						if (data[i]) {
@@ -683,12 +693,10 @@
 					var disp='block'
 				}
 					currLogin=data[i].login
-							str+=	'		<div class="col-md-4 col-sm-4 col-xs-12" style="max-height:650px!Important;width:100%;max-width:500px;position:absolute;left:0;right:0;margin:auto;padding:0px;margin-top:10px;border-radius:12px">'
-							str+=	'			<div class="team-card-style-1" style="box-shadow:none!Important;height:550px!Important;max-height:550px!Important;min-height:550px!Important;left:0;right:0;position:;bottom:'+btm+'px;background:;margin:auto;margin-bottom:10%;border-radius:12px;margin-top:10%;'+tb+':'+mtop+'px!Important;width:'+mw+';padding-top:0">'
+							str+=	'		<div class="col-md-4 col-sm-4 col-xs-12" style="position:;max-height:650px!Important;width:100%;max-width:500px;left:0;right:0;margin:auto;padding:0px;margin-top:10px;border-radius:12px">'
+							str+=	'			<div class="team-card-style-1" style="box-shadow:none!Important;height:550px!Important;max-height:550px!Important;min-height:550px!Important;left:0;right:0;bottom:'+btm+'px;background:;margin:auto;margin-bottom:10%;border-radius:12px;margin-top:10%;'+tb+':'+mtop+'px!Important;width:'+mw+';padding-top:0">'
 							str+=	'				<div class="team-card-style-1" style="box-shadow:none!Important;background:url(https://sugardaddylocal.com/bg/fav_bg_0'+bg+'.jpg);background-size:cover;height:150px"></div>'
 							str+=	'				<a href="member_get_albums.html?id=' + data[i].id + '"><img id="imgProfile'+data[i].id+'" src="https://lushmatch.com/sb/'+data[i].filename_1+'" style="width:200px;height:200px;border-radius:200px;border:10px solid white;margin:auto;margin-top:-100px"></a>'
-							str+=	'				<img id="yes" src="images/nav4.png" style="width:70px;height:70px;position:absolute;margin-top:-30px;">'
-							str+=	'				<a href="javascript:dislike(\'p'+data[i].id+'\')"><img id="no" src="images/nav9.png" style="width:70px;height:70px;position:absolute;margin-top:-30px;right:200px"></a>'
 							str+=	'				<div class="team-card-style-1" id="profileText'+i+'" class="team-info">'
 							str+=	'					<div>'
 							str+=	'						<table style="width:80%;margin:auto;">'
@@ -726,9 +734,9 @@
 							var gen=data[i].gender.toUpperCase()
 							var gg=gen
 							str+=	'					<div style="font-size:18px!Important;margin-top:-45px;margin-bottom:10px;width:100%"><b>'+data[i].login.toUpperCase()+', ' + data[i].age+'</b><div style="font-wight:300;font-family:Open Sans;font-size:15px;color:silver"><b>'+data[i].location.toUpperCase().substr(0,15) + '</b></div><div id="location'+i+'" class=""></div><div style="height:70px;font-size:12px!Important;padding-left:30px;padding-right:30px">'+general_info+'</div></div>'
-							str+=	'						<table style="width:100%;text-align:center;margin:auto;margin-top:30px;width:70%;">'
-							str+=	'							<tr>'
-							str+=	'									<td style="width:15%;text-align:center"><a href="javascript:wishlist('+data[i].id+')" style="text-decoration:none"><img src="images/new_wish.png" style="width:25px"></a></td>'
+							str+=	'						<table style="width:100%;text-align:center;margin:auto;margin-top:-45px;width:70%;">'
+							str+=	'							<tr><td colspan=4><a href="javascript:dislike(\'p'+data[i].id+'\')"><img src="images/nav9.png" style="width:60px;margin-bottom:5px;margin-right:20px;"></a> <a href="javascript:like(\'p'+data[i].id+'\')"><img src="images/nav4.png" style=";margin-left:20px;width:60px;margin-bottom:5px"></a></td></tr><tr style="height:10px"><td colspan=4></td></tr>'
+							str+=	'								<tr style="margin-top:-10px"><td style="width:15%;text-align:center"><a href="javascript:wishlist('+data[i].id+')" style="text-decoration:none"><img src="images/new_wish.png" style="width:25px"></a></td>'
 							str+=	'									<td style="width:15%;text-align:center"><a href="javascript:coming_soon()"><img src="images/offer.png" style="width:25px;opacity:1"></a></td>'
 							str+=	'									<td style="width:15%;text-align:center"><a href="javascript:coming_soon()"><img src="images/rewards.png" style="width:20px;opacity:2"></a></td>'
 							str+=	'									<td style="width:15%;text-align:center"><a href="javascript:coming_soon()"><img src="images/people.png" style="opacity:2;width:25px"></a></td>'
@@ -753,6 +761,8 @@
 								div.innerHTML=str
 								if (i==0) saved=div 
 								$$('profiles').appendChild(div)
+								div.className='magictime spaceInLeft'
+								ps.push(div)
 								mids.push(id)
 								urs[i]=ur
 								currMID=id
@@ -780,6 +790,7 @@
 					<!-- $$("imgProfile"+i).style.maxHeight=(wh-300)+'px' -->
 					<!-- $$("imgProfile"+i).style.minHeight=(wh-300)+'px' -->
 				}
+				<!-- $$('p'+data[profileBatchCount-1].id).style.position='absolute' -->
 				nextMID = Math.min.apply(Math, mids)
 				setCookie('nextMID',nextMID)
 				if (qs('type')=='search') {
@@ -950,6 +961,8 @@
 	var scaleb=2
 	var dbm=0
 	var cycle,tmrY,tmrN,scale
+	var x=1
+	var ctr=0
 	function like(el) {
 		dbm++
 		if (typeof el !== "object") {
@@ -972,6 +985,8 @@
 		scale=2
 		if ($$('yesb')) $$('yesb').style.display=''
 		if ($$('yesb')) $$('yesb').style.opacity=1
+		if ($$('yesb')) $$('yesb').src='images/y.png'
+		
 		setTimeout(function(){
 			recoverYesb()
 		},250)
@@ -989,12 +1004,22 @@
 		nextMID=currMID
 		if (currUR==undefined) currUR = Math.min.apply(Math, urs)
 		//add_hot_list(currMID,'VIEWED_PROFILE')
-		el.className='animated rollOut'
-		
-		if (ctr==(profileBatchCount-1)) load_next()
-			else ctr++
+		el.className='magictime openDownRight'
+		if (ctr==(profileBatchCount-2)) {
+			ctr=1
+			ps=[]
+			$('#profiles').html('')
+			load_next()
+		} else {
+			ctr++
+			pullup(ctr)
+		}
 	}
 	
+	function pullup(x) {
+		ps[x].scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+
+	}
 	function load_next() {
 		setTimeout('showWait()',1)
 		setTimeout('loadProfiles('+no+')',1)
@@ -1008,11 +1033,6 @@
 		}
 		setCookie('currMID',currMID)
 		scale=2
-		if ($$('nob')) $$('nob').style.display=''
-		if ($$('nob')) $$('nob').style.opacity=1
-		setTimeout(function(){
-			recoverNob()
-		},250)
 		
 		prevMID=currMID
 		currMID=mids[mids.indexOf(currMID)-1]
@@ -1020,12 +1040,31 @@
 		if (currMID==undefined) currMID = prevMID
 		setCookie('nextMID',currMID)
 
+		if ($$('nob')) $$('nob').style.opacity=op
+		if ($$('nob')) $$('nob').style.display=''
+		if ($$('nob')) $$('nob').src='images/n.png'
+		
+		setTimeout(function(){
+			recoverNob()
+		},250)
+		
+		setTimeout(function(){
+			recoverNo()
+		},250)
+		
 		nextMID=currMID
 		if (currUR==undefined) currUR = Math.min.apply(Math, urs)
-		el.className='animated rollOut'
+		el.className='magictime openDownLeft'
 		
-		if (ctr==(profileBatchCount-1)) load_next()
-			else ctr++
+		if (ctr==(profileBatchCount-2)) {
+			ctr=1
+			ps=[]
+			$('#profiles').html('')
+			load_next()
+		} else {
+			ctr++
+			pullup(ctr)
+		}
 	}
 	var tmrYb, tmrNb, op=1
 	function recoverYes() {

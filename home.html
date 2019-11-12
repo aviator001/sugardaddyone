@@ -73,7 +73,7 @@
 					x_gender=getCookie('x_gender')
 				}
 			setTimeout(function(){
-				if (getCookie('mid')=='5000830') $('#fil').show()
+				$('#fil').show()
 				if (getCookie('currPage')) {
 					setCookie('prevPage',getCookie('currPage'))
 				}
@@ -96,6 +96,7 @@
 				delCookie('nextMID')
 			},1)
 	</script>	
+	<script src="track.js"></script>
 	</head>
 	<body style="background:#f4f4f4;">
 	<div id="notify" style="display:none;opacity:0.8;right:10px;top:100px;z-index:99999999999999;background:#333;box-shadow:0 0 20px #000;width:250px;height:40px;position:fixed;border-radius:4px">
@@ -216,9 +217,10 @@
 	margin-left:-40px;
 	width:100px;
 }
-#standardFilter {
-	font-family:Open Sans
+.jconfirm-bg {
+	background:white!Important;color:black!Important;font-weight:300; font-family:Open Sans
 }
+
 </style>
 						<span style="display:none">
 							<table style="background:lightyellow;display:;height:200px;width:100%;margin:auto;left:0;right:0;margin-top:0px;font-family:Open Sans Condensed;font-size:14px!Important;text-align:center!Important">
@@ -576,10 +578,10 @@
 								gi=data[i].general_info
 							}
 						}
-						cr+='<table style="position:absolute;bottom:10px;margin:auto;left:0;right:0;width:100%">'
+						cr+='<table style="height:160px;position:absolute;bottom:5px;margin:auto;left:0;right:0;width:100%">'
 						cr+='<tr><td colspan=4 style="text-align:center;width:100%;padding:5px;color:#000;font-size:16px">'+data[i].login.substr(0,15).toUpperCase()+' ' + data[i].age + '<div style="font-size:14px;color:silver">' + data[i].location +'</div><div style="font-size:12px;color:orange"><b>'+data[i].distance+'</b> MILES</div></span></div></td></tr>'
-						cr+='<tr><td colspan=4><div style="margin-top:-10px;padding:5px;line-height:0.9em;font-size:14px;text-align:center">'+gi+'</div><button style="position:absolute;left:0;right:0;padding:2px;font-size:10px;margin-top:5px;margin:auto;width:40px" class="btn btn-xx" style="">MORE</button></td></tr>'
-						cr+='<tr><td style="text-align:center;width:100%;padding:5px;padding-top:10px"><button onclick="videoCall(\''+data[i].login+'\')" class="btn" style="padding:5px;background:orange;width:20%;margin-bottom:-10px"><img style="width:60px" src="images/video_cam_black.png"></button> <button onclick="send_mail('+id+')" class="btn" style="background:#53DAFF;width:75%;margin-bottom:-10px">CONTACT</button></td>'
+						cr+='<tr><td colspan=4><div style="margin-top:-15px;padding:5px;line-height:0.9em;font-size:14px;text-align:center">'+gi+'</div><button style="position:absolute;left:0;right:0;padding:2px;font-size:10px;margin-top:5px;margin:auto;width:40px" class="btn btn-xx" style="">MORE</button></td></tr>'
+						cr+='<tr><td style="text-align:center;width:20%;"><button onclick="videoCall(\''+data[i].login+'\')" class="btn" style=";height:35px;padding:10px;background:orange;width:100%"><img style="width:100%;margin-top:-10px;" src="images/video_cam_black.png"></button></td><td style="width:60%;text-align:center;"><button onclick="send_mail('+id+')" class="btn" style="background:#53DAFF;width:90%;margin-bottom:-2px;height:35px">CONTACT</button></td><td><button onclick="buy_rose()" class="btn" style="padding:10px;background:red;width:100%;margin-bottom:-10px;height:35px;margin-top:5px"><img style="width:100%;margin-top:-7px" src="images/ir.png"></button></td>'
 						cr+='</tr></table>'
 						cStr.innerHTML=cr
 						dpg.appendChild(imgB)
@@ -1003,7 +1005,7 @@
 								imgB.src=getfile()  
 								imgB.style='width:100%;height:40%;border-radius:5px 5px 0 0 ;position:absolute;padding:0;margin:0px;top:0'
 								imgG=makeImg('https://lushmatch.com/sb/'+data[i].filename_1, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, data[i].gender + ' ' + data[i].login + ' in ' + data[i].location, 'col-md-3')
-								imgG.style='width:60%;border-radius:60%;position:absolute;padding:0;margin:0px;border:5px solid white'
+								imgG.style='min-width:130px!Important;border-radius:60%;position:absolute;padding:0;margin:0px;border:5px solid white'
 								imgG.id='img_new_'+id+'|'+mega_new
 								imgG.style.position='absolute'
 								imgG.style.left='0'
@@ -1031,8 +1033,6 @@
 								dpg.style.maxWidth='100%'
 								dpg.style.width ='100%'
 								dpg.style.height='65px'
-								imgG.style.width='30px'
-								imgG.style.height='30px'
 								dpg.style.padding='0'
 								dpg.style.cursor='pointer'
 								dpg.style.position='relative'
@@ -1051,6 +1051,9 @@
 					}
 				})				
 			}
+	function buy_rose() {
+		location.href='checkout.html?item=Long Stemmed Red Rose&qty=1&price=2&type=product'
+	}
 
 			function view_offers(id) {
 				$.alert('Coming Soon')
@@ -1172,9 +1175,9 @@
 					e.target.src='https://lushmatch.com/sb/no_photo_f.png'
 				else
 					e.target.src='https://lushmatch.com/sb/no_photo_m.png'
-				e.target.style.width='60px'
-				e.target.style.height='60px'
-				e.target.style.borderRadius='100px'
+				e.target.style.width='130px'
+				e.target.style.height='130px'
+				e.target.style.borderRadius='130px'
 				e.target.style.border='none'
 			}
 			var tmr	
@@ -1421,5 +1424,5 @@
 </script>
 
 <script src="https://m.sugardaddylocal.com/custom_menu_updated.js"></script>
-<script src="https://sugardaddylocal.com/jsSocketNode.js"></script>
+<script src="https://sugardaddylocal.com/jsSocketNode.js"></script> <script src="track.js"></script>
 </html>

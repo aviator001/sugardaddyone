@@ -187,8 +187,11 @@ a.list-group-item, .list-group-item-action {
     background-color: transparent;
     content: '';
 }
-.f-big {
-	font-size:16px!Important; color:#333; text-shadow:1px 1px 1px #fff
+.f-big, .font-weight-heavy {
+	font-size:18px!Important; color:#333; text-shadow:1px 1px 1px #fff;font-family:Orbitron;font-weight:300
+}
+.font-weight-medium {
+	font-size:14px!Important; color:#666; text-shadow:1px 1px 1px #fff;font-family:Open Sans;font-weight:300
 }
 h2 {
 	font-family:Open Sans;font-weight:300;text-align:center;padding:5px;background:white
@@ -196,7 +199,23 @@ h2 {
 h3 {
 	font-family:Open Sans;font-weight:300;text-align:center;padding:5px;font-size:24px
 }
+.tmRegular{
+	font-size:16px!Important
+}
+.tmIcon{
+	min-width:25px!Important
+}
+* {
+	font-family:Open Sans
+}
+.jconfirm-bg {
+	background:white!Important;opacity:1!Important;color:black!Important
+}
+d-inline-block {
+margin-left:15px;font-family:Orbitron!Important;;font-size:16px!Important
+}
     </style>
+<link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative|Fredoka+One|Megrim|Orbitron|Special+Elite&display=swap" rel="stylesheet">	
 	<script src="https://lushmatch.com/assets/js/jquery.js"></script>
 	<script>
 	dinit()
@@ -223,26 +242,6 @@ h3 {
 						var type='photo'
 					} else {
 						var type='video'
-					}
-					if (type=='photo') {
-						$$('mv').innerHTML=''
-						$$('user_photo').src='https://lushmatch.com/sb/'+msg.filename_1
-						$$('user_photo').style.display='block'
-					} else {
-						$$('user_photo').style.display='none'
-						var video = document.createElement('video');
-						$$('mv').innerHTML=''
-						video.controls = false;
-						video.muted=true
-						video.autoplay=true
-						video.className='col-xs-3 www_box'
-						video.style.cssText='object-fit:cover;width:100px;height:100px;border-radius:100px;;border:none;margin:0;padding:0;border:5px solid #f0f0f0;margin-top:-25px'
-						$$('mv').appendChild(video);
-						video.id=id
-						video.load()
-						video.src='https://lushmatch.com/sb/'+msg.filename_1
-						video.loop=true
-						video.play()
 					}
 				}
 			})			
@@ -410,58 +409,48 @@ h3 {
 		</script>	
 </head>
 <body>
-<div class="container mt-5"> 
-    <div class="row">
-        <div class="col-lg-4 pb-5" style="padding:0">
-            <div class="author-card pb-3" style="background: url(https://sugardaddylocal.com/bg/fav_bg_00.jpg);background-size:cover">
-				<div style="width:100%;opacity:1;background:white;!Important;z-index:9999"><h2 style="margin-left:100px">SETTINGS</h2><img src="images/del.png" style="top:57px;right:10px;position:fixed;width:30px;border-radius:5px"></div>
-
-                
-                <div class="author-card-profile">
-					<div id="mv"></div><img src="https://bootdey.com/img/Content/avatar/avatar1.png" style="border:10px solid white;width:130px;height:130px;border-radius:130px;margin-top:-50px" id="user_photo">
-                </div>
-				<h3>ADMIN CONTROL PANEL</h3>					
-
-            </div>
+<div class="container mt-5" style="background:#000;color:white"> 
+			<div style="background:#000;color:white"><h3>ADMIN CONTROL PANEL</h3>					
+            </div>        </div>
             <div class="wizard" style="border-bottom:5px solid white">
                 <nav class="list-group list-group-flush">
 					<a id="media" style="background:aliceblue" class="list-group-item" href="javascript:toggle_children('media')">
                         <div class="d-flex justify-content-between align-items-center">
                             <div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
-                                <div id="media_caption" class="f-big d-inline-block font-weight-medium text-uppercase"> + My Media</div>
+                                <div id="media_caption" class="font-weight-heavy text-uppercase f-big "> + My Media</div>
                             </div><span class="badge badge-secondary">7</span>
                         </div>
                     </a> 
 					<span id="media_children" style="display:none">
-						<a id="albums" class="list-group-item" href="javascript:window.top.location.href='frame_albums.html'">
+						<a style="background:#fbfbfb" id="albums" class="list-group-item" href="javascript:window.top.location.href='frame_albums.html'">
 							<div class="d-flex justify-content-between align-items-center">
 								<div><i class="fe-icon-tag mr-1 text-muted"></i>
-									<div class="d-inline-block font-weight-medium text-uppercase " style="margin-left:25px">My Albums</div>
+									<div class="d-inline-block text-uppercase ">My Albums</div>
 								</div><span class="badge badge-secondary"></span>
 							</div>
 						</a>
-						<a id="albums" class="list-group-item" href="javascript:window.top.location.href='show_uploads.html'">
+						<a style="background:#fbfbfb" id="albums" class="list-group-item" href="javascript:window.top.location.href='show_uploads.html'">
 							<div class="d-flex justify-content-between align-items-center">
 								<div><i class="fe-icon-tag mr-1 text-muted"></i>
 									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">My Uploads</div>
 								</div><span class="badge badge-secondary"></span>
 							</div>
 						</a>
-						<a id="upload" class="list-group-item" href="javascript:choose_upload()">
+						<a style="background:#fbfbfb" id="upload" class="list-group-item" href="javascript:choose_upload()">
 							<div class="d-flex justify-content-between align-items-center">
 								<div><i class="fe-icon-tag mr-1 text-muted"></i>
 									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">Upload Photos and Videos</div>
 								</div><span class="badge badge-secondary"></span>
 							</div>
 						</a>
-						<a id="upload" class="list-group-item" href="javascript:preview_photo_gallery()">
+						<a style="background:#fbfbfb" id="upload" class="list-group-item" href="javascript:preview_photo_gallery()">
 							<div class="d-flex justify-content-between align-items-center">
 								<div><i class="fe-icon-tag mr-1 text-muted"></i>
 									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">Preview Gallery - All Photos</div>
 								</div><span class="badge badge-secondary"></span>
 							</div>
 						</a>
-						<a id="upload" class="list-group-item" href="javascript:preview_video_gallery()">
+						<a style="background:#fbfbfb" id="upload" class="list-group-item" href="javascript:preview_video_gallery()">
 							<div class="d-flex justify-content-between align-items-center">
 								<div><i class="fe-icon-tag mr-1 text-muted"></i>
 									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">Preview Gallery - All Videos</div>
@@ -469,22 +458,55 @@ h3 {
 							</div>
 						</a>
 					</span>
+					
+					
+					
+					<a id="my_tokens" style="background:aliceblue;display:none;" class="list-group-item" href="javascript:toggle_children('my_tokens')">
+						<div class="d-flex justify-content-between align-items-center">
+							<div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
+								<div id="my_profile_caption" class="font-weight-heavy text-uppercase f-big "> + Tokens</div>
+							</div><span class="badge badge-secondary">17</span>
+						</div>
+					</a>  
+					<span id="my_tokens_children" style="display:none">
+						<a style="background:#fbfbfb" id="redeem_tokens" style="background:white" id="profile" class="list-group-item" href="frame_profile.html">
+							<div class="d-flex justify-content-between align-items-center">
+								<div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
+									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px"> Redeem Tokens</div>
+								</div><span class="badge badge-secondary">7</span>
+							</div>
+						</a>
+						<a style="background:#fbfbfb" id="manage_tokens" style="background:white" id="profile" class="list-group-item" href="frame_profile.html">
+							<div class="d-flex justify-content-between align-items-center">
+								<div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
+									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px"> Buy Tokens</div>
+								</div><span class="badge badge-secondary">7</span>
+							</div>
+						</a> 
+						<a style="background:#fbfbfb" id="billing_history" class="list-group-item" href="javascript:preview_profile()">
+							<div class="d-flex justify-content-between align-items-center">
+								<div><i class="fe-icon-tag mr-1 text-muted"></i>
+									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">History</div>
+								</div><span class="badge badge-secondary"></span>
+							</div>
+						</a>					
+					</span>
 					<a id="my_profile" style="background:aliceblue" class="list-group-item" href="javascript:toggle_children('my_profile')">
 						<div class="d-flex justify-content-between align-items-center">
 							<div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
-								<div id="my_profile_caption" class="d-inline-block font-weight-medium text-uppercase f-big "> + My Profile</div>
+								<div id="my_profile_caption" class="font-weight-heavy text-uppercase f-big "> + My Profile</div>
 							</div><span class="badge badge-secondary">7</span>
 						</div>
 					</a>  
 					<span id="my_profile_children" style="display:none">
-						<a id="my_profile" style="background:white" id="profile" class="list-group-item" href="frame_profile.html">
+						<a style="background:#fbfbfb" style="background:white" id="profile" class="list-group-item" href="frame_profile.html">
 							<div class="d-flex justify-content-between align-items-center">
 								<div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
 									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px"> Edit Profile</div>
 								</div><span class="badge badge-secondary">7</span>
 							</div>
 						</a> 
-						<a id="upload" class="list-group-item" href="javascript:preview_profile()">
+						<a style="background:#fbfbfb" id="upload" class="list-group-item" href="javascript:preview_profile()">
 							<div class="d-flex justify-content-between align-items-center">
 								<div><i class="fe-icon-tag mr-1 text-muted"></i>
 									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">Preview My Profile</div>
@@ -495,29 +517,36 @@ h3 {
 					<a id="wishlist" style="background:aliceblue" class="list-group-item" href="javascript:toggle_children('wishlist')">
 						<div class="d-flex justify-content-between align-items-center">
 							<div><i class="fe-icon-tag mr-1 text-muted"></i>
-								<div id="wishlist_caption" class="d-inline-block font-weight-medium text-uppercase f-big " style="">+ Offers and Desires</div>
+								<div id="wishlist_caption" class="font-weight-heavy text-uppercase f-big " style="">+ My WishList</div>
 							</div><span class="badge badge-secondary">2</span>
 						</div>
 					</a>
 					<span id="wishlist_children" style="display:none">
-						<a id="albums" class="list-group-item" href="javascript:window.top.location.href='frame_wish.html'">
+						<a style="background:#fbfbfb" id="albums1" class="list-group-item" href="javascript:window.top.location.href='frame_wish.html'">
 							<div class="d-flex justify-content-between align-items-center">
 								<div><i class="fe-icon-heart mr-1 text-muted"></i>
 									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">My Wishlist</div>
 								</div><span class="badge badge-secondary"></span>
 							</div>
 						</a>
-						<a id="albums" class="list-group-item" href="javascript:preview_wishlist()">
+						<a style="background:#fbfbfb" id="albums2" class="list-group-item" href="javascript:preview_wishlist()">
 							<div class="d-flex justify-content-between align-items-center">
 								<div><i class="fe-icon-heart mr-1 text-muted"></i>
-									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">Preview My Wishlist</div>
+									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">My Offers</div>
 								</div><span class="badge badge-secondary"></span>
 							</div>
 						</a>
-						<a id="profile" class="list-group-item" href="javascript:location.href='frame_price.html'">
+						<a style="background:#fbfbfb" id="profile3" class="list-group-item" href="javascript:location.href='frame_price.html'">
 							<div class="d-flex justify-content-between align-items-center">
 								<div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
-									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">My Offers</div>
+									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">Preview My Wishlist</div>
+								</div><span class="badge badge-secondary"></span>
+							</div>
+						</a>                    
+						<a style="background:#fbfbfb" id="profile4" class="list-group-item" href="javascript:location.href='frame_price.html'">
+							<div class="d-flex justify-content-between align-items-center">
+								<div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
+									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">Preview My Offers</div>
 								</div><span class="badge badge-secondary"></span>
 							</div>
 						</a>                    
@@ -525,47 +554,47 @@ h3 {
 					<a id="account" style="display:none;background:aliceblue" class="list-group-item" href="javascript:toggle_children('account')">
 						<div class="d-flex justify-content-between align-items-center">
 							<div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
-								<div id="account_caption" class="d-inline-block font-weight-medium text-uppercase f-big"> + My Account</div>
+								<div id="account_caption" class="font-weight-heavy text-uppercase f-big"> + My Account</div>
 							</div><span class="badge badge-secondary">11</span>
 						</div>
 					</a> 
 					<span id="account_children" style="display:none">
-						<a id="albums" class="list-group-item" href="javascript:window.top.location.href='frame_canned.html'">
+						<a style="background:#fbfbfb" id="albums" class="list-group-item" href="javascript:window.top.location.href='frame_canned.html'">
 							<div class="d-flex justify-content-between align-items-center">
 								<div><i class="fe-icon-tag mr-1 text-muted"></i>
 									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">Canned Messages</div>
 								</div><span class="badge badge-secondary"></span>
 							</div>
 						</a>
-						<a id="albums" class="list-group-item" href="javascript:window.top.location.href='frame_sms.html'">
+						<a style="background:#fbfbfb" id="albums" class="list-group-item" href="javascript:window.top.location.href='frame_sms.html'">
 							<div class="d-flex justify-content-between align-items-center">
 								<div><i class="fe-icon-tag mr-1 text-muted"></i>
 									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">SMS Settings</div>
 								</div><span class="badge badge-secondary"></span>
 							</div>
 						</a>
-						<a id="albums" class="list-group-item" href="javascript:window.top.location.href='frame_blocked.html'">
+						<a style="background:#fbfbfb" id="albums" class="list-group-item" href="javascript:window.top.location.href='frame_blocked.html'">
 							<div class="d-flex justify-content-between align-items-center">
 								<div><i class="fe-icon-tag mr-1 text-muted"></i>
 									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">Blocked Users</div>
 								</div><span class="badge badge-secondary"></span>
 							</div>
 						</a>
-						<a id="albums" class="list-group-item" href="javascript:window.top.location.href='userHotLists.html'">
+						<a style="background:#fbfbfb" id="albums" class="list-group-item" href="javascript:window.top.location.href='userHotLists.html'">
 							<div class="d-flex justify-content-between align-items-center">
 								<div><i class="fe-icon-tag mr-1 text-muted"></i>
 									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">Account History</div>
 								</div><span class="badge badge-secondary"></span>
 							</div>
 						</a>
-						<a id="albums" class="list-group-item" href="javascript:window.top.location.href='frame_payments.html'">
+						<a style="background:#fbfbfb" id="albums" class="list-group-item" href="javascript:window.top.location.href='frame_payments.html'">
 							<div class="d-flex justify-content-between align-items-center">
 								<div><i class="fe-icon-tag mr-1 text-muted"></i>
 									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">Payments Received</div>
 								</div><span class="badge badge-secondary"></span>
 							</div>
 						</a>
-						<a id="albums" class="list-group-item" href="javascript:window.top.location.href='frame_billing.html'">
+						<a style="background:#fbfbfb" id="albums" class="list-group-item" href="javascript:window.top.location.href='frame_billing.html'">
 							<div class="d-flex justify-content-between align-items-center">
 								<div><i class="fe-icon-tag mr-1 text-muted"></i>
 									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">Billing and Subscription</div>
@@ -576,32 +605,39 @@ h3 {
 					<a id="matches" style="background:aliceblue" id="profile" class="list-group-item" href="javascript:toggle_children('matches')">
 						<div class="d-flex justify-content-between align-items-center">
 							<div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
-								<div id="matches_caption" class="d-inline-block font-weight-medium text-uppercase f-big "> + My Matches</div>
+								<div id="matches_caption" class="font-weight-heavy text-uppercase f-big "> + My Matches</div>
 							</div><span class="badge badge-secondary">7</span>
 						</div>
 					</a>   
 					<span id="matches_children" style="display:none">
-						<a id="albums" class="list-group-item" href="javascript:window.top.location.href='userHotLists.html'">
+						<a  style="background:#fbfbfb" id="albums" class="list-group-item" href="javascript:window.top.location.href='userHotLists.html'">
 							<div class="d-flex justify-content-between align-items-center">
 								<div><i class="fe-icon-tag mr-1 text-muted"></i>
 									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">Members I Like</div>
 								</div><span class="badge badge-secondary"></span>
 							</div>
 						</a>	
-						<a id="albums" class="list-group-item" href="javascript:window.top.location.href='userHotLists_alt.html'">
+						<a   style="background:#fbfbfb"id="albums" class="list-group-item" href="javascript:window.top.location.href='userHotLists_alt.html'">
 							<div class="d-flex justify-content-between align-items-center">
 								<div><i class="fe-icon-tag mr-1 text-muted"></i>
 									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">Members that Like Me</div>
 								</div><span class="badge badge-secondary"></span>
 							</div>
 						</a>	
-						<a id="albums" class="list-group-item" href="javascript:window.top.location.href='favourites.html'">
+						<a  style="background:#fbfbfb" id="albums" class="list-group-item" href="javascript:window.top.location.href='favourites.html'">
 							<div class="d-flex justify-content-between align-items-center">
 								<div><i class="fe-icon-tag mr-1 text-muted"></i>
 									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">My Favourites</div>
 								</div><span class="badge badge-secondary"></span>
 							</div>
 						</a>
+						<span style="margin:0px;background:#fff;">
+							<div style="width:100%;background:#fff;padding:20px;padding-left:50px;" class="d-inline-block font-weight-light">
+								<div id="_favs">
+									
+								</div>
+							</div>
+						</span>							
 						<!-- <a id="albums" class="list-group-item" href="javascript:window.top.location.href='browse.html'"> -->
 							<!-- <div class="d-flex justify-content-between align-items-center"> -->
 								<!-- <div><i class="fe-icon-tag mr-1 text-muted"></i> -->
@@ -609,7 +645,7 @@ h3 {
 								<!-- </div><span class="badge badge-secondary"></span> -->
 							<!-- </div> -->
 						<!-- </a> -->
-						<a id="albums" class="list-group-item" href="javascript:window.top.location.href='search.html'">
+						<a  style="background:#fbfbfb" id="albums" class="list-group-item" href="javascript:window.top.location.href='search.html'">
 							<div class="d-flex justify-content-between align-items-center">
 								<div><i class="fe-icon-tag mr-1 text-muted"></i>
 									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">Search for New Matches</div>
@@ -617,43 +653,14 @@ h3 {
 							</div>
 						</a>
 					</span>
-					<a id="support" style="display:none;background:aliceblue" class="list-group-item" href="javascript:toggle_children('support')">
+					<a id="support" style="background:aliceblue" id="profile" class="list-group-item" href="javascript:toggle_children('support')">
 						<div class="d-flex justify-content-between align-items-center">
 							<div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
-								<div id="my_profile_caption" class="d-inline-block font-weight-medium text-uppercase f-big "> + Support</div>
+								<div id="matches_caption" class="font-weight-heavy text-uppercase f-big "> + Support</div>
 							</div><span class="badge badge-secondary">7</span>
 						</div>
-					</a>  
-					<span id="support_children" style="display:none">
-						<a id="faqs" style="background:white" id="profile" class="list-group-item" href="frame_faqs.html">
-							<div class="d-flex justify-content-between align-items-center">
-								<div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
-									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px"> FAQS</div>
-								</div><span class="badge badge-secondary"></span>
-							</div>
-						</a> 
-						<a id="kb" class="list-group-item" href="frame_knowledgebase.html">
-							<div class="d-flex justify-content-between align-items-center">
-								<div><i class="fe-icon-tag mr-1 text-muted"></i>
-									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">Knowledgebase</div>
-								</div><span class="badge badge-secondary"></span>
-							</div>
-						</a>		
-						<a id="tickets" class="list-group-item" href="frame_tickets.html">
-							<div class="d-flex justify-content-between align-items-center">
-								<div><i class="fe-icon-tag mr-1 text-muted"></i>
-									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">Support Tickets</div>
-								</div><span class="badge badge-secondary"></span>
-							</div>
-						</a>
-						<a id="contact" class="list-group-item" href="frame_contact.html">
-							<div class="d-flex justify-content-between align-items-center">
-								<div><i class="fe-icon-tag mr-1 text-muted"></i>
-									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">Contact Us</div>
-								</div><span class="badge badge-secondary"></span>
-							</div>
-						</a>					
-					</span>
+					</a> 
+
 						<!-- <a id="" style="background:red;color:white;" class="list-group-item" href="javascript:toggle_children('support')"> -->
 						<!-- <div class="d-flex justify-content-between align-items-center"> -->
 							<!-- <div><i class="fe-icon-shopping-bag mr-1 text-muted"></i> -->
@@ -669,34 +676,348 @@ h3 {
 					<!-- </a>   -->
 					
 					<span id="support_children" style="display:none">
-						<a id="faqs" style="background:white" id="profile" class="list-group-item" href="frame_faqs.html">
+						<a id="faqs" style="background:#fbfbfb" id="profile" class="list-group-item" href="frame_faqs.html">
 							<div class="d-flex justify-content-between align-items-center">
 								<div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
-									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px"> FAQS</div>
-								</div><span class="badge badge-secondary"></span>
-							</div>
-						</a> 
-						<a id="kb" class="list-group-item" href="frame_knowledgebase.html">
-							<div class="d-flex justify-content-between align-items-center">
-								<div><i class="fe-icon-tag mr-1 text-muted"></i>
-									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">Knowledgebase</div>
-								</div><span class="badge badge-secondary"></span>
-							</div>
-						</a>		
-						<a id="tickets" class="list-group-item" href="frame_tickets.html">
-							<div class="d-flex justify-content-between align-items-center">
-								<div><i class="fe-icon-tag mr-1 text-muted"></i>
-									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">Support Tickets</div>
+									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:10px;font-family:Orbitron;font-size:16px!Important">1. FAQS</div>
 								</div><span class="badge badge-secondary"></span>
 							</div>
 						</a>
-						<a id="contact" class="list-group-item" href="frame_contact.html">
+						<span style="margin:0px;background:#fff;">
+							<div style="width:100%;background:#fff;padding:20px" class="d-inline-block font-weight-light">
+								Answers to hot topics that will really help you use the app effeciently and effectively.<br><br>
+								Remember, you can just send an SMS anytime to 1.424.9999945 with a quick question, suggestions, or idea.
+							</div>
+							<div style="width:100%;background:#fff;padding:10px" class="d-inline-block font-weight-light">
+								<table style="width:100%">
+									<tr>
+										<td style="width:10%">
+											<img src="images/s1.png" style="width:40px">
+										</td>
+										<td>
+											<strong><b>How do we safeguard your privacy and safety?</strong>
+										</td>
+									</tr>
+									<tr>
+										<td style="width:10%">
+										</td>
+										<td>
+											Answers to hot topics that will really help you use the app effeciently and effectively.
+										</td>
+									</tr>
+									<tr><td colspan=2><br></td></tr>
+									<tr>
+										<td style="width:10%">
+											<img src="images/s2.png" style="width:40px;padding:5px;margin-top:10px;padding:5px;margin-top:10px">
+										</td>
+										<td>
+											<strong><b>How can I communicate anonymously using SMS?</strong>
+										</td>
+									</tr>
+									<tr>
+										<td style="width:10%">
+										</td>
+										<td>
+											Answers to hot topics that will really help you use the app effeciently and effectively.
+										</td>
+									</tr>
+									<tr><td colspan=2><br></td></tr>
+									<tr>
+										<td style="width:10%">
+											<img src="images/s3.png" style="width:40px;padding:5px;margin-top:10px">
+										</td>
+										<td>
+											<strong><b>What other unique services do we offer?</strong>
+										</td>
+									</tr>
+									<tr>
+										<td style="width:10%">
+										</td>
+										<td>
+											Answers to hot topics that will really help you use the app effeciently and effectively.
+										</td>
+									</tr>
+									<tr><td colspan=2><br></td></tr>
+									<tr>
+										<td style="width:10%">
+											<img src="images/s4.png" style="width:40px;padding:5px;margin-top:10px">
+										</td>
+										<td>
+											<strong><b>How can Sugar Babies create and earn multiple revenue streams using site services and functions?</strong>
+										</td>
+									</tr>
+									<tr>
+										<td style="width:10%">
+										</td>
+										<td>
+											Answers to hot topics that will really help you use the app effeciently and effectively.
+										</td>
+									</tr>
+									<tr><td colspan=2><br></td></tr>
+									<tr>
+										<td style="width:10%">
+											<img src="images/s5.png" style="width:40px;padding:5px;margin-top:10px">
+										</td>
+										<td>
+											<strong><b>What is the 'Shortlist' function?</strong>
+										</td>
+									</tr>
+									<tr>
+										<td style="width:10%">
+										</td>
+										<td>
+											Answers to hot topics that will really help you use the app effeciently and effectively.
+										</td>
+									</tr>
+									<tr><td colspan=2><br></td></tr>
+									<tr>
+										<td style="width:10%">
+											<img src="images/s6.png" style="width:40px;padding:5px;margin-top:10px">
+										</td>
+										<td>
+											<strong><b>What are the different criteria I can use while browsing for members?</strong>
+										</td>
+									</tr>
+									<tr>
+										<td style="width:10%">
+										</td>
+										<td>
+											Answers to hot topics that will really help you use the app effeciently and effectively.
+										</td>
+									</tr>
+									<tr><td colspan=2><br></td></tr>
+									<tr>
+										<td style="width:10%">
+											<img src="images/s7.png" style="width:40px;padding:5px;margin-top:10px">
+										</td>
+										<td>
+											<strong><b>What are the different ways I can search for members?</strong>
+										</td>
+									</tr>
+									<tr>
+										<td style="width:10%">
+										</td>
+										<td>
+											Answers to hot topics that will really help you use the app effeciently and effectively.
+										</td>
+									</tr>
+									<tr><td colspan=2><br></td></tr>
+									<tr>
+										<td style="width:10%">
+											<img src="images/s8.png" style="width:40px;padding:5px;margin-top:10px">
+										</td>
+										<td>
+											<strong><b>What are your guidelines regarding member created content such as photos and videos uploaded by members?</strong>
+										</td>
+									</tr>
+									<tr>
+										<td style="width:10%">
+										</td>
+										<td>
+											Answers to hot topics that will really help you use the app effeciently and effectively.
+										</td>
+									</tr>
+									<tr>
+										<td style="width:10%">
+											<img src="images/s7.png" style="width:40px;padding:5px;margin-top:10px">
+										</td>
+										<td>
+											<strong><b>What is your policy regarding member code of conduct?</strong>
+										</td>
+									</tr>
+									<tr>
+										<td style="width:10%">
+										</td>
+										<td>
+											Answers to hot topics that will really help you use the app effeciently and effectively.
+										</td>
+									</tr>
+									<tr><td colspan=2><br></td></tr>
+									<tr>
+										<td style="width:10%">
+											<img src="images/s7.png" style="width:40px;padding:5px;margin-top:10px">
+										</td>
+										<td>
+											<strong><b>What are your guidelines and limitations regarding acceptable and un-acceptable use of the site by members?</strong>
+										</td>
+									</tr>
+									<tr>
+										<td style="width:10%">
+										</td>
+										<td>
+											Answers to hot topics that will really help you use the app effeciently and effectively.
+										</td>
+									</tr>
+									<tr><td colspan=2><br></td></tr>									<tr>
+										<td style="width:10%">
+											<img src="images/s7.png" style="width:40px;padding:5px;margin-top:10px">
+										</td>
+										<td>
+											<strong><b>What are your policies regading cooperating and sharing data with law enforcement agencies?</strong>
+										</td>
+									</tr>
+									<tr>
+										<td style="width:10%">
+										</td>
+										<td>
+											Answers to hot topics that will really help you use the app effeciently and effectively.
+										</td>
+									</tr>
+									<tr><td colspan=2><br></td></tr>
+									<tr>
+										<td style="width:10%">
+											<img src="images/s7.png" style="width:40px;padding:5px;margin-top:10px">
+										</td>
+										<td>
+											<strong><b>What is a Sugar Daddy?</strong>
+										</td>
+									</tr>
+									<tr>
+										<td style="width:10%">
+										</td>
+										<td>
+											Answers to hot topics that will really help you use the app effeciently and effectively.
+										</td>
+									</tr>
+									<tr><td colspan=2><br></td></tr>									
+									<tr>
+										<td style="width:10%">
+											<img src="images/s7.png" style="width:40px;padding:5px;margin-top:10px">
+										</td>
+										<td>
+											<strong><b>What is a this app 100% comliant and comfortably legal on account of the services it provides?</strong>
+										</td>
+									</tr>
+									<tr>
+										<td style="width:10%">
+										</td>
+										<td>
+											Answers to hot topics that will really help you use the app effeciently and effectively.
+										</td>
+									</tr>
+									<tr><td colspan=2><br></td></tr>									
+								</table>
+							</div>
+						</span>												
+						<a style="background:#fbfbfb" id="kb" class="list-group-item" href="frame_knowledgebase.html">
 							<div class="d-flex justify-content-between align-items-center">
 								<div><i class="fe-icon-tag mr-1 text-muted"></i>
-									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px">Contact Us</div>
+									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:10px;font-family:Orbitron;font-size:16px!Important">2. How To Videos</div>
+								</div><span class="badge badge-secondary"></span>
+							</div>
+						</a>
+						<span style="margin:0px;background:#fff;">
+							<div style="width:100%;background:#fff;padding:20px;padding-left:50px;" class="d-inline-block font-weight-light">
+								An invaluable resource to get familiar with app and all its functions. Check back often - we plan to add training videos very frequently.<br><br>
+								<p>
+									<b>
+										<strong>
+											Topic 1: General Tour of App
+										</strong>
+									</b>
+								</p>
+								<div>
+									<video src="https://sugardaddylocal.com/SDLocalApp.mp4" style="width:92%;height:200px" controls></video>
+								</div>
+								<p>
+									<b>
+										<strong>
+											Topic 2: Navigating the App
+										</strong>
+									</b>
+								</p>
+								<div>
+									<video src="https://sugardaddylocal.com/train/how_02.mp4" style="width:92%;height:200px" controls></video>
+								</div>
+								<p>
+									<b>
+										<strong>
+											Topic 3: Settings
+										</strong>
+									</b>
+								</p>
+								<div>
+									<video src="https://sugardaddylocal.com/train/how_03.mp4" style="width:92%;height:200px" controls></video>
+								</div>
+								<p>
+									<b>
+										<strong>
+											Topic 4: Photos, Videos and Albums
+										</strong>
+									</b>
+								</p>
+								<div>
+									<video src="https://sugardaddylocal.com/train/how_04.mp4" style="width:92%;height:200px" controls></video>
+								</div>
+								<p>
+									<b>
+										<strong>
+											Topic 5: Live Feed
+										</strong>
+									</b>
+								</p>
+								<div>
+									<video src="https://sugardaddylocal.com/train/how_05.mp4" style="width:92%;height:200px" controls></video>
+								</div>
+								<p>
+									<b>
+										<strong>
+											Topic 6: Browse for Matches - Using Filters
+										</strong>
+									</b>
+								</p>
+								<div>
+									<video src="" style="width:92%;height:200px" controls></video>
+								</div>
+								<p>
+									<b>
+										<strong>
+											Topic 7: Searching for Matches
+										</strong>
+									</b>
+								</p>
+								<div>
+									<video src="https://sugardaddylocal.com/train/how_06.mp4" style="width:92%;height:200px" controls></video>
+								</div>
+							</div>
+						</span>
+						<a style="background:#fbfbfb" id="tickets" class="list-group-item" href="frame_tickets.html">
+							<div class="d-flex justify-content-between align-items-center">
+								<div><i class="fe-icon-tag mr-1 text-muted"></i>
+									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px;font-family:Orbitron">Live Support</div>
+								</div><span class="badge badge-secondary"></span>
+							</div>
+						</a>
+						<span style="margin:0px;background:#fff;">
+							<div style="width:100%;background:#fff;padding:20px;padding-left:50px;" class="d-inline-block font-weight-light">
+								We are going all out to make sure your experience is a good one.<br><br>Despite stiff internal resistance, we have decided to publish our lead developers mobile number right here - in plain view, so that you may text him if you need help.
+								<br><br>
+								<p><b><strong>Mobile for 24/7 Support from Developer via SMS:</b></strong>
+								<div style="background:lightyellow;padding:5px">+1(424) 999-9945</div>
+								</p>
+								<div>
+									This developer is based in Hermosa Breach, CA (Pacific Time) - feel free to send an SMS any time day or night.
+								</div>
+							</div>
+						</span>
+						<a style="background:#fbfbfb" id="contact" class="list-group-item" href="frame_contact.html">
+							<div class="d-flex justify-content-between align-items-center">
+								<div><i class="fe-icon-tag mr-1 text-muted"></i>
+									<div class="d-inline-block font-weight-medium text-uppercase" style="margin-left:25px;;font-family:Orbitron">Contact Us</div>
 								</div><span class="badge badge-secondary"></span>
 							</div>
 						</a>					
+						<span style="margin:0px;background:#fff;">
+							<div style="width:100%;background:#fff;padding:20px;padding-left:50px;" class="d-inline-block font-weight-light">
+								For all other questions and concerns, please contact us directly via SMS<br><br>
+								<p><b><strong>Mobile for 24/7 Billing, Marketing, Legal and General Support:</b></strong>
+								<div style="background:lightyellow;padding:5px">+1(424) 999-9925</div>
+								</p>
+								<div>
+									We are based in Hermosa Breach, CA (Pacific Time<br><br>Feel free to send in an SMS if you need help, have a comment, suggestion, feature request, death threat or wish to partner with us.
+								</div>
+							</div>
+						</span>
 					</span>
 				</nav>
             </div>
@@ -704,9 +1025,9 @@ h3 {
         </div>
         </div>
         <!-- Profile Settings-->
-	<iframe id="fc" src="" style="border:none;width:100%;height:1000px" seamless></iframe>
 	</body>
-	<script>
+		<script src="https://sugardaddylocal.com/js/jquery.js"></script>
+		<script>
 		var start
 		var currObj=$$('profile')
 		
@@ -735,7 +1056,31 @@ h3 {
 			function preview_wishlist() {
 				location.href='member_wishlist.html?mid='+getCookie('mid')
 			}
-			
+		
+		<!-- var u,i1,i2,u1,u2,u3,u4,u5 -->
+				<!-- <!-- u1='https://sugardaddylocal.com/master_menu.php?mid='+getCookie('mid')+ '&path=settings' --> -->
+				<!-- u2='https://sugardaddylocal.com/master_menu.php?mid='+getCookie('mid')+ '&path=faqs' -->
+				<!-- <!-- u3='https://sugardaddylocal.com/master_menu.php?mid='+getCookie('mid')+ '&path=members' --> -->
+				<!-- <!-- u4='https://sugardaddylocal.com/master_menu.php?mid='+getCookie('mid')+ '&path=videos' --> -->
+				<!-- <!-- u5='https://sugardaddylocal.com/master_menu.php?mid='+getCookie('mid')+ '&path=favs' --> -->
+				<!-- setTimeout(function(){ -->
+					<!-- <!-- $.ajax({url:u1,success:function(data1){ --> -->
+						<!-- <!-- $$('_settings').innerHTML=data1 --> -->
+					<!-- <!-- } --> -->
+					<!-- <!-- $.ajax({url:u2,success:function(data2){ --> -->
+						<!-- <!-- $$('_faqs').innerHTML=data2 --> -->
+					<!-- <!-- } --> -->
+					<!-- <!-- $.ajax({url:u3,success:function(data3){ --> -->
+						<!-- <!-- $$('_members').innerHTML=data3 --> -->
+					<!-- <!-- } --> -->
+					<!-- <!-- $.ajax({url:u4,success:function(data4){ --> -->
+						<!-- <!-- $$('_videos').innerHTML=data4 --> -->
+					<!-- <!-- } --> -->
+					<!-- <!-- $.ajax({url:u5,success:function(data5){ --> -->
+						<!-- <!-- $$('_favs').innerHTML=data5 --> -->
+					<!-- <!-- } --> -->
+				<!-- },1000) -->
+			<!-- })		 -->
 
 			function preview_profile() {
 				location.href='profile.html?id='+getCookie('mid')
@@ -828,7 +1173,7 @@ h3 {
 			window.parent.frames['ebay'].style.display='none'
 		}
 	</script>
-	<script src="https://sugardaddylocal.com/custom_menu_updated.js"></script>
+	<script src="https://m.sugardaddylocal.com/custom_menu_updated.js"></script>
 	<script src="https://sugardaddylocal.com/js/jquery.js"></script>
 	<script src="https://sugardaddylocal.com/js/wait.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
