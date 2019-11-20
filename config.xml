@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="one.sugardaddy.app" version="41" versionCode="1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>SugarDaddyOne</name>
+<widget id="one.sugardaddy.com" version="41" versionCode="1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>OneSugarDaddy</name>
     <description>
 A new experience from the pioneeers of sugar daddy dating - the first site based on disruptive technologies
 </description>
-    <author email="g@terrawire.com" href="http://sugardaddyone.com">
-		Free Sugar Daddy App Team
+    <author email="g@terrawire.com" href="http://onesugardaddy.com">
+		One Sugar Daddy Team
 	</author>
      <content src="index.html" />
     <access origin="*" />
@@ -67,7 +67,7 @@ A new experience from the pioneeers of sugar daddy dating - the first site based
             <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
         </feature>
 	    <config-file target="res/values/strings.xml" parent="/*">
-        <string name="title">SDOne</string>
+        <string name="title">OneSD</string>
         <string name="filter_view_https_sugardaddy">one</string>
 		</config-file> 	
 		<manifest xmlns:android="http://schemas.android.com/apk/res/android">
@@ -86,14 +86,14 @@ A new experience from the pioneeers of sugar daddy dating - the first site based
             <uses-permission android:name="android.permission.MICROPHONE" />
             <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 			<activity
-				android:name="one.sugardaddy.app"
+				android:name="one.sugardaddy.com"
 				android:label="@string/title" >
 				<intent-filter android:label="@string/filter_view_https_sugardaddy">
 					<action android:name="android.intent.action.VIEW" />
 					<category android:name="android.intent.category.DEFAULT" />
 					<category android:name="android.intent.category.BROWSABLE" />
 					<data android:scheme="one"
-						  android:host="one.sugardaddy.app" />
+						  android:host="one.sugardaddy.com"/>
 				</intent-filter>
 			</activity>			
         </manifest>
